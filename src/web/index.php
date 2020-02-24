@@ -76,6 +76,16 @@ try {
 	$crafting = parseConfigFile('crafting', !$skipDefaultCrafting);
 	$enchantingConfig = parseConfigFile('paths', !$skipDefaultPaths);
 	$messages = parseConfigFile('messages', true);
+
+    $language = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : '';
+    if ($language) {
+        $localizationFile = "$magicRootFolder/examples/localizations/messages.$language.yml";
+        if (!file_exists($localizationFile)) {
+            die("Can't find localization file for language $language");
+        }
+        $localization = yaml_parse_file($localizationFile);
+        $messages = array_replace_recursive($messages, $localization);
+    }
 	
 	// Load resource pack textures
 	$spellJson = json_decode(file_get_contents('rp/default/assets/minecraft/models/item/diamond_axe.json'), true);
