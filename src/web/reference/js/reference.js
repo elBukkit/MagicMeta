@@ -197,10 +197,10 @@ function populatePropertyHolderList(list, sectionKey) {
     sortList(list);
 }
 
-function makePropertyHolderSelector(selector, section, details, baseProperties) {
+function makePropertyHolderSelector(selector, section, details, baseProperties, category, categoryProperties) {
      populatePropertyHolderList(selector, section);
      makeSelectable(selector, details, function(details, listItem) {
-         addPropertyHolderDetails(details, listItem.data('key'), section, baseProperties);
+         addPropertyHolderDetails(details, listItem.data('key'), section, baseProperties, category, categoryProperties);
      }, 1);
 }
 
@@ -220,7 +220,7 @@ function sortList(ul) {
     $.each(listitems, function(idx, itm) { ul.append(itm); });
 }
 
-function addPropertyHolderDetails(container, key, section, baseProperties) {
+function addPropertyHolderDetails(container, key, section, baseProperties, targetCategory, categoryProperties) {
     var propertyHolder = metadata[section][key];
 
     var title = $('<div class="titleBanner"/>').text(propertyHolder.name);
@@ -275,6 +275,9 @@ function addPropertyHolderDetails(container, key, section, baseProperties) {
         parameterList.append(parameterItem);
     }
     baseProperties = metadata[baseProperties];
+    if (targetCategory && propertyHolder.hasOwnProperty('category') && propertyHolder.category == targetCategory) {
+        baseProperties = jQuery.extend({}, baseProperties, metadata[categoryProperties]);
+    }
     var baseParameters = Object.keys(baseProperties);
     sortProperties(baseParameters);
     for (var i = 0; i < baseParameters.length; i++) {
@@ -379,7 +382,7 @@ function initialize() {
         makePropertySelector($("#effectParameterList"), "effect_parameters", $('#effectParameterDetails'));
 
         makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_parameters');
-        makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters');
+        makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');
 
         // Kinda hacky but not sure how to work around this
         var currentHash = window.location.hash;
