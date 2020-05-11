@@ -1,11 +1,8 @@
 {
   "action_parameters" : {
-    "action_class" : null,
-    "actions_map" : null,
     "ignore_result" : "false",
     "requires_entity_target" : "false",
-    "requires_target" : "false",
-    "stop_on_success" : "false"
+    "requires_target" : "false"
   },
   "actions" : {
     "absorb" : {
@@ -3258,6 +3255,13 @@
       "description" : [ "Wand properties" ],
       "name" : "Wand"
     }
+  },
+  "compound_action_parameters" : {
+    "actions" : null,
+    "ignore_result" : "false",
+    "requires_entity_target" : "false",
+    "requires_target" : "false",
+    "stop_on_success" : "false"
   },
   "effect_parameters" : {
     "color" : null,

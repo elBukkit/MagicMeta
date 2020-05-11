@@ -12,9 +12,12 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
+
+import com.elmakers.mine.bukkit.action.BaseSpellAction;
 import com.elmakers.mine.bukkit.action.CastContext;
 import com.elmakers.mine.bukkit.action.CompoundAction;
 import com.elmakers.mine.bukkit.api.action.SpellAction;
+import com.elmakers.mine.bukkit.api.spell.SpellResult;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
@@ -147,12 +150,25 @@ public class MagicMeta {
         CastContext context = new CastContext(spell);
 
         // First get base action parameters
-        SpellAction baseAction = new CompoundAction() {};
+
+        BaseSpellAction baseAction = new BaseSpellAction() {
+            @Override
+            public SpellResult perform(com.elmakers.mine.bukkit.api.action.CastContext context) {
+                return SpellResult.NO_ACTION;
+            }
+        };
         InterrogatingConfiguration baseConfiguration = new InterrogatingConfiguration(data.getParameterStore());
         baseAction.initialize(spell, baseConfiguration);
         baseAction.prepare(context, baseConfiguration);
         ParameterList baseParameters = baseConfiguration.getParameters();
         data.addActionParameters(baseParameters);
+
+        SpellAction compoundAction = new CompoundAction() {};
+        InterrogatingConfiguration compoundConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        compoundAction.initialize(spell, compoundConfiguration);
+        compoundAction.prepare(context, compoundConfiguration);
+        ParameterList compoundParameters = compoundConfiguration.getParameters();
+        data.addCompoundActionParameters(compoundParameters);
 
         for (Class<? extends SpellAction> actionClass : allClasses) {
             if (!actionClass.getPackage().getName().equals(BUILTIN_SPELL_PACKAGE)
@@ -170,6 +186,7 @@ public class MagicMeta {
 
                 ParameterList spellParameters = actionConfiguration.getParameters();
                 spellParameters.removeDefaults(baseParameters);
+                spellParameters.removeDefaults(compoundParameters);
                 SpellActionDescription spellAction = new SpellActionDescription(actionClass, spellParameters);
                 if (CompoundAction.class.isAssignableFrom(actionClass)) {
                     spellAction.setCategory(getCategory("compound").getKey());

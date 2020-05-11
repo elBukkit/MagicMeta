@@ -1,18 +1,14 @@
 package com.elmakers.mine.bukkit.meta;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MetaData {
     private ParameterList mobParameters = new ParameterList();
+    private ParameterList compoundActionParameters = new ParameterList();
     private ParameterList actionParameters = new ParameterList();
     private ParameterList spellParameters = new ParameterList();
     private ParameterList spellProperties = new ParameterList();
@@ -49,6 +45,15 @@ public class MetaData {
 
     public void setActionParameters(ParameterList actionParameters) {
         this.actionParameters = actionParameters;
+    }
+
+    @JsonProperty("compound_action_parameters")
+    public ParameterList getCompoundActionParameters() {
+        return compoundActionParameters;
+    }
+
+    public void setCompoundActionParameters(ParameterList compoundActionParameters) {
+        this.compoundActionParameters = compoundActionParameters;
     }
 
     @JsonProperty("spell_properties")
@@ -164,6 +169,10 @@ public class MetaData {
 
     public void addActionParameters(ParameterList parameters) {
         actionParameters.merge(parameters, parameterStore);
+    }
+
+    public void addCompoundActionParameters(ParameterList parameters) {
+        compoundActionParameters.merge(parameters, parameterStore);
     }
 
     public void addSpellParameters(ParameterList parameters) {
