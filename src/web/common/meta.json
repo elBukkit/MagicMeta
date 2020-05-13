@@ -1933,6 +1933,20 @@
       },
       "short_class" : "ModifySP"
     },
+    "modify_variable" : {
+      "category" : "",
+      "class_name" : "ModifyVariableAction",
+      "description" : [ "Set or change a variable that can be used elsewhere in this spell" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Modify Variable",
+      "parameters" : {
+        "clear" : "false",
+        "value" : null,
+        "variable" : ""
+      },
+      "short_class" : "ModifyVariable"
+    },
     "modify_walk_speed" : {
       "category" : "player",
       "class_name" : "ModifyWalkSpeed",
@@ -2900,7 +2914,9 @@
       "importance" : 0,
       "name" : "Take Item",
       "parameters" : {
-        "display_name" : null
+        "display_name" : null,
+        "give_to_caster" : "true",
+        "item" : ""
       },
       "short_class" : "TakeItem"
     },
@@ -7392,6 +7408,14 @@
       "field" : "give_book",
       "importance" : 0,
       "name" : "Give Book",
+      "type" : "boolean"
+    },
+    "give_to_caster" : {
+      "category" : "",
+      "description" : [ "Give the taken item to the caster" ],
+      "field" : "give_to_caster",
+      "importance" : 0,
+      "name" : "Give To Caster",
       "type" : "boolean"
     },
     "glide_exclusive" : {
@@ -12381,6 +12405,14 @@
       "name" : "Uses Brush",
       "type" : "boolean"
     },
+    "value" : {
+      "category" : "",
+      "description" : [ "The value to set the variable to" ],
+      "field" : "value",
+      "importance" : 0,
+      "name" : "Value",
+      "type" : "string"
+    },
     "vanish" : {
       "category" : "",
       "description" : [ "" ],
@@ -16175,6 +16207,7 @@
         "cycle_hotbar_reverse" : "Go to the previous hotbar (inventory mode)",
         "cycle_reverse" : "Cycle through spells in reverse order  (cycle mode)",
         "none" : "Do nothing",
+        "replace" : "Replace this wand with the 'replacement' template",
         "toggle" : "Toggle the spell inventory on/off (inventory mode), open the spell inventory (chest and skill modes), cycle spells (cycle mode)"
       }
     },
