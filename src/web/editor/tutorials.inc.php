@@ -96,5 +96,5 @@
 <div id="finishedTutorial" class="tutorial">
     <div>Thank you for reading through the tutorial!</div>
     <div>Best of luck with your new creations! If you invent something amazing please share it with the community on the
-    <a href="https://www.spigotmc.org/threads/magic.28645/" target="_blank">SpigotMC Discussion Board</a> or in <a href="https://discord.gg/6FPWAE" target="_blank">the Magic discord channel<a/>.</div>
+    <a href="https://www.spigotmc.org/threads/magic.28645/" target="_blank">SpigotMC Discussion Board</a> or in <a href="https://discord.gg/Vk5nK5h" target="_blank">the Magic discord channel<a/>.</div>
 </div>
