@@ -2186,7 +2186,7 @@
       "category" : "entity",
       "class_name" : "PotionEffectAction",
       "description" : [ "Apply or remove vanilla potion effects from the target" ],
-      "examples" : [ "blessing", "cure", "curse", "frost", "poison", "wither" ],
+      "examples" : [ "arrow_poison", "blessing", "cure", "curse", "frost", "poison", "wither" ],
       "importance" : 100,
       "name" : "Potion Effect",
       "parameters" : {
