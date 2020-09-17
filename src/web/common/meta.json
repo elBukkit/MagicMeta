@@ -1154,7 +1154,9 @@
       "examples" : [ "curse", "silence", "stun" ],
       "importance" : 0,
       "name" : "Deactivate",
-      "parameters" : { },
+      "parameters" : {
+        "deactivate_self" : "false"
+      },
       "short_class" : "Deactivate"
     },
     "debugger" : {
@@ -1474,6 +1476,30 @@
       },
       "short_class" : "EntitySelect"
     },
+    "equation" : {
+      "category" : "compound",
+      "class_name" : "EquationAction",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Equation",
+      "parameters" : {
+        "iterations" : "1",
+        "iterations2" : "0",
+        "orient" : "false",
+        "orient_pitch" : "true",
+        "reorient" : "false",
+        "variable" : "t",
+        "variable2" : "t",
+        "x2_equation" : null,
+        "x_equation" : null,
+        "y2_equation" : null,
+        "y_equation" : null,
+        "z2_equation" : null,
+        "z_equation" : null
+      },
+      "short_class" : "Equation"
+    },
     "explosion" : {
       "category" : "construction",
       "class_name" : "ExplosionAction",
@@ -1487,6 +1513,18 @@
         "size" : "1"
       },
       "short_class" : "Explosion"
+    },
+    "fake_block" : {
+      "category" : "",
+      "class_name" : "FakeBlockAction",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Fake Block",
+      "parameters" : {
+        "player_radius" : "0.0"
+      },
+      "short_class" : "FakeBlock"
     },
     "fall_protection" : {
       "category" : "entity",
@@ -2843,6 +2881,7 @@
         "aggro" : "true",
         "ai" : "true",
         "amount" : "1",
+        "angry" : "false",
         "baby" : "false",
         "boots" : null,
         "can_pickup_items" : "false",
@@ -2896,6 +2935,8 @@
         "owned" : "true",
         "persist" : "false",
         "potion_effects" : null,
+        "prevent_melee" : "false",
+        "prevent_projectiles" : "false",
         "protection" : null,
         "reason" : null,
         "repeat_random" : "true",
@@ -2909,6 +2950,7 @@
         "tags" : null,
         "tamed" : "false",
         "track_radius" : "128",
+        "transformable" : "true",
         "triggers" : null,
         "type" : null,
         "wait_for_death" : "true",
@@ -4205,6 +4247,20 @@
       },
       "short_class" : "Music"
     },
+    "particle" : {
+      "category" : "",
+      "class_name" : "ParticleEffect",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Particle",
+      "parameters" : {
+        "iterations" : "1",
+        "particle" : "villager_angry",
+        "type" : "repeating"
+      },
+      "short_class" : "Particle"
+    },
     "plot" : {
       "category" : "",
       "class_name" : "PlotEffect",
@@ -4272,6 +4328,20 @@
         "type" : "repeating"
       },
       "short_class" : "Smoke"
+    },
+    "sound" : {
+      "category" : "",
+      "class_name" : "SoundEffect",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Sound",
+      "parameters" : {
+        "iterations" : "1",
+        "sound" : null,
+        "type" : "repeating"
+      },
+      "short_class" : "Sound"
     },
     "sphere" : {
       "category" : "",
@@ -4481,6 +4551,7 @@
     "period" : "1",
     "pitch" : null,
     "pitch_offset" : "0",
+    "probability" : "1.0",
     "relative_offset" : null,
     "target_offset" : null,
     "target_players" : null,
@@ -4495,6 +4566,7 @@
     "aggro" : "true",
     "ai" : "true",
     "amount" : "1",
+    "angry" : "false",
     "baby" : "false",
     "boots" : null,
     "can_pickup_items" : "false",
@@ -4541,6 +4613,8 @@
     "offhand" : null,
     "persist" : "false",
     "potion_effects" : null,
+    "prevent_melee" : "false",
+    "prevent_projectiles" : "false",
     "protection" : null,
     "silent" : "false",
     "sitting" : "false",
@@ -4549,6 +4623,7 @@
     "tags" : null,
     "tamed" : "false",
     "track_radius" : "128",
+    "transformable" : "true",
     "triggers" : null,
     "type" : null,
     "weakness" : null,
@@ -4851,6 +4926,14 @@
       "name" : "Amplifier",
       "type" : "integer"
     },
+    "angry" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "angry",
+      "importance" : 0,
+      "name" : "Angry",
+      "type" : "boolean"
+    },
     "angular_velocity" : {
       "category" : "",
       "description" : [ "Angular velocity of the effect" ],
@@ -5113,6 +5196,14 @@
       "field" : "author",
       "importance" : 0,
       "name" : "Author",
+      "type" : "string"
+    },
+    "auto_absorb" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "auto_absorb",
+      "importance" : 0,
+      "name" : "Auto Absorb",
       "type" : "string"
     },
     "auto_close" : {
@@ -6550,6 +6641,14 @@
       "field" : "damaged",
       "importance" : 0,
       "name" : "Damaged",
+      "type" : "boolean"
+    },
+    "deactivate_self" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "deactivate_self",
+      "importance" : 0,
+      "name" : "Deactivate Self",
       "type" : "boolean"
     },
     "debug_depth" : {
@@ -8505,6 +8604,14 @@
       "name" : "Iterations",
       "type" : "integer"
     },
+    "iterations2" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "iterations2",
+      "importance" : 0,
+      "name" : "Iterations2",
+      "type" : "integer"
+    },
     "jump_cast" : {
       "category" : "",
       "description" : [ "A spell to cast while the player is riding and presses the spacebar" ],
@@ -10145,6 +10252,14 @@
       "name" : "Player Damage",
       "type" : "double"
     },
+    "player_radius" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "player_radius",
+      "importance" : 0,
+      "name" : "Player Radius",
+      "type" : "double"
+    },
     "player_weight" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -10201,6 +10316,14 @@
       "name" : "Preuse",
       "type" : "string"
     },
+    "prevent_melee" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "prevent_melee",
+      "importance" : 0,
+      "name" : "Prevent Melee",
+      "type" : "boolean"
+    },
     "prevent_passthrough" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -10208,6 +10331,14 @@
       "importance" : 0,
       "name" : "Prevent Passthrough",
       "type" : "string"
+    },
+    "prevent_projectiles" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "prevent_projectiles",
+      "importance" : 0,
+      "name" : "Prevent Projectiles",
+      "type" : "boolean"
     },
     "price" : {
       "category" : "",
@@ -12616,6 +12747,14 @@
       "field" : "trail",
       "importance" : 0,
       "name" : "Trail",
+      "type" : "boolean"
+    },
+    "transformable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "transformable",
+      "importance" : 0,
+      "name" : "Transformable",
       "type" : "boolean"
     },
     "transparency" : {
@@ -16938,6 +17077,7 @@
     "alternate_spell" : null,
     "alternate_spell2" : null,
     "attributes" : null,
+    "auto_absorb" : null,
     "block_chance" : "0",
     "block_cooldown" : "0",
     "block_fov" : "0",
