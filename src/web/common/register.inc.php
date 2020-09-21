@@ -11,7 +11,7 @@
 <div id="codeDialog" title="Enter Code" style="display:none">
   <div style="margin-bottom: 0.5em">
     <span style="float:left; margin:0 7px 7px 0;">
-        <img src="http://i.stack.imgur.com/FhHRx.gif" alt="Waiting.."/>
+        <img src="///i.stack.imgur.com/FhHRx.gif" alt="Waiting.."/>
     </span>
       <span>Please enter the code in-game at</span>
   </div>
