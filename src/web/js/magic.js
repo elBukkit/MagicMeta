@@ -6,8 +6,19 @@ function getIcon(url)
     return icon;
 }
 
+var _materialMap = {
+	"stained_glass": "white_stained_glass",
+	"wool": "white_wool",
+	"dispenser": "dispenser_front",
+	"daylight_detector": "daylight_detector_front",
+	"ink_sack:15": "black_dye"
+};
+
 function getMaterial(materialKey, iconOnly)
 {
+	if (_materialMap.hasOwnProperty(materialKey)) {
+		materialKey = _materialMap[materialKey];
+	}
 	if (materialKey == null || materialKey.length == 0) return "";
 
     if (materialKey.indexOf("skull_item:") != -1)
@@ -35,7 +46,7 @@ function getMaterial(materialKey, iconOnly)
 		iconOnly = false;
 	}
 	var imagePath = 'image/material';
-	var materialIcon = materialKey.replace(/[_:]/g, '') + '_icon32.png';
+	var materialIcon = materialKey.split(':')[0] + '.png';
 	var enclosingSpan = $('<span/>');
 	var icon = $('<span title="' + materialName + '" class="materal_icon" style="background-image: url(' + imagePath + '/' + materialIcon + ')">&nbsp;</span>');
 	enclosingSpan.append(icon);
@@ -455,12 +466,11 @@ function getRecipeDetails(key)
 
 function createCraftingTable(recipe)
 {
-    var wand = recipe['wand'];
     var craftingContainer = $('<div class="craftingContainer"/>');
     var craftingTable = $('<div class="craftingTable"/>');
     craftingContainer.append(craftingTable);
     var craftingOutput = $('<div class="craftingOutput"/>');
-    var wandIcon = wand == null ? recipe['output'] : wand['icon'];
+    var wandIcon = recipe['output'];
     wandIcon = getMaterial(wandIcon == null || wandIcon == "" ? "wand" : wandIcon, true);
     craftingOutput.append(wandIcon);
     craftingContainer.append(craftingOutput);
@@ -477,8 +487,8 @@ function createCraftingTable(recipe)
         for (var x = 0; x < 3; x++)
         {
             var ingredient = rows[y].substring(x, x + 1);
-            var left = 92 + x * 36;
-            var top = 90 + y * 36;
+            var left = 56 + x * 36;
+            var top = 32 + y * 36;
             var input = $('<div class="craftingSlot" style="left:' + left + 'px; top: ' + top + 'px"/>');
             if (ingredient)
             {
@@ -513,7 +523,7 @@ function getWandItemDetails(key, wand, recipe)
 	var detailsDiv = $('<div/>');
 	var title = $('<div class="wandTitleBanner"/>').text(wand.name);
 	var scrollingContainer = $('<div class="wandContainer"/>');
-	var description = $('<div class="wandDescription"/>').text(wand.description);
+	var description = $('<div class="wandDescription"/>').html(convertColorCodes(wand.description));
 	var admin = $('<div class="adminuse"/>').text("Admin use: /mgive " + key);
 	var costReduction = ('cost_reduction' in wand) ? wand['cost_reduction'] : 0;
 	var cooldownReduction = ('cooldown_reduction' in wand) ? wand['cooldown_reduction'] : 0;
@@ -706,3 +716,61 @@ $(document).ready(function() {
 
     $("#tabs").show();
 });
+
+var _chatColors  = {
+	'0': 'black',
+	'1': 'dark_blue',
+	'2': 'dark_green',
+	'3': 'dark_aqua',
+	'4': 'dark_red',
+	'5': 'dark_purple',
+	'6': 'gold',
+	'7': 'gray',
+	'8': 'dark_gray',
+	'9': 'blue',
+	'a': 'green',
+	'b': 'aqua',
+	'c': 'red',
+	'd': 'mediumpurple',
+	'e': 'yellow',
+	'f': 'white',
+	'k': '',
+	'l': '',
+	'm': '',
+	'n': '',
+	'o': '',
+	'r': 'white'
+};
+
+function convertColorCodes(line) {
+	var tagCount = 1;
+	line = "<span style=\"color:white\">" + line;
+	for (var c in _chatColors) {
+		if (!_chatColors.hasOwnProperty(c)) continue;
+		var replaceStyle = "";
+		if (c == 'i') {
+			replaceStyle = "font-style: italic";
+		} else if (c == 'l') {
+			replaceStyle = "font-weight: bold";
+		} else if (c == 'n') {
+			replaceStyle = "text-decoration: underline";
+		} else {
+			var color = _chatColors[c];
+			if (color != "") {
+				replaceStyle = "color:" + color;
+			}
+		}
+		var re = new RegExp("&" + c,"g");
+		line = line.replace(re, function(x)
+			{
+				if (replaceStyle == "") return "";
+				tagCount += 1;
+				return "<span style=\"" + replaceStyle + "\">"
+			});
+	}
+	for (var i = 0; i < tagCount; i++) {
+		line += "</span>";
+	}
+
+	return line;
+}

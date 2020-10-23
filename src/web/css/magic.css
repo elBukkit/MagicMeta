@@ -42,6 +42,7 @@
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
+    background-size: 32px 32px;
     display: inline-block;
     margin-right: 4px;
 }
@@ -153,7 +154,9 @@
 
 .wandDescription
 {
-    color: #222222;
+    color: #FFFFFF;
+    background-color: #444;
+    padding: 3px;
     font-style: italic;
     margin-bottom: 2px;
 }
@@ -171,6 +174,7 @@
     height: 38px;
     margin-top: 3px;
     margin-bottom: 16px;
+    background-size: 32px 32px;
 }
 
 .adminuse
@@ -261,13 +265,14 @@
 .craftingOutput
 {
     position: absolute;
-    left: 280px;
-    top: 125px;
+    left: 245px;
+    top: 70px;
 }
 
 .craftingContainer
 {
     margin: 2em;
+    position: relative;
 }
 
 .iconName

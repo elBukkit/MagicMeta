@@ -363,7 +363,8 @@ function printMaterial($materialKey, $iconOnly = null) {
 	$materialName = underscoreToReadable($materialKey);
 	$imagePath = 'image/material';
 	$imageDir = dirname(__FILE__) . '/' . $imagePath;
-	$materialIcon = str_replace('_', '', str_replace(':', '', $materialKey)) . '_icon32.png';
+	$materialKey = explode(':', $materialKey);
+	$materialIcon = str_replace('_', '', $materialKey) . '.png';
 	$materialFilename = $imageDir . '/' . $materialIcon;
 	if (file_exists($materialFilename)) {
 		return $icon = '<span title="' . $materialName . '" class="materal_icon" style="background-image: url(' . $imagePath . '/' . $materialIcon . ')">&nbsp;</span>';
