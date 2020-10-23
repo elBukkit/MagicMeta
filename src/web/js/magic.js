@@ -11,7 +11,8 @@ var _materialMap = {
 	"wool": "white_wool",
 	"dispenser": "dispenser_front",
 	"daylight_detector": "daylight_detector_front",
-	"ink_sack:15": "black_dye"
+	"ink_sack:15": "black_dye",
+	"hard_clay": "terracotta"
 };
 
 function getMaterial(materialKey, iconOnly)
