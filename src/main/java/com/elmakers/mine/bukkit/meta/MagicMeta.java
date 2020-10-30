@@ -35,7 +35,6 @@ import com.google.common.base.CaseFormat;
 
 import de.slikey.effectlib.Effect;
 import de.slikey.effectlib.EffectManager;
-import de.slikey.effectlib.util.ParticleEffect;
 
 public class MagicMeta {
     private static final String BUILTIN_SPELL_PACKAGE = "com.elmakers.mine.bukkit.action.builtin";
@@ -238,7 +237,7 @@ public class MagicMeta {
 
     private void generateEffectLibMeta() {
         // Create a dummy effect manager
-        EffectManager manager = new EffectManager(null);
+        EffectManager manager = new EffectManager(new DummyPlugin());
         // First get all base effect parameters
         System.out.println("Scanning Effect");
         Effect baseEffect = new Effect(manager) {
