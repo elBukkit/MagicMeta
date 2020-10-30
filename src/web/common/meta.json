@@ -447,6 +447,7 @@
       "importance" : 100,
       "name" : "Break Block",
       "parameters" : {
+        "auto_block_state" : "false",
         "break_durability" : "1",
         "breakable" : "0",
         "check_chunk" : "false",
@@ -932,6 +933,7 @@
       "importance" : 0,
       "name" : "Create Field",
       "parameters" : {
+        "auto_block_state" : "false",
         "breakable" : "0",
         "check_chunk" : "false",
         "commit" : "false",
@@ -1500,6 +1502,40 @@
       },
       "short_class" : "Equation"
     },
+    "equation_volume" : {
+      "category" : "compound",
+      "class_name" : "EquationVolumeAction",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Equation Volume",
+      "parameters" : {
+        "brushes" : null,
+        "brushmod" : null,
+        "center_probability" : "1.0",
+        "center_x" : "true",
+        "center_y" : "true",
+        "center_z" : "true",
+        "equation" : null,
+        "orient" : "false",
+        "orient_pitch" : "false",
+        "orient_pitch_snap" : "0.0",
+        "orient_snap" : "0.0",
+        "outer_probability" : "1.0",
+        "probability" : "1.0",
+        "radius" : "2.0",
+        "radius_padding" : "0.25",
+        "reorient" : "true",
+        "replace" : "false",
+        "thickness" : "0.0",
+        "use_brush_size" : "false",
+        "volume_type" : null,
+        "x_size" : "2.0",
+        "y_size" : "2.0",
+        "z_size" : "2.0"
+      },
+      "short_class" : "EquationVolume"
+    },
     "explosion" : {
       "category" : "construction",
       "class_name" : "ExplosionAction",
@@ -1814,6 +1850,7 @@
       "parameters" : {
         "async" : "false",
         "level" : "15",
+        "undo_previous" : "false",
         "update" : "true"
       },
       "short_class" : "Light"
@@ -1923,6 +1960,7 @@
       "importance" : 100,
       "name" : "Modify Block",
       "parameters" : {
+        "auto_block_state" : "false",
         "breakable" : "0",
         "check_chunk" : "false",
         "commit" : "false",
@@ -1953,6 +1991,90 @@
         "target_air" : "false"
       },
       "short_class" : "ModifyBreakable"
+    },
+    "modify_entity" : {
+      "category" : "",
+      "class_name" : "ModifyEntityAction",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Modify Entity",
+      "parameters" : {
+        "aggro" : "true",
+        "ai" : "true",
+        "angry" : "false",
+        "attributes" : null,
+        "baby" : "false",
+        "boots" : null,
+        "can_pickup_items" : "false",
+        "cast" : null,
+        "cast_interval" : "0",
+        "cast_requires_item" : null,
+        "cast_requires_target" : "true",
+        "chestplate" : null,
+        "color" : null,
+        "default_drops" : "true",
+        "dialog" : null,
+        "dialog_interval" : "2000",
+        "dialog_range" : "3.0",
+        "direction" : null,
+        "disguise" : null,
+        "disguise_map" : null,
+        "disguise_target" : null,
+        "docile" : "false",
+        "drop_xp" : "0",
+        "drops" : null,
+        "drops_require_player_killer" : "false",
+        "dy_offset" : "0.0",
+        "entity_attributes" : null,
+        "force" : "false",
+        "gravity" : "true",
+        "gravity_boolean" : "true",
+        "health" : "1.0",
+        "helmet" : null,
+        "interact_command_source" : "console",
+        "interact_commands" : null,
+        "interact_costs" : null,
+        "interact_permission" : null,
+        "interact_spell" : null,
+        "interact_spell_parameters" : null,
+        "interact_spell_source" : "player",
+        "interact_spell_target" : "mob",
+        "interval" : "0",
+        "interval_requires_target" : "true",
+        "invulnerable" : "false",
+        "item" : null,
+        "leggings" : null,
+        "lifetime" : "0",
+        "loot" : "false",
+        "mage" : null,
+        "max_health" : "1.0",
+        "modifiers" : null,
+        "mount" : null,
+        "name" : null,
+        "offhand" : null,
+        "persist" : "false",
+        "potion_effects" : null,
+        "prevent_melee" : "false",
+        "prevent_projectiles" : "false",
+        "protection" : null,
+        "reason" : null,
+        "show_name" : "false",
+        "silent" : "false",
+        "sitting" : "false",
+        "speed" : "0.0",
+        "strength" : null,
+        "tags" : null,
+        "tamed" : "false",
+        "track_radius" : "128.0",
+        "transformable" : "true",
+        "triggers" : null,
+        "triggers_map" : null,
+        "type" : null,
+        "weakness" : null,
+        "xp" : "0"
+      },
+      "short_class" : "ModifyEntity"
     },
     "modify_game_mode" : {
       "category" : "player",
@@ -2445,6 +2567,7 @@
         "require_build" : "false",
         "require_exit" : "true",
         "safe" : "true",
+        "teleport" : "true",
         "unlock_key" : "recall_warps",
         "vertical_range" : "8"
       },
@@ -2653,6 +2776,7 @@
         "allow_attribute_reduction" : "false",
         "allow_dropped_items" : "true",
         "apply_lore_to_item" : "false",
+        "apply_name_to_icon" : "true",
         "apply_name_to_item" : "false",
         "apply_to" : null,
         "apply_to_caster" : "false",
@@ -2738,6 +2862,7 @@
         "allow_attribute_reduction" : "false",
         "allow_dropped_items" : "true",
         "apply_lore_to_item" : "false",
+        "apply_name_to_icon" : "true",
         "apply_name_to_item" : "false",
         "apply_to" : null,
         "apply_to_caster" : "false",
@@ -2942,6 +3067,7 @@
         "repeat_random" : "true",
         "set_source" : "false",
         "set_target" : "false",
+        "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
         "speed" : "0",
@@ -3640,6 +3766,7 @@
         "color_orbital" : null,
         "iterations" : "200",
         "orbitals" : "3",
+        "orient" : "false",
         "particle_nucleus" : "drip_water",
         "particle_orbital" : "drip_lava",
         "particles_nucleus" : "10",
@@ -4616,6 +4743,7 @@
     "prevent_melee" : "false",
     "prevent_projectiles" : "false",
     "protection" : null,
+    "show_name" : "false",
     "silent" : "false",
     "sitting" : "false",
     "split" : "true",
@@ -4974,6 +5102,14 @@
       "name" : "Apply Lore To Item",
       "type" : "boolean"
     },
+    "apply_name_to_icon" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "apply_name_to_icon",
+      "importance" : 0,
+      "name" : "Apply Name To Icon",
+      "type" : "boolean"
+    },
     "apply_name_to_item" : {
       "category" : "",
       "description" : [ "If set, the display name of the option will also be applied to the item obtained" ],
@@ -5205,6 +5341,14 @@
       "importance" : 0,
       "name" : "Auto Absorb",
       "type" : "string"
+    },
+    "auto_block_state" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "auto_block_state",
+      "importance" : 0,
+      "name" : "Auto Block State",
+      "type" : "boolean"
     },
     "auto_close" : {
       "category" : "",
@@ -5768,6 +5912,14 @@
       "importance" : 0,
       "name" : "Cast Interval",
       "type" : "long"
+    },
+    "cast_interval_cost_free" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cast_interval_cost_free",
+      "importance" : 0,
+      "name" : "Cast Interval Cost Free",
+      "type" : "string"
     },
     "cast_location" : {
       "category" : "wand",
@@ -8114,6 +8266,14 @@
       "importance" : 0,
       "name" : "Hidden",
       "type" : "boolean"
+    },
+    "hide_messages" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "hide_messages",
+      "importance" : 0,
+      "name" : "Hide Messages",
+      "type" : "list"
     },
     "hit_block_effect_list" : {
       "category" : "effects",
@@ -11364,6 +11524,14 @@
       "name" : "Show Active Icons",
       "type" : "boolean"
     },
+    "show_brush" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "show_brush",
+      "importance" : 0,
+      "name" : "Show Brush",
+      "type" : "boolean"
+    },
     "show_cloud" : {
       "category" : "",
       "description" : [ "" ],
@@ -11394,6 +11562,14 @@
       "field" : "show_free",
       "importance" : 0,
       "name" : "Show Free",
+      "type" : "boolean"
+    },
+    "show_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_name",
+      "importance" : 0,
+      "name" : "Show Name",
       "type" : "boolean"
     },
     "show_no_permission" : {
@@ -12870,6 +13046,14 @@
       "name" : "Undo Oldest",
       "type" : "integer"
     },
+    "undo_previous" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "undo_previous",
+      "importance" : 0,
+      "name" : "Undo Previous",
+      "type" : "boolean"
+    },
     "undo_reversed" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -13486,6 +13670,14 @@
       "name" : "Worlds",
       "type" : "map"
     },
+    "worn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "worn",
+      "importance" : 0,
+      "name" : "Worn",
+      "type" : "string"
+    },
     "worth" : {
       "category" : "base",
       "description" : [ "How much this spell is worth", "By default this is terms of SP", "Spells must have a worth assigned and be in a path's spell list to show up in the spellshop" ],
@@ -13907,6 +14099,7 @@
     "glide_exclusive" : "false",
     "glide_restricted" : "false",
     "hidden" : "false",
+    "hide_messages" : null,
     "icon_disabled" : null,
     "icon_disabled_url" : null,
     "icon_spell" : null,
@@ -13926,6 +14119,7 @@
     "require_build" : "false",
     "require_health_percentage" : "0",
     "requirements" : null,
+    "show_brush" : "false",
     "show_undoable" : "true",
     "spell_class" : null,
     "tags" : null,
@@ -17023,6 +17217,7 @@
       "options" : {
         "alt_cast" : "Cast the alternate_spell assigned to the wand",
         "alt_cast2" : "Cast the alternate_spell2 assigned to the wand",
+        "alt_cast3" : "Cast the alternate_spell3 assigned to the wand",
         "cast" : "Cast the wand's currently active spell",
         "cycle" : "Cycle through spells (cycle mode)",
         "cycle_hotbar" : "Go to the next hotbar (inventory mode)",
@@ -17090,6 +17285,7 @@
     "brushes" : null,
     "cancel_effects_delay" : null,
     "cast_interval" : "0",
+    "cast_interval_cost_free" : null,
     "cast_location" : null,
     "cast_min_bowpull" : "0",
     "cast_min_velocity" : "0",
@@ -17172,6 +17368,7 @@
     "upgrade" : "false",
     "use_mode" : null,
     "uses" : null,
-    "wand_power" : "0"
+    "wand_power" : "0",
+    "worn" : null
   }
 }
