@@ -62,4 +62,7 @@ $analytics = <<<EOT
 </script>
 EOT;
 
+// Add overrides file
+include( dirname(__FILE__) . '/config.overrides.inc.php');
+
 ?>
