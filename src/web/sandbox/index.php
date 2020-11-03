@@ -9,7 +9,7 @@ $user = getUser();
 
 <html>
 <head>
-    <title><?= $title ?> Editor</title>
+    <title><?= $title ?> Sandbox Editor</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="common/css/common.css" />

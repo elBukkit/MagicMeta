@@ -27,7 +27,7 @@ $resourcePackFolder = $magicRootFolder . '/../resource-pack';
 $infoBookRootConfig = dirname(__FILE__) . '/../main/resources/examples/InfoBook/config.yml';
 
 // Page title
-$title = "elMakers Magic Development Site";
+$title = "Magic";
 
 // Instructional YouTube video id
 $youTubeVideo = '8rjY8pjjPM8';
