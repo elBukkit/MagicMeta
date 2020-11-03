@@ -522,7 +522,7 @@ function getWandUpgradeDetails(key)
 function getWandItemDetails(key, wand, recipe)
 {
 	var detailsDiv = $('<div/>');
-	var title = $('<div class="wandTitleBanner"/>').text(wand.name);
+	var title = $('<div class="wandTitleBanner"/>').html(convertColorCodes(wand.name));
 	var scrollingContainer = $('<div class="wandContainer"/>');
 	var description = $('<div class="wandDescription"/>').html(convertColorCodes(wand.description));
 	var admin = $('<div class="adminuse"/>').text("Admin use: /mgive " + key);

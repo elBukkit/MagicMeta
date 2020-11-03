@@ -2,6 +2,56 @@
 
 require_once('config.inc.php');
 
+function convertColorCodes($line) {
+    $chatColors  = array(
+        '0' => 'black',
+        '1' => 'dark_blue',
+        '2' => 'dark_green',
+        '3' => 'dark_aqua',
+        '4' => 'dark_red',
+        '5' => 'dark_purple',
+        '6' => 'gold',
+        '7' => 'gray',
+        '8' => 'dark_gray',
+        '9' => 'blue',
+        'a' => 'green',
+        'b' => 'aqua',
+        'c' => 'red',
+        'd' => 'mediumpurple',
+        'e' => 'yellow',
+        'f' => 'white',
+        'k' => '',
+        'l' => '',
+        'm' => '',
+        'n' => '',
+        'o' => '',
+        'r' => 'white');
+	$tagCount = 1;
+	$line = "<span style=\"color:black\">". $line;
+	foreach ($chatColors as $c => $color) {
+		$replaceStyle = "";
+		if ($c == 'i') {
+			$replaceStyle = "font-style: italic";
+		} else if ($c == 'l') {
+			$replaceStyle = "font-weight: bold";
+		} else if ($c == 'n') {
+			$replaceStyle = "text-decoration: underline";
+		} else {
+			if ($color != "") {
+				$replaceStyle = "color:" . $color;
+			}
+		}
+		$replaceCount = 0;
+		$line = str_replace("&" . $c,  "<span style=\"$replaceStyle\">", $line, $replaceCount);
+		$tagCount += $replaceCount;
+	}
+	for ($i = 0; $i < $tagCount; $i++) {
+		$line .= "</span>";
+	}
+
+	return $line;
+}
+
 function parseConfigFile($name, $loadDefaults, $disableDefaults = false) {
 	global $magicDefaultsFolder;
 	global $magicRootFolder;
@@ -364,6 +414,7 @@ function printMaterial($materialKey, $iconOnly = null) {
 	$imagePath = 'image/material';
 	$imageDir = dirname(__FILE__) . '/' . $imagePath;
 	$materialKey = explode(':', $materialKey);
+	$materialKey = $materialKey[0];
 	$materialIcon = str_replace('_', '', $materialKey) . '.png';
 	$materialFilename = $imageDir . '/' . $materialIcon;
 	if (file_exists($materialFilename)) {
@@ -601,6 +652,7 @@ function printIcon($iconUrl, $title) {
 				<?php
 					foreach ($enchanting as $key => $path) {
                         $name = isset($path['name']) ? $path['name'] : "($key)";
+                        $name = convertColorCodes($name);
 
 						echo '<li class="ui-widget-content" id="path-' . $key . '"><span class="pathTitle">' . $name . '</span></li>';
 					}
