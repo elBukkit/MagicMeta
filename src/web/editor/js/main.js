@@ -23,31 +23,23 @@ function initialize() {
       }
     });
 
-    var loadSpell = null;
-    var currentHash = window.location.hash;
-    if (currentHash != '') {
-        currentHash = currentHash.substring(1);
-        var pieces = currentHash.split('.');
-        if (pieces.length > 1) {
-            if (pieces[0] == 'editor') {
-                $('#editorModeButton').prop('checked', true);
-            }
-            loadSpell = pieces[1];
-        } else {
-            loadSpell = pieces[0];
-        }
-    }
     $('.controlgroup').controlgroup();
-    editor.checkMode();
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null) {
             editor.setSpellConfig(_session.contents);
         } else {
-            if (_session.hasOwnProperty('name') && _session.name != null) {
-                editor.startNamed("Basic", _session.name);
+            if (_session.hasOwnProperty('key') && _session.key != null) {
+                editor.startNamed("Basic", _session.key);
             } else {
                 editor.startNew("Basic");
             }
+        }
+
+        if (_session.hasOwnProperty('player') && _session.player != null) {
+            let user = _session.player;
+            $('#userName').text(user.name);
+            $('#userSkin').css('background-image', 'url("' + user.skinUrl + '")');
+            $('#userOverlay').css('background-image', 'url("' + user.skinUrl + '")');
         }
     } else {
         editor.startNew("Basic");
@@ -60,10 +52,6 @@ function initialize() {
     }).done(function(meta) {
         editor.setMetadata(meta);
     });
-
-    if (user.id == '') {
-        editor.startTutorial();
-    }
 }
 
 function dumpYaml(object) {

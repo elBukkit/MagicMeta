@@ -62,6 +62,9 @@ if ($action == 'new') {
     if (!isset($body['type'])) {
         returnError('Missing type parameter');
     }
+    if (!isset($body['key']) || !$body['key']) {
+        $body['key'] = 'new_changeme';
+    }
 
     // Create new session
     $session = createNewSession();
@@ -74,6 +77,19 @@ if ($action == 'new') {
     // Generate Response
     $response = array('success' => true, 'session' => $session);
 
+    die(json_encode($response));
+} else if ($action == 'get') {
+    if (!isset($body['session'])) {
+        returnError('Missing session parameter');
+    }
+    $session = $body['session'];
+    $sessionFile = getSessionFilename($session);
+    if (!file_exists($sessionFile)) {
+        returnError("Invalid session: " . $session);
+    }
+
+    $session = json_decode(file_get_contents($sessionFile), true);
+    $response = array('success' => true, 'session' => $session);
     die(json_encode($response));
 } else {
     returnError("Unknown action: " . $action);
