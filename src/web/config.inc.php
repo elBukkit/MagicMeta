@@ -11,6 +11,10 @@ $sandboxServer = '/home/minecraft/servers/sandbox';
 // And set the URL to your sandbox server here to direct players to log in
 $sandboxServerURL = '';
 
+// This is where the web editor keeps session files
+// This folder must exist and be writeable by the web user
+$sessionFolder = '/home/minecraft/sessions';
+
 // Use your own reference URL here if you want
 $referenceURL = 'reference.elmakers.com';
 
