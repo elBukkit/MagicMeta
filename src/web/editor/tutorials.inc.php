@@ -5,7 +5,8 @@
 </div>
 
 <div id="welcomeTutorial" class="tutorial" data-next="editorTutorial">
-    <div style="font-weight: bold; padding-bottom: 1em">Welcome to the Magic spell editor!</div>
+    <div style="font-weight: bold; padding-bottom: 1em">Welcome to the Magic configuration editor!</div>
+    <div style="font-style: italic; padding-bottom: 0.5em">Please note that this editor is in BETA and currently only works well with spells</div>
     <div>This editor will assist you in creating and editing spell configurations. If this is your first time here,
         it is strongly recommended that you follow this brief tutorial!</div>
     <div>Just click anywhere on the screen to proceed to the next slide.</div>

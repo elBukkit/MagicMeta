@@ -14,6 +14,9 @@ if (isset($_REQUEST['session'])) {
     $session = json_decode(file_get_contents(getSessionFilename($sessionId)));
 }
 
+$seenTutorial = isset($_COOKIE['tutorial']);
+setcookie('tutorial', true, time()+60*60*24*30);
+
 ?>
 
 <html>
@@ -48,6 +51,7 @@ if (isset($_REQUEST['session'])) {
         var referenceURL = '//<?= $referenceURL ?>';
         var _session = <?= json_encode($session); ?>;
         var _sessionId = <?= json_encode($sessionId); ?>;
+        var _seenTutorial = <?= $seenTutorial ? 'true' : 'false'; ?>;
     </script>
     <?php if ($analytics) echo $analytics; ?>
 </head>

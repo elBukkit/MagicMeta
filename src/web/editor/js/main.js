@@ -52,6 +52,10 @@ function initialize() {
     }).done(function(meta) {
         editor.setMetadata(meta);
     });
+
+    if (!_seenTutorial) {
+        editor.startTutorial();
+    }
 }
 
 function dumpYaml(object) {
