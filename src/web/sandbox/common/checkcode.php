@@ -23,11 +23,11 @@ if (is_null($registered) || $registered['code'] !== $userCode) {
 }
 
 if ($primaryDomain) {
-    setcookie('user_id', $userId, 0, '/', $primaryDomain);
-    setcookie('user_code', $userCode, 0, '/', $primaryDomain);
+    setcookie('user_id', $userId, time()+60*60*24*30, '/', $primaryDomain);
+    setcookie('user_code', $userCode, time()+60*60*24*30, '/', $primaryDomain);
 } else {
-    setcookie('user_id', $userId, 0, '/', 'elmakers.com');
-    setcookie('user_code', $userCode, 0, '/', 'elmakers.com');
+    setcookie('user_id', $userId, time()+60*60*24*30, '/', 'elmakers.com');
+    setcookie('user_code', $userCode, time()+60*60*24*30, '/', 'elmakers.com');
 }
 
 $user = array(
