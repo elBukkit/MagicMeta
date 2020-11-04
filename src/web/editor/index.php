@@ -4,6 +4,17 @@ require_once('common/user.inc.php');
 if (!$sandboxServer) die('No sandbox server defined');
 
 $user = getUser();
+$session = null;
+$sessionId = null;
+
+function getSessionFilename($session) {
+    global $sessionFolder;
+    return $sessionFolder . '/' . $session . '.session';
+}
+if (isset($_REQUEST['session'])) {
+    $sessionId = $_REQUEST['session'];
+    $session = json_decode(file_get_contents(getSessionFilename($sessionId)));
+}
 
 ?>
 
@@ -39,6 +50,7 @@ $user = getUser();
     <script type="text/javascript">
         var user = <?= json_encode($user) ?>;
         var referenceURL = '//<?= $referenceURL ?>';
+        var _session = <?= json_encode($session); ?>;
     </script>
     <?php if ($analytics) echo $analytics; ?>
 </head>

@@ -4,10 +4,10 @@ RewriteCond %{REQUEST_URI} session/.*
 RewriteRule session/(.*) session.php?action=$1 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^.php
+RewriteCond %{REQUEST_URI} !^.*php
 RewriteCond %{REQUEST_URI} !common.*
 RewriteCond %{REQUEST_URI} !css.*
 RewriteCond %{REQUEST_URI} !image.*
 RewriteCond %{REQUEST_URI} !js.*
 RewriteCond %{REQUEST_URI} !session.*
-RewriteRule (.*) index.php?id=$1 [L]
+RewriteRule (.*) index.php?session=$1 [L]

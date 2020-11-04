@@ -60,6 +60,12 @@ Editor.prototype.save = function() {
     });
 };
 
+Editor.prototype.startNamed = function(template, name) {
+    let config = $('#template' + template).val();
+    config = config.replace("myspell", name);
+    this.setSpellConfig(config);
+};
+
 Editor.prototype.startNew = function(template) {
     this.setSpellConfig($('#template' + template).val());
 };
@@ -218,23 +224,7 @@ Editor.prototype.populateSpellFiles = function() {
 };
 
 Editor.prototype.getActiveEditor = function() {
-    var currentMode = $('#modeSelector').find('input:checked').prop('id');
-    if (currentMode == 'editorModeButton') {
-        return this.getGUIEditor();
-    }
-
     return this.getCodeEditor();
-};
-
-Editor.prototype.getGUIEditor = function() {
-    if (this.guiEditor == null) {
-        this.guiEditor = new GUIEditor($('#editorTree'));
-        if (this.metadata != null) {
-            this.guiEditor.setMetadata(this.metadata);
-        }
-    }
-
-    return this.guiEditor;
 };
 
 Editor.prototype.getCodeEditor = function() {

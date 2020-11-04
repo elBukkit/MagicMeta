@@ -39,8 +39,16 @@ function initialize() {
     }
     $('.controlgroup').controlgroup();
     editor.checkMode();
-    if (loadSpell != null) {
-        editor.loadFile(loadSpell);
+    if (_session != null) {
+        if (_session.hasOwnProperty('contents') && _session.contents != null) {
+            editor.setSpellConfig(_session.contents);
+        } else {
+            if (_session.hasOwnProperty('name') && _session.name != null) {
+                editor.startNamed("Basic", _session.name);
+            } else {
+                editor.startNew("Basic");
+            }
+        }
     } else {
         editor.startNew("Basic");
     }
