@@ -48,7 +48,7 @@ Editor.prototype.save = function() {
     }
 
     var spellConfig = this.getSpellConfig();
-    if (_session.type != 'config') {
+    if (_session.type != 'config' && _session.type != 'messages') {
         var spellKey = this.simpleParse(spellConfig).key;
         _session.key = spellKey;
     }
