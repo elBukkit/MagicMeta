@@ -104,13 +104,24 @@ setcookie('tutorial', true, time()+60*60*24*30);
 <?php require 'tutorials.inc.php'; ?>
 
 <div id="saveDialog" title="Configuration Saved" style="display:none">
-  <div style="margin-bottom: 0.5em">
+    <div style="margin-bottom: 0.5em">
       <span>Please use this command to load your configuration: </span>
-  </div>
-  <div class="code">
-    <span id="configPrefix"></span>mconfig load <span id="sessionDiv"></span>
-  </div>
+    </div>
+    <div>
+        <span class="code">
+            <span class="configPrefix"></span>mconfig load <span id="sessionDiv"></span>
+        </span>
+    </div>
+    <div style="padding-top: 1em">
+        Note that you can also use
+        <span class="code"><span class="configPrefix"></span>mconfig load</span>
+        if you aren't using multiple editing sessions at once.
+    </div>
+    <div style="padding-top: 1em">
+        Also note that you can use
+        <span class="code"><span class="configPrefix"></span>mconfig apply</span>
+        to stage the changes but not reload configurations.
+    </div>
 </div>
-
 </body>
 </html>

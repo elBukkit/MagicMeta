@@ -71,13 +71,14 @@ Editor.prototype.save = function() {
         } else {
             let isPlayer = _session != null && _session.hasOwnProperty('player') && _session.player != null;
             if (isPlayer) {
-                $('#configPrefix').text('/');
+                $('.configPrefix').text('/');
             } else {
-                $('#configPrefix').text('');
+                $('.configPrefix').text('');
             }
             $('#sessionDiv').text(_sessionId);
             $("#saveDialog").dialog({
               modal: true,
+              width: '640px',
               buttons: {
                 Ok: function() {
                     $(this).dialog("close");
