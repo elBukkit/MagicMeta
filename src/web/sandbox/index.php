@@ -27,6 +27,7 @@ $user = getUser();
     <script src="common/js/user.js"></script>
     <script src="common/js/codemirror.js"></script>
     <script src="common/js/show-hint.js"></script>
+    <script src="common/js/common-hint.js"></script>
     <script src="common/js/spell-hint.js"></script>
     <script src="common/js/js-yaml.min.js"></script>
     <script src="common/js/yaml.js"></script>

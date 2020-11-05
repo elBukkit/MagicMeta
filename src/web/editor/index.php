@@ -51,6 +51,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
     <script src="js/main.js"></script>
+    <script src="common/js/common-hint.js"></script>
 
     <?php if ($fileType == 'spells') { ?>
     <script src="common/js/spell-hint.js"></script>
