@@ -103,6 +103,8 @@ if (isset($_REQUEST['context'])) {
     $meta['context'] = array(
         'spell_properties'  => mapFields($meta, 'spell_properties'),
         'spell_parameters'  => mapFields($meta, 'spell_parameters'),
+        'wand_properties'  => mapFields($meta, 'wand_properties'),
+        'mob_properties'  => mapFields($meta, 'mob_properties'),
         'effect_parameters'  => mapFields($meta, 'effect_parameters'),
         'effectlib_parameters'  => mapFields($meta, 'effectlib_parameters'),
         'action_parameters'  => mapFields($meta, 'action_parameters'),
