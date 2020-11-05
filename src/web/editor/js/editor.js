@@ -48,8 +48,10 @@ Editor.prototype.save = function() {
     }
 
     var spellConfig = this.getSpellConfig();
-    var spellKey = this.simpleParse(spellConfig).key;
-    _session.key = spellKey;
+    if (_session.type != 'config') {
+        var spellKey = this.simpleParse(spellConfig).key;
+        _session.key = spellKey;
+    }
     _session.contents = spellConfig;
 
     this.saving = true;
