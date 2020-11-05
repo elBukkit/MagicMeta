@@ -86,8 +86,8 @@
             var fieldName = hierarchy[hierarchy.length - 1];
             if (hierarchy.length == 2) {
                 // Base spell property values
-                if (metadata.spell_context.properties.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.spell_context.properties[fieldName];
+                if (metadata.context.spell_properties.hasOwnProperty(fieldName)) {
+                    var propertyKey = metadata.context.spell_properties[fieldName];
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
@@ -95,8 +95,8 @@
                 }
             } else if (hierarchy.length == 3 && hierarchy[1] == 'parameters') {
                 // Base spell parameter values
-                if (metadata.spell_context.parameters.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.spell_context.parameters[fieldName];
+                if (metadata.context.spell_parameters.hasOwnProperty(fieldName)) {
+                    var propertyKey = metadata.context.spell_parameters[fieldName];
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
@@ -106,8 +106,8 @@
                     var actions = getAllActions(cm, tabSizeInSpaces);
                     for (var i = 0; i < actions.length; i++) {
                         var action = actions[i];
-                        if (metadata.spell_context.actions.hasOwnProperty(action) && metadata.spell_context.actions[action].hasOwnProperty(fieldName)) {
-                            var propertyKey =  metadata.spell_context.actions[action][fieldName];
+                        if (metadata.context.actions.hasOwnProperty(action) && metadata.context.actions[action].hasOwnProperty(fieldName)) {
+                            var propertyKey =  metadata.context.actions[action][fieldName];
                             if (metadata.properties.hasOwnProperty(propertyKey)) {
                                 valueType = metadata.properties[propertyKey].type;
                                 values = metadata.types[valueType].options;
@@ -117,17 +117,17 @@
                 }
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'actions' && fieldName == 'class') {
                 // Action classes
-                values = metadata.spell_context.action_classes;
+                values = metadata.context.action_classes;
                 classType = 'actions';
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && fieldName == 'class') {
                 // Effectlib classes
-                values = metadata.spell_context.effectlib_classes;
+                values = metadata.context.effectlib_classes;
                 classType = 'effectlib_effects';
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'actions') {
                 // Action parameter values
                 var propertyKey = null;
-                if (metadata.spell_context.action_parameters.hasOwnProperty(fieldName)) {
-                    propertyKey = metadata.spell_context.action_parameters[fieldName];
+                if (metadata.context.action_parameters.hasOwnProperty(fieldName)) {
+                    propertyKey = metadata.context.action_parameters[fieldName];
                     if (metadata.action_parameters.hasOwnProperty(propertyKey)) {
                         defaultValue = metadata.action_parameters[propertyKey];
                     }
@@ -135,12 +135,12 @@
                 var shortClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces);
                 if (shortClass != null) {
                     var actionClass = addSuffix(shortClass, "Action");
-                    if (propertyKey == null && metadata.spell_context.actions.hasOwnProperty(actionClass)) {
-                        propertyKey = metadata.spell_context.actions[actionClass][fieldName];
+                    if (propertyKey == null && metadata.context.actions.hasOwnProperty(actionClass)) {
+                        propertyKey = metadata.context.actions[actionClass][fieldName];
                     }
 
-                    if (propertyKey != null && metadata.spell_context.action_classes.hasOwnProperty(shortClass)) {
-                        var classKey = metadata.spell_context.action_classes[shortClass];
+                    if (propertyKey != null && metadata.context.action_classes.hasOwnProperty(shortClass)) {
+                        var classKey = metadata.context.action_classes[shortClass];
                         if (metadata.actions[classKey].parameters.hasOwnProperty(propertyKey)) {
                             defaultValue = metadata.actions[classKey].parameters[propertyKey];
                         }
@@ -153,8 +153,8 @@
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && hierarchy[hierarchy.length - 2] == 'effectlib') {
                 // Effectlib parameter values
                 var propertyKey = null;
-                if (metadata.spell_context.effectlib_parameters.hasOwnProperty(fieldName)) {
-                    propertyKey = metadata.spell_context.effectlib_parameters[fieldName];
+                if (metadata.context.effectlib_parameters.hasOwnProperty(fieldName)) {
+                    propertyKey = metadata.context.effectlib_parameters[fieldName];
                     if (metadata.effectlib_parameters.hasOwnProperty(propertyKey)) {
                         defaultValue = metadata.effectlib_parameters[propertyKey];
                     }
@@ -162,12 +162,12 @@
                 var shortClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces);
                 if (shortClass != null) {
                     var effectClass = addSuffix(shortClass, "Effect");
-                    if (propertyKey == null && metadata.spell_context.effects.hasOwnProperty(effectClass)) {
-                        propertyKey = metadata.spell_context.effects[effectClass][fieldName];
+                    if (propertyKey == null && metadata.context.effects.hasOwnProperty(effectClass)) {
+                        propertyKey = metadata.context.effects[effectClass][fieldName];
                     }
 
-                    if (propertyKey != null && metadata.spell_context.effectlib_classes.hasOwnProperty(shortClass)) {
-                        var classKey = metadata.spell_context.effectlib_classes[shortClass];
+                    if (propertyKey != null && metadata.context.effectlib_classes.hasOwnProperty(shortClass)) {
+                        var classKey = metadata.context.effectlib_classes[shortClass];
                         if (metadata.effectlib_effects[classKey].parameters.hasOwnProperty(propertyKey)) {
                             defaultValue = metadata.effectlib_effects[classKey].parameters[propertyKey];
                         }
@@ -179,8 +179,8 @@
                 }
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects') {
                 // Effect parameter values
-                if (metadata.spell_context.effect_parameters.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.spell_context.effect_parameters[fieldName];
+                if (metadata.context.effect_parameters.hasOwnProperty(fieldName)) {
+                    var propertyKey = metadata.context.effect_parameters[fieldName];
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
@@ -196,18 +196,18 @@
             var suffix = ': ';
             if (hierarchy.length == 2 && hierarchy[1] == '') {
                 // Add base parameters
-                properties = metadata.spell_context.properties;
+                properties = metadata.context.spell_properties;
             } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'parameters') {
                 // Add base parameters
                 var actions = getAllActions(cm, tabSizeInSpaces);
                 for (var i = 0; i < actions.length; i++) {
                     var action = actions[i];
-                    if (metadata.spell_context.actions.hasOwnProperty(action)) {
-                        properties = $.extend(properties, metadata.spell_context.actions[action]);
+                    if (metadata.context.actions.hasOwnProperty(action)) {
+                        properties = $.extend(properties, metadata.context.actions[action]);
                     }
                 }
                 if (hierarchy.length == 3) {
-                    inherited = metadata.spell_context.parameters;
+                    inherited = metadata.context.spell_parameters;
                 } else {
                     // Search for map property
                     for (var field in properties) {
@@ -229,7 +229,7 @@
                 }
             } else if (hierarchy.length == 4 && hierarchy[3] == '' && hierarchy[1] == 'effects') {
                 // Base effect parameters
-                properties = metadata.spell_context.effect_parameters;
+                properties = metadata.context.effect_parameters;
 
                 // Check if this is at the same indent level as a list, if so add - to suggestions
                 var previousSibling = getPreviousSibling(pos, indent, cm, tabSizeInSpaces);
@@ -240,20 +240,20 @@
                 }
             } else if (hierarchy.length >= 5 && hierarchy[hierarchy.length - 1] == '' && hierarchy[3] == 'effectlib') {
                 // Effectlib parameters
-                inherited = metadata.spell_context.effectlib_parameters;
+                inherited = metadata.context.effectlib_parameters;
                 var effectClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Effect");
                 if (effectClass != null) {
-                    if (metadata.spell_context.effects.hasOwnProperty(effectClass)) {
-                        properties = metadata.spell_context.effects[effectClass];
+                    if (metadata.context.effects.hasOwnProperty(effectClass)) {
+                        properties = metadata.context.effects[effectClass];
                     }
                 }
             } else if (hierarchy.length >= 4 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'actions') {
                 // Action parameters
-                inherited = metadata.spell_context.action_parameters;
+                inherited = metadata.context.action_parameters;
                 var actionClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Action");
                 if (actionClass != null) {
-                    if (metadata.spell_context.actions.hasOwnProperty(actionClass)) {
-                        properties = metadata.spell_context.actions[actionClass];
+                    if (metadata.context.actions.hasOwnProperty(actionClass)) {
+                        properties = metadata.context.actions[actionClass];
                     }
 
                     inherited = checkList(inherited, pos, indent, cm, tabSizeInSpaces);

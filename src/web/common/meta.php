@@ -100,9 +100,9 @@ function mapFields($meta, $type, $propertyHolder = null) {
 
 // Populate contextual lists of parameters
 if (isset($_REQUEST['context'])) {
-    $meta['spell_context'] = array(
-        'properties'  => mapFields($meta, 'spell_properties'),
-        'parameters'  => mapFields($meta, 'spell_parameters'),
+    $meta['context'] = array(
+        'spell_properties'  => mapFields($meta, 'spell_properties'),
+        'spell_parameters'  => mapFields($meta, 'spell_parameters'),
         'effect_parameters'  => mapFields($meta, 'effect_parameters'),
         'effectlib_parameters'  => mapFields($meta, 'effectlib_parameters'),
         'action_parameters'  => mapFields($meta, 'action_parameters'),
@@ -117,13 +117,13 @@ if (isset($_REQUEST['context'])) {
     foreach ($meta['actions'] as $action) {
         $actions[$action['class_name']] = mapFields($meta, 'parameters', $action);
     }
-    $meta['spell_context']['actions'] = $actions;
+    $meta['context']['actions'] = $actions;
 
     $effects = array();
     foreach ($meta['effectlib_effects'] as $effect) {
         $effects[$effect['class_name']] = mapFields($meta, 'parameters', $effect);
     }
-    $meta['spell_context']['effects'] = $effects;
+    $meta['context']['effects'] = $effects;
 }
 
 echo json_encode($meta);
