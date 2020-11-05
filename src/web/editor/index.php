@@ -29,6 +29,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/user.css"/>
     <link rel="stylesheet" href="common/css/codemirror.css"/>
     <link rel="stylesheet" href="common/css/show-hint.css"/>
+    <link rel="stylesheet" href="common/css/dialog.css"/>
     <link rel="stylesheet" href="common/css/lint.css"/>
     <link rel="stylesheet" href="common/css/ui.fancytree.css"/>
     <link rel="stylesheet" href="css/editor.css"/>
@@ -37,12 +38,15 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="common/js/codemirror.js"></script>
-    <script src="common/js/show-hint.js"></script
+    <script src="common/js/show-hint.js"></script>
     <script src="js/spell-hint.js"></script>
     <script src="common/js/js-yaml.min.js"></script>
     <script src="common/js/yaml.js"></script>
     <script src="common/js/lint.js"></script>
     <script src="common/js/yaml-lint.js"></script>
+    <script src="common/js/dialog.js"></script>
+    <script src="common/js/searchcursor.js"></script>
+    <script src="common/js/search.js"></script>
     <script src="js/editor.js"></script>
     <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
