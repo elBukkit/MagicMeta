@@ -27,24 +27,24 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/common.css" />
     <link rel="stylesheet" href="common/css/loading.css" />
     <link rel="stylesheet" href="common/css/user.css"/>
-    <link rel="stylesheet" href="css/codemirror.css"/>
-    <link rel="stylesheet" href="css/show-hint.css"/>
-    <link rel="stylesheet" href="css/lint.css"/>
-    <link rel="stylesheet" href="css/ui.fancytree.css"/>
+    <link rel="stylesheet" href="common/css/codemirror.css"/>
+    <link rel="stylesheet" href="common/css/show-hint.css"/>
+    <link rel="stylesheet" href="common/css/lint.css"/>
+    <link rel="stylesheet" href="common/css/ui.fancytree.css"/>
     <link rel="stylesheet" href="css/editor.css"/>
     <link rel="stylesheet" href="css/tutorial.css"/>
 
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="js/codemirror.js"></script>
-    <script src="js/show-hint.js"></script>
+    <script src="common/js/codemirror.js"></script>
+    <script src="common/js/show-hint.js"></script
     <script src="js/spell-hint.js"></script>
-    <script src="js/js-yaml.min.js"></script>
-    <script src="js/yaml.js"></script>
-    <script src="js/lint.js"></script>
-    <script src="js/yaml-lint.js"></script>
+    <script src="common/js/js-yaml.min.js"></script>
+    <script src="common/js/yaml.js"></script>
+    <script src="common/js/lint.js"></script>
+    <script src="common/js/yaml-lint.js"></script>
     <script src="js/editor.js"></script>
-    <script src="js/codeeditor.js"></script>
+    <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
