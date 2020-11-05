@@ -460,6 +460,7 @@
     }
 
     function addMultiples(value, values, decimalLimit) {
+        if (!$.isNumeric(value)) return;
         values[value * 2] = null;
         values[value * 10] = null;
         var lessValue = value;
@@ -477,6 +478,7 @@
     }
 
     function addPowersOfTen(value, values) {
+        if (!$.isNumeric(value)) return;
         for (var i = 0; i < 3; i++) {
             value *= 10;
             values[value] = null;
