@@ -11,8 +11,9 @@ function getSessionFilename($session) {
 }
 if (isset($_REQUEST['session'])) {
     $sessionId = $_REQUEST['session'];
-    $session = json_decode(file_get_contents(getSessionFilename($sessionId)));
+    $session = json_decode(file_get_contents(getSessionFilename($sessionId)), true);
 }
+$fileType = $session && isset($session['type']) ? $session['type'] : '';
 
 $seenTutorial = isset($_COOKIE['tutorial']);
 setcookie('tutorial', true, time()+60*60*24*30);
@@ -39,7 +40,6 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="common/js/codemirror.js"></script>
     <script src="common/js/show-hint.js"></script>
-    <script src="js/spell-hint.js"></script>
     <script src="common/js/js-yaml.min.js"></script>
     <script src="common/js/yaml.js"></script>
     <script src="common/js/lint.js"></script>
@@ -51,6 +51,23 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
     <script src="js/main.js"></script>
+
+    <?php if ($fileType == 'spells') { ?>
+    <script src="common/js/spell-hint.js"></script>
+    <?php } ?>
+
+    <?php if ($fileType == 'wands') { ?>
+    <script src="common/js/wand-hint.js"></script>
+    <?php } ?>
+
+    <?php if ($fileType == 'mobs') { ?>
+    <script src="common/js/mob-hint.js"></script>
+    <?php } ?>
+
+    <?php if ($fileType == 'effects') { ?>
+    <script src="common/js/effect-hint.js"></script>
+    <?php } ?>
+
     <script type="text/javascript">
         var referenceURL = '//<?= $referenceURL ?>';
         var _session = <?= json_encode($session); ?>;
