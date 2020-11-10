@@ -125,9 +125,7 @@ Editor.prototype.load = function() {
 };
 
 Editor.prototype.updateHash = function(spellName) {
-    var currentMode = $('#modeSelector').find('input:checked').prop('id');
-    currentMode = (currentMode == 'editorModeButton') ? 'editor.' : '';
-    window.location.hash = currentMode + spellName;
+    window.location.hash = spellName;
 };
 
 Editor.prototype.loadFile = function(fileName) {

@@ -13,7 +13,7 @@ if (!isset($_REQUEST['key'])) {
 $key = $_REQUEST['key'];
 if (strpos($key, 'default.') === 0) {
     $key = substr($key, 8);
-    $defaultsFolder = "$magicRootFolder/defaults/spells";
+    $defaultsFolder = "$magicRootFolder/examples/survival/spells/";
     $spellFile = file_get_contents($defaultsFolder . '/' . $key . '.yml');
 } else {
     $spellFolder = "$sandboxServer/plugins/Magic/spells";

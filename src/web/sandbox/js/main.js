@@ -26,16 +26,7 @@ function initialize() {
     var loadSpell = null;
     var currentHash = window.location.hash;
     if (currentHash != '') {
-        currentHash = currentHash.substring(1);
-        var pieces = currentHash.split('.');
-        if (pieces.length > 1) {
-            if (pieces[0] == 'editor') {
-                $('#editorModeButton').prop('checked', true);
-            }
-            loadSpell = pieces[1];
-        } else {
-            loadSpell = pieces[0];
-        }
+        loadSpell = currentHash.substring(1);
     }
     $('.controlgroup').controlgroup();
     editor.checkMode();
