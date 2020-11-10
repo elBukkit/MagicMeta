@@ -80,7 +80,7 @@ foreach ($survivalFiles as $spellFile) {
     }
 
     $spell = array(
-        'key' => 'default.' . $spellKey,
+        'key' => 'survival.' . $spellKey,
         'creator_id' => $creatorId,
         'creator_name' => $creatorName,
         'name' => $spellName,

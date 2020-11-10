@@ -180,9 +180,9 @@ Editor.prototype.populateSpellFiles = function() {
         var key = spell.key;
         var loadKey = key;
         var isDefault = false;
-        if (key.startsWith("default.")) {
+        if (key.startsWith("survival.")) {
             isDefault = true;
-            key = key.substr(8);
+            key = key.substr(9);
         }
         var groupLabel = null;
         if (!owned && spell.creator_id != '' && spell.creator_id == user.id) {

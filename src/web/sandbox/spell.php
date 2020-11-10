@@ -11,8 +11,8 @@ if (!isset($_REQUEST['key'])) {
 }
 
 $key = $_REQUEST['key'];
-if (strpos($key, 'default.') === 0) {
-    $key = substr($key, 8);
+if (strpos($key, 'survival.') === 0) {
+    $key = substr($key, 9);
     $defaultsFolder = "$magicRootFolder/examples/survival/spells/";
     $spellFile = file_get_contents($defaultsFolder . '/' . $key . '.yml');
 } else {
