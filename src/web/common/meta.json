@@ -14474,7 +14474,12 @@
       "options" : {
         "both" : "Play at both the caster and target location",
         "origin" : "Play at the caster's location",
-        "target" : "Play at the target location"
+        "target" : "Play at the target location",
+        "targets" : "Play at all target locations",
+        "selection" : "Play at your selection",
+        "origin_to_selection" : "Play from the origin to your selection",
+        "target_to_selection" : "Play from the target to your selection",
+        "selection_to_target" : "Play from your selection to the target"
       }
     },
     "effect_type" : {
