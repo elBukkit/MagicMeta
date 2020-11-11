@@ -83,7 +83,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <?php if ($analytics) echo $analytics; ?>
 </head>
 <body>
-<div id="container">
+<div id="container" style="display: none">
     <div id="header">
         <span id="saveButtonContainer">
             <button type="button" id="saveButton" title="Save your spell and reload the sandbox server configs">Save</button>

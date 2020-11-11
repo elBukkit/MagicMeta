@@ -2,8 +2,6 @@ $(document).ready(initialize);
 var editor = null;
 
 function initialize() {
-    editor = new Editor();
-
     $("#loadButton").button().click(function() { editor.load(); });
     $("#newButton").button().click(function() { editor.startNew("Basic"); });
     $("#saveButton").button().click(function() { editor.save(); });
@@ -32,6 +30,10 @@ function initialize() {
         });
     }
     $('.controlgroup').controlgroup();
+
+    $('#container').show();
+    editor = new Editor();
+
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null && _session.contents != '') {
             editor.setSpellConfig(_session.contents);
