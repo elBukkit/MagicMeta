@@ -14,7 +14,7 @@ function initialize() {
     $('#modeSelector input[type=radio]').change(function() { editor.checkMode(); });
     $("#loadSpellList").selectable({filter: 'tr'});
     $('.template').each(function() {
-        var newOption = $('<option>').val($(this).prop('id')).text($(this).data('label'));
+        var newOption = $('<option>').val($(this).prop('id').replace('template', '')).text($(this).data('label'));
         $('#newSelector').append(newOption);
     });
 

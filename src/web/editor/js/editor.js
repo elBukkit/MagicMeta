@@ -93,7 +93,7 @@ Editor.prototype.save = function() {
 };
 
 Editor.prototype.startNamed = function(template, name) {
-    let config = $('#' + template).val();
+    let config = $('#template' + template).val();
     if (!config) {
         this.setSpellConfig('');
         return;
@@ -109,7 +109,7 @@ Editor.prototype.startNamed = function(template, name) {
 };
 
 Editor.prototype.startNew = function(template) {
-    let contents = $('#' + template).val();
+    let contents = $('#template' + template).val();
     if (!contents) {
         contents  = '';
     } else {
