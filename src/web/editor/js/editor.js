@@ -177,3 +177,7 @@ Editor.prototype.setMetadata = function(meta) {
 Editor.prototype.startTutorial = function() {
     this.tutorial.start($('#welcomeTutorial'));
 };
+
+Editor.prototype.undo = function() {
+    this.getActiveEditor().undo();
+};

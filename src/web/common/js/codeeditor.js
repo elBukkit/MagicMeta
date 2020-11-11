@@ -46,3 +46,9 @@ CodeEditor.prototype.isValid = function() {
     var errors = CodeMirror.lint.yaml(this.getValue());
     return errors.length == 0;
 };
+
+CodeEditor.prototype.undo = function()
+{
+    return this.editor.undo();
+};
+

@@ -5,6 +5,7 @@ function initialize() {
     $("#loadButton").button().click(function() { editor.load(); });
     $("#newButton").button().click(function() { editor.startNew("Basic"); });
     $("#saveButton").button().click(function() { editor.save(); });
+    $("#undoButton").button().click(function() { editor.undo(); });
     $('#referenceButton').button().click(function() { editor.openReference(); });
     $('#downloadButton').button().click(function() { editor.download(); });
     $('#helpButton').button().click(function() { editor.startTutorial(); });

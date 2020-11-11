@@ -89,6 +89,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
             <button type="button" id="saveButton" title="Save your spell and reload the sandbox server configs">Save</button>
         </span>
         <span class="controlgroup">
+            <button tyoe="button" id="undoButton" title="Undo your last change">Undo</button>
             <button type="button" id="newButton" title="Clear your editor and start fresh">New</button>
             <select id="newSelector">
             </select>
