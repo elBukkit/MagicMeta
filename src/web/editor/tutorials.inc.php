@@ -25,10 +25,10 @@
 </div>
 
 <div id="exampleTutorial" class="tutorial balloon top" data-my="left top" data-at="right-10 bottom" data-of="newButton" data-next="saveTutorial">
-    <div>This drop-down contains several example wand or spell templates you can load into the editor.</div>
+    <div>This drop-down contains several example templates you can load into the editor.</div>
     <div>It is highly recommended that you load and read through each one if you are not familiar with the basics of configuration!</div>
-    <div>Each option represents a common use pattern found in many magic spells, though they are really only here to give you ideas. Once
-    you are familiar with the basics of spell anatomy, and the spell actions available to you, the possibilities are endless!</div>
+    <div>Each option represents a common use pattern found in many magic spells, wands, and mobs though they are really only here to give you ideas. Once
+    you are familiar with the basics of configuration anatomy, and all of the options available to you, the possibilities are endless!</div>
     <div>This menu is a work in progress and may not appear for all config types.</div>
 </div>
 

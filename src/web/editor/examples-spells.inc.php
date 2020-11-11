@@ -3,7 +3,7 @@
 <div id="defaultTemplates" style="display: none">
     <textarea id="templateBlank" class="template" data-label="Blank Spell"></textarea>
     <textarea id="templateBasic" class="template" data-label="Basic Spell"># This is the key name of this spell
-# It must be unique across the server, and is used in commands such as /mage, /wand and /mgive
+# It must be unique across the server, and is used in configs and commands such as /mage, /wand and /mgive
 # to refer to this spell.
 myspell:
   # Name and description may be added here and will appear in lore for this spell.
