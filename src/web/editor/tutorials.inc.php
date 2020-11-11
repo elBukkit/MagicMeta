@@ -6,7 +6,8 @@
 
 <div id="welcomeTutorial" class="tutorial" data-next="editorTutorial">
     <div style="font-weight: bold; padding-bottom: 1em">Welcome to the Magic configuration editor!</div>
-    <div>This editor will assist you in creating and editing spell configurations. If this is your first time here,
+    <div>This editor will assist you in creating and editing spell, wand, mob and other Magic configurations.
+        If this is your first time here,
         it is strongly recommended that you follow this brief tutorial!</div>
     <div>Just click anywhere on the screen to proceed to the next slide.</div>
     <div style="padding: 0.5em"><span style="font-weight:bold">Press the escape key</span> at any point to close this tutorial.</div>
@@ -17,10 +18,6 @@
     <div>The editor was made specifically for Magic config creation, it will check for errors, highlight your
     code for readability, and automatically suggest new properties or values in a context-aware way.</div>
     <div>You won't have to leave this page to look up names for materials, particles or anything else you'll need to type here!</div>
-    <div style="margin-top: 2em">
-        The editor comes preloaded with a simple example configuration that describes the general anatomy of a spell. It is a good
-        idea to read through this configuration, paying special attention to its comments, in order to understand how the spell works.
-    </div>
 </div>
 
 <div id="newTutorial" class="tutorial balloon top" data-my="left top" data-at="left bottom" data-of="newButton" data-next="exampleTutorial">
@@ -28,10 +25,11 @@
 </div>
 
 <div id="exampleTutorial" class="tutorial balloon top" data-my="left top" data-at="right-10 bottom" data-of="newButton" data-next="saveTutorial">
-    <div>This drop-down contains several example spell templates you can load into the editor.</div>
-    <div>It is highly recommended that you load and read through each one if you are not familiar with the basics of spell configuration!</div>
+    <div>This drop-down contains several example wand or spell templates you can load into the editor.</div>
+    <div>It is highly recommended that you load and read through each one if you are not familiar with the basics of configuration!</div>
     <div>Each option represents a common use pattern found in many magic spells, though they are really only here to give you ideas. Once
     you are familiar with the basics of spell anatomy, and the spell actions available to you, the possibilities are endless!</div>
+    <div>This menu is a work in progress and may not appear for all config types.</div>
 </div>
 
 <div id="saveTutorial" class="tutorial balloon top" data-my="left top" data-at="left bottom" data-of="saveButton" data-next="downloadTutorial">

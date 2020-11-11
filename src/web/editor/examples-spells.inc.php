@@ -1,8 +1,8 @@
 <?php ?>
 
 <div id="defaultTemplates" style="display: none">
-    <textarea id="templateBlank"></textarea>
-    <textarea id="templateBasic"># This is the key name of this spell
+    <textarea id="templateBlank" class="template" data-label="Blank Spell"></textarea>
+    <textarea id="templateBasic" class="template" data-label="Basic Spell"># This is the key name of this spell
 # It must be unique across the server, and is used in commands such as /mage, /wand and /mgive
 # to refer to this spell.
 myspell:
@@ -30,7 +30,7 @@ myspell:
     range: 32
     damage: 10
     </textarea>
-    <textarea id="templateProjectile">myprojectile:
+    <textarea id="templateProjectile" class="template" data-label="Projectile Spell">myprojectile:
   name: My Projectile
   description: Damage Your Target
   icon: stick
@@ -61,7 +61,7 @@ myspell:
     velocity: 20
     damage: 10
     </textarea>
-    <textarea id="templateAOE">myareaofeffect:
+    <textarea id="templateAOE" class="template" data-label="Area Of Effect Spell">myareaofeffect:
   name: My AOE
   description: Levitate Everything Around You
   icon: stick
@@ -85,7 +85,7 @@ myspell:
     add_effects:
       levitation: 2
     </textarea>
-    <textarea id="templateSphere">mysphere:
+    <textarea id="templateSphere" class="template" data-label="Build Sphere Spell">mysphere:
   name: My Sphere
   description: Make a temporary sphere of blocks
   icon: slime_ball
@@ -138,7 +138,7 @@ myspell:
     # before it can be cast again.
     cooldown: 15000
     </textarea>
-    <textarea id="templateBreak">mybreak:
+    <textarea id="templateBreak" class="template" data-label="Break Block Spell">mybreak:
   name: My Break
   description: Break a Block
   icon: sulphur
@@ -181,7 +181,7 @@ myspell:
     # random holes, so we will make this one last only 10 seconds.
     undo: 10000
     </textarea>
-    <textarea id="templateRepeating">goldwalker:
+    <textarea id="templateRepeating" class="template" data-label="Repeating Effect Spell Spell">goldwalker:
   name: Goldwalker
   description: Turn everything around you to gold
   icon: gold_ingot

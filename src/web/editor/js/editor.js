@@ -11,6 +11,7 @@ Editor.prototype.getSpellConfig = function() {
 };
 
 Editor.prototype.setSpellConfig = function(spellConfig) {
+    spellConfig = !spellConfig ? '' : spellConfig;
     this.getActiveEditor().setValue(spellConfig);
 };
 
@@ -92,13 +93,38 @@ Editor.prototype.save = function() {
 };
 
 Editor.prototype.startNamed = function(template, name) {
-    let config = $('#template' + template).val();
-    config = config.replace("myspell", name);
-    this.setSpellConfig(config);
+    let config = $('#' + template).val();
+    if (!config) {
+        this.setSpellConfig('');
+        return;
+    }
+    let lines = config.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].length > 0 && lines[i][0] != '#') {
+            lines[i] = name + ":";
+            break;
+        }
+    }
+    this.setSpellConfig(lines.join("\n"));
 };
 
 Editor.prototype.startNew = function(template) {
-    this.setSpellConfig($('#template' + template).val());
+    let contents = $('#' + template).val();
+    if (!contents) {
+        contents  = '';
+    } else {
+        let currentConfig = this.getSpellConfig();
+        if (currentConfig && currentConfig.length > 0) {
+            let lines = currentConfig.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].length > 0 && lines[i][0] != '#') {
+                    this.startNamed(template, lines[i].split(':')[0]);
+                    return;
+                }
+            }
+        }
+    }
+    this.setSpellConfig(contents);
 };
 
 Editor.prototype.getActiveEditor = function() {

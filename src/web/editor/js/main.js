@@ -14,15 +14,23 @@ function initialize() {
     $('#forkButton').button().click(function() { editor.fork(); });
     $('#modeSelector input[type=radio]').change(function() { editor.checkMode(); });
     $("#loadSpellList").selectable({filter: 'tr'});
-    $("#newSelector").selectmenu({
-      classes: {
-        "ui-selectmenu-button": "ui-button-icon-only demo-splitbutton-select"
-      },
-      change: function(){
-        editor.startNew(this.value);
-      }
+    $('.template').each(function() {
+        var newOption = $('<option>').val($(this).prop('id')).text($(this).data('label'));
+        $('#newSelector').append(newOption);
     });
 
+    if ($("#newSelector").children().length == 0) {
+        $("#newSelector").remove();
+    } else {
+        $("#newSelector").selectmenu({
+          classes: {
+            "ui-selectmenu-button": "ui-button-icon-only demo-splitbutton-select"
+          },
+          change: function(){
+            editor.startNew(this.value);
+          }
+        });
+    }
     $('.controlgroup').controlgroup();
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null && _session.contents != '') {

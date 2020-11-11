@@ -11,7 +11,12 @@ function getSessionFilename($session) {
 }
 if (isset($_REQUEST['session'])) {
     $sessionId = $_REQUEST['session'];
-    $session = json_decode(file_get_contents(getSessionFilename($sessionId)), true);
+    $sessionFileName = getSessionFilename($sessionId);
+    if (!file_exists($sessionFileName)) {
+        echo "What're you up to there? :|";
+        die();
+    }
+    $session = json_decode(file_get_contents($sessionFileName), true);
 }
 $fileType = $session && isset($session['type']) ? $session['type'] : '';
 
@@ -86,13 +91,6 @@ setcookie('tutorial', true, time()+60*60*24*30);
         <span class="controlgroup">
             <button type="button" id="newButton" title="Clear your editor and start fresh">New</button>
             <select id="newSelector">
-                <option value="Blank">Blank Spell</option>
-                <option value="Basic">Basic Spell</option>
-                <option value="AOE">Area of Effect Spell</option>
-                <option value="Projectile">Projectile Spell</option>
-                <option value="Sphere">Build Sphere Spell</option>
-                <option value="Break">Break Block Spell</option>
-                <option value="Repeating">Repeating Effect Spell</option>
             </select>
         </span>
         <span id="downloadButtonContainer">
@@ -122,8 +120,13 @@ setcookie('tutorial', true, time()+60*60*24*30);
     </div>
 </div>
 
-<?php require 'examples.inc.php'; ?>
 <?php require 'tutorials.inc.php'; ?>
+<?php
+$tutorialsFile = "examples-$fileType.inc.php";
+if (file_exists($tutorialsFile)) {
+    require($tutorialsFile);
+}
+?>
 
 <div id="saveDialog" title="Configuration Saved" style="display:none">
     <div style="margin-bottom: 0.5em">
