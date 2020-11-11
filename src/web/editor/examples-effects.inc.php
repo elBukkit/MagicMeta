@@ -2,8 +2,8 @@
 
 <div id="defaultTemplates" style="display: none">
     <textarea id="templateBlank" class="template" data-label="Blank Effects"></textarea>
-    <textarea id="templateBasic" class="template" data-label="Fountain Effects"># This is the key name of this effects
-# It must be unique across the server, and is used in configs to refer to this effects
+    <textarea id="templateBasic" class="template" data-label="Fountain Effects"># This is the key name of this effect list
+# It must be unique across the server, and is used in configs to refer to this effects list
 # Most often this would be by using the PlayyEffects action, or in place of an effects list in
 # wand or spell configs.
 myfountain:
