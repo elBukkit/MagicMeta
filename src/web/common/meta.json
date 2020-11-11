@@ -587,6 +587,7 @@
         "relative_target_offset" : null,
         "source_at_target" : "false",
         "source_direction" : null,
+        "source_direction_at_target" : "false",
         "source_direction_is_target" : "false",
         "source_direction_offset" : null,
         "source_direction_speed" : "0",
@@ -1625,6 +1626,7 @@
         "silent" : "false",
         "speed" : "0.1",
         "start" : "0",
+        "tick" : null,
         "ticks_flown" : "0",
         "track_projectile" : "false",
         "trail" : "false",
@@ -1850,6 +1852,7 @@
       "parameters" : {
         "async" : "false",
         "level" : "15",
+        "min_distance" : "0.0",
         "undo_previous" : "false",
         "update" : "true"
       },
@@ -2032,6 +2035,7 @@
         "gravity_boolean" : "true",
         "health" : "1.0",
         "helmet" : null,
+        "hidden" : "false",
         "interact_command_source" : "console",
         "interact_commands" : null,
         "interact_costs" : null,
@@ -2052,6 +2056,7 @@
         "modifiers" : null,
         "mount" : null,
         "name" : null,
+        "npc" : "false",
         "offhand" : null,
         "persist" : "false",
         "potion_effects" : null,
@@ -2267,6 +2272,7 @@
         "duration_warning" : "0",
         "exemption_duration" : "0",
         "fall_protection" : "0",
+        "find_wand" : "false",
         "helmet_item" : null,
         "jump_cast" : "",
         "jump_controllable" : "0",
@@ -2425,6 +2431,8 @@
         "pitch" : "1",
         "radius" : "32",
         "sound" : null,
+        "sound_pitch" : "1.0",
+        "sound_volume" : "1.0",
         "volume" : "1"
       },
       "short_class" : "PlaySound"
@@ -2511,6 +2519,7 @@
         "speed" : "0.6000000238418579",
         "spread" : "12",
         "start" : "0",
+        "tick" : null,
         "tick_increase" : "1180",
         "track_projectile" : "true",
         "use_block_location" : "false",
@@ -3035,6 +3044,7 @@
         "hand_item" : null,
         "health" : "1",
         "helmet" : null,
+        "hidden" : "false",
         "interact_command_source" : "console",
         "interact_commands" : null,
         "interact_costs" : null,
@@ -3056,7 +3066,9 @@
         "modifiers" : null,
         "mount" : null,
         "name" : null,
+        "npc" : "false",
         "offhand" : null,
+        "on_block" : "true",
         "owned" : "true",
         "persist" : "false",
         "potion_effects" : null,
@@ -3070,6 +3082,7 @@
         "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
+        "spawn" : null,
         "speed" : "0",
         "split" : "true",
         "strength" : null,
@@ -3250,6 +3263,7 @@
         "set_target" : "false",
         "size" : "6",
         "start" : null,
+        "tick" : null,
         "tnt_velocity" : "1",
         "track_projectile" : "true"
       },
@@ -3340,6 +3354,7 @@
         "speed_max" : "0.6000000238418579",
         "speed_min" : "0.6000000238418579",
         "start" : null,
+        "tick" : null,
         "track_projectile" : "false",
         "use_block_location" : "false",
         "use_cast_location" : "false",
@@ -3372,6 +3387,9 @@
         "speed_max" : "1",
         "speed_min" : "1",
         "start" : null,
+        "temporary" : "true",
+        "throw_wand" : "false",
+        "tick" : null,
         "track_projectile" : "false",
         "unbreakable" : "false",
         "use_block_location" : "false",
@@ -3688,11 +3706,13 @@
     "particle_offset_z" : "0.3",
     "particle_override" : null,
     "particle_speed" : "0",
+    "radius_override" : null,
     "relative_offset" : null,
     "relative_target_offset" : null,
     "reorient" : "false",
     "requires_entity" : "false",
     "requires_entity_target" : "false",
+    "requires_no_entity_target" : "false",
     "sample" : "",
     "sound" : null,
     "sound_broadcast" : "true",
@@ -3942,6 +3962,27 @@
       },
       "short_class" : "Cube"
     },
+    "cuboid" : {
+      "category" : "",
+      "class_name" : "CuboidEffect",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Cuboid",
+      "parameters" : {
+        "block_snap" : "false",
+        "iterations" : "200",
+        "padding" : "0.0",
+        "particle" : "flame",
+        "particles" : "8",
+        "period" : "5",
+        "type" : "repeating",
+        "x_length" : "0.0",
+        "y_length" : "0.0",
+        "z_length" : "0.0"
+      },
+      "short_class" : "Cuboid"
+    },
     "cylinder" : {
       "category" : "",
       "class_name" : "CylinderEffect",
@@ -4169,6 +4210,7 @@
       "importance" : 50,
       "name" : "Grid",
       "parameters" : {
+        "center" : "false",
         "columns" : "10",
         "height_cell" : "1",
         "iterations" : "50",
@@ -4177,6 +4219,8 @@
         "particles_width" : "4",
         "period" : "5",
         "rotation" : "0",
+        "rotation_x" : "0.0",
+        "rotation_z" : "0.0",
         "rows" : "5",
         "width_cell" : "1"
       },
@@ -4352,6 +4396,8 @@
         "orient_pitch" : "false",
         "parameters" : "{}",
         "type" : "repeating",
+        "variable_a" : "0.0",
+        "variable_b" : "0.0",
         "x_equation" : null,
         "y_equation" : null,
         "z_equation" : null
@@ -4408,6 +4454,24 @@
         "z_scale" : "1"
       },
       "short_class" : "Plot"
+    },
+    "pyramid" : {
+      "category" : "",
+      "class_name" : "PyramidEffect",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Pyramid",
+      "parameters" : {
+        "block_snap" : "false",
+        "iterations" : "200",
+        "particle" : "flame",
+        "particles" : "8",
+        "period" : "5",
+        "radius" : "0.0",
+        "type" : "repeating"
+      },
+      "short_class" : "Pyramid"
     },
     "shield" : {
       "category" : "",
@@ -4717,6 +4781,7 @@
     "hand_item" : null,
     "health" : "1",
     "helmet" : null,
+    "hidden" : "false",
     "interact_command_source" : "console",
     "interact_commands" : null,
     "interact_costs" : null,
@@ -4737,6 +4802,7 @@
     "mob_name" : null,
     "modifiers" : null,
     "mount" : null,
+    "npc" : "false",
     "offhand" : null,
     "persist" : "false",
     "potion_effects" : null,
@@ -5511,6 +5577,14 @@
       "name" : "Block Reflect Chance",
       "type" : "double"
     },
+    "block_snap" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_snap",
+      "importance" : 0,
+      "name" : "Block Snap",
+      "type" : "boolean"
+    },
     "blocked" : {
       "category" : "",
       "description" : [ "" ],
@@ -5841,6 +5915,14 @@
       "name" : "Cancel On Damage",
       "type" : "double"
     },
+    "cancel_on_deactivate" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "cancel_on_deactivate",
+      "importance" : 0,
+      "name" : "Cancel On Deactivate",
+      "type" : "boolean"
+    },
     "cancel_on_death" : {
       "category" : "actions",
       "description" : [ "This spell will cancel if the caster dies" ],
@@ -6018,6 +6100,14 @@
       "name" : "Cd",
       "type" : "boolean"
     },
+    "center" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "center",
+      "importance" : 0,
+      "name" : "Center",
+      "type" : "boolean"
+    },
     "center_probability" : {
       "category" : "",
       "description" : [ "" ],
@@ -6072,6 +6162,14 @@
       "field" : "check_destructible",
       "importance" : 0,
       "name" : "Check Destructible",
+      "type" : "boolean"
+    },
+    "check_indestructible" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "check_indestructible",
+      "importance" : 0,
+      "name" : "Check Indestructible",
       "type" : "boolean"
     },
     "check_protection" : {
@@ -6795,6 +6893,14 @@
       "name" : "Damaged",
       "type" : "boolean"
     },
+    "deactivate_effects" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "deactivate_effects",
+      "importance" : 0,
+      "name" : "Deactivate Effects",
+      "type" : "boolean"
+    },
     "deactivate_self" : {
       "category" : "",
       "description" : [ "" ],
@@ -6850,6 +6956,22 @@
       "importance" : 0,
       "name" : "Denied Entities",
       "type" : "list"
+    },
+    "deny_break" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "deny_break",
+      "importance" : 0,
+      "name" : "Deny Break",
+      "type" : "boolean"
+    },
+    "deny_build" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "deny_build",
+      "importance" : 0,
+      "name" : "Deny Build",
+      "type" : "boolean"
     },
     "depth" : {
       "category" : "",
@@ -7122,6 +7244,14 @@
       "importance" : 0,
       "name" : "Drop Skull",
       "type" : "boolean"
+    },
+    "drop_sneak" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "drop_sneak",
+      "importance" : 0,
+      "name" : "Drop Sneak",
+      "type" : "string"
     },
     "drop_xp" : {
       "category" : "mob",
@@ -7849,6 +7979,14 @@
       "field" : "filter_bound",
       "importance" : 0,
       "name" : "Filter Bound",
+      "type" : "boolean"
+    },
+    "find_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "find_wand",
+      "importance" : 0,
+      "name" : "Find Wand",
       "type" : "boolean"
     },
     "fire" : {
@@ -8876,6 +9014,14 @@
       "name" : "Left Click Binding",
       "type" : "wand_action"
     },
+    "left_click_sneak" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "left_click_sneak",
+      "importance" : 0,
+      "name" : "Left Click Sneak",
+      "type" : "string"
+    },
     "left_leg_transform" : {
       "category" : "",
       "description" : [ "" ],
@@ -9436,6 +9582,14 @@
       "name" : "Min Damage",
       "type" : "double"
     },
+    "min_distance" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_distance",
+      "importance" : 0,
+      "name" : "Min Distance",
+      "type" : "double"
+    },
     "min_entity_range" : {
       "category" : "",
       "description" : [ "" ],
@@ -9676,6 +9830,14 @@
       "name" : "Not Attachable",
       "type" : "string"
     },
+    "npc" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "npc",
+      "importance" : 0,
+      "name" : "Npc",
+      "type" : "boolean"
+    },
     "npc_weight" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -9699,6 +9861,14 @@
       "importance" : 0,
       "name" : "Offset",
       "type" : "vector"
+    },
+    "on_block" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "on_block",
+      "importance" : 0,
+      "name" : "On Block",
+      "type" : "boolean"
     },
     "on_fire" : {
       "category" : "",
@@ -9907,6 +10077,14 @@
       "importance" : 0,
       "name" : "Owned",
       "type" : "boolean"
+    },
+    "padding" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "padding",
+      "importance" : 0,
+      "name" : "Padding",
+      "type" : "double"
     },
     "page" : {
       "category" : "",
@@ -10740,6 +10918,14 @@
       "name" : "Radius On Use",
       "type" : "double"
     },
+    "radius_override" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "radius_override",
+      "importance" : 0,
+      "name" : "Radius Override",
+      "type" : "string"
+    },
     "radius_padding" : {
       "category" : "",
       "description" : [ "" ],
@@ -10819,6 +11005,14 @@
       "importance" : 0,
       "name" : "Range Padding",
       "type" : "double"
+    },
+    "reactivate" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "reactivate",
+      "importance" : 0,
+      "name" : "Reactivate",
+      "type" : "boolean"
     },
     "realtime" : {
       "category" : "",
@@ -11228,6 +11422,14 @@
       "name" : "Requires Entity Target",
       "type" : "boolean"
     },
+    "requires_no_entity_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "requires_no_entity_target",
+      "importance" : 0,
+      "name" : "Requires No Entity Target",
+      "type" : "boolean"
+    },
     "requires_target" : {
       "category" : "",
       "description" : [ "If true, this action will not run unless the spell has missed completely.", "Missing usually means reaching max range or duration before hitting a solid block or entity", "Most spells that require targets will do this automatically, but occasionally you may with to turn off an entire branch of a spell because of there being no target." ],
@@ -11347,6 +11549,14 @@
       "importance" : 100,
       "name" : "Right Click Binding",
       "type" : "wand_action"
+    },
+    "right_click_sneak" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "right_click_sneak",
+      "importance" : 0,
+      "name" : "Right Click Sneak",
+      "type" : "string"
     },
     "right_leg_transform" : {
       "category" : "",
@@ -11804,6 +12014,14 @@
       "name" : "Source Direction",
       "type" : "string"
     },
+    "source_direction_at_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "source_direction_at_target",
+      "importance" : 0,
+      "name" : "Source Direction At Target",
+      "type" : "boolean"
+    },
     "source_direction_is_target" : {
       "category" : "",
       "description" : [ "" ],
@@ -11939,6 +12157,14 @@
       "importance" : 0,
       "name" : "Sp Multiplier",
       "type" : "double"
+    },
+    "spawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "spawn",
+      "importance" : 0,
+      "name" : "Spawn",
+      "type" : "string"
     },
     "spawn_reason" : {
       "category" : "",
@@ -12259,6 +12485,14 @@
       "importance" : 90,
       "name" : "Swap Binding",
       "type" : "wand_action"
+    },
+    "swap_sneak" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "swap_sneak",
+      "importance" : 0,
+      "name" : "Swap Sneak",
+      "type" : "string"
     },
     "swap_source_and_target" : {
       "category" : "",
@@ -12708,6 +12942,14 @@
       "name" : "Template",
       "type" : "string"
     },
+    "temporary" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "temporary",
+      "importance" : 0,
+      "name" : "Temporary",
+      "type" : "boolean"
+    },
     "text" : {
       "category" : "",
       "description" : [ "" ],
@@ -12723,6 +12965,14 @@
       "importance" : 0,
       "name" : "Thickness",
       "type" : "double"
+    },
+    "throw_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "throw_wand",
+      "importance" : 0,
+      "name" : "Throw Wand",
+      "type" : "boolean"
     },
     "tick" : {
       "category" : "",
@@ -13414,6 +13664,22 @@
       "name" : "Variable2",
       "type" : "string"
     },
+    "variable_a" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "variable_a",
+      "importance" : 0,
+      "name" : "Variable A",
+      "type" : "double"
+    },
+    "variable_b" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "variable_b",
+      "importance" : 0,
+      "name" : "Variable B",
+      "type" : "double"
+    },
     "variables" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -13726,6 +13992,14 @@
       "name" : "X Factor",
       "type" : "float"
     },
+    "x_length" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "x_length",
+      "importance" : 0,
+      "name" : "X Length",
+      "type" : "double"
+    },
     "x_offset" : {
       "category" : "",
       "description" : [ "Offset the x component of the location" ],
@@ -13797,6 +14071,14 @@
       "importance" : 0,
       "name" : "Y Factor",
       "type" : "float"
+    },
+    "y_length" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "y_length",
+      "importance" : 0,
+      "name" : "Y Length",
+      "type" : "double"
     },
     "y_offset" : {
       "category" : "",
@@ -13894,6 +14176,14 @@
       "name" : "Z Factor",
       "type" : "float"
     },
+    "z_length" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "z_length",
+      "importance" : 0,
+      "name" : "Z Length",
+      "type" : "double"
+    },
     "z_offset" : {
       "category" : "",
       "description" : [ "Offset the z component of the location" ],
@@ -13970,11 +14260,13 @@
     "bypass_undo" : "false",
     "cancel_on_cast_other" : "false",
     "cancel_on_damage" : "0",
+    "cancel_on_deactivate" : "true",
     "cancel_on_death" : "false",
     "cancel_on_no_permission" : "false",
     "cancel_on_no_wand" : "false",
     "cd" : "true",
     "check_destructible" : "true",
+    "check_indestructible" : "true",
     "check_protection" : "false",
     "close_fov" : "0.5",
     "close_range" : "0",
@@ -13986,6 +14278,8 @@
     "cooldown_reduction" : "0",
     "cost_reduction" : "0",
     "damage_resistance_protection" : "0",
+    "deny_break" : "false",
+    "deny_build" : "false",
     "destructible" : "",
     "destructible_durability" : "0",
     "destructible_override" : "false",
@@ -14086,6 +14380,7 @@
     "creative_restricted" : "false",
     "creator" : null,
     "creator_id" : null,
+    "deactivate_effects" : "true",
     "description" : "",
     "disable_mana_regeneration" : "false",
     "disguise_restricted" : "false",
@@ -14113,6 +14408,7 @@
     "progress_levels" : null,
     "pvp_restricted" : "false",
     "quick_cast" : "false",
+    "reactivate" : "false",
     "refund_on_no_target" : "false",
     "removes_spells" : null,
     "require_break" : "false",
@@ -14474,12 +14770,12 @@
       "options" : {
         "both" : "Play at both the caster and target location",
         "origin" : "Play at the caster's location",
-        "target" : "Play at the target location",
-        "targets" : "Play at all target locations",
-        "selection" : "Play at your selection",
         "origin_to_selection" : "Play from the origin to your selection",
+        "selection" : "Play at your selection",
+        "selection_to_target" : "Play from your selection to the target",
+        "target" : "Play at the target location",
         "target_to_selection" : "Play from the target to your selection",
-        "selection_to_target" : "Play from your selection to the target"
+        "targets" : "Play at all target locations"
       }
     },
     "effect_type" : {
@@ -17048,6 +17344,7 @@
       "name" : "Location Type",
       "options" : {
         "block" : "The block location (0,0,0 corner)",
+        "block_center" : null,
         "body" : "The center of the target entity, halfway between feet and eyes",
         "cast" : "The cast location, defaults to wand location or player handss",
         "eyes" : "The target's eyes",
@@ -17119,6 +17416,7 @@
         "no_target" : "The spell missed, did not hit a valid target",
         "pending" : "Returned by an action that needs to continue working on the next tick",
         "player_required" : "The spell did not cast because it requires a player",
+        "reactivate" : null,
         "stop" : "Returned by an action that wishes to immediately stop the spell",
         "target_selected" : "The spell cast and selected a target that will be used on the next cast",
         "world_required" : "The spell did not cast because it requires a world (was cast from console)"
@@ -17305,6 +17603,7 @@
     "cost_reduction" : "0",
     "currency_display" : null,
     "drop" : "none",
+    "drop_sneak" : null,
     "earn_multiplier" : null,
     "effect_bubbles" : "false",
     "effect_color" : null,
@@ -17334,6 +17633,7 @@
     "item_attributes" : null,
     "keep" : "false",
     "left_click" : "none",
+    "left_click_sneak" : null,
     "locked" : "false",
     "mana" : "0",
     "mana_max" : "0",
@@ -17357,12 +17657,14 @@
     "rename_description" : "false",
     "reset_mana_on_activate" : null,
     "right_click" : "none",
+    "right_click_sneak" : null,
     "sp_multiplier" : "0",
     "spell_inventory" : null,
     "spell_levels" : null,
     "spells" : null,
     "stack" : "false",
     "swap" : "none",
+    "swap_sneak" : null,
     "tags" : null,
     "template" : null,
     "track" : "false",
