@@ -758,6 +758,23 @@
       },
       "short_class" : "CheckMana"
     },
+    "check_modifiers" : {
+      "category" : "compound",
+      "class_name" : "CheckModifiersAction",
+      "description" : [ "" ],
+      "examples" : [ ],
+      "importance" : 0,
+      "name" : "Check Modifiers",
+      "parameters" : {
+        "blocked" : null,
+        "blocked_list" : null,
+        "fail" : null,
+        "invert" : "false",
+        "required" : null,
+        "required_list" : null
+      },
+      "short_class" : "CheckModifiers"
+    },
     "check_potion_effects" : {
       "category" : "compound",
       "class_name" : "CheckPotionEffectsAction",
