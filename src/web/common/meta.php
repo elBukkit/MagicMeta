@@ -37,13 +37,17 @@ if ($legacyIcons) {
             if (!isset($itemPredicate['predicate'])) continue;
             if (!isset($itemPredicate['predicate']['custom_model_data'])) continue;
             $texture = str_replace('item/', '', $itemPredicate['model']);
-            if (strpos($texture, 'spells') === FALSE) continue;
             $customData = $itemPredicate['predicate']['custom_model_data'];
             $itemName = basename($filename, '.json');
-            if (strpos($texture, '_disabled') !== FALSE) {
-                $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+
+            if (strpos($texture, 'spells') === FALSE && strpos($texture, 'brushes') === FALSE) {
+                $wandIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $texture;
             } else {
-                $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+                if (strpos($texture, '_disabled') !== FALSE) {
+                    $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+                } else {
+                    $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+                }
             }
         }
     }
