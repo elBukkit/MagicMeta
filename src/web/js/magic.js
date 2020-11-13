@@ -46,7 +46,7 @@ function getMaterial(materialKey, iconOnly)
 		materialName = 'Clone';
 		iconOnly = false;
 	}
-	var imagePath = 'image/material';
+	var imagePath = 'common/image/material';
 	var materialIcon = materialKey.split(':')[0] + '.png';
 	var enclosingSpan = $('<span/>');
 	var icon = $('<span title="' + materialName + '" class="materal_icon" style="background-image: url(' + imagePath + '/' + materialIcon + ')">&nbsp;</span>');
