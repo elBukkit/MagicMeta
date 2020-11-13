@@ -2260,6 +2260,7 @@
       "importance" : 30,
       "name" : "Mount Armor Stand",
       "parameters" : {
+        "air_controllable" : "true",
         "armor_stand_gravity" : "true",
         "armor_stand_health" : "0.1",
         "armor_stand_invisible" : "true",
@@ -2290,6 +2291,8 @@
         "exemption_duration" : "0",
         "fall_protection" : "0",
         "find_wand" : "false",
+        "gravity" : "0.0",
+        "height_check_radius" : "0",
         "helmet_item" : null,
         "jump_cast" : "",
         "jump_controllable" : "0",
@@ -2322,6 +2325,7 @@
         "start_speed" : "0",
         "steer_speed" : "0",
         "strafe_controllable" : "0",
+        "terminal_velocity" : "0.0",
         "warning_effects" : null,
         "yaw_offset" : "0"
       },
@@ -2704,6 +2708,7 @@
       "importance" : 0,
       "name" : "Ride Entity",
       "parameters" : {
+        "air_controllable" : "true",
         "braking" : "0",
         "controllable" : "false",
         "crash_braking" : "0",
@@ -2725,6 +2730,8 @@
         "duration_warning" : "0",
         "exemption_duration" : "0",
         "fall_protection" : "0",
+        "gravity" : "0.0",
+        "height_check_radius" : "0",
         "jump_cast" : "",
         "jump_controllable" : "0",
         "liftoff_duration" : "0",
@@ -2753,6 +2760,7 @@
         "start_speed" : "0",
         "steer_speed" : "0",
         "strafe_controllable" : "0",
+        "terminal_velocity" : "0.0",
         "warning_effects" : null,
         "yaw_offset" : "0"
       },
@@ -4968,6 +4976,14 @@
       "importance" : 0,
       "name" : "Air",
       "type" : "integer"
+    },
+    "air_controllable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "air_controllable",
+      "importance" : 0,
+      "name" : "Air Controllable",
+      "type" : "boolean"
     },
     "alias" : {
       "category" : "base",
@@ -8366,6 +8382,14 @@
       "name" : "Height Cell",
       "type" : "float"
     },
+    "height_check_radius" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "height_check_radius",
+      "importance" : 0,
+      "name" : "Height Check Radius",
+      "type" : "integer"
+    },
     "height_spout" : {
       "category" : "",
       "description" : [ "" ],
@@ -10110,6 +10134,14 @@
       "importance" : 0,
       "name" : "Page",
       "type" : "integer"
+    },
+    "page_free_space" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "page_free_space",
+      "importance" : 0,
+      "name" : "Page Free Space",
+      "type" : "string"
     },
     "pages" : {
       "category" : "",
@@ -12966,6 +12998,14 @@
       "importance" : 0,
       "name" : "Temporary",
       "type" : "boolean"
+    },
+    "terminal_velocity" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "terminal_velocity",
+      "importance" : 0,
+      "name" : "Terminal Velocity",
+      "type" : "double"
     },
     "text" : {
       "category" : "",
@@ -17661,6 +17701,7 @@
     "max_enchant_count" : "0",
     "mode" : "none",
     "overrides" : null,
+    "page_free_space" : null,
     "passive" : "false",
     "path" : null,
     "potion_effects" : null,
