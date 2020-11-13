@@ -58,7 +58,7 @@ function initialize() {
 
     $.ajax( {
         type: "GET",
-        url: "common/meta.php?context",
+        url: "common/meta.php?context&legacyIcons=" + _legacyIcons,
         dataType: 'json'
     }).done(function(meta) {
         editor.setMetadata(meta);

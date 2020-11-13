@@ -3,23 +3,53 @@ require_once('../config.inc.php');
 header('Content-Type: application/json');
 $meta = json_decode(file_get_contents('meta.json'), true);
 
-// Load resource pack textures
-$spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
-$spellJson = $spellJson['overrides'];
+$legacyIcons = true;
+if (isset($_REQUEST['legacyIcons'])) {
+    $legacyIcons = $_REQUEST['legacyIcons'] === 'true';
+}
+
 $spellIcons = array();
 $disabledIcons = array();
 $wandIcons = array();
-$diamondUses = 1562;
-foreach ($spellJson as $spellPredicate) {
-    $durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
-    if ($durability == 0) continue;
-    $texture = str_replace('item/', '', $spellPredicate['model']);
-    $spellIcons['diamond_axe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
-    $disabledIcons['diamond_hoe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+
+// Load resource pack textures
+if ($legacyIcons) {
+    $spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
+    $spellJson = $spellJson['overrides'];
+    $diamondUses = 1562;
+    foreach ($spellJson as $spellPredicate) {
+        $durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
+        if ($durability == 0) continue;
+        $texture = str_replace('item/', '', $spellPredicate['model']);
+        $spellIcons['diamond_axe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+        $disabledIcons['diamond_hoe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+    }
+} else {
+    $modelFolder = $resourcePackFolder . '/default/assets/minecraft/models/item/';
+    foreach (new DirectoryIterator($modelFolder) as $fileInfo) {
+        if ($fileInfo->isDot()) continue;
+        if ($fileInfo->isDir()) continue;
+        $filename = $fileInfo->getFilename();
+        if (pathinfo($filename, PATHINFO_EXTENSION) !== 'json') continue;
+        $itemJson = json_decode(file_get_contents($modelFolder . '/' . $filename), true);
+        $itemJson = $itemJson['overrides'];
+        foreach ($itemJson as $itemPredicate) {
+            if (!isset($itemPredicate['predicate'])) continue;
+            if (!isset($itemPredicate['predicate']['custom_model_data'])) continue;
+            $texture = str_replace('item/', '', $itemPredicate['model']);
+            if (strpos($texture, 'spells') === FALSE) continue;
+            $customData = $itemPredicate['predicate']['custom_model_data'];
+            $itemName = basename($filename, '.json');
+            if (strpos($texture, '_disabled') !== FALSE) {
+                $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+            } else {
+                $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+            }
+        }
+    }
 }
 if (isset($meta['types']) && isset($meta['types']['material']) && isset($meta['types']['material']['options'])) {
     foreach ($meta['types']['material']['options'] as $material => $nothing) {
-        $spellIcons[$material] = '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
         $wandIcons[$material] = '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
     }
 }
