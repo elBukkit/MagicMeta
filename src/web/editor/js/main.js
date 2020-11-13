@@ -46,6 +46,13 @@ function initialize() {
             }
         }
 
+        let title = 'Magic Editor (' + _session['type'];
+        if (_session.hasOwnProperty('key') && _session.key != null) {
+            title = title + "." + _session.key;
+        }
+        title += ')';
+        document.title = title;
+
         if (_session.hasOwnProperty('player') && _session.player != null) {
             let user = _session.player;
             $('#userName').text(user.name);
