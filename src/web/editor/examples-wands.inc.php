@@ -47,7 +47,7 @@ classwand:
   # you can modify the mapping of what gets stored where if you wish.
   class: mage
     </textarea>
-    <textarea id="templateProjectile" class="template" data-label="Basic Sword">mysword:
+    <textarea id="templateSword" class="template" data-label="Sword">mysword:
   name: My Sword
   description: Excaliber!
   # The base_wand template will set your sword up to quick-cast, so you can swing the
@@ -67,7 +67,7 @@ classwand:
   - missile
   - fireball
     </textarea>
-    <textarea id="templateAOE" class="template" data-label="Basic Bow">mybow:
+    <textarea id="templateBow" class="template" data-label="Bow">mybow:
   name: My Bow
   description: A magical bow
   # This sets up a bow that uses the drop button to toggle the inventory
@@ -91,5 +91,13 @@ classwand:
     icon: stick{CustomModelData:18037}
     # This changes (upgrades) the icon of the target wand
     upgrade_icon: stick{CustomModelData:18037}
+    </textarea>
+    <textarea id="templateConsumable" class="template" data-label="Consumable">myconsumable:
+  name: Tasty Beverage
+  description: Heals everyone around you
+  # Potion icons can use custom colors
+  icon: potion:FFD700
+  # Casts a spell on consuming
+  consume_spell: healing
     </textarea>
 </div>
