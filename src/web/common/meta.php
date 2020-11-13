@@ -8,6 +8,7 @@ $spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/asset
 $spellJson = $spellJson['overrides'];
 $spellIcons = array();
 $disabledIcons = array();
+$wandIcons = array();
 $diamondUses = 1562;
 foreach ($spellJson as $spellPredicate) {
     $durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
@@ -16,8 +17,15 @@ foreach ($spellJson as $spellPredicate) {
     $spellIcons['diamond_axe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
     $disabledIcons['diamond_hoe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
 }
+if (isset($meta['types']) && isset($meta['types']['material']) && isset($meta['types']['material']['options'])) {
+    foreach ($meta['types']['material']['options'] as $material => $nothing) {
+        $spellIcons[$material] = '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
+        $wandIcons[$material] = '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
+    }
+}
 $meta['types']['spell_icon']['options'] = $spellIcons;
 $meta['types']['spell_icon_disabled']['options'] = $disabledIcons;
+$meta['types']['icon']['options'] = $wandIcons;
 
 // Load URL textures
 $textures = array();
