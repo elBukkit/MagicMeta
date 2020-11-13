@@ -77,7 +77,10 @@ public class ParameterType {
         if (classType.isEnum()) {
             Object[] enums = classType.getEnumConstants();
             for (Object enumConstant : enums) {
-                addOption(enumConstant.toString().toLowerCase());
+                String enumKey = enumConstant.toString().toLowerCase();
+                // Hack to avoid legacy materials
+                if (enumKey.startsWith("legacy_")) continue;
+                addOption(enumKey);
             }
         } else {
             // This covers PotionEffectType, which as it turns out is a huge pain.
