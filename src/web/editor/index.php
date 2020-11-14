@@ -74,6 +74,10 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/effect-hint.js"></script>
     <?php } ?>
 
+    <?php if ($fileType == 'materials') { ?>
+    <script src="common/js/materials-hint.js"></script>
+    <?php } ?>
+
     <script type="text/javascript">
         var referenceURL = '//<?= $referenceURL ?>';
         var _session = <?= json_encode($session); ?>;

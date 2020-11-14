@@ -54,7 +54,9 @@ if ($legacyIcons) {
 }
 if (isset($meta['types']) && isset($meta['types']['material']) && isset($meta['types']['material']['options'])) {
     foreach ($meta['types']['material']['options'] as $material => $nothing) {
-        $wandIcons[$material] = '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
+        $icon =  '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
+        $meta['types']['material']['options'][$material] = $icon;
+        $wandIcons[$material] = $icon;
     }
 }
 $meta['types']['spell_icon']['options'] = $spellIcons;
