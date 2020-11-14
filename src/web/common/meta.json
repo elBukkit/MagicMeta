@@ -10557,7 +10557,7 @@
       "field" : "pickup",
       "importance" : 0,
       "name" : "Pickup",
-      "type" : "string"
+      "type" : "pickup_status"
     },
     "pitch" : {
       "category" : "",
@@ -16197,6 +16197,16 @@
         "0.6" : "III",
         "0.8" : "IV",
         "1" : "V"
+      }
+    },
+    "pickup_status" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "Whether or not an arrow can be picked up" ],
+      "name" : "PickupStatus",
+      "options" : {
+        "disallowed" : "players can not pick these arrows up",
+        "allowed" : "players can pick these arrows up",
+        "creative_only" : "creative mode players can pick these arrows up"
       }
     },
     "pitch" : {
