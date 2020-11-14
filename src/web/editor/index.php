@@ -58,25 +58,12 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="js/main.js"></script>
     <script src="common/js/common-hint.js"></script>
 
-    <?php if ($fileType == 'spells') { ?>
-    <script src="common/js/spell-hint.js"></script>
-    <?php } ?>
-
-    <?php if ($fileType == 'wands') { ?>
-    <script src="common/js/wand-hint.js"></script>
-    <?php } ?>
-
-    <?php if ($fileType == 'mobs') { ?>
-    <script src="common/js/mob-hint.js"></script>
-    <?php } ?>
-
-    <?php if ($fileType == 'effects') { ?>
-    <script src="common/js/effect-hint.js"></script>
-    <?php } ?>
-
-    <?php if ($fileType == 'materials') { ?>
-    <script src="common/js/materials-hint.js"></script>
-    <?php } ?>
+<?php
+$hintFile = "common/js/$fileType-hint.js";
+if (file_exists($hintFile)) {
+    echo '    <script src="' . $hintFile . '"></script>';
+}
+?>
 
     <script type="text/javascript">
         var referenceURL = '//<?= $referenceURL ?>';
