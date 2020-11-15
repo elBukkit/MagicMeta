@@ -113,6 +113,14 @@ function mergeFiles(rp1File, rp2File, result, relativePath) {
                         return ap.custom_model_data < bp.custom_model_data ? -1 :
                             (ap.custom_model_data > bp.custom_model_data ? 1 : 0);
                     }
+                    if (ap.hasOwnProperty('damaged')) {
+                        if (!bp.hasOwnProperty('damaged')) return -1;
+                        return ap.damaged < bp.damaged ? -1 :
+                            (ap.damaged > bp.damaged ? 1 : 0);
+                    }
+                    if (bp.hasOwnProperty('damaged')) {
+                        return 1;
+                    }
                     if (ap.hasOwnProperty('damage')) {
                         if (!bp.hasOwnProperty('damage')) return -1;
                         return ap.damage < bp.damage ? -1 :
