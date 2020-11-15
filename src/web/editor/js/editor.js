@@ -19,11 +19,18 @@ Editor.prototype.simpleParse = function(spellConfig) {
     var lines = spellConfig.split("\n");
     var keyLine = 0;
     var key = null;
+    var keyCount = 0;
     while (keyLine < lines.length) {
-        var line = lines[keyLine++].trim();
+        var line = lines[keyLine++];
+        var isSpace = line.startsWith(' ');
+        line = line.trim();
         if (line.startsWith("#") || line.length == 0) continue;
-        key = line;
-        break;
+        if (keyCount == 0) {
+            key = line;
+        } else if (isSpace) {
+            continue;
+        }
+        keyCount++;
     }
     keyLine--;
     if (key != null) {
@@ -32,7 +39,8 @@ Editor.prototype.simpleParse = function(spellConfig) {
     return {
         key: key,
         keyLine: keyLine,
-        lines: lines
+        lines: lines,
+        keyCount: keyCount
     }
 };
 
@@ -49,8 +57,10 @@ Editor.prototype.save = function() {
     }
 
     var spellConfig = this.getSpellConfig();
+
+    var parsed = this.simpleParse(spellConfig);
     if (_session.type != 'config' && _session.type != 'messages') {
-        var spellKey = this.simpleParse(spellConfig).key;
+        var spellKey = parsed.keyCount == 1 ? parsed.key : "";
         _session.key = spellKey;
     }
     _session.contents = spellConfig;

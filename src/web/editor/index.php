@@ -52,7 +52,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/dialog.js"></script>
     <script src="common/js/searchcursor.js"></script>
     <script src="common/js/search.js"></script>
-    <script src="js/editor.js"></script>
+    <script src="js/editor.js?v=2"></script>
     <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
     <script src="js/main.js"></script>
