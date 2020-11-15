@@ -60,8 +60,9 @@ Editor.prototype.save = function() {
 
     var parsed = this.simpleParse(spellConfig);
     if (_session.type != 'config' && _session.type != 'messages') {
-        var spellKey = parsed.keyCount == 1 ? parsed.key : "";
-        _session.key = spellKey;
+        if (parsed.keyCount == 1 || _session.key == null || _session.key == "") {
+            _session.key = spellKey;
+        }
     }
     _session.contents = spellConfig;
 
