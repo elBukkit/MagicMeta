@@ -188,7 +188,7 @@ function mergeRPs(rp1, rp2) {
 function checkFinish(result) {
     if (_merging == 0) {
         log("");
-        log("Finished! You should get a download prompt shortly.");
+        log("Finished! You should get a download prompt shortly. Shortly-ish. It might take a while, actually.");
         result.generateAsync({type:"blob",
             compression: "DEFLATE",
             compressionOptions: {
