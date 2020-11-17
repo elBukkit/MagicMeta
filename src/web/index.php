@@ -437,8 +437,8 @@ function printIcon($iconUrl, $title) {
 		<title><?= $title ?></title>
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 		<link rel="stylesheet" href="common/css/smoothness/jquery-ui-1.10.3.custom.min.css" />
-		<link rel="stylesheet" href="common/css/common.css" />
-		<link rel="stylesheet" href="css/magic.css" />
+		<link rel="stylesheet" href="common/css/common.css?v=1" />
+		<link rel="stylesheet" href="css/magic.css?v=1" />
 		<script src="common/js/jquery-1.10.2.min.js"></script>
 		<script src="common/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script>
@@ -458,7 +458,7 @@ function printIcon($iconUrl, $title) {
 			var maxXp = <?= $maxXp ?>;
             var categories = <?= json_encode($categories) ?>;
 		</script>
-		<script src="js/magic.js"></script>
+		<script src="js/magic.js?v=1"></script>
 		<?php if ($analytics) echo $analytics; ?>
 	</head>
 	<body>
