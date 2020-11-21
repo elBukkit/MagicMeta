@@ -243,3 +243,18 @@ li.CodeMirror-hint:hover {
 #userInfoContainer {
     flex: 1 1 100%;
 }
+
+.clipboard {
+    cursor: pointer;
+}
+
+.copied {
+    background-color: rgba(250, 250, 200, 0.6);
+    margin: 0.5em;
+}
+
+#copyCode {
+    background: #DDDDDD;
+    font-family: monospace;
+    border: 0;
+}

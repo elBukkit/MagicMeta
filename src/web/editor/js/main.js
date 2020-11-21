@@ -13,6 +13,7 @@ function initialize() {
     $('#forkButton').button().click(function() { editor.fork(); });
     $('#modeSelector input[type=radio]').change(function() { editor.checkMode(); });
     $("#loadSpellList").selectable({filter: 'tr'});
+    $('.clipboard').click(function() { copyTextToClipboard($(this)); });
     $('.template').each(function() {
         var newOption = $('<option>').val($(this).prop('id').replace('template', '')).text($(this).data('label'));
         $('#newSelector').append(newOption);
@@ -78,4 +79,22 @@ function initialize() {
 
 function dumpYaml(object) {
     return jsyaml.dump(object, {lineWidth: 200, noRefs: true});
+}
+
+function copyTextToClipboard(element) {
+    copyToClipboard(element.text().trim());
+    $('#copyCode').show();
+    element.hide(0).delay(3000).show(0);
+    var destination = element.offset();
+    var tempDiv = $('<div class="copied">').text("Copied!");
+    tempDiv.css({top: destination.top - 48, left: destination.left, zIndex: 1000});
+    tempDiv.appendTo(element.parent());
+    tempDiv.fadeOut(3000);
+}
+
+function copyToClipboard(text) {
+    $('#copyCode').show(0).delay(3000).hide(0);
+    $('#copyCode').val(text);
+    $('#copyCode').select();
+    document.execCommand("copy");
 }

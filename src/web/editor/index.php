@@ -126,9 +126,10 @@ if (file_exists($tutorialsFile)) {
       <span>Please use this command to load your configuration: </span>
     </div>
     <div>
-        <span class="code">
+        <span class="code clipboard" title="Click to copy to clipboard">
             <span class="configPrefix"></span>mconfig load <span id="sessionDiv"></span>
         </span>
+        <span><input id="copyCode" style="display:none"></span>
     </div>
     <div style="padding-top: 1em">
         Note that you can also use
