@@ -89,6 +89,20 @@ if ($action == 'new') {
     }
 
     $session = json_decode(file_get_contents($sessionFile), true);
+
+    // Don't need to send all this back to the client
+    unset($session['attributes']);
+    unset($session['classes']);
+    unset($session['crafting']);
+    unset($session['effects']);
+    unset($session['items']);
+    unset($session['materials']);
+    unset($session['mobs']);
+    unset($session['modifiers']);
+    unset($session['paths']);
+    unset($session['spells']);
+    unset($session['wands']);
+
     $response = array('success' => true, 'session' => $session);
     die(json_encode($response));
 } else {

@@ -6269,7 +6269,7 @@
       "field" : "class",
       "importance" : 100,
       "name" : "Class",
-      "type" : "string"
+      "type" : "mage_class"
     },
     "classes" : {
       "category" : "wand",
@@ -6277,7 +6277,7 @@
       "field" : "classes",
       "importance" : 0,
       "name" : "Classes",
-      "type" : "string_list"
+      "type" : "mage_class_list"
     },
     "clear" : {
       "category" : "",
@@ -7046,7 +7046,7 @@
       "field" : "destructible",
       "importance" : 80,
       "name" : "Destructible",
-      "type" : "string"
+      "type" : "material_list"
     },
     "destructible_durability" : {
       "category" : "construction",
@@ -7694,7 +7694,7 @@
       "field" : "entity_attributes",
       "importance" : 90,
       "name" : "Entity Attributes",
-      "type" : "attribute_map"
+      "type" : "vanilla_attribute_map"
     },
     "entity_damage" : {
       "category" : "entity",
@@ -8911,7 +8911,7 @@
       "field" : "item_attributes",
       "importance" : 0,
       "name" : "Item Attributes",
-      "type" : "attribute_map"
+      "type" : "vanilla_attribute_map"
     },
     "item_count" : {
       "category" : "",
@@ -9295,7 +9295,7 @@
       "field" : "mage_class",
       "importance" : 100,
       "name" : "Mage Class",
-      "type" : "string"
+      "type" : "mage_class"
     },
     "magic_damage" : {
       "category" : "",
@@ -12255,7 +12255,7 @@
       "field" : "spell",
       "importance" : 100,
       "name" : "Spell",
-      "type" : "string"
+      "type" : "spell"
     },
     "spell_class" : {
       "category" : "base",
@@ -14519,37 +14519,18 @@
       "options" : { }
     },
     "attribute" : {
-      "class_name" : "org.bukkit.attribute.Attribute",
-      "description" : [ "A vanilla item or entity attributes" ],
+      "class_name" : "java.lang.String",
+      "description" : [ "A custom Magic attribute" ],
       "name" : "Attribute",
       "options" : {
-        "generic_armor" : null,
-        "generic_armor_toughness" : null,
-        "generic_attack_damage" : null,
-        "generic_attack_speed" : null,
-        "generic_flying_speed" : null,
-        "generic_follow_range" : null,
-        "generic_knockback_resistance" : null,
-        "generic_luck" : null,
-        "generic_max_health" : null,
-        "generic_movement_speed" : null,
-        "horse_jump_strength" : null,
-        "zombie_spawn_reinforcements" : null
       }
     },
-    "attribute_map" : {
-      "class_name" : "java.util.Map",
-      "description" : [ "A map of vanilla item or entity attribute values" ],
-      "key_type" : "attribute",
-      "name" : "Attribute Map",
-      "options" : { },
-      "value_type" : "double"
-    },
     "attributes" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "Magic attributes as defined in attributes.yml" ],
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of attributes to values" ],
       "name" : "Attributes",
-      "options" : { }
+      "key_type" : "attribute",
+      "value_type" : "integer"
     },
     "base_image_effect_plane" : {
       "class_name" : "de.slikey.effectlib.util.BaseImageEffect$Plane",
@@ -15161,6 +15142,19 @@
         "1" : null,
         "100" : null
       }
+    },
+    "mage_class" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "The key name of a mage class" ],
+      "name" : "Mage Class",
+      "options" : { }
+    },
+    "mage_class_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of mage classes" ],
+      "name" : "Mage Class List",
+      "options" : { },
+      "value_type" : "mage_class"
     },
     "mage_modify_type" : {
       "class_name" : "com.elmakers.mine.bukkit.action.builtin.ModifyMageAction$ModifyType",
@@ -17100,6 +17094,33 @@
         "spawn" : "When this mob spawns"
       }
     },
+    "vanilla_attribute" : {
+      "class_name" : "org.bukkit.attribute.Attribute",
+      "description" : [ "A vanilla item or entity attributes" ],
+      "name" : "Vanilla Attribute",
+      "options" : {
+        "generic_armor" : null,
+        "generic_armor_toughness" : null,
+        "generic_attack_damage" : null,
+        "generic_attack_speed" : null,
+        "generic_flying_speed" : null,
+        "generic_follow_range" : null,
+        "generic_knockback_resistance" : null,
+        "generic_luck" : null,
+        "generic_max_health" : null,
+        "generic_movement_speed" : null,
+        "horse_jump_strength" : null,
+        "zombie_spawn_reinforcements" : null
+      }
+    },
+    "vanilla_attribute_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of vanilla item or entity attribute values" ],
+      "key_type" : "vanilla_attribute",
+      "name" : "Vanilla Attribute Map",
+      "options" : { },
+      "value_type" : "double"
+    },
     "vector" : {
       "class_name" : "org.bukkit.util.Vector",
       "description" : [ "A directional vector consisting of x,y,z coordinates" ],
@@ -17225,6 +17246,7 @@
     "effect_sound_interval" : "0",
     "enchant_count" : "0",
     "enchantments" : null,
+    "entity_attributes" : null,
     "force" : "false",
     "has_uses" : "false",
     "heroes" : "false",

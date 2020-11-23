@@ -188,6 +188,20 @@ Editor.prototype.setMetadata = function(meta) {
         alert("Error loading metadata, please reload and try again.");
         return;
     }
+
+    // Import custom lists from session
+    if (_session) {
+        if (_session.hasOwnProperty('spells')) {
+            meta.types.attribute.options = _session.attributes.reduce((a,b)=> (a[b]=null,a),{});
+            meta.types.entity_type.options = $.extend(meta.types.entity_type.options, _session.mobs.reduce((a,b)=> (a[b]=null,a),{}));
+            meta.types.material.options = $.extend(meta.types.material.options, _session.items.reduce((a,b)=> (a[b]=null,a),{}));
+            meta.types.material_list.options = $.extend(meta.types.material_list.options, _session.materials.reduce((a,b)=> (a[b]=null,a),{}));
+            meta.types.mage_class.options = _session.classes.reduce((a,b)=> (a[b]=null,a),{});
+            meta.types.path.options = _session.paths.reduce((a,b)=> (a[b]=null,a),{});
+            meta.types.spell.options = _session.spells.reduce((a,b)=> (a[b]=null,a),{});
+        }
+    }
+
     this.metadata = meta;
     if (this.codeEditor != null) {
         this.codeEditor.setMetadata(meta);
