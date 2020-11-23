@@ -1,5 +1,6 @@
 {
   "action_parameters" : {
+    "action_class" : null,
     "ignore_result" : "false",
     "requires_entity_target" : "false",
     "requires_target" : "false"
@@ -3699,6 +3700,7 @@
     }
   },
   "compound_action_parameters" : {
+    "action_class" : null,
     "actions" : null,
     "ignore_result" : "false",
     "requires_entity_target" : "false",
@@ -4859,7 +4861,7 @@
     },
     "actions" : {
       "category" : "actions",
-      "description" : [ "" ],
+      "description" : [ "A list of actions that this action will run" ],
       "field" : "actions",
       "importance" : 0,
       "name" : "Actions",
@@ -16230,7 +16232,8 @@
     },
     "potion_effect_map" : {
       "class_name" : "java.util.Map",
-      "description" : [ "A map of potion effects, where the key is a potion effect type and the value is an amplifier" ],
+      "alternate_class_name" : "java.util.List",
+      "description" : [ "A map (or list) of potion effects, where the key is a potion effect type and the value is an amplifier" ],
       "key_type" : "potion_effect_type",
       "name" : "Potion Effect Map",
       "options" : { },

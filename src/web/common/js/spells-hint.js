@@ -149,6 +149,19 @@
                 if (propertyKey != null && metadata.properties.hasOwnProperty(propertyKey)) {
                     valueType = metadata.properties[propertyKey].type;
                     values = metadata.types[valueType].options;
+
+                    if (values == null || values.length == 0) {
+                        valueType = metadata.types[valueType];
+                        var listValueType = null;
+                        if (valueType.class_name == 'java.util.List') {
+                            listValueType = valueType.value_type;
+                        } else if (valueType.alternate_class_name == 'java.util.List') {
+                            listValueType = valueType.key_type;
+                        }
+                        if (listValueType != null) {
+                            values = metadata.types[listValueType].options;
+                        }
+                    }
                 }
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && hierarchy[hierarchy.length - 2] == 'effectlib') {
                 // Effectlib parameter values
@@ -247,7 +260,7 @@
                         properties = metadata.context.effects[effectClass];
                     }
                 }
-            } else if (hierarchy.length >= 4 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'actions') {
+            } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'actions') {
                 // Action parameters
                 inherited = metadata.context.action_parameters;
                 var actionClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Action");
@@ -256,11 +269,43 @@
                         properties = metadata.context.actions[actionClass];
                     }
 
+                    actionClass = removeSuffix(actionClass, "Action");
+                    if (metadata.context.action_classes.hasOwnProperty(actionClass)) {
+                        var classKey = metadata.context.action_classes[actionClass];
+                        if (metadata.actions[classKey].hasOwnProperty('category') && metadata.actions[classKey].category == 'compound') {
+                            inherited = metadata.context.compound_action_parameters;
+                        }
+                    }
+
                     inherited = checkList(inherited, pos, indent, cm, tabSizeInSpaces);
                     properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
                 } else {
-                    inherited = makeList(inherited, thisLine);
-                    properties = makeList(properties, thisLine);
+                    var isInList = false;
+                    var isInMap = false;
+                    var parent = getParent(pos, indent, cm, tabSizeInSpaces);
+                    if (metadata.properties.hasOwnProperty(parent)) {
+                        var parentType = metadata.properties[parent].type;
+                        parentType = metadata.types[parentType];
+                        if (parentType.class_name == "java.util.List") {
+                            isInList = true;
+                            var valueType = metadata.types[parentType.value_type];
+                            properties = valueType.options;
+                            suffix = '';
+                        } else if (parentType.class_name == "java.util.Map" && parentType.hasOwnProperty("key_type")) {
+                            isInMap = true;
+                            var valueType = metadata.types[parentType.key_type];
+                            properties = valueType.options;
+                        }
+                    }
+
+                    if (!isInMap) {
+                        properties = makeList(properties, thisLine);
+                    }
+                    if (isInList || isInMap) {
+                        inherited = [];
+                    } else {
+                        inherited = makeList(inherited, thisLine);
+                    }
                 }
             } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
                 // Costs

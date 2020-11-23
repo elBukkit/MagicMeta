@@ -152,6 +152,7 @@ if (isset($_REQUEST['context'])) {
         'effect_parameters'  => mapFields($meta, 'effect_parameters'),
         'effectlib_parameters'  => mapFields($meta, 'effectlib_parameters'),
         'action_parameters'  => mapFields($meta, 'action_parameters'),
+        'compound_action_parameters'  => mapFields($meta, 'compound_action_parameters'),
         'action_classes'  => array_combine(
             array_column($meta['actions'], 'short_class'),
             array_keys($meta['actions'])),

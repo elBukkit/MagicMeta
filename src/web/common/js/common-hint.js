@@ -57,7 +57,7 @@ function getParent(pos, indent, cm, tabSizeInSpaces) {
     while (currentLine > 0) {
         thisLine = cm.getLine(currentLine);
         var thisIndent = getIndentation(thisLine, tabSizeInSpaces);
-        if (thisIndent <= indent)
+        if (thisIndent < indent)
             return thisLine.trim().replace(':', '');
         currentLine--;
     }
@@ -174,6 +174,13 @@ function filterMap(map, toRemove) {
         }
     }
     return newMap;
+}
+
+function removeSuffix(text, suffix) {
+    if (suffix && text.endsWith(suffix)) {
+        text = text.substring(0, text.length - suffix.length);
+    }
+    return text;
 }
 
 function addSuffix(text, suffix) {
