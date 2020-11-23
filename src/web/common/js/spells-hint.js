@@ -155,7 +155,7 @@
                         var listValueType = null;
                         if (valueType.class_name == 'java.util.List') {
                             listValueType = valueType.value_type;
-                        } else if (valueType.alternate_class_name == 'java.util.List') {
+                        } else if (valueType.hasOwnProperty("alternate_class_name") && valueType.alternate_class_name == 'java.util.List') {
                             listValueType = valueType.key_type;
                         }
                         if (listValueType != null) {
@@ -280,28 +280,38 @@
                     inherited = checkList(inherited, pos, indent, cm, tabSizeInSpaces);
                     properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
                 } else {
-                    var isInList = false;
-                    var isInMap = false;
+                    var inList = false;
+                    var inMap = false;
                     var parent = getParent(pos, indent, cm, tabSizeInSpaces);
                     if (metadata.properties.hasOwnProperty(parent)) {
                         var parentType = metadata.properties[parent].type;
                         parentType = metadata.types[parentType];
                         if (parentType.class_name == "java.util.List") {
-                            isInList = true;
+                            inList = true;
                             var valueType = metadata.types[parentType.value_type];
                             properties = valueType.options;
                             suffix = '';
                         } else if (parentType.class_name == "java.util.Map" && parentType.hasOwnProperty("key_type")) {
-                            isInMap = true;
-                            var valueType = metadata.types[parentType.key_type];
-                            properties = valueType.options;
+                            if (parentType.hasOwnProperty("alternate_class_name")
+                                && parentType.alternate_class_name == "java.util.List"
+                                && isInList(pos, indent, cm, tabSizeInSpaces) )
+                            {
+                                inList = true;
+                                var valueType = metadata.types[parentType.key_type];
+                                properties = valueType.options;
+                                suffix = '';
+                            } else {
+                                inMap = true;
+                                var valueType = metadata.types[parentType.key_type];
+                                properties = valueType.options;
+                            }
                         }
                     }
 
-                    if (!isInMap) {
+                    if (!inMap) {
                         properties = makeList(properties, thisLine);
                     }
-                    if (isInList || isInMap) {
+                    if (inList || inMap) {
                         inherited = [];
                     } else {
                         inherited = makeList(inherited, thisLine);
