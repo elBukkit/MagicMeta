@@ -151,16 +151,7 @@
                     values = metadata.types[valueType].options;
 
                     if (values == null || values.length == 0) {
-                        valueType = metadata.types[valueType];
-                        var listValueType = null;
-                        if (valueType.class_name == 'java.util.List') {
-                            listValueType = valueType.value_type;
-                        } else if (valueType.hasOwnProperty("alternate_class_name") && valueType.alternate_class_name == 'java.util.List') {
-                            listValueType = valueType.key_type;
-                        }
-                        if (listValueType != null) {
-                            values = metadata.types[listValueType].options;
-                        }
+                        values = checkForListProperty(metadata, valueType, values);
                     }
                 }
             } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && hierarchy[hierarchy.length - 2] == 'effectlib') {
@@ -280,42 +271,10 @@
                     inherited = checkList(inherited, pos, indent, cm, tabSizeInSpaces);
                     properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
                 } else {
-                    var inList = false;
-                    var inMap = false;
-                    var parent = getParent(pos, indent, cm, tabSizeInSpaces);
-                    if (metadata.properties.hasOwnProperty(parent)) {
-                        var parentType = metadata.properties[parent].type;
-                        parentType = metadata.types[parentType];
-                        if (parentType.class_name == "java.util.List") {
-                            inList = true;
-                            var valueType = metadata.types[parentType.value_type];
-                            properties = valueType.options;
-                            suffix = '';
-                        } else if (parentType.class_name == "java.util.Map" && parentType.hasOwnProperty("key_type")) {
-                            if (parentType.hasOwnProperty("alternate_class_name")
-                                && parentType.alternate_class_name == "java.util.List"
-                                && isInList(pos, indent, cm, tabSizeInSpaces) )
-                            {
-                                inList = true;
-                                var valueType = metadata.types[parentType.key_type];
-                                properties = valueType.options;
-                                suffix = '';
-                            } else {
-                                inMap = true;
-                                var valueType = metadata.types[parentType.key_type];
-                                properties = valueType.options;
-                            }
-                        }
-                    }
-
-                    if (!inMap) {
-                        properties = makeList(properties, thisLine);
-                    }
-                    if (inList || inMap) {
-                        inherited = [];
-                    } else {
-                        inherited = makeList(inherited, thisLine);
-                    }
+                    inherited = [];
+                    var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                    properties = mapResults.properties;
+                    suffix = mapResults.suffix;
                 }
             } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
                 // Costs

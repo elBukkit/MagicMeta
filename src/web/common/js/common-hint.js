@@ -473,3 +473,50 @@ function checkList(properties, pos, indent, cm, tabSizeInSpaces) {
 
     return properties
 }
+
+function checkForListProperty(metadata, valueType, values) {
+    valueType = metadata.types[valueType];
+    var listValueType = null;
+    if (valueType.class_name == 'java.util.List') {
+        listValueType = valueType.value_type;
+    } else if (valueType.hasOwnProperty("alternate_class_name") && valueType.alternate_class_name == 'java.util.List') {
+        listValueType = valueType.key_type;
+    }
+    if (listValueType != null) {
+        values = metadata.types[listValueType].options;
+    }
+    return values;
+}
+
+function checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix) {
+    var inMap = false;
+    var parent = getParent(pos, indent, cm, tabSizeInSpaces);
+    if (metadata.properties.hasOwnProperty(parent)) {
+        var parentType = metadata.properties[parent].type;
+        parentType = metadata.types[parentType];
+        if (parentType.class_name == "java.util.List") {
+            var valueType = metadata.types[parentType.value_type];
+            properties = valueType.options;
+            suffix = '';
+        } else if (parentType.class_name == "java.util.Map" && parentType.hasOwnProperty("key_type")) {
+            if (parentType.hasOwnProperty("alternate_class_name")
+                && parentType.alternate_class_name == "java.util.List"
+                && isInList(pos, indent, cm, tabSizeInSpaces) )
+            {
+                var valueType = metadata.types[parentType.key_type];
+                properties = valueType.options;
+                suffix = '';
+            } else {
+                inMap = true;
+                var valueType = metadata.types[parentType.key_type];
+                properties = valueType.options;
+            }
+        }
+    }
+
+    if (!inMap) {
+        properties = makeList(properties, thisLine);
+    }
+
+    return {properties: properties, suffix: suffix};
+}

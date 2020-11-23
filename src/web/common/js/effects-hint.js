@@ -59,6 +59,10 @@
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
+
+                        if (values == null || values.length == 0) {
+                            values = checkForListProperty(metadata, valueType, values);
+                        }
                     }
                 }
             } else if (hierarchy.length >= 3 && hierarchy[1] == 'effectlib' && fieldName == 'class') {
@@ -84,6 +88,11 @@
                         properties = metadata.context.effects[effectClass];
                     }
                 }
+            } else {
+                inherited = [];
+                var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                properties = mapResults.properties;
+                suffix = mapResults.suffix;
             }
             var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
             properties = filterMap(properties, siblings);

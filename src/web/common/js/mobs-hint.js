@@ -59,6 +59,10 @@
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
+
+                        if (values == null || values.length == 0) {
+                            values = checkForListProperty(metadata, valueType, values);
+                        }
                     }
                 }
             }
@@ -77,6 +81,11 @@
                     'death': 'death_trigger_list', 'interval': 'interval_trigger_list',
                     'spawn': 'spawn_trigger_list', 'damage': 'damage_trigger_list'
                 };
+            } else {
+                inherited = [];
+                var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                properties = mapResults.properties;
+                suffix = mapResults.suffix;
             }
             var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
             properties = filterMap(properties, siblings);
