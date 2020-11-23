@@ -4416,7 +4416,7 @@
       "importance" : 100,
       "name" : "Modified",
       "parameters" : {
-        "effect" : null,
+        "effectlib_effect" : null,
         "effect_class" : null,
         "iterations" : "100",
         "orient" : "true",
@@ -7573,7 +7573,15 @@
       "description" : [ "An EffectLib effect to play", "This must contain at least a 'class' parameter to specify which EffectLib class to display" ],
       "field" : "effectlib",
       "importance" : 100,
-      "name" : "Effect Lib Effect",
+      "name" : "EffectLib Effect",
+      "type" : "map"
+    },
+    "effectlib_effect" : {
+      "category" : "effects",
+      "description" : [ "An EffectLib effect to play", "This must contain at least a 'class' parameter to specify which EffectLib class to display" ],
+      "field" : "effect",
+      "importance" : 100,
+      "name" : "EffectLib Effect",
       "type" : "map"
     },
     "effectlib_class" : {
@@ -7581,7 +7589,7 @@
       "description" : [ "The class this effect uses", "This determines the type of effect that will be shown" ],
       "field" : "class",
       "importance" : 100,
-      "name" : "Class",
+      "name" : "EffectLib Class",
       "type" : "effectlib_class"
     },
     "effects" : {
