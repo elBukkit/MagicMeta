@@ -113,7 +113,7 @@ Editor.prototype.startNamed = function(template, name) {
     for (let i = 0; i < lines.length; i++) {
         if (lines[i].length > 0 && lines[i][0] != '#') {
             lines[i] = name + ":";
-            if (_session && _session.hasOwnProperty("player") && lines.length > i && !lines[i + 1].trim().startsWith("creator_")) {
+            if (_session && _session.hasOwnProperty("player") && lines.length > i && !lines[i + 1].trim().startsWith("creator")) {
                 let indent = 4;
                 if (lines.length > i + 1) {
                     let nextLine = lines[i + 1];
@@ -122,7 +122,7 @@ Editor.prototype.startNamed = function(template, name) {
                 }
                 indent = " ".repeat(indent);
                 lines.splice(i + 1, 0, indent + "# These track who created what spells, you can remove them if you want");
-                lines.splice(i + 2, 0, indent + "creator_name: " + _session.player.name);
+                lines.splice(i + 2, 0, indent + "creator: " + _session.player.name);
                 lines.splice(i + 3, 0, indent + "creator_id: " + _session.player.id);
             }
             break;
