@@ -80,6 +80,10 @@ function getPreviousSibling(pos, indent, cm, tabSizeInSpaces) {
 }
 
 function getSiblings(pos, indent, cm, tabSizeInSpaces) {
+    var thisLine = cm.getLine(pos.line);
+    if (thisLine.trim().startsWith("-")) {
+        indent = getListIndentation(thisLine, tabSizeInSpaces);
+    }
     var siblings = {};
     if (pos.ch < indent) indent = pos.ch;
     var startLine = pos.line;
