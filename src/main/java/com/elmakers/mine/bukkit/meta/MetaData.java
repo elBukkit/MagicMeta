@@ -18,6 +18,8 @@ public class MetaData {
     private ParameterList effectLibParameters = new ParameterList();
     private Map<String, EffectDescription> effects = new HashMap<>();
     private ParameterList wandParameters = new ParameterList();
+    private ParameterList classParameters = new ParameterList();
+    private ParameterList modifierParameters = new ParameterList();
     private ParameterStore parameterStore = new ParameterStore();
 
     @JsonProperty("spell_parameters")
@@ -128,6 +130,24 @@ public class MetaData {
         this.wandParameters = wandParameters;
     }
 
+    @JsonProperty("class_properties")
+    public ParameterList getClassParameters() {
+        return classParameters;
+    }
+
+    public void setClassParameters(ParameterList classParameters) {
+        this.classParameters = classParameters;
+    }
+
+    @JsonProperty("modifier_properties")
+    public ParameterList getModifierParameters() {
+        return modifierParameters;
+    }
+
+    public void setModifierParameters(ParameterList modifierParameters) {
+        this.modifierParameters = modifierParameters;
+    }
+
     @JsonProperty("types")
     public Map<String, ParameterType> getTypes() {
         return parameterStore.getTypes();
@@ -153,6 +173,14 @@ public class MetaData {
 
     public void addWandParameters(ParameterList parameters) {
         wandParameters.merge(parameters, parameterStore);
+    }
+
+    public void addClassParameters(ParameterList parameters) {
+        classParameters.merge(parameters, parameterStore);
+    }
+
+    public void addModifierParameters(ParameterList parameters) {
+        modifierParameters.merge(parameters, parameterStore);
     }
 
     public void addEffectLibParameters(ParameterList parameters) {

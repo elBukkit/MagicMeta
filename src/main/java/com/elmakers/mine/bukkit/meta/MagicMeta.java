@@ -21,8 +21,9 @@ import com.elmakers.mine.bukkit.api.spell.SpellResult;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
-import com.elmakers.mine.bukkit.magic.BaseMagicProperties;
 import com.elmakers.mine.bukkit.magic.Mage;
+import com.elmakers.mine.bukkit.magic.MageClass;
+import com.elmakers.mine.bukkit.magic.MageModifier;
 import com.elmakers.mine.bukkit.magic.MagicController;
 import com.elmakers.mine.bukkit.spell.ActionSpell;
 import com.elmakers.mine.bukkit.spell.BaseSpell;
@@ -30,6 +31,7 @@ import com.elmakers.mine.bukkit.spell.BlockSpell;
 import com.elmakers.mine.bukkit.spell.BrushSpell;
 import com.elmakers.mine.bukkit.spell.TargetingSpell;
 import com.elmakers.mine.bukkit.spell.UndoableSpell;
+import com.elmakers.mine.bukkit.wand.WandProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.CaseFormat;
 
@@ -284,11 +286,41 @@ public class MagicMeta {
         // So we will have to fix up all the types by hand, unfortunately.
         // I think the most common case is doubles, so that's what we'll default to.
         ParameterList wandParameters = new ParameterList();
-        for (String property : BaseMagicProperties.PROPERTY_KEYS) {
+        for (String property : WandProperties.PROPERTY_KEYS) {
             Parameter parameter = data.getParameter(property, String.class);
             wandParameters.add(parameter, null);
         }
         data.addWandParameters(wandParameters);
+    }
+
+    private void generateClassMeta() {
+        System.out.println("Adding class properties");
+
+        // Turns out there's no real way to scan the Wand class using InterrogatingConfiguration because it doesn't
+        // load typed data directly from its configuration.
+        // So we will have to fix up all the types by hand, unfortunately.
+        // I think the most common case is doubles, so that's what we'll default to.
+        ParameterList classParameters = new ParameterList();
+        for (String property : MageClass.PROPERTY_KEYS) {
+            Parameter parameter = data.getParameter(property, String.class);
+            classParameters.add(parameter, null);
+        }
+        data.addClassParameters(classParameters);
+    }
+
+    private void generateModifierMeta() {
+        System.out.println("Adding modifier properties");
+
+        // Turns out there's no real way to scan the Wand class using InterrogatingConfiguration because it doesn't
+        // load typed data directly from its configuration.
+        // So we will have to fix up all the types by hand, unfortunately.
+        // I think the most common case is doubles, so that's what we'll default to.
+        ParameterList modifierParameters = new ParameterList();
+        for (String property : MageModifier.PROPERTY_KEYS) {
+            Parameter parameter = data.getParameter(property, String.class);
+            modifierParameters.add(parameter, null);
+        }
+        data.addModifierParameters(modifierParameters);
     }
 
     private void generateMobMeta() {
@@ -308,6 +340,8 @@ public class MagicMeta {
         generateEffectsMeta();
         generateEffectLibMeta();
         generateWandMeta();
+        generateClassMeta();
+        generateModifierMeta();
         generateMobMeta();
     }
 
