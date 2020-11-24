@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ParameterType {
     private Class<?> classType;
+    private Class<?> alternateClassType;
     private String key;
     private String name;
     private List<String> description;
@@ -62,6 +63,19 @@ public class ParameterType {
     public void setClassName(String className) {
         try {
             classType = Class.forName(className);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @JsonProperty("alternate_class_name")
+    public String getAlternateClassName() {
+        return alternateClassType == null ? null : this.alternateClassType.getName();
+    }
+
+    public void setAlternateClassName(String className) {
+        try {
+            alternateClassType = Class.forName(className);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

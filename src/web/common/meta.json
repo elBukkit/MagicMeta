@@ -40,7 +40,9 @@
       "examples" : [ "curse" ],
       "importance" : 0,
       "name" : "Aggro",
-      "parameters" : { },
+      "parameters" : {
+        "clear_target" : "false"
+      },
       "short_class" : "Aggro"
     },
     "air_supply" : {
@@ -132,9 +134,13 @@
         "chestplate" : null,
         "color" : null,
         "default_drops" : "true",
+        "dialog" : null,
+        "dialog_interval" : "2000",
+        "dialog_range" : "3.0",
         "direction" : null,
         "disguise-map" : null,
         "disguise_target" : null,
+        "docile" : "false",
         "drop_xp" : "0",
         "drops" : null,
         "drops_require_player_killer" : "false",
@@ -149,7 +155,15 @@
         "hand_item" : null,
         "health" : "1",
         "helmet" : null,
+        "hidden" : "false",
+        "interact_command_source" : "console",
+        "interact_commands" : null,
+        "interact_costs" : null,
+        "interact_permission" : null,
         "interact_spell" : null,
+        "interact_spell_parameters" : null,
+        "interact_spell_source" : "player",
+        "interact_spell_target" : "mob",
         "interval_requires_target" : "true",
         "invulnerable" : "false",
         "leggings" : null,
@@ -163,11 +177,15 @@
         "modifiers" : null,
         "mount" : null,
         "name" : null,
+        "npc" : "false",
         "offhand" : null,
+        "on_block" : "true",
         "owned" : "true",
         "particle" : null,
         "persist" : "false",
         "potion_effects" : null,
+        "prevent_melee" : "false",
+        "prevent_projectiles" : "false",
         "protection" : null,
         "radius" : "5",
         "radius_on_use" : "0",
@@ -177,13 +195,16 @@
         "repeat_random" : "true",
         "set_source" : "false",
         "set_target" : "false",
+        "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
+        "spawn" : null,
         "speed" : "0",
         "strength" : null,
         "tags" : null,
         "tamed" : "false",
         "track_radius" : "128",
+        "transformable" : "true",
         "triggers" : null,
         "type" : null,
         "wait_for_death" : "true",
@@ -234,10 +255,14 @@
         "close_range" : "0",
         "color" : null,
         "default_drops" : "true",
+        "dialog" : null,
+        "dialog_interval" : "2000",
+        "dialog_range" : "3.0",
         "disabled_slots" : "0",
         "disguise" : null,
         "disguise_map" : null,
         "distance_weight" : "1",
+        "docile" : "false",
         "drag" : "0",
         "drop_xp" : "0",
         "drops" : null,
@@ -254,6 +279,7 @@
         "health" : "1",
         "helmet" : null,
         "helmet_item" : null,
+        "hidden" : "false",
         "hit_count" : "1",
         "hit_effects" : "hit",
         "hit_on_miss" : "false",
@@ -262,8 +288,16 @@
         "hitbox_block_size" : "0",
         "hitbox_size" : "0",
         "ignore_blocks" : "false",
+        "ignore_hit_entities" : "true",
         "ignore_targeting" : "false",
+        "interact_command_source" : "console",
+        "interact_commands" : null,
+        "interact_costs" : null,
+        "interact_permission" : null,
         "interact_spell" : null,
+        "interact_spell_parameters" : null,
+        "interact_spell_source" : "player",
+        "interact_spell_target" : "mob",
         "interval" : "30",
         "interval_requires_target" : "true",
         "invisible" : "false",
@@ -287,6 +321,7 @@
         "mount_wand" : "false",
         "name" : null,
         "no_target" : "true",
+        "npc" : "false",
         "npc_weight" : "-1",
         "offhand" : null,
         "orient" : "false",
@@ -305,6 +340,8 @@
         "plan" : null,
         "player_weight" : "4",
         "potion_effects" : null,
+        "prevent_melee" : "false",
+        "prevent_projectiles" : "false",
         "projectile_effects" : "projectile",
         "projectile_effects_use_target" : "false",
         "projectile_follow_player" : "false",
@@ -327,6 +364,7 @@
         "right_arm_item" : null,
         "right_arm_transform" : null,
         "right_leg_transform" : null,
+        "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
         "small" : "false",
@@ -355,6 +393,7 @@
         "track_range" : "0",
         "track_speed" : "0",
         "track_target" : "false",
+        "transformable" : "true",
         "triggers" : null,
         "triggers_map" : null,
         "type" : null,
@@ -619,7 +658,8 @@
         "target_self" : "false",
         "target_snap" : "0",
         "target_use_movement_direction" : "false",
-        "target_yaw_offset" : "0"
+        "target_yaw_offset" : "0",
+        "use_target_mage" : "false"
       },
       "short_class" : "ChangeContext"
     },
@@ -654,9 +694,11 @@
       "name" : "Change World",
       "parameters" : {
         "keep_velocity" : "false",
+        "load" : "true",
         "require_build" : "false",
         "require_exit" : "true",
         "safe" : "true",
+        "scale" : "1.0",
         "target_world" : null,
         "vertical_range" : "8",
         "worlds" : null
@@ -703,7 +745,9 @@
       "parameters" : {
         "allow_caster" : "true",
         "allowed_entities" : null,
+        "allowed_entity_classes" : null,
         "denied_entities" : null,
+        "denied_entity_classes" : null,
         "fail" : null,
         "invert" : "false",
         "on_fire" : "false",
@@ -1019,6 +1063,7 @@
         "hitbox_block_size" : "0",
         "hitbox_size" : "0",
         "ignore_blocks" : "false",
+        "ignore_hit_entities" : "true",
         "ignore_targeting" : "false",
         "interval" : "30",
         "lifetime" : "8000",
@@ -1408,6 +1453,7 @@
         "hitbox_block_size" : "0",
         "hitbox_size" : "0",
         "ignore_blocks" : "false",
+        "ignore_hit_entities" : "true",
         "ignore_targeting" : "false",
         "interval" : "30",
         "lifetime" : "8000",
@@ -2426,7 +2472,8 @@
       "name" : "Play Effects",
       "parameters" : {
         "effect_key" : null,
-        "effects" : ""
+        "effects" : "",
+        "effects_count_as_cast" : "false"
       },
       "short_class" : "PlayEffects"
     },
@@ -2450,11 +2497,13 @@
       "importance" : 80,
       "name" : "Play Sound",
       "parameters" : {
+        "effects_count_as_cast" : "false",
         "pitch" : "1",
         "radius" : "32",
         "sound" : null,
         "sound_pitch" : "1.0",
         "sound_volume" : "1.0",
+        "sounds_count_as_cast" : "false",
         "volume" : "1"
       },
       "short_class" : "PlaySound"
@@ -2467,7 +2516,9 @@
       "importance" : 0,
       "name" : "Player Select",
       "parameters" : {
-        "cross_world" : "true"
+        "cross_world" : "true",
+        "ignore_key" : null,
+        "title_key" : "title"
       },
       "short_class" : "PlayerSelect"
     },
@@ -2530,7 +2581,7 @@
         "hit_effects" : "hit",
         "lifetime" : "10000",
         "orient" : "true",
-        "pickup" : null,
+        "pickup" : "disallowed",
         "projectile" : "TippedArrow",
         "projectile_effects" : "projectile",
         "projectile_effects_use_target" : "false",
@@ -2590,6 +2641,7 @@
       "name" : "Recall",
       "parameters" : {
         "allow_cross_world" : "true",
+        "delay" : "0",
         "friend_key" : "recall_friends",
         "keep_velocity" : "false",
         "marker_count" : "1",
@@ -2599,8 +2651,10 @@
         "require_exit" : "true",
         "safe" : "true",
         "teleport" : "true",
+        "title_key" : "title",
         "unlock_key" : "recall_warps",
-        "vertical_range" : "8"
+        "vertical_range" : "8",
+        "warmup" : "0"
       },
       "short_class" : "Recall"
     },
@@ -2822,16 +2876,19 @@
         "auto_close" : "true",
         "cast_for_tags" : null,
         "cast_spell" : null,
+        "cast_spell_parameters" : null,
         "command" : null,
         "commands" : null,
         "confirm" : "false",
         "confirm_filler" : null,
         "confirm_title" : null,
+        "confirm_title_key" : "confirm_title",
         "cost" : "0",
         "cost_modifiers" : null,
         "cost_override" : null,
         "cost_type" : "currency",
         "cost_type_fallback" : "item",
+        "cost_type_fallbacks" : null,
         "costs" : null,
         "currency" : "0",
         "earn" : "0.0",
@@ -2859,9 +2916,11 @@
         "sp" : "0",
         "switch_class" : null,
         "title" : null,
+        "title_key" : "title",
         "unlock" : null,
         "unlock_class" : null,
         "unlock_confirm_title" : null,
+        "unlock_confirm_title_key" : "unlock_confirm_title",
         "unlock_section" : "unlocked"
       },
       "short_class" : "Selector"
@@ -2894,6 +2953,7 @@
       "importance" : 0,
       "name" : "Shop",
       "parameters" : {
+        "add_sell_shop" : "false",
         "allow_attribute_reduction" : "false",
         "allow_dropped_items" : "true",
         "apply_lore_to_item" : "false",
@@ -2908,16 +2968,19 @@
         "auto_close" : "true",
         "cast_for_tags" : null,
         "cast_spell" : null,
+        "cast_spell_parameters" : null,
         "command" : null,
         "commands" : null,
         "confirm" : "false",
         "confirm_filler" : null,
         "confirm_title" : null,
+        "confirm_title_key" : "confirm_title",
         "cost" : "0.0",
         "cost_modifiers" : null,
         "cost_override" : null,
         "cost_type" : "currency",
         "cost_type_fallback" : "item",
+        "cost_type_fallbacks" : null,
         "costs" : null,
         "costs_map" : null,
         "earn" : "0.0",
@@ -2950,9 +3013,11 @@
         "spells" : null,
         "switch_class" : null,
         "title" : null,
+        "title_key" : "title",
         "unlock" : null,
         "unlock_class" : null,
         "unlock_confirm_title" : null,
+        "unlock_confirm_title_key" : "unlock_confirm_title",
         "unlock_section" : "unlocked"
       },
       "short_class" : "Shop"
@@ -3343,6 +3408,7 @@
       "name" : "Teleport",
       "parameters" : {
         "allow_passthrough" : "true",
+        "direct" : "false",
         "keep_velocity" : "false",
         "ledge_range" : "2",
         "passthrough_range" : "4",
@@ -3882,6 +3948,7 @@
         "angular_velocity_z" : "0.02026833970057931",
         "enable_rotation" : "true",
         "iterations" : "50",
+        "orient" : "false",
         "particle" : "villager_happy",
         "particles" : "20",
         "period" : "2",
@@ -4416,8 +4483,8 @@
       "importance" : 100,
       "name" : "Modified",
       "parameters" : {
-        "effectlib_effect" : null,
         "effect_class" : null,
+        "effectlib_effect" : null,
         "iterations" : "100",
         "orient" : "true",
         "orient_pitch" : "false",
@@ -4931,6 +4998,14 @@
       "name" : "Add Modifiers",
       "type" : "map"
     },
+    "add_sell_shop" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "add_sell_shop",
+      "importance" : 0,
+      "name" : "Add Sell Shop",
+      "type" : "boolean"
+    },
     "additive" : {
       "category" : "",
       "description" : [ "" ],
@@ -5097,6 +5172,14 @@
       "field" : "allowed_entities",
       "importance" : 0,
       "name" : "Allowed Entities",
+      "type" : "list"
+    },
+    "allowed_entity_classes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allowed_entity_classes",
+      "importance" : 0,
+      "name" : "Allowed Entity Classes",
       "type" : "list"
     },
     "alternate_down_actions" : {
@@ -5426,6 +5509,14 @@
       "importance" : 0,
       "name" : "Attributes",
       "type" : "attributes"
+    },
+    "aura" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "aura",
+      "importance" : 0,
+      "name" : "Aura",
+      "type" : "boolean"
     },
     "author" : {
       "category" : "",
@@ -6102,6 +6193,14 @@
       "name" : "Cast Spell",
       "type" : "spell"
     },
+    "cast_spell_parameters" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cast_spell_parameters",
+      "importance" : 0,
+      "name" : "Cast Spell Parameters",
+      "type" : "string"
+    },
     "cast_spells" : {
       "category" : "",
       "description" : [ "" ],
@@ -6285,6 +6384,14 @@
       "field" : "clear",
       "importance" : 0,
       "name" : "Clear",
+      "type" : "boolean"
+    },
+    "clear_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "clear_target",
+      "importance" : 0,
+      "name" : "Clear Target",
       "type" : "boolean"
     },
     "close_fov" : {
@@ -6487,6 +6594,14 @@
       "name" : "Confirm Title",
       "type" : "string"
     },
+    "confirm_title_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "confirm_title_key",
+      "importance" : 0,
+      "name" : "Confirm Title Key",
+      "type" : "string"
+    },
     "console" : {
       "category" : "",
       "description" : [ "" ],
@@ -6631,6 +6746,22 @@
       "importance" : 0,
       "name" : "Cost Type Fallback",
       "type" : "string"
+    },
+    "cost_type_fallback_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cost_type_fallback",
+      "importance" : 0,
+      "name" : "Cost Type Fallback",
+      "type" : "list"
+    },
+    "cost_type_fallbacks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cost_type_fallbacks",
+      "importance" : 0,
+      "name" : "Cost Type Fallbacks",
+      "type" : "list"
     },
     "costs" : {
       "category" : "base",
@@ -6992,6 +7123,14 @@
       "name" : "Denied Entities",
       "type" : "list"
     },
+    "denied_entity_classes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "denied_entity_classes",
+      "importance" : 0,
+      "name" : "Denied Entity Classes",
+      "type" : "list"
+    },
     "deny_break" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -7095,6 +7234,14 @@
       "importance" : 0,
       "name" : "Digits",
       "type" : "integer"
+    },
+    "direct" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "direct",
+      "importance" : 0,
+      "name" : "Direct",
+      "type" : "boolean"
     },
     "direction" : {
       "category" : "",
@@ -7408,6 +7555,14 @@
       "name" : "Earns Cooldown",
       "type" : "integer"
     },
+    "earns_cooldown_scale" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "earns_cooldown_scale",
+      "importance" : 0,
+      "name" : "Earns Cooldown Scale",
+      "type" : "double"
+    },
     "earns_map" : {
       "category" : "",
       "description" : [ "" ],
@@ -7576,14 +7731,6 @@
       "name" : "EffectLib Effect",
       "type" : "map"
     },
-    "effectlib_effect" : {
-      "category" : "effects",
-      "description" : [ "An EffectLib effect to play", "This must contain at least a 'class' parameter to specify which EffectLib class to display" ],
-      "field" : "effect",
-      "importance" : 100,
-      "name" : "EffectLib Effect",
-      "type" : "map"
-    },
     "effectlib_class" : {
       "category" : "base",
       "description" : [ "The class this effect uses", "This determines the type of effect that will be shown" ],
@@ -7591,6 +7738,14 @@
       "importance" : 100,
       "name" : "EffectLib Class",
       "type" : "effectlib_class"
+    },
+    "effectlib_effect" : {
+      "category" : "effects",
+      "description" : [ "An EffectLib effect to play", "This must contain at least a 'class' parameter to specify which EffectLib class to display" ],
+      "field" : "effect",
+      "importance" : 100,
+      "name" : "EffectLib Effect",
+      "type" : "map"
     },
     "effects" : {
       "category" : "base",
@@ -7606,6 +7761,14 @@
       "field" : "effects_ambient",
       "importance" : 0,
       "name" : "Effects Ambient",
+      "type" : "boolean"
+    },
+    "effects_count_as_cast" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "effects_count_as_cast",
+      "importance" : 0,
+      "name" : "Effects Count As Cast",
       "type" : "boolean"
     },
     "effects_map" : {
@@ -7672,6 +7835,14 @@
       "name" : "Enchant Count",
       "type" : "integer"
     },
+    "enchantable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "enchantable",
+      "importance" : 0,
+      "name" : "Enchantable",
+      "type" : "string"
+    },
     "enchantments" : {
       "category" : "wand",
       "description" : [ "Enchantments to apply to this item" ],
@@ -7703,6 +7874,14 @@
       "importance" : 90,
       "name" : "Entity Attributes",
       "type" : "vanilla_attribute_map"
+    },
+    "entity_attributes_attribute_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "entity_attributes",
+      "importance" : 0,
+      "name" : "Entity Attributes",
+      "type" : "attribute_map"
     },
     "entity_damage" : {
       "category" : "entity",
@@ -8456,6 +8635,14 @@
       "name" : "Hidden",
       "type" : "boolean"
     },
+    "hide_flags" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "hide_flags",
+      "importance" : 0,
+      "name" : "Hide Flags",
+      "type" : "string"
+    },
     "hide_messages" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -8665,6 +8852,14 @@
       "name" : "Ignore Currencies",
       "type" : "list"
     },
+    "ignore_hit_entities" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignore_hit_entities",
+      "importance" : 0,
+      "name" : "Ignore Hit Entities",
+      "type" : "boolean"
+    },
     "ignore_invalid" : {
       "category" : "",
       "description" : [ "" ],
@@ -8672,6 +8867,14 @@
       "importance" : 0,
       "name" : "Ignore Invalid",
       "type" : "boolean"
+    },
+    "ignore_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignore_key",
+      "importance" : 0,
+      "name" : "Ignore Key",
+      "type" : "string"
     },
     "ignore_potion_effects" : {
       "category" : "actions",
@@ -8920,6 +9123,14 @@
       "importance" : 0,
       "name" : "Item Attributes",
       "type" : "vanilla_attribute_map"
+    },
+    "item_attributes_attribute_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_attributes",
+      "importance" : 0,
+      "name" : "Item Attributes",
+      "type" : "attribute_map"
     },
     "item_count" : {
       "category" : "",
@@ -11945,6 +12156,30 @@
       "name" : "Slopes",
       "type" : "map"
     },
+    "slot" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "slot",
+      "importance" : 0,
+      "name" : "Slot",
+      "type" : "string"
+    },
+    "slots" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "slots",
+      "importance" : 0,
+      "name" : "Slots",
+      "type" : "string"
+    },
+    "slotted" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "slotted",
+      "importance" : 0,
+      "name" : "Slotted",
+      "type" : "string"
+    },
     "small" : {
       "category" : "",
       "description" : [ "" ],
@@ -12056,6 +12291,14 @@
       "importance" : 90,
       "name" : "Sound Volume",
       "type" : "double"
+    },
+    "sounds_count_as_cast" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sounds_count_as_cast",
+      "importance" : 0,
+      "name" : "Sounds Count As Cast",
+      "type" : "boolean"
     },
     "source_at_target" : {
       "category" : "",
@@ -13113,6 +13356,14 @@
       "name" : "Title",
       "type" : "string"
     },
+    "title_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "title_key",
+      "importance" : 0,
+      "name" : "Title Key",
+      "type" : "string"
+    },
     "tmo" : {
       "alias" : "target_min_offset",
       "category" : "targeting",
@@ -13451,6 +13702,14 @@
       "name" : "Unlock Confirm Title",
       "type" : "string"
     },
+    "unlock_confirm_title_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "unlock_confirm_title_key",
+      "importance" : 0,
+      "name" : "Unlock Confirm Title Key",
+      "type" : "string"
+    },
     "unlock_key" : {
       "category" : "",
       "description" : [ "" ],
@@ -13657,6 +13916,14 @@
       "field" : "use_target_location",
       "importance" : -1,
       "name" : "Use Target Location",
+      "type" : "boolean"
+    },
+    "use_target_mage" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_target_mage",
+      "importance" : 0,
+      "name" : "Use Target Mage",
       "type" : "boolean"
     },
     "use_wand_color" : {
@@ -14310,6 +14577,7 @@
   },
   "spell_parameters" : {
     "allow_max_range" : "false",
+    "aura" : "false",
     "backfire_chance" : "0",
     "bb" : "false",
     "bp" : "false",
@@ -14453,6 +14721,7 @@
     "disguise_restricted" : "false",
     "earns" : "0",
     "earns_cooldown" : "0",
+    "earns_cooldown_scale" : "1.0",
     "earns_sp" : "0",
     "earns_type" : "sp",
     "effects_map" : null,
@@ -14530,14 +14799,21 @@
       "class_name" : "java.lang.String",
       "description" : [ "A custom Magic attribute" ],
       "name" : "Attribute",
-      "options" : {
-      }
+      "options" : { }
+    },
+    "attribute_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "" ],
+      "key_type" : "attribute",
+      "name" : "Attribute Map",
+      "options" : { },
+      "value_type" : "double"
     },
     "attributes" : {
       "class_name" : "java.util.Map",
       "description" : [ "A map of attributes to values" ],
-      "name" : "Attributes",
       "key_type" : "attribute",
+      "name" : "Attributes",
       "value_type" : "integer"
     },
     "base_image_effect_plane" : {
@@ -16208,9 +16484,9 @@
       "description" : [ "Whether or not an arrow can be picked up" ],
       "name" : "PickupStatus",
       "options" : {
-        "disallowed" : "players can not pick these arrows up",
         "allowed" : "players can pick these arrows up",
-        "creative_only" : "creative mode players can pick these arrows up"
+        "creative_only" : "creative mode players can pick these arrows up",
+        "disallowed" : "players can not pick these arrows up"
       }
     },
     "pitch" : {
@@ -16233,8 +16509,8 @@
       "value_type" : "potion_effect_type"
     },
     "potion_effect_map" : {
-      "class_name" : "java.util.Map",
       "alternate_class_name" : "java.util.List",
+      "class_name" : "java.util.Map",
       "description" : [ "A map (or list) of potion effects, where the key is a potion effect type and the value is an amplifier" ],
       "key_type" : "potion_effect_type",
       "name" : "Potion Effect Map",
@@ -17253,11 +17529,13 @@
     "effect_sound" : null,
     "effect_sound_interval" : "0",
     "enchant_count" : "0",
+    "enchantable" : null,
     "enchantments" : null,
     "entity_attributes" : null,
     "force" : "false",
     "has_uses" : "false",
     "heroes" : "false",
+    "hide_flags" : null,
     "hotbar" : "0",
     "hotbar_count" : "1",
     "icon" : null,
@@ -17296,6 +17574,9 @@
     "reset_mana_on_activate" : null,
     "right_click" : "none",
     "right_click_sneak" : null,
+    "slot" : null,
+    "slots" : null,
+    "slotted" : null,
     "sp_multiplier" : "0",
     "spell_inventory" : null,
     "spell_levels" : null,
