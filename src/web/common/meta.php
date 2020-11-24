@@ -148,6 +148,8 @@ if (isset($_REQUEST['context'])) {
         'spell_properties'  => mapFields($meta, 'spell_properties'),
         'spell_parameters'  => mapFields($meta, 'spell_parameters'),
         'wand_properties'  => mapFields($meta, 'wand_properties'),
+        'class_properties'  => mapFields($meta, 'class_properties'),
+        'modifier_properties'  => mapFields($meta, 'modifier_properties'),
         'mob_properties'  => mapFields($meta, 'mob_properties'),
         'effect_parameters'  => mapFields($meta, 'effect_parameters'),
         'effectlib_parameters'  => mapFields($meta, 'effectlib_parameters'),

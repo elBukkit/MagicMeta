@@ -54,8 +54,8 @@
             var fieldName = hierarchy[hierarchy.length - 1];
             if (hierarchy.length == 2) {
                 // Base property values
-                if (metadata.context.wand_properties.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.context.wand_properties[fieldName];
+                if (metadata.context.class_properties.hasOwnProperty(fieldName)) {
+                    var propertyKey = metadata.context.class_properties[fieldName];
                     if (metadata.properties.hasOwnProperty(propertyKey)) {
                         valueType = metadata.properties[propertyKey].type;
                         values = metadata.types[valueType].options;
@@ -87,7 +87,7 @@
             var suffix = ': ';
             if (hierarchy.length == 2 && hierarchy[1] == '') {
                 // Add base parameters
-                properties = metadata.context.wand_properties;
+                properties = metadata.context.class_properties;
             } else if (hierarchy.length == 4 && hierarchy[3] == '' && hierarchy[1] == 'effects') {
                 // Base effect parameters
                 properties = metadata.context.effect_parameters;
