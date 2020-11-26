@@ -19,6 +19,9 @@ if (isset($_REQUEST['session'])) {
     $session = json_decode(file_get_contents($sessionFileName), true);
 }
 $fileType = $session && isset($session['type']) ? $session['type'] : '';
+if (!$session && isset($_REQUEST['type'])) {
+    $fileType = $_REQUEST['type'];
+}
 $legacyIcons = $session && isset($session['isLegacyIcons']) ? $session['isLegacyIcons'] : false;
 $seenTutorial = isset($_COOKIE['tutorial']);
 setcookie('tutorial', true, time()+60*60*24*30);
