@@ -18,11 +18,7 @@
         if (cm.metadata == null) {
             return;
         }
-        var metadata = cm.metadata;
-
-        var tabSizeInSpaces = new Array(cm.options.tabSize + 1).join(' ');
-
-        var cur = cm.getCursor(),
+        var metadata = cm.metadata;var cur = cm.getCursor(),
             curLine = cm.getLine(cur.line),
             token = cm.getTokenAt(cur);
 
@@ -40,11 +36,12 @@
         var result = [];
 
         // get context of hierarchy
-        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm, tabSizeInSpaces).reverse();
+        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm).reverse();
         if (cm.debug) console.log(hierarchy);
         var pos = CodeMirror.Pos(cur.line, cur.ch);
         var thisLine = cm.getLine(pos.line);
-        var indent = getIndentation(thisLine, tabSizeInSpaces);
+        var indent = getIndentation(thisLine);
+        indent = Math.min(indent, cur.ch);
         if (LEAF_KV.test(curLine)) {
             // if we'e on a line with a key get values for that key
             var values = {};
@@ -72,7 +69,9 @@
             var properties = {};
             var inherited = null;
             var suffix = ': ';
-            if (hierarchy.length == 2 && hierarchy[1] == '') {
+            if (isMisalignedListItem(pos, indent, cm)) {
+                // Nothing
+            } else if (hierarchy.length == 2 && hierarchy[1] == '') {
                 // Add base parameters
                 properties = metadata.context.mob_properties;
             } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'triggers') {
@@ -83,11 +82,11 @@
                 };
             } else {
                 inherited = [];
-                var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                var mapResults = checkForMapProperty(pos, indent, cm, thisLine, metadata, properties, suffix);
                 properties = mapResults.properties;
                 suffix = mapResults.suffix;
             }
-            var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
+            var siblings = getSiblings(pos, indent, cm);
             properties = filterMap(properties, siblings);
             if (inherited != null) {
                 inherited = filterMap(inherited, siblings);

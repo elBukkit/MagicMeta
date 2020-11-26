@@ -18,11 +18,7 @@
         if (cm.metadata == null) {
             return;
         }
-        var metadata = cm.metadata;
-
-        var tabSizeInSpaces = new Array(cm.options.tabSize + 1).join(' ');
-
-        var cur = cm.getCursor(),
+        var metadata = cm.metadata;var cur = cm.getCursor(),
             curLine = cm.getLine(cur.line),
             token = cm.getTokenAt(cur);
 
@@ -40,11 +36,12 @@
         var result = [];
 
         // get context of hierarchy
-        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm, tabSizeInSpaces).reverse();
+        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm).reverse();
         if (cm.debug) console.log(hierarchy);
         var pos = CodeMirror.Pos(cur.line, cur.ch);
         var thisLine = cm.getLine(pos.line);
-        var indent = getIndentation(thisLine, tabSizeInSpaces);
+        var indent = getIndentation(thisLine);
+        indent = Math.min(indent, cur.ch);
         if (LEAF_KV.test(curLine)) {
             // if we'e on a line with a key get values for that key
             var values = {};
@@ -85,7 +82,9 @@
             var properties = {};
             var inherited = null;
             var suffix = ': ';
-            if (hierarchy.length == 2 && hierarchy[1] == '') {
+            if (isMisalignedListItem(pos, indent, cm)) {
+                // Nothing
+            } else if (hierarchy.length == 2 && hierarchy[1] == '') {
                 // Add base parameters
                 properties = metadata.context.wand_properties;
             } else if (hierarchy.length == 4 && hierarchy[3] == '' && hierarchy[1] == 'effects') {
@@ -93,16 +92,16 @@
                 properties = metadata.context.effect_parameters;
 
                 // Check if this is at the same indent level as a list, if so add - to suggestions
-                var previousSibling = getPreviousSibling(pos, indent, cm, tabSizeInSpaces);
+                var previousSibling = getPreviousSibling(pos, indent, cm);
                 if (previousSibling != null && previousSibling.startsWith('-')) {
                     properties = makeList(properties, thisLine);
                 } else {
-                    properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
+                    properties = checkList(properties, pos, indent, cm);
                 }
             } else if (hierarchy.length >= 5 && hierarchy[hierarchy.length - 1] == '' && hierarchy[3] == 'effectlib') {
                 // Effectlib parameters
                 inherited = metadata.context.effectlib_parameters;
-                var effectClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Effect");
+                var effectClass = getCurrentClass(pos, indent, cm, "Effect");
                 if (effectClass != null) {
                     if (metadata.context.effects.hasOwnProperty(effectClass)) {
                         properties = metadata.context.effects[effectClass];
@@ -117,17 +116,17 @@
                     'deactivate': 'deactivate_effect_list', 'activate': 'activate_effect_list'
                 };
 
-                var parent = getParent(pos, indent, cm, tabSizeInSpaces);
+                var parent = getParent(pos, indent, cm);
                 if (parent != "effects") {
                     properties['- location'] = "Add a new effect to this list";
                 }
             } else {
                 inherited = [];
-                var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                var mapResults = checkForMapProperty(pos, indent, cm, thisLine, metadata, properties, suffix);
                 properties = mapResults.properties;
                 suffix = mapResults.suffix;
             }
-            var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
+            var siblings = getSiblings(pos, indent, cm);
             properties = filterMap(properties, siblings);
             if (inherited != null) {
                 inherited = filterMap(inherited, siblings);

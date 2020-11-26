@@ -18,11 +18,7 @@
         if (cm.metadata == null) {
             return;
         }
-        var metadata = cm.metadata;
-
-        var tabSizeInSpaces = new Array(cm.options.tabSize + 1).join(' ');
-
-        var cur = cm.getCursor(),
+        var metadata = cm.metadata;var cur = cm.getCursor(),
             curLine = cm.getLine(cur.line),
             token = cm.getTokenAt(cur);
 
@@ -40,17 +36,18 @@
         var result = [];
 
         // get context of hierarchy
-        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm, tabSizeInSpaces).reverse();
+        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm).reverse();
         if (cm.debug) console.log(hierarchy);
         var pos = CodeMirror.Pos(cur.line, cur.ch);
         var thisLine = cm.getLine(pos.line);
-        var indent = getIndentation(thisLine, tabSizeInSpaces);
+        var indent = getIndentation(thisLine);
+        indent = Math.min(indent, cur.ch);
         if (!LEAF_KV.test(curLine)) {
             // else, do suggestions for new property keys
             var inherited = null;
             var suffix = '';
             var properties = metadata.types.material.options;
-            var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
+            var siblings = getSiblings(pos, indent, cm);
             properties = filterMap(properties, siblings);
             if (inherited != null) {
                 inherited = filterMap(inherited, siblings);

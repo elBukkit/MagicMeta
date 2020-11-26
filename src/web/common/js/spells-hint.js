@@ -14,12 +14,12 @@
 })(function(CodeMirror) {
     "use strict";
 
-    function getAllActions(cm, tabSizeInSpaces) {
+    function getAllActions(cm) {
         var actionsStart = 0;
         var actionsIndent = 0;
         for (var i = 1; i < cm.lineCount(); i++) {
             var line = cm.getLine(i);
-            actionsIndent = getIndentation(line, tabSizeInSpaces);
+            actionsIndent = getIndentation(line);
             if (line.trim() == 'actions:') {
                 actionsStart = i;
                 break;
@@ -30,7 +30,7 @@
         var current = actionsStart + 1;
         while (current < cm.lineCount()) {
             var line = cm.getLine(current);
-            var indent = getIndentation(line, tabSizeInSpaces);
+            var indent = getIndentation(line);
             if (indent <= actionsIndent) break;
             line = line.replace("-", "").trim();
             if (line.startsWith("class:")) {
@@ -51,9 +51,6 @@
             return;
         }
         var metadata = cm.metadata;
-
-        var tabSizeInSpaces = new Array(cm.options.tabSize + 1).join(' ');
-
         var cur = cm.getCursor(),
             curLine = cm.getLine(cur.line),
             token = cm.getTokenAt(cur);
@@ -72,11 +69,12 @@
         var result = [];
 
         // get context of hierarchy
-        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm, tabSizeInSpaces).reverse();
+        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm).reverse();
         if (cm.debug) console.log(hierarchy);
         var pos = CodeMirror.Pos(cur.line, cur.ch);
         var thisLine = cm.getLine(pos.line);
-        var indent = getIndentation(thisLine, tabSizeInSpaces);
+        var indent = getIndentation(thisLine);
+        indent = Math.min(indent, cur.ch);
         if (LEAF_KV.test(curLine)) {
             // if we'e on a line with a key get values for that key
             var values = {};
@@ -103,7 +101,7 @@
                     }
                 } else {
                     // Action-specific parameter values
-                    var actions = getAllActions(cm, tabSizeInSpaces);
+                    var actions = getAllActions(cm);
                     for (var i = 0; i < actions.length; i++) {
                         var action = actions[i];
                         if (metadata.context.actions.hasOwnProperty(action) && metadata.context.actions[action].hasOwnProperty(fieldName)) {
@@ -132,7 +130,7 @@
                         defaultValue = metadata.action_parameters[propertyKey];
                     }
                 }
-                var shortClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces);
+                var shortClass = getCurrentClass(pos, indent, cm);
                 if (shortClass != null) {
                     var actionClass = addSuffix(shortClass, "Action");
                     if (propertyKey == null && metadata.context.actions.hasOwnProperty(actionClass)) {
@@ -163,7 +161,7 @@
                         defaultValue = metadata.effectlib_parameters[propertyKey];
                     }
                 }
-                var shortClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces);
+                var shortClass = getCurrentClass(pos, indent, cm);
                 if (shortClass != null) {
                     var effectClass = addSuffix(shortClass, "Effect");
                     if (propertyKey == null && metadata.context.effects.hasOwnProperty(effectClass)) {
@@ -198,12 +196,14 @@
             var properties = {};
             var inherited = null;
             var suffix = ': ';
-            if (hierarchy.length == 2 && hierarchy[1] == '') {
+            if (isMisalignedListItem(pos, indent, cm)) {
+                // Nothing
+            } else if (hierarchy.length == 2 && hierarchy[1] == '') {
                 // Add base parameters
                 properties = metadata.context.spell_properties;
             } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'parameters') {
                 // Add base parameters
-                var actions = getAllActions(cm, tabSizeInSpaces);
+                var actions = getAllActions(cm);
                 for (var i = 0; i < actions.length; i++) {
                     var action = actions[i];
                     if (metadata.context.actions.hasOwnProperty(action)) {
@@ -225,7 +225,7 @@
                             } else if (propertyType.hasOwnProperty('value_type')) {
                                 propertyType = metadata.types[propertyType.value_type];
                                 properties = propertyType.options;
-                                properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
+                                properties = checkList(properties, pos, indent, cm);
                                 suffix = '';
                             }
                         }
@@ -236,16 +236,16 @@
                 properties = metadata.context.effect_parameters;
 
                 // Check if this is at the same indent level as a list, if so add - to suggestions
-                var previousSibling = getPreviousSibling(pos, indent, cm, tabSizeInSpaces);
+                var previousSibling = getPreviousSibling(pos, indent, cm);
                 if (previousSibling != null && previousSibling.startsWith('-')) {
                     properties = makeList(properties, thisLine);
                 } else {
-                    properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
+                    properties = checkList(properties, pos, indent, cm);
                 }
             } else if (hierarchy.length >= 5 && hierarchy[hierarchy.length - 1] == '' && hierarchy[3] == 'effectlib') {
                 // Effectlib parameters
                 inherited = metadata.context.effectlib_parameters;
-                var effectClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Effect");
+                var effectClass = getCurrentClass(pos, indent, cm, "Effect");
                 if (effectClass != null) {
                     if (metadata.context.effects.hasOwnProperty(effectClass)) {
                         properties = metadata.context.effects[effectClass];
@@ -254,7 +254,7 @@
             } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'actions') {
                 // Action parameters
                 inherited = metadata.context.action_parameters;
-                var actionClass = getCurrentClass(pos, indent, cm, tabSizeInSpaces, "Action");
+                var actionClass = getCurrentClass(pos, indent, cm, "Action");
                 if (actionClass != null) {
                     if (metadata.context.actions.hasOwnProperty(actionClass)) {
                         properties = metadata.context.actions[actionClass];
@@ -268,13 +268,20 @@
                         }
                     }
 
-                    inherited = checkList(inherited, pos, indent, cm, tabSizeInSpaces);
-                    properties = checkList(properties, pos, indent, cm, tabSizeInSpaces);
+                    inherited = checkList(inherited, pos, indent, cm);
+                    properties = checkList(properties, pos, indent, cm);
                 } else {
                     inherited = [];
-                    var mapResults = checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix);
+                    var mapResults = checkForMapProperty(pos, indent, cm, thisLine, metadata, properties, suffix);
                     properties = mapResults.properties;
                     suffix = mapResults.suffix;
+                }
+
+
+                var parent = getParent(pos, indent, cm);
+                if (parent == "actions") {
+                    properties = $.extend({}, properties);
+                    properties['- class'] = "Add a new action to this list";
                 }
             } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
                 // Costs
@@ -283,10 +290,6 @@
                 // Action triggers
                 properties = {'cast': 'cast_actions', 'alternate_up': 'alternate_up_actions',
                     'alternate_down': 'alternate_down_actions', 'alternate_sneak': 'alternate_sneak_actions'};
-                var parent = getParent(pos, indent, cm, tabSizeInSpaces);
-                if (parent != "actions") {
-                    properties['- class'] = "Add a new action to this list";
-                }
             } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'effects') {
                 // Effect triggers
                 properties = {'cast': 'cast_effect_list', 'tick': 'tick_effect_list', 'hit': 'hit_effect_list',
@@ -296,12 +299,12 @@
                 'miss': 'miss_effect_list', 'headshot': 'headshot_effect_list',
                 'projectile': 'projectile_effect_list'};
 
-                var parent = getParent(pos, indent, cm, tabSizeInSpaces);
+                var parent = getParent(pos, indent, cm);
                 if (parent != "effects") {
                     properties['- location'] = "Add a new effect to this list";
                 }
             }
-            var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
+            var siblings = getSiblings(pos, indent, cm);
             properties = filterMap(properties, siblings);
             if (inherited != null) {
                 inherited = filterMap(inherited, siblings);

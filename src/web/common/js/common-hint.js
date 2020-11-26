@@ -3,30 +3,20 @@ var WORD = /[\w\.]+/;
 var OBJECT_KEY = /^[\s-]*?(\w+)\s*?:\s*?$/;
 var LEAF_KV = /^[\s-]*?(\w+)\s*?:\s*?/;
 var WORD_OR_COLON = /\w+|:/;
-var WORD_OR_COLON_OR_DASH = /-\w+|:/;
+var WORD_OR_COLON_OR_DASH = /\-|\w+|:/;
 
 function rstrip(line) {
     return line.replace(/\s*$/g, '');
 }
 
-function getIndentation(line, tabSizeInSpaces) {
-    var s = 0;
-    while (s < line.length && !WORD_OR_COLON.test(line.charAt(s))) s++;
-    line = line.slice(0, s);
-    // change tabs to spaces
-    line = line.replace(/\t/g, tabSizeInSpaces);
-    // return the number of spaces
-    return line.length;
+function getIndentation(line) {
+    let match = WORD_OR_COLON.exec(line);
+    return match == null ? line.length : match.index;
 }
 
-function getListIndentation(line, tabSizeInSpaces) {
-    var s = 0;
-    while (s < line.length && !WORD_OR_COLON_OR_DASH.test(line.charAt(s))) s++;
-    line = line.slice(0, s);
-    // change tabs to spaces
-    line = line.replace(/\t/g, tabSizeInSpaces);
-    // return the number of spaces
-    return line.length;
+function getListIndentation(line) {
+    let match = WORD_OR_COLON_OR_DASH.exec(line);
+    return match == null ? line.length : match.index;
 }
 
 function getKeyFromLine(line) {
@@ -49,15 +39,21 @@ function getKeyValue(line) {
     return kv;
 }
 
-function getParent(pos, indent, cm, tabSizeInSpaces) {
+function getParent(pos, indent, cm) {
     if (pos.line == 0) return null;
     var thisLine = cm.getLine(pos.line);
+    var listIndent = getListIndentation(thisLine);
+    indent = Math.min(indent, listIndent);
     var currentLine = pos.line;
     currentLine--;
     while (currentLine > 0) {
         thisLine = cm.getLine(currentLine);
-        var thisIndent = getIndentation(thisLine, tabSizeInSpaces);
-        if (thisIndent < indent)
+        var thisIndent = getListIndentation(thisLine);
+        if (thisIndent == indent && thisLine.trim().startsWith('-')) {
+            currentLine--;
+            continue;
+        }
+        if (thisIndent <= indent)
             return thisLine.trim().replace(':', '');
         currentLine--;
     }
@@ -65,13 +61,13 @@ function getParent(pos, indent, cm, tabSizeInSpaces) {
     return null;
 }
 
-function getPreviousSibling(pos, indent, cm, tabSizeInSpaces) {
+function getPreviousSibling(pos, indent, cm) {
     if (pos.line == 0) return null;
     var currentLine = pos.line;
     currentLine--;
     while (currentLine > 0) {
         var thisLine = cm.getLine(currentLine);
-        var thisIndent = getListIndentation(thisLine, tabSizeInSpaces);
+        var thisIndent = getListIndentation(thisLine);
         if (thisIndent == indent) return thisLine.trim().replace(':', '');
         currentLine--;
     }
@@ -79,10 +75,10 @@ function getPreviousSibling(pos, indent, cm, tabSizeInSpaces) {
     return null;
 }
 
-function getSiblings(pos, indent, cm, tabSizeInSpaces) {
+function getSiblings(pos, indent, cm) {
     var thisLine = cm.getLine(pos.line);
     if (thisLine.trim().startsWith("-")) {
-        indent = getListIndentation(thisLine, tabSizeInSpaces);
+        indent = getListIndentation(thisLine);
     }
     var siblings = {};
     if (pos.ch < indent) indent = pos.ch;
@@ -94,7 +90,7 @@ function getSiblings(pos, indent, cm, tabSizeInSpaces) {
         var trimmed = thisLine.trim();
         var isEmpty = trimmed.length == 0 || trimmed[0] == '#';
         var isObject = thisLine.indexOf(':') > 0;
-        var thisIndent = getIndentation(thisLine, tabSizeInSpaces);
+        var thisIndent = getIndentation(thisLine);
 
         if (!isEmpty && thisIndent < indent) break;
         if (isObject && thisIndent == indent) {
@@ -111,7 +107,7 @@ function getSiblings(pos, indent, cm, tabSizeInSpaces) {
         if (trimmed.startsWith("-")) break;
         var isEmpty = trimmed.length == 0 || trimmed[0] == '#';
         var isObject = thisLine.indexOf(':') > 0;
-        var thisIndent = getIndentation(thisLine, tabSizeInSpaces);
+        var thisIndent = getIndentation(thisLine);
 
         if (!isEmpty && thisIndent < indent) break;
         if (isObject && thisIndent == indent) {
@@ -123,13 +119,13 @@ function getSiblings(pos, indent, cm, tabSizeInSpaces) {
     return siblings;
 }
 
-function walkUp(pos, indent, cm, tabSizeInSpaces) {
+function walkUp(pos, indent, cm) {
     var currentLine = pos.line;
     currentLine --;
     var thisLine = cm.getLine(currentLine);
     var trimmed = thisLine.trim();
     var isEmpty = trimmed.length == 0 || trimmed[0] == '#';
-    while (currentLine > 0 && (!OBJECT_KEY.test(thisLine) || getIndentation(thisLine, tabSizeInSpaces) >= indent || isEmpty)) {
+    while (currentLine > 0 && (!OBJECT_KEY.test(thisLine) || getIndentation(thisLine) >= indent || isEmpty)) {
         // while this isn't the line we're looking for, move along
         currentLine --;
         thisLine = cm.getLine(currentLine);
@@ -139,14 +135,14 @@ function walkUp(pos, indent, cm, tabSizeInSpaces) {
     return currentLine;
 }
 
-function getHierarchy(pos, cm, tabSizeInSpaces) {
+function getHierarchy(pos, cm) {
     var hierarchy = [];
     var thisLine = cm.getLine(pos.line);
 
-    var isHighestContext = (getIndentation(thisLine, tabSizeInSpaces) === 0);
-    var isIndentedBlock = (pos.ch !== 0 && getIndentation(thisLine, tabSizeInSpaces) !== 0);
+    var isHighestContext = (getIndentation(thisLine) === 0);
+    var isIndentedBlock = (pos.ch !== 0 && getIndentation(thisLine) !== 0);
 
-    var thisIndentation = getIndentation(thisLine, tabSizeInSpaces);
+    var thisIndentation = getIndentation(thisLine);
     while (pos.ch !== 0 && thisIndentation) {
         // while not at beginning of line (highest point in hierarchy)
         // OR we have reached highest hierarchy (no indentation)
@@ -154,9 +150,9 @@ function getHierarchy(pos, cm, tabSizeInSpaces) {
         if (k !== undefined) {
             hierarchy.push(k);
         }
-        var line = walkUp(pos, thisIndentation, cm, tabSizeInSpaces);
+        var line = walkUp(pos, thisIndentation, cm);
         thisLine = cm.getLine(line);
-        thisIndentation = getIndentation(thisLine, tabSizeInSpaces);
+        thisIndentation = getIndentation(thisLine);
     }
 
     if (!isHighestContext || isIndentedBlock) {
@@ -194,25 +190,17 @@ function addSuffix(text, suffix) {
     return text;
 }
 
-function isInList(pos, indent, cm, tabSizeInSpaces) {
-    if (pos.ch < indent) indent = pos.ch;
-    var currentLine = pos.line;
-    while (currentLine > 0) {
-        var thisLine = cm.getLine(currentLine);
-        var trimmed = thisLine.trim();
-        if (trimmed.startsWith('-')) return true;
-        var isEmpty = trimmed.length == 0 || trimmed[0] == '#';
-        var thisIndent = getIndentation(thisLine, tabSizeInSpaces);
-
-        if (!isEmpty && thisIndent < indent) break;
-        if (thisIndent < indent) break;
-        currentLine--;
-    }
-    return false;
+function isInList(pos, indent, cm) {
+    var parent = getParent(pos, indent, cm);
+    if (!parent.startsWith('-')) return false;
+    if (pos.line == 0) return false;
+    var previous = cm.getLine(pos.line - 1);
+    var previousIndent = getListIndentation(previous);
+    return (indent == previousIndent);
 }
 
-function getCurrentClass(pos, indent, cm, tabSizeInSpaces, suffix) {
-    var siblings = getSiblings(pos, indent, cm, tabSizeInSpaces);
+function getCurrentClass(pos, indent, cm, suffix) {
+    var siblings = getSiblings(pos, indent, cm);
     var currentClass = null;
     if (siblings.hasOwnProperty("class")) {
         currentClass = siblings['class'];
@@ -448,18 +436,11 @@ function addPowersOfTen(value, values) {
     }
 }
 
-function makeList(properties, thisLine) {
-    var prefix = "- ";
-    if (thisLine != null) {
-        var trimmed = thisLine.trim();
-        if (trimmed.startsWith('-')) {
-            if (!thisLine.endsWith(' ')) {
-                prefix = " ";
-            } else {
-                return properties;
-            }
-        }
-    }
+function makeList(properties) {
+    return indentList(properties, '- ');
+}
+
+function indentList(properties, prefix) {
     var list = properties;
     properties = {};
     for (var key in list) {
@@ -470,9 +451,14 @@ function makeList(properties, thisLine) {
     return properties;
 }
 
-function checkList(properties, pos, indent, cm, tabSizeInSpaces) {
-    if (!isInList(pos, indent, cm, tabSizeInSpaces)) {
+function checkList(properties, pos, indent, cm) {
+    if (isInList(pos, indent, cm)) {
         properties = makeList(properties, null);
+    } else {
+        var line = cm.getLine(pos.line);
+        if (line.endsWith('-')) {
+            properties = indentList(properties, ' ');
+        }
     }
 
     return properties
@@ -492,9 +478,9 @@ function checkForListProperty(metadata, valueType, values) {
     return values;
 }
 
-function checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadata, properties, suffix) {
+function checkForMapProperty(pos, indent, cm, thisLine, metadata, properties, suffix) {
     var inMap = false;
-    var parent = getParent(pos, indent, cm, tabSizeInSpaces);
+    var parent = getParent(pos, indent, cm);
     if (metadata.properties.hasOwnProperty(parent)) {
         var parentType = metadata.properties[parent].type;
         parentType = metadata.types[parentType];
@@ -505,7 +491,7 @@ function checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadat
         } else if (parentType.class_name == "java.util.Map" && parentType.hasOwnProperty("key_type")) {
             if (parentType.hasOwnProperty("alternate_class_name")
                 && parentType.alternate_class_name == "java.util.List"
-                && isInList(pos, indent, cm, tabSizeInSpaces) )
+                && isInList(pos, indent, cm) )
             {
                 var valueType = metadata.types[parentType.key_type];
                 properties = valueType.options;
@@ -523,4 +509,17 @@ function checkForMapProperty(pos, indent, cm, tabSizeInSpaces, thisLine, metadat
     }
 
     return {properties: properties, suffix: suffix};
+}
+
+function isMisalignedListItem(pos, indent, cm) {
+    let misAlignedList = false;
+    if (pos.line > 0) {
+        if (isInList(pos, indent, cm)) {
+            var previous = cm.getLine(pos.line - 1);
+            var previousIndent = getIndentation(previous);
+            var previousListIndent = getListIndentation(previous);
+            misAlignedList = indent != previousIndent && indent != previousListIndent;
+        }
+    }
+    return misAlignedList;
 }
