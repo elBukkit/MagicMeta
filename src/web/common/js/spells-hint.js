@@ -242,6 +242,22 @@
                 } else {
                     properties = checkList(properties, pos, indent, cm);
                 }
+            } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
+                // Costs
+                properties = metadata.types.cost_type.options;
+            } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'effects') {
+                // Effect triggers
+                properties = {'cast': 'cast_effect_list', 'tick': 'tick_effect_list', 'hit': 'hit_effect_list',
+                'hit_entity': 'hit_entity_effect_list', 'hit_block': 'hit_block_effect_list',
+                'blockmiss': 'blockmiss_effect_list', 'prehit': 'prehit_effect_list',
+                'step': 'step_effect_list', 'reflect': 'reflect_effect_list',
+                'miss': 'miss_effect_list', 'headshot': 'headshot_effect_list',
+                'projectile': 'projectile_effect_list'};
+
+                var parent = getParent(pos, indent, cm);
+                if (parent != "effects") {
+                    properties['- location'] = "Add a new effect to this list";
+                }
             } else if (hierarchy.length >= 5 && hierarchy[hierarchy.length - 1] == '' && hierarchy[3] == 'effectlib') {
                 // Effectlib parameters
                 inherited = metadata.context.effectlib_parameters;
@@ -277,31 +293,27 @@
                     suffix = mapResults.suffix;
                 }
 
+                if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'actions') {
+                    // Action triggers
+                    properties = {'cast': 'cast_actions', 'alternate_up': 'alternate_up_actions',
+                        'alternate_down': 'alternate_down_actions', 'alternate_sneak': 'alternate_sneak_actions'};
+                }
 
                 var parent = getParent(pos, indent, cm);
-                if (parent == "actions") {
+                var isAtStartOfList = false;
+                if (((hierarchy.length == 4 && hierarchy[3] == '') || (hierarchy.length == 3 && hierarchy[2] == '')) && hierarchy[1] == 'actions' && pos.line > 0) {
+                    var previousSibling = getPreviousSibling(pos, indent, cm);
+                    if (previousSibling != null && previousSibling.startsWith('-')) {
+                        isAtStartOfList = true;
+                    } else {
+                        var previous = cm.getLine(pos.line - 1);
+                        var previousIndent = getListIndentation(previous);
+                        isAtStartOfList = !previous.trim().startsWith('-') && previousIndent <= indent;
+                    }
+                }
+                if (parent == "actions" || isAtStartOfList) {
                     properties = $.extend({}, properties);
                     properties['- class'] = "Add a new action to this list";
-                }
-            } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
-                // Costs
-                properties = metadata.types.cost_type.options;
-            } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'actions') {
-                // Action triggers
-                properties = {'cast': 'cast_actions', 'alternate_up': 'alternate_up_actions',
-                    'alternate_down': 'alternate_down_actions', 'alternate_sneak': 'alternate_sneak_actions'};
-            } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'effects') {
-                // Effect triggers
-                properties = {'cast': 'cast_effect_list', 'tick': 'tick_effect_list', 'hit': 'hit_effect_list',
-                'hit_entity': 'hit_entity_effect_list', 'hit_block': 'hit_block_effect_list',
-                'blockmiss': 'blockmiss_effect_list', 'prehit': 'prehit_effect_list',
-                'step': 'step_effect_list', 'reflect': 'reflect_effect_list',
-                'miss': 'miss_effect_list', 'headshot': 'headshot_effect_list',
-                'projectile': 'projectile_effect_list'};
-
-                var parent = getParent(pos, indent, cm);
-                if (parent != "effects") {
-                    properties['- location'] = "Add a new effect to this list";
                 }
             }
             var siblings = getSiblings(pos, indent, cm);
