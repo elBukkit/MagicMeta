@@ -10,11 +10,11 @@ mytransparent:
 - iron_bars
 # There are lots of builtin lists that group blocks together
 - fences
-    </textarea>
+</textarea>
     <textarea id="templateNegated" class="template" data-label="Negated lists"># Material lists can negate other lists
 nottransparent:
 # This is a builtin material list of blocks you can see through
 # Here are negating it, meaning this material list will contain all blocks not in the "transparent" list
 - !transparent
-    </textarea>
+</textarea>
 </div>

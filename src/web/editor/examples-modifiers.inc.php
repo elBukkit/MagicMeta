@@ -11,5 +11,5 @@ mymodifier:
     generic_knockback_resistance:
       value: 2
       operation: base
-    </textarea>
+</textarea>
 </div>

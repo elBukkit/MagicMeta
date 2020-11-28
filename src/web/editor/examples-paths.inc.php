@@ -34,5 +34,5 @@ mypath:
       - missile
       - arrow
       - blast
-    </textarea>
+</textarea>
 </div>

@@ -37,5 +37,5 @@ myclass:
     # The player will start with one spell
     spells:
     - missile
-    </textarea>
+</textarea>
 </div>

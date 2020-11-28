@@ -27,7 +27,7 @@ mywand:
   - blink
   - fling
   - blast
-    </textarea>
+</textarea>
     <textarea id="templateClass" class="template" data-label="Class Wand"># This is the key name of this wand
 # It must be unique across the server, and is used in commands such as /wand and /mgive to refer to this wand.
 classwand:
@@ -46,7 +46,7 @@ classwand:
   # Note that this works because of the "storage" property of the base class,
   # you can modify the mapping of what gets stored where if you wish.
   class: mage
-    </textarea>
+</textarea>
     <textarea id="templateSword" class="template" data-label="Sword">mysword:
   name: My Sword
   description: Excaliber!
@@ -66,7 +66,7 @@ classwand:
   - arrow
   - missile
   - fireball
-    </textarea>
+</textarea>
     <textarea id="templateBow" class="template" data-label="Bow">mybow:
   name: My Bow
   description: A magical bow
@@ -80,7 +80,7 @@ classwand:
   - arrow_regular
   - arrow_bomb
   - arrow_poison
-    </textarea>
+</textarea>
     <textarea id="templateSphere" class="template" data-label="Wand Appearance Upgrade">myappearance:
     # This makes the appearance an upgrade item
     # This means it is not used like a wand, it is dropped on top of another wand to transform it
@@ -91,7 +91,7 @@ classwand:
     icon: stick{CustomModelData:18037}
     # This changes (upgrades) the icon of the target wand
     upgrade_icon: stick{CustomModelData:18037}
-    </textarea>
+</textarea>
     <textarea id="templateConsumable" class="template" data-label="Consumable">myconsumable:
   name: Tasty Beverage
   description: Heals everyone around you
@@ -99,5 +99,5 @@ classwand:
   icon: potion:FFD700
   # Casts a spell on consuming
   consume_spell: healing
-    </textarea>
+</textarea>
 </div>

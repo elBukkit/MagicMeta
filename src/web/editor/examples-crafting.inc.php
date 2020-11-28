@@ -23,7 +23,7 @@ myrecipe:
   row_2: "ipi"
   row_3: "ppp"
 
-    </textarea>
+</textarea>
     <textarea id="templateWand" class="template" data-label="Wand Recipe"># This is the key name of this recipe
 # It must be unique across the server, and is used in configs to refer to this recipe
 # This is also how the server tracks if a player has discovered this recipe, so changing the recipe key
@@ -53,7 +53,7 @@ myrecipe:
   row_2: o
   row_3: ""
 
-    </textarea>
+</textarea>
     <textarea id="templateReplace" class="template" data-label="Replace Vanilla Recipe">
 torchrecipe:
   # This defines the recipe output
@@ -73,5 +73,5 @@ torchrecipe:
   row_2: i
   row_3: ""
 
-    </textarea>
+</textarea>
 </div>

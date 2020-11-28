@@ -18,5 +18,5 @@ myfountain:
      particle_offset_y: 0.1
      particle_offset_z: 0.1
      particle_count: 5
-    </textarea>
+</textarea>
 </div>

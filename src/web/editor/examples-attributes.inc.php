@@ -14,5 +14,5 @@ constitution:
   # How low and high this attribute can go
   min: 3
   max: 20
-    </textarea>
+</textarea>
 </div>

@@ -34,7 +34,7 @@ myspawner:
       dark_spider: 20
       mega_spider: 30
 
-    </textarea>
+</textarea>
     <textarea id="templateFound" class="template" data-label="Found"># This is the key name of this automaton
 # It must be unique across the server, and is used in configs to refer to this automaton
 #
@@ -48,5 +48,5 @@ myfountain:
   # This refers to some effects that can be edited with "/mconfig editor effects fountain"
   effects: fountain
 
-    </textarea>
+</textarea>
 </div>
