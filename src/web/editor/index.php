@@ -40,7 +40,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/show-hint.css"/>
     <link rel="stylesheet" href="common/css/dialog.css"/>
     <link rel="stylesheet" href="common/css/lint.css"/>
-    <link rel="stylesheet" href="common/css/ui.fancytree.css"/>
+    <link rel="stylesheet" href="common/css/trailingspace.css"/>
     <link rel="stylesheet" href="css/editor.css"/>
     <link rel="stylesheet" href="css/tutorial.css"/>
 
@@ -59,6 +59,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/codeeditor.js"></script>
     <script src="js/tutorial.js"></script>
     <script src="js/main.js"></script>
+    <script src="common/js/trailingspace.js"></script>
     <script src="common/js/common-hint.js"></script>
 
 <?php

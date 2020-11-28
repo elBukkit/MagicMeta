@@ -6,6 +6,7 @@ function CodeEditor(container)
         gutters: ["CodeMirror-lint-markers"],
         lint: true,
         mode: "text/x-yaml",
+        showTrailingSpace: true,
         extraKeys: {
             "Ctrl-S": function() { editor.save(); },
             'Shift-Tab': 'indentLess',
