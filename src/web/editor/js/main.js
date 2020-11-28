@@ -21,6 +21,7 @@ function initialize() {
 
     // Register hints
     let hints = new Hints();
+    hints.setNavigationPanel($('#navigation'));
     CodeMirror.registerHelper('hint', 'yaml', hints.hintHelper.bind(hints));
 
 
