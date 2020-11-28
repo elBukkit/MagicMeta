@@ -322,6 +322,12 @@ foreach ($wands as $key => $wand) {
 
     $wand['name'] = isset($messages['wands'][$key]['name']) ? $messages['wands'][$key]['name'] : '';
     $wand['description'] = isset($messages['wands'][$key]['description']) ? $messages['wands'][$key]['description'] : '';
+    if (isset($messages['wands'][$key]['upgrade_item_description'])) {
+        if ($wand['description']) {
+            $wand['description'] .= "\n";
+        }
+        $wand['description'] .= $messages['wands'][$key]['upgrade_item_description'];
+    }
     $wandsSpells = isset($wand['spells']) ? $wand['spells'] : array();
 	if (!is_array($wandsSpells)) {
 		$wandsSpells = array();
