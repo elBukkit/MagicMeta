@@ -40,6 +40,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/show-hint.css"/>
     <link rel="stylesheet" href="common/css/dialog.css"/>
     <link rel="stylesheet" href="common/css/lint.css"/>
+    <link rel="stylesheet" href="common/css/foldgutter.css"/>
     <link rel="stylesheet" href="common/css/trailingspace.css"/>
     <link rel="stylesheet" href="css/editor.css"/>
     <link rel="stylesheet" href="css/tutorial.css"/>
@@ -61,6 +62,12 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="js/main.js"></script>
     <script src="common/js/trailingspace.js"></script>
     <script src="common/js/common-hint.js"></script>
+
+    <script src="common/js/trailingspace.js"></script>
+    <script src="common/js/yaml-mode.js"></script>
+    <script src="common/js/indent-fold.js"></script>
+    <script src="common/js/foldcode.js"></script>
+    <script src="common/js/foldgutter.js"></script>
 
 <?php
 $hintFile = "common/js/$fileType-hint.js";

@@ -19,6 +19,11 @@ function initialize() {
         $('#newSelector').append(newOption);
     });
 
+    // Register hints
+    let hints = new Hints();
+    CodeMirror.registerHelper('hint', 'yaml', hints.hintHelper.bind(hints));
+
+
     if ($("#newSelector").children().length == 0) {
         $("#newSelector").remove();
     } else {

@@ -1,12 +1,13 @@
 function CodeEditor(container)
 {
-    var me = this;
     this.editor = CodeMirror.fromTextArea(container.get(0), {
+        mode: 'yaml',
+        styleActiveLine: true,
         lineNumbers: true,
-        gutters: ["CodeMirror-lint-markers"],
-        lint: true,
-        mode: "text/x-yaml",
         showTrailingSpace: true,
+        foldGutter: true,
+        lint: true,
+        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         extraKeys: {
             "Ctrl-S": function() { editor.save(); },
             'Shift-Tab': 'indentLess',
