@@ -41,6 +41,16 @@
     background-color: #F8F8F8;
 }
 
+#footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #F8F8F8;
+    height: 2em;
+    margin-left: 2em;
+    padding-top: 8px;
+}
+
 #modeSelector {
     margin-left: 2em;
     flex: 0 0 auto;

@@ -80,6 +80,7 @@ if (file_exists($hintFile)) {
         var referenceURL = '//<?= $referenceURL ?>';
         var _session = <?= json_encode($session); ?>;
         var _sessionId = <?= json_encode($sessionId); ?>;
+        var _fileType = '<?=$fileType?>';
         var _seenTutorial = <?= $seenTutorial ? 'true' : 'false'; ?>;
         var _legacyIcons = <?= $legacyIcons ? 'true' : 'false'; ?>;
     </script>
@@ -122,6 +123,11 @@ if (file_exists($hintFile)) {
     <div id="codeEditor">
         <textarea id="editor"></textarea>
     </div>
+
+    <div id="footer">
+        <span id="navigation"></span>
+    </div>
+
 </div>
 
 <?php require 'tutorials.inc.php'; ?>
