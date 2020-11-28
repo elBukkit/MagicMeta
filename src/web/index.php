@@ -194,7 +194,11 @@ foreach ($allSpells as $key => $spell) {
             }
         }
 
-        $spell = array_merge($spell, $allSpells[$inheritKey]);
+        // We are missing the default configs which include base classes such as base_passivem
+        // so we are not even going to warn about this.
+        if (isset($allSpells[$inheritKey])) {
+            $spell = array_merge($spell, $allSpells[$inheritKey]);
+        }
         $spell['enabled'] = true;
     }
 	if ((isset($spell['hidden']) && $spell['hidden']) || (isset($spell['enabled']) && !$spell['enabled'])) {
@@ -370,7 +374,12 @@ foreach ($crafting as $key => &$recipe) {
         $recipe['wand'] = null;
         continue;
     }
-    $recipe['wand'] = $wands[$recipe['output']];
+    $recipeOutput = $recipe['output'];
+    if (isset($wands[$recipeOutput])) {
+        $recipe['wand'] = $wands[$recipeOutput];
+    } else if (isset($upgrades[$recipeOutput])) {
+        $recipe['wand'] = $upgrades[$recipeOutput];
+    }
 }
 
 $enchantingEnabled = isset($general['enable_enchanting']) ? $general['enable_enchanting'] : false;
