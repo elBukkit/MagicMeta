@@ -21,6 +21,7 @@ function Hints() {
         let token = line.trim();
         let isListStart = trimmed.startsWith('-');
         let isKey = token.endsWith(':');
+        let indent = line.length - trimmed.length;
         if (isListStart) {
             token = token.substring(2);
         }
@@ -36,13 +37,16 @@ function Hints() {
             isEmpty: trimmed == '',
             isListStart: isListStart,
             isKey: isKey,
-            indent: line.length - trimmed.length
+            indent: indent,
+            listIndent: isListStart ? indent - 2 : indent
         }
     };
 
     this.getCurrentContext = function() {
         let currentLine = this.cm.getLine(this.cursor.line);
-        return this.getContext(currentLine, this.cursor.line);
+        let context = this.getContext(currentLine, this.cursor.line);
+        context.indent = Math.min(context.indent, this.cursor.ch);
+        return context;
     };
 
     this.getPreviousLine = function(lineNumber) {
@@ -63,16 +67,22 @@ function Hints() {
         let previousLine = this.getPreviousLine(this.context.lineNumber);
         while (previousLine != null) {
             // Check indent
-            // TODO: Handle lists
+            let isNewParent = false;
             if (previousLine.indent < currentLine.indent) {
+                isNewParent = true;
+            } else if (previousLine.indent == currentLine.indent && currentLine.isListStart && !previousLine.isListStart) {
+                isNewParent = true;
+            } else if (!currentLine.isListStart && currentLine.listIndent == previousLine.listIndent && previousLine.isListStart) {
+                isNewParent = true;
+            }
+
+            if (isNewParent) {
                 hierarchy.unshift(previousLine);
-            } else if (previousLine.indent == currentLine.indent && previousLine.isListStart) {
-                hierarchy.unshift(previousLine);
+                currentLine = previousLine;
             }
 
             // Go to previous step
-            currentLine = previousLine;
-            previousLine = this.getPreviousLine(currentLine.lineNumber);
+            previousLine = this.getPreviousLine(previousLine.lineNumber);
         }
         return hierarchy;
     };
@@ -88,7 +98,12 @@ function Hints() {
         // walk `end` forwards until non-word or end of line
         while (end < currentLine.length && this.WORD.test(currentLine.charAt(end))) ++end;
 
-        return currentLine.slice(start, end);
+        return {
+            word: currentLine.slice(start, end),
+            token: token,
+            start: start,
+            end: end
+        };
     };
 
     this.hintHelper = function(cm, opts) {
@@ -113,289 +128,72 @@ function Hints() {
             if (_fileType) {
                 path = _fileType;
                 if (hierarchy.length > 0) {
-                    path += " / ";
+                    path += '<span class="delimiter"> / </span>';
                 }
             }
             for (let i = 0; i < hierarchy.length; i++) {
-                path += hierarchy[i].token;
+                let token = hierarchy[i].token;
+                if (hierarchy[i].isListStart) {
+                    token = "[" + token + "]";
+                }
+                path += token;
                 if (i < hierarchy.length - 1) {
-                    path += " . ";
+                    path += '<span class="delimiter"> . </span>';
                 }
             }
-            this.navigationPanel.text(path);
+            this.navigationPanel.html(path);
         }
 
         // Get the current parsed token
         let currentToken = this.getCurrentToken();
-    };
 
-    this.oldFunction = function(cm, opts) {
-        if (cm.metadata == null) {
-            return;
-        }
-        this.cm = cm;
-        let metadata = cm.metadata;
-        var result = [];
+        // Determine the list of options to show
+        // Optionally provide class types and other information that helps suggestions and sorting
+        let values = {};
+        let classType = '';
+        let valueType = null;
+        let defaultValue = null;
+        let inherited = null;
+        let suffix = '';
 
-        // get context of hierarchy
-        var hierarchy = getHierarchy(CodeMirror.Pos(cur.line, cur.ch), cm).reverse();
-        if (cm.debug) console.log(hierarchy);
-        var pos = CodeMirror.Pos(cur.line, cur.ch);
-        var thisLine = cm.getLine(pos.line);
-        var indent = getIndentation(thisLine);
-        indent = Math.min(indent, cur.ch);
-        if (LEAF_KV.test(curLine)) {
-            // if we'e on a line with a key get values for that key
-            var values = {};
-            var classType = '';
-            var valueType = null;
-            var defaultValue = null;
-            var fieldName = hierarchy[hierarchy.length - 1];
+        // Determine if we are populating keys or values
+        if (this.LEAF_KV.test(this.context.trimmed)) {
+            // Look for values to populate
+            let fieldName = hierarchy[hierarchy.length - 1].token;
             if (hierarchy.length == 2) {
                 // Base spell property values
-                if (metadata.context.spell_properties.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.context.spell_properties[fieldName];
-                    if (metadata.properties.hasOwnProperty(propertyKey)) {
-                        valueType = metadata.properties[propertyKey].type;
-                        values = metadata.types[valueType].options;
-                    }
-                }
-            } else if (hierarchy.length == 3 && hierarchy[1] == 'parameters') {
-                // Base spell parameter values
-                if (metadata.context.spell_parameters.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.context.spell_parameters[fieldName];
-                    if (metadata.properties.hasOwnProperty(propertyKey)) {
-                        valueType = metadata.properties[propertyKey].type;
-                        values = metadata.types[valueType].options;
-                    }
-                } else {
-                    // Action-specific parameter values
-                    var actions = getAllActions(cm);
-                    for (var i = 0; i < actions.length; i++) {
-                        var action = actions[i];
-                        if (metadata.context.actions.hasOwnProperty(action) && metadata.context.actions[action].hasOwnProperty(fieldName)) {
-                            var propertyKey =  metadata.context.actions[action][fieldName];
-                            if (metadata.properties.hasOwnProperty(propertyKey)) {
-                                valueType = metadata.properties[propertyKey].type;
-                                values = metadata.types[valueType].options;
-                            }
-                        }
-                    }
-                }
-            } else if (hierarchy.length >= 4 && hierarchy[1] == 'actions' && fieldName == 'class') {
-                // Action classes
-                values = metadata.context.action_classes;
-                classType = 'actions';
-            } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && fieldName == 'class') {
-                // Effectlib classes
-                values = metadata.context.effectlib_classes;
-                classType = 'effectlib_effects';
-            } else if (hierarchy.length >= 4 && hierarchy[1] == 'actions') {
-                // Action parameter values
-                var propertyKey = null;
-                if (metadata.context.action_parameters.hasOwnProperty(fieldName)) {
-                    propertyKey = metadata.context.action_parameters[fieldName];
-                    if (metadata.action_parameters.hasOwnProperty(propertyKey)) {
-                        defaultValue = metadata.action_parameters[propertyKey];
-                    }
-                }
-                var shortClass = getCurrentClass(pos, indent, cm);
-                if (shortClass != null) {
-                    var actionClass = addSuffix(shortClass, "Action");
-                    if (propertyKey == null && metadata.context.actions.hasOwnProperty(actionClass)) {
-                        propertyKey = metadata.context.actions[actionClass][fieldName];
-                    }
-
-                    if (propertyKey != null && metadata.context.action_classes.hasOwnProperty(shortClass)) {
-                        var classKey = metadata.context.action_classes[shortClass];
-                        if (metadata.actions[classKey].parameters.hasOwnProperty(propertyKey)) {
-                            defaultValue = metadata.actions[classKey].parameters[propertyKey];
-                        }
-                    }
-                }
-                if (propertyKey != null && metadata.properties.hasOwnProperty(propertyKey)) {
-                    valueType = metadata.properties[propertyKey].type;
-                    values = metadata.types[valueType].options;
-
-                    if (values == null || values.length == 0) {
-                        values = checkForListProperty(metadata, valueType, values);
-                    }
-                }
-            } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects' && hierarchy[hierarchy.length - 2] == 'effectlib') {
-                // Effectlib parameter values
-                var propertyKey = null;
-                if (metadata.context.effectlib_parameters.hasOwnProperty(fieldName)) {
-                    propertyKey = metadata.context.effectlib_parameters[fieldName];
-                    if (metadata.effectlib_parameters.hasOwnProperty(propertyKey)) {
-                        defaultValue = metadata.effectlib_parameters[propertyKey];
-                    }
-                }
-                var shortClass = getCurrentClass(pos, indent, cm);
-                if (shortClass != null) {
-                    var effectClass = addSuffix(shortClass, "Effect");
-                    if (propertyKey == null && metadata.context.effects.hasOwnProperty(effectClass)) {
-                        propertyKey = metadata.context.effects[effectClass][fieldName];
-                    }
-
-                    if (propertyKey != null && metadata.context.effectlib_classes.hasOwnProperty(shortClass)) {
-                        var classKey = metadata.context.effectlib_classes[shortClass];
-                        if (metadata.effectlib_effects[classKey].parameters.hasOwnProperty(propertyKey)) {
-                            defaultValue = metadata.effectlib_effects[classKey].parameters[propertyKey];
-                        }
-                    }
-                }
-                if (propertyKey != null && metadata.properties.hasOwnProperty(propertyKey)) {
-                    valueType = metadata.properties[propertyKey].type;
-                    values = metadata.types[valueType].options;
-                }
-            } else if (hierarchy.length >= 4 && hierarchy[1] == 'effects') {
-                // Effect parameter values
-                if (metadata.context.effect_parameters.hasOwnProperty(fieldName)) {
-                    var propertyKey = metadata.context.effect_parameters[fieldName];
-                    if (metadata.properties.hasOwnProperty(propertyKey)) {
-                        valueType = metadata.properties[propertyKey].type;
-                        values = metadata.types[valueType].options;
+                if (this.metadata.base_properties.hasOwnProperty(fieldName)) {
+                    let propertyKey = this.metadata.base_properties[fieldName];
+                    if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                        valueType = this.metadata.properties[propertyKey].type;
+                        values = this.metadata.types[valueType].options;
                     }
                 }
             }
-
-            result = getSorted(values, null, defaultValue, word, '', metadata, classType, valueType);
         } else {
-            // else, do suggestions for new property keys
-            var properties = {};
-            var inherited = null;
-            var suffix = ': ';
-            if (isMisalignedListItem(pos, indent, cm)) {
-                // Nothing
-            } else if (hierarchy.length == 2 && hierarchy[1] == '') {
-                // Add base parameters
-                properties = metadata.context.spell_properties;
-            } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'parameters') {
-                // Add base parameters
-                var actions = getAllActions(cm);
-                for (var i = 0; i < actions.length; i++) {
-                    var action = actions[i];
-                    if (metadata.context.actions.hasOwnProperty(action)) {
-                        properties = $.extend(properties, metadata.context.actions[action]);
-                    }
-                }
-                if (hierarchy.length == 3) {
-                    inherited = metadata.context.spell_parameters;
-                } else {
-                    // Search for map property
-                    for (var field in properties) {
-                        if (properties.hasOwnProperty(field) && field == hierarchy[hierarchy.length - 2]) {
-                            var propertyKey = properties[field];
-                            var propertyType = metadata.properties[propertyKey].type;
-                            propertyType = metadata.types[propertyType];
-                            if (propertyType.hasOwnProperty('key_type')) {
-                                propertyType = metadata.types[propertyType.key_type];
-                                properties = propertyType.options;
-                            } else if (propertyType.hasOwnProperty('value_type')) {
-                                propertyType = metadata.types[propertyType.value_type];
-                                properties = propertyType.options;
-                                properties = checkList(properties, pos, indent, cm);
-                                suffix = '';
-                            }
-                        }
-                    }
-                }
-            } else if (hierarchy.length == 4 && hierarchy[3] == '' && hierarchy[1] == 'effects') {
-                // Base effect parameters
-                properties = metadata.context.effect_parameters;
+            suffix = ': ';
+            classType = 'properties';
 
-                // Check if this is at the same indent level as a list, if so add - to suggestions
-                var previousSibling = getPreviousSibling(pos, indent, cm);
-                if (previousSibling != null && previousSibling.startsWith('-')) {
-                    properties = makeList(properties, thisLine);
-                } else {
-                    properties = checkList(properties, pos, indent, cm);
-                }
-            } else if (hierarchy.length == 3 && hierarchy[2] == '' && (hierarchy[1] == 'costs' || hierarchy[1] == 'active_costs')) {
-                // Costs
-                properties = metadata.types.cost_type.options;
-            } else if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'effects') {
-                // Effect triggers
-                properties = {'cast': 'cast_effect_list', 'tick': 'tick_effect_list', 'hit': 'hit_effect_list',
-                'hit_entity': 'hit_entity_effect_list', 'hit_block': 'hit_block_effect_list',
-                'blockmiss': 'blockmiss_effect_list', 'prehit': 'prehit_effect_list',
-                'step': 'step_effect_list', 'reflect': 'reflect_effect_list',
-                'miss': 'miss_effect_list', 'headshot': 'headshot_effect_list',
-                'projectile': 'projectile_effect_list'};
-
-                var parent = getParent(pos, indent, cm);
-                if (parent != "effects") {
-                    properties['- location'] = "Add a new effect to this list";
-                }
-            } else if (hierarchy.length >= 5 && hierarchy[hierarchy.length - 1] == '' && hierarchy[3] == 'effectlib') {
-                // Effectlib parameters
-                inherited = metadata.context.effectlib_parameters;
-                var effectClass = getCurrentClass(pos, indent, cm, "Effect");
-                if (effectClass != null) {
-                    if (metadata.context.effects.hasOwnProperty(effectClass)) {
-                        properties = metadata.context.effects[effectClass];
-                    }
-                }
-            } else if (hierarchy.length >= 3 && hierarchy[hierarchy.length - 1] == '' && hierarchy[1] == 'actions') {
-                // Action parameters
-                inherited = metadata.context.action_parameters;
-                var actionClass = getCurrentClass(pos, indent, cm, "Action");
-                if (actionClass != null) {
-                    if (metadata.context.actions.hasOwnProperty(actionClass)) {
-                        properties = metadata.context.actions[actionClass];
-                    }
-
-                    actionClass = removeSuffix(actionClass, "Action");
-                    if (metadata.context.action_classes.hasOwnProperty(actionClass)) {
-                        var classKey = metadata.context.action_classes[actionClass];
-                        if (metadata.actions[classKey].hasOwnProperty('category') && metadata.actions[classKey].category == 'compound') {
-                            inherited = metadata.context.compound_action_parameters;
-                        }
-                    }
-
-                    inherited = checkList(inherited, pos, indent, cm);
-                    properties = checkList(properties, pos, indent, cm);
-                } else {
-                    inherited = [];
-                    var mapResults = checkForMapProperty(pos, indent, cm, thisLine, metadata, properties, suffix);
-                    properties = mapResults.properties;
-                    suffix = mapResults.suffix;
-                }
-
-                if (hierarchy.length == 3 && hierarchy[2] == '' && hierarchy[1] == 'actions') {
-                    // Action triggers
-                    properties = {'cast': 'cast_actions', 'alternate_up': 'alternate_up_actions',
-                        'alternate_down': 'alternate_down_actions', 'alternate_sneak': 'alternate_sneak_actions'};
-                }
-
-                var parent = getParent(pos, indent, cm);
-                var isAtStartOfList = false;
-                if (((hierarchy.length == 4 && hierarchy[3] == '') || (hierarchy.length == 3 && hierarchy[2] == '')) && hierarchy[1] == 'actions' && pos.line > 0) {
-                    var previousSibling = getPreviousSibling(pos, indent, cm);
-                    if (previousSibling != null && previousSibling.startsWith('-')) {
-                        isAtStartOfList = true;
-                    } else {
-                        var previous = cm.getLine(pos.line - 1);
-                        var previousIndent = getListIndentation(previous);
-                        isAtStartOfList = !previous.trim().startsWith('-') && previousIndent <= indent;
-                    }
-                }
-                if (parent == "actions" || isAtStartOfList) {
-                    properties = $.extend({}, properties);
-                    properties['- class'] = "Add a new action to this list";
-                }
+            // Look for new property keys or list items
+            if (hierarchy.length == 2 && hierarchy[1].token == '') {
+                // Add base properties
+                values = this.metadata.base_properties;
             }
-            var siblings = getSiblings(pos, indent, cm);
-            properties = filterMap(properties, siblings);
-            if (inherited != null) {
-                inherited = filterMap(inherited, siblings);
-            }
-            result = getSorted(properties, inherited, null, word, suffix, metadata, 'properties', null);
+
+            //var siblings = getSiblings(pos, indent, cm);
+            //properties = filterMap(properties, siblings);
+            //if (inherited != null) {
+            //    inherited = filterMap(inherited, siblings);
+            //}
         }
 
-        var suggestion = false;
-        for (var key in result) {
-            if (result.hasOwnProperty(key) && result[key].text != word) {
+        // Filter and sort list, adding suggestions based on class type
+        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, suffix, this.metadata, classType, valueType);
+
+        // Generate suggestions
+        let suggestion = false;
+        for (let key in result) {
+            if (result.hasOwnProperty(key) && result[key].text != currentToken.word) {
                 suggestion = true;
                 break;
             }
@@ -403,9 +201,162 @@ function Hints() {
         if (suggestion) {
             return {
                 list: result,
-                from: CodeMirror.Pos(cur.line, start),
-                to: CodeMirror.Pos(cur.line, end)
+                from: CodeMirror.Pos(this.cursor.line, currentToken.start),
+                to: CodeMirror.Pos(this.cursor.line, currentToken.end)
             };
         }
-    }
+    };
+
+    this.getSorted = function(values, inheritedValues, defaultValue, word, suffix, metadata, classType, valueType) {
+        let includeContains = true;
+        switch (valueType) {
+            case 'milliseconds':
+            case 'percentage':
+                includeContains = false;
+                break;
+            case 'integer':
+                includeContains = false;
+                values = $.extend({}, values);
+                if (defaultValue != null) {
+                    addMultiples(defaultValue, values, 0);
+                }
+                if (word != '') {
+                    values[word] = null;
+                    addPowersOfTen(parseInt(word), values);
+                }
+                break;
+            case 'double':
+                includeContains = false;
+                values = $.extend({}, values);
+                if (defaultValue != null) {
+                    addMultiples(defaultValue, values, 5);
+                }
+                if (word != '') {
+                    values[word] = null;
+                    addPowersOfTen(parseInt(word), values);
+                }
+                break;
+        }
+
+        let startsWith = [];
+        let contains = [];
+        let foundDefault = false;
+        for (let kw in values) {
+            let isDefault = defaultValue == kw;
+            let description = values[kw];
+            let trimmedDescription = trimTags(description);
+            let match = kw + trimmedDescription;
+            if (isDefault) foundDefault = true;
+            if (match.indexOf(word) !== -1) {
+                let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, false, isDefault);
+                if (match.startsWith(word)) {
+                    startsWith.push(hint);
+                } else {
+                    contains.push(hint);
+                }
+            }
+        }
+        if (inheritedValues != null) {
+            for (let kw in inheritedValues) {
+                let isDefault = defaultValue == kw;
+                let description = inheritedValues[kw];
+                let trimmedDescription = trimTags(description);
+                let match = kw + trimmedDescription;
+                if (isDefault) foundDefault = true;
+                if (match.indexOf(word) !== -1) {
+                    let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, true, isDefault);
+                    if (match.startsWith(word)) {
+                        startsWith.push(hint);
+                    } else {
+                        contains.push(hint);
+                    }
+                }
+            }
+        }
+
+        if (defaultValue != null && !foundDefault && defaultValue.indexOf(word) !== -1) {
+            if (defaultValue.startsWith(word)) {
+                startsWith.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
+            } else {
+                contains.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
+            }
+        }
+
+        function sortProperties(a, b) {
+            if (a == word) {
+                return -1;
+            }
+            if (b == word) {
+                return 1;
+            }
+            if (a.isDefault && !b.isDefault) {
+                return -1;
+            }
+            if (!a.isDefault && b.isDefault) {
+                return 1;
+            }
+            if (a.inherited && !b.inherited) {
+                return 1;
+            }
+            if (!a.inherited && b.inherited) {
+                return -1;
+            }
+            if (a.importance == b.importance) {
+                return a.text.localeCompare(b.text);
+            }
+            return b.importance - a.importance;
+        }
+        startsWith.sort(sortProperties);
+        contains.sort(sortProperties);
+        if (includeContains) {
+            startsWith = startsWith.concat(contains);;
+        }
+        return startsWith;
+    };
+    this.renderHint = function(element, pos, hint) {
+        let titleCell = $('<td>').text(hint.text);
+        if (hint.inherited) {
+            titleCell.addClass('inheritedProperty');
+        }
+        if (hint.isDefault) {
+            titleCell.addClass('defaultProperty');
+        }
+        $(element).append(titleCell);
+        let description = $('<div>');
+        if (hint.description != null && hint.description.length > 0) {
+            for (var i = 0; i < hint.description.length; i++) {
+                if (i != 0) {
+                    description.append($('<br/>'));
+                }
+                description.append($('<span>').html(hint.description[i]));
+            }
+        }
+        $(element).append($('<td>').append(description));
+    };
+
+    this.convertHint = function(text, value, metadata, classType, valueType, inherited, defaultValue) {
+        let description = null;
+        let importance = 0;
+        if (classType && metadata && value && metadata[classType].hasOwnProperty(value)) {
+            let dataType = metadata[classType][value];
+            description = dataType['description'];
+            importance = dataType['importance'];
+        } else {
+            description = value == null ? null : [value]
+        }
+
+        if (importance == 0 && valueType == 'color') {
+            importance = RGBToHSV(text)[0];
+        }
+
+        let hint = {
+            text: text,
+            description: description,
+            render: this.renderHint,
+            importance: importance,
+            inherited: inherited,
+            isDefault: defaultValue
+        };
+        return hint;
+    };
 }

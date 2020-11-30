@@ -268,3 +268,7 @@ li.CodeMirror-hint:hover {
     font-family: monospace;
     border: 0;
 }
+
+.delimiter {
+    color: #AAAAAA;
+}

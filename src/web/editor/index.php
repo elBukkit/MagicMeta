@@ -66,6 +66,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/indent-fold.js"></script>
     <script src="common/js/foldcode.js"></script>
     <script src="common/js/foldgutter.js"></script>
+    <script src="common/js/formatters.js"></script>
     <script src="common/js/hints.js"></script>
 
     <script type="text/javascript">
