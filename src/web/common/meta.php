@@ -148,18 +148,17 @@ if (isset($_REQUEST['context'])) {
     // remove the plural s, kinda hacky
     $contextType = substr($contextType, 0, -1);
     $baseProperties = array();
-    $baseParameters = array();
     $propertiesKey = $contextType . '_properties';
     if (isset($meta[$propertiesKey])) {
         $baseProperties = mapFields($meta, $propertiesKey);
     }
     $parametersKey = $contextType . '_parameters';
-    if (isset($meta[$parametersKey])) {
-        $baseParameters = mapFields($meta, $parametersKey);
+    if (isset($meta[$parametersKey]) && isset($meta['types'][$parametersKey])) {
+        $meta['types'][$parametersKey]['options'] = $meta[$parametersKey];
+        unset($meta[$parametersKey]);
     }
 
     $meta['base_properties'] = $baseProperties;
-    $meta['base_parameters'] = $baseParameters;
 
     // TODO: PURGE
     $meta['context'] = array(

@@ -10443,11 +10443,11 @@
     },
     "parameters" : {
       "category" : "base",
-      "description" : [ "A list of spell parameters which determines how the spell behaves. Check out the Spell Parameters section above!" ],
+      "description" : [ "A map of spell parameters which determines how the spell behaves. Check out the Spell Parameters section above!" ],
       "field" : "parameters",
       "importance" : 100,
       "name" : "Parameters",
-      "type" : "map"
+      "type" : "spell_parameters"
     },
     "particle" : {
       "category" : "effects",
@@ -17960,6 +17960,12 @@
       "name" : "Spell List",
       "options" : { },
       "value_type" : "spell"
+    },
+    "spell_parameters" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of spell parameters" ],
+      "name" : "Spell Parameters",
+      "options" : { }
     },
     "spell_result" : {
       "class_name" : "com.elmakers.mine.bukkit.api.spell.SpellResult",

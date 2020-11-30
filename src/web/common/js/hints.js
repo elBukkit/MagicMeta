@@ -175,7 +175,7 @@ function Hints() {
             classType = 'properties';
 
             // Look for new property keys or list items
-            if (hierarchy.length == 2 && hierarchy[1].token == '') {
+            if (hierarchy.length == 2) {
                 // Add base properties
                 values = this.metadata.base_properties;
             }
