@@ -17812,8 +17812,9 @@
     },
     "spell_parameters" : {
       "class_name" : "java.util.Map",
-      "description" : [ "A map of spell parameters" ],
+      "description" : [ "A map of spell parameters", "These can include base spell parameters or any parameters used by this spell's actions" ],
       "name" : "Spell Parameters",
+      "populate_from" : "actions",
       "options" : {
         "allow_max_range" : "false",
         "aura" : "false",

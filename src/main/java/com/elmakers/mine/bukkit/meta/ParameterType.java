@@ -21,6 +21,7 @@ public class ParameterType {
     private Map<String, String> options;
     private String valueType;
     private String keyType;
+    private String populateFrom;
 
     public ParameterType() {
 
@@ -159,5 +160,14 @@ public class ParameterType {
     @Override
     public String toString() {
         return key;
+    }
+
+    @JsonProperty("populate_from")
+    public String getPopulateFrom() {
+        return populateFrom;
+    }
+
+    public void setPopulateFrom(String populateFrom) {
+        this.populateFrom = populateFrom;
     }
 }
