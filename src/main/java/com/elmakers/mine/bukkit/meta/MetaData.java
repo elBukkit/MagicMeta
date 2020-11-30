@@ -7,65 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MetaData {
-    private ParameterList mobParameters = new ParameterList();
-    private ParameterList compoundActionParameters = new ParameterList();
-    private ParameterList actionParameters = new ParameterList();
-    private ParameterList spellParameters = new ParameterList();
-    private ParameterList spellProperties = new ParameterList();
     private Map<String, Category> categories = new HashMap<>();
     private Map<String, SpellActionDescription> actions = new HashMap<>();
-    private ParameterList effectParameters = new ParameterList();
-    private ParameterList effectLibParameters = new ParameterList();
     private Map<String, EffectDescription> effects = new HashMap<>();
-    private ParameterList wandParameters = new ParameterList();
-    private ParameterList classParameters = new ParameterList();
-    private ParameterList modifierParameters = new ParameterList();
     private ParameterStore parameterStore = new ParameterStore();
-
-    @JsonProperty("spell_parameters")
-    public ParameterList getSpellParameters() {
-        return spellParameters;
-    }
-
-    public void setSpellParameters(ParameterList spellParameters) {
-        this.spellParameters = spellParameters;
-    }
-
-    @JsonProperty("mob_properties")
-    public ParameterList getMobParameters() {
-        return mobParameters;
-    }
-
-    public void setMobParameters(ParameterList mobParameters) {
-        this.mobParameters = mobParameters;
-    }
-
-    @JsonProperty("action_parameters")
-    public ParameterList getActionParameters() {
-        return actionParameters;
-    }
-
-    public void setActionParameters(ParameterList actionParameters) {
-        this.actionParameters = actionParameters;
-    }
-
-    @JsonProperty("compound_action_parameters")
-    public ParameterList getCompoundActionParameters() {
-        return compoundActionParameters;
-    }
-
-    public void setCompoundActionParameters(ParameterList compoundActionParameters) {
-        this.compoundActionParameters = compoundActionParameters;
-    }
-
-    @JsonProperty("spell_properties")
-    public ParameterList getSpellProperties() {
-        return spellProperties;
-    }
-
-    public void setSpellProperties(ParameterList spellProperties) {
-        this.spellProperties = spellProperties;
-    }
 
     @JsonProperty("categories")
     public Map<String, Category> getCategories() {
@@ -85,7 +30,7 @@ public class MetaData {
         this.parameterStore.setParameters(allParameters);
     }
 
-    @JsonProperty("actions")
+    @JsonProperty("action_classes")
     public Map<String, SpellActionDescription> getActions() {
         return actions;
     }
@@ -94,58 +39,13 @@ public class MetaData {
         this.actions = actions;
     }
 
-    @JsonProperty("effect_parameters")
-    public ParameterList getEffectParameters() {
-        return effectParameters;
-    }
-
-    public void setEffectParameters(ParameterList effectParameters) {
-        this.effectParameters = effectParameters;
-    }
-
-    @JsonProperty("effectlib_parameters")
-    public ParameterList getEffectLibParameters() {
-        return effectLibParameters;
-    }
-
-    public void setEffectLibParameters(ParameterList effectLibParameters) {
-        this.effectLibParameters = effectLibParameters;
-    }
-
-    @JsonProperty("effectlib_effects")
+    @JsonProperty("effectlib_classes")
     public Map<String, EffectDescription> getEffects() {
         return effects;
     }
 
     public void setEffects(Map<String, EffectDescription> effects) {
         this.effects = effects;
-    }
-
-    @JsonProperty("wand_properties")
-    public ParameterList getWandParameters() {
-        return wandParameters;
-    }
-
-    public void setWandParameters(ParameterList wandParameters) {
-        this.wandParameters = wandParameters;
-    }
-
-    @JsonProperty("class_properties")
-    public ParameterList getClassParameters() {
-        return classParameters;
-    }
-
-    public void setClassParameters(ParameterList classParameters) {
-        this.classParameters = classParameters;
-    }
-
-    @JsonProperty("modifier_properties")
-    public ParameterList getModifierParameters() {
-        return modifierParameters;
-    }
-
-    public void setModifierParameters(ParameterList modifierParameters) {
-        this.modifierParameters = modifierParameters;
     }
 
     @JsonProperty("types")
@@ -172,53 +72,43 @@ public class MetaData {
     }
 
     public void addWandParameters(ParameterList parameters) {
-        wandParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("wand_properties", modifierParameters);
+        parameterStore.mergeType("wand_properties", parameters);
     }
 
     public void addClassParameters(ParameterList parameters) {
-        classParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("class_properties", modifierParameters);
+        parameterStore.mergeType("class_properties", parameters);
     }
 
     public void addModifierParameters(ParameterList parameters) {
-        modifierParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("modifier_properties", modifierParameters);
+        parameterStore.mergeType("modifier_properties", parameters);
     }
 
     public void addEffectLibParameters(ParameterList parameters) {
-        effectLibParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("effectlib_properties", effectLibParameters);
+        parameterStore.mergeType("effectlib_properties", parameters);
     }
 
     public void addEffectParameters(ParameterList parameters) {
-        effectParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("effect_properties", effectParameters);
+        parameterStore.mergeType("effect_properties", parameters);
     }
 
     public void addMobParameters(ParameterList parameters) {
-        mobParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("mob_properties", mobParameters);
+        parameterStore.mergeType("mob_properties", parameters);
     }
 
     public void addActionParameters(ParameterList parameters) {
-        actionParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("action_parameters", actionParameters);
+        parameterStore.mergeType("action_parameters", parameters);
     }
 
     public void addCompoundActionParameters(ParameterList parameters) {
-        compoundActionParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("compound_action_parameters", compoundActionParameters);
+        parameterStore.mergeType("compound_action_parameters", parameters);
     }
 
     public void addSpellParameters(ParameterList parameters) {
-        spellParameters.merge(parameters, parameterStore);
-        parameterStore.mergeType("spell_parameters", spellParameters);
+        parameterStore.mergeType("spell_parameters", parameters);
     }
 
     public void addSpellProperties(ParameterList parameters) {
-        spellProperties.merge(parameters, parameterStore);
-        parameterStore.mergeType("spell_properties", spellProperties);
+        parameterStore.mergeType("spell_properties", parameters);
     }
 
     public Parameter getParameter(String key, Class<?> defaultClass) {
