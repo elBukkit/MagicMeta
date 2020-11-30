@@ -54,7 +54,7 @@
     }
   },
   "classed": {
-    "actions" : {
+    "action" : {
       "absorb" : {
         "category" : "construction",
         "class_name" : "AbsorbAction",
@@ -3760,995 +3760,995 @@
         "short_class" : "Weather"
       }
     },
-    "effectlib_effects" : {
-    "animated_ball" : {
-      "category" : "",
-      "class_name" : "AnimatedBallEffect",
-      "description" : [ "An animated swirl that follows the shape of a sphere" ],
-      "examples" : [ ],
-      "importance" : 90,
-      "name" : "Animated Ball",
-      "parameters" : {
-        "iterations" : "500",
-        "particle" : "spell_witch",
-        "particles" : "150",
-        "particles_per_iteration" : "10",
-        "size" : "1",
-        "type" : "repeating",
-        "x_factor" : "1",
-        "x_offset" : "0",
-        "x_rotation" : "0",
-        "y_factor" : "2",
-        "y_offset" : "0.8",
-        "y_rotation" : "0",
-        "z_factor" : "1",
-        "z_offset" : "0",
-        "z_rotation" : "0"
+    "effectlib_effect" : {
+      "animated_ball" : {
+        "category" : "",
+        "class_name" : "AnimatedBallEffect",
+        "description" : [ "An animated swirl that follows the shape of a sphere" ],
+        "examples" : [ ],
+        "importance" : 90,
+        "name" : "Animated Ball",
+        "parameters" : {
+          "iterations" : "500",
+          "particle" : "spell_witch",
+          "particles" : "150",
+          "particles_per_iteration" : "10",
+          "size" : "1",
+          "type" : "repeating",
+          "x_factor" : "1",
+          "x_offset" : "0",
+          "x_rotation" : "0",
+          "y_factor" : "2",
+          "y_offset" : "0.8",
+          "y_rotation" : "0",
+          "z_factor" : "1",
+          "z_offset" : "0",
+          "z_rotation" : "0"
+        },
+        "short_class" : "AnimatedBall"
       },
-      "short_class" : "AnimatedBall"
-    },
-    "arc" : {
-      "category" : "",
-      "class_name" : "ArcEffect",
-      "description" : [ "An arc that extends from the source location to the target location" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Arc",
-      "parameters" : {
-        "height" : "2",
-        "iterations" : "200",
-        "particle" : "flame",
-        "particles" : "100",
-        "type" : "repeating"
+      "arc" : {
+        "category" : "",
+        "class_name" : "ArcEffect",
+        "description" : [ "An arc that extends from the source location to the target location" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Arc",
+        "parameters" : {
+          "height" : "2",
+          "iterations" : "200",
+          "particle" : "flame",
+          "particles" : "100",
+          "type" : "repeating"
+        },
+        "short_class" : "Arc"
       },
-      "short_class" : "Arc"
-    },
-    "atom" : {
-      "category" : "",
-      "class_name" : "AtomEffect",
-      "description" : [ "A model of an atom with a nuclues and one or more orbitals" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Atom",
-      "parameters" : {
-        "angular_velocity" : "0.039269908169872414",
-        "color_nucleus" : null,
-        "color_orbital" : null,
-        "iterations" : "200",
-        "orbitals" : "3",
-        "orient" : "false",
-        "particle_nucleus" : "drip_water",
-        "particle_orbital" : "drip_lava",
-        "particles_nucleus" : "10",
-        "particles_orbital" : "10",
-        "period" : "2",
-        "radius" : "3",
-        "radius_nucleus" : "0.2",
-        "rotation" : "0",
-        "type" : "repeating"
+      "atom" : {
+        "category" : "",
+        "class_name" : "AtomEffect",
+        "description" : [ "A model of an atom with a nuclues and one or more orbitals" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Atom",
+        "parameters" : {
+          "angular_velocity" : "0.039269908169872414",
+          "color_nucleus" : null,
+          "color_orbital" : null,
+          "iterations" : "200",
+          "orbitals" : "3",
+          "orient" : "false",
+          "particle_nucleus" : "drip_water",
+          "particle_orbital" : "drip_lava",
+          "particles_nucleus" : "10",
+          "particles_orbital" : "10",
+          "period" : "2",
+          "radius" : "3",
+          "radius_nucleus" : "0.2",
+          "rotation" : "0",
+          "type" : "repeating"
+        },
+        "short_class" : "Atom"
       },
-      "short_class" : "Atom"
-    },
-    "big_bang" : {
-      "category" : "",
-      "class_name" : "BigBangEffect",
-      "description" : [ "A big explosion with loud sounds" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Big Bang",
-      "parameters" : {
-        "asynchronous" : "false",
-        "color" : "FF0000",
-        "color2" : "FFA500]",
-        "color3" : "000000",
-        "explosions" : "10",
-        "fade_color" : "000000",
-        "firework_type" : "burst",
-        "intensity" : "2",
-        "iterations" : "400",
-        "period" : "2",
-        "radius" : "2",
-        "sound" : "entity_generic_explode",
-        "sound_interval" : "5",
-        "sound_pitch" : "1",
-        "sound_volume" : "100",
-        "type" : "repeating"
+      "big_bang" : {
+        "category" : "",
+        "class_name" : "BigBangEffect",
+        "description" : [ "A big explosion with loud sounds" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Big Bang",
+        "parameters" : {
+          "asynchronous" : "false",
+          "color" : "FF0000",
+          "color2" : "FFA500]",
+          "color3" : "000000",
+          "explosions" : "10",
+          "fade_color" : "000000",
+          "firework_type" : "burst",
+          "intensity" : "2",
+          "iterations" : "400",
+          "period" : "2",
+          "radius" : "2",
+          "sound" : "entity_generic_explode",
+          "sound_interval" : "5",
+          "sound_pitch" : "1",
+          "sound_volume" : "100",
+          "type" : "repeating"
+        },
+        "short_class" : "BigBang"
       },
-      "short_class" : "BigBang"
-    },
-    "bleed" : {
-      "category" : "",
-      "class_name" : "BleedEffect",
-      "description" : [ "Make it look like a player is bleeding, an optionally apply the hurt effect" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Bleed",
-      "parameters" : {
-        "height" : "1.75",
-        "hurt" : "true",
-        "iterations" : "25",
-        "period" : "4",
-        "type" : "repeating"
+      "bleed" : {
+        "category" : "",
+        "class_name" : "BleedEffect",
+        "description" : [ "Make it look like a player is bleeding, an optionally apply the hurt effect" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Bleed",
+        "parameters" : {
+          "height" : "1.75",
+          "hurt" : "true",
+          "iterations" : "25",
+          "period" : "4",
+          "type" : "repeating"
+        },
+        "short_class" : "Bleed"
       },
-      "short_class" : "Bleed"
-    },
-    "circle" : {
-      "category" : "",
-      "class_name" : "CircleEffect",
-      "description" : [ "A 2D circle" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Circle",
-      "parameters" : {
-        "angular_velocity_x" : "0.015707963267948967",
-        "angular_velocity_y" : "0.018479956785822312",
-        "angular_velocity_z" : "0.02026833970057931",
-        "enable_rotation" : "true",
-        "iterations" : "50",
-        "orient" : "false",
-        "particle" : "villager_happy",
-        "particles" : "20",
-        "period" : "2",
-        "radius" : "0.4",
-        "type" : "repeating",
-        "whole_circle" : "false",
-        "x_rotation" : "0",
-        "x_subtract" : "0",
-        "y_rotation" : "0",
-        "y_subtract" : "0",
-        "z_rotation" : "0",
-        "z_subtract" : "0"
+      "circle" : {
+        "category" : "",
+        "class_name" : "CircleEffect",
+        "description" : [ "A 2D circle" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Circle",
+        "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
+          "enable_rotation" : "true",
+          "iterations" : "50",
+          "orient" : "false",
+          "particle" : "villager_happy",
+          "particles" : "20",
+          "period" : "2",
+          "radius" : "0.4",
+          "type" : "repeating",
+          "whole_circle" : "false",
+          "x_rotation" : "0",
+          "x_subtract" : "0",
+          "y_rotation" : "0",
+          "y_subtract" : "0",
+          "z_rotation" : "0",
+          "z_subtract" : "0"
+        },
+        "short_class" : "Circle"
       },
-      "short_class" : "Circle"
-    },
-    "cloud" : {
-      "category" : "",
-      "class_name" : "CloudEffect",
-      "description" : [ "A puffy cloud" ],
-      "examples" : [ ],
-      "importance" : 30,
-      "name" : "Cloud",
-      "parameters" : {
-        "cloud_color" : null,
-        "cloud_particle" : "cloud",
-        "cloud_size" : "0.7",
-        "iterations" : "50",
-        "main_particle" : "drip_water",
-        "particle_radius" : "0.59999996",
-        "period" : "5",
-        "type" : "repeating",
-        "y_offset" : "0.8"
+      "cloud" : {
+        "category" : "",
+        "class_name" : "CloudEffect",
+        "description" : [ "A puffy cloud" ],
+        "examples" : [ ],
+        "importance" : 30,
+        "name" : "Cloud",
+        "parameters" : {
+          "cloud_color" : null,
+          "cloud_particle" : "cloud",
+          "cloud_size" : "0.7",
+          "iterations" : "50",
+          "main_particle" : "drip_water",
+          "particle_radius" : "0.59999996",
+          "period" : "5",
+          "type" : "repeating",
+          "y_offset" : "0.8"
+        },
+        "short_class" : "Cloud"
       },
-      "short_class" : "Cloud"
-    },
-    "colored_image" : {
-      "category" : "",
-      "class_name" : "ColoredImageEffect",
-      "description" : [ "Draw an image or animated gif using redstone or other colored particles" ],
-      "examples" : [ ],
-      "importance" : 80,
-      "name" : "Colored Image",
-      "parameters" : {
-        "angular_velocity_x" : "0.015707963267948967",
-        "angular_velocity_y" : "0.018479956785822312",
-        "angular_velocity_z" : "0.02026833970057931",
-        "enable_rotation" : "true",
-        "file_name" : null,
-        "frame_delay" : "5",
-        "iterations" : "200",
-        "orient" : "true",
-        "orient_pitch" : "false",
-        "particle" : "redstone",
-        "period" : "2",
-        "plane" : "xyz",
-        "rotation_vector" : null,
-        "size" : "0.025",
-        "step_x" : "10",
-        "step_y" : "10",
-        "transparency" : "false",
-        "type" : "repeating"
+      "colored_image" : {
+        "category" : "",
+        "class_name" : "ColoredImageEffect",
+        "description" : [ "Draw an image or animated gif using redstone or other colored particles" ],
+        "examples" : [ ],
+        "importance" : 80,
+        "name" : "Colored Image",
+        "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
+          "enable_rotation" : "true",
+          "file_name" : null,
+          "frame_delay" : "5",
+          "iterations" : "200",
+          "orient" : "true",
+          "orient_pitch" : "false",
+          "particle" : "redstone",
+          "period" : "2",
+          "plane" : "xyz",
+          "rotation_vector" : null,
+          "size" : "0.025",
+          "step_x" : "10",
+          "step_y" : "10",
+          "transparency" : "false",
+          "type" : "repeating"
+        },
+        "short_class" : "ColoredImage"
       },
-      "short_class" : "ColoredImage"
-    },
-    "cone" : {
-      "category" : "",
-      "class_name" : "ConeEffect",
-      "description" : [ "A swirly cone extending out from the source location" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Cone",
-      "parameters" : {
-        "angular_velocity" : "0.19634954084936207",
-        "iterations" : "200",
-        "length_grow" : "0.05",
-        "particle" : "flame",
-        "particles" : "10",
-        "particles_cone" : "180",
-        "radius_grow" : "0.006",
-        "randomize" : "false",
-        "rotation" : "0",
-        "type" : "repeating"
+      "cone" : {
+        "category" : "",
+        "class_name" : "ConeEffect",
+        "description" : [ "A swirly cone extending out from the source location" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Cone",
+        "parameters" : {
+          "angular_velocity" : "0.19634954084936207",
+          "iterations" : "200",
+          "length_grow" : "0.05",
+          "particle" : "flame",
+          "particles" : "10",
+          "particles_cone" : "180",
+          "radius_grow" : "0.006",
+          "randomize" : "false",
+          "rotation" : "0",
+          "type" : "repeating"
+        },
+        "short_class" : "Cone"
       },
-      "short_class" : "Cone"
-    },
-    "cube" : {
-      "category" : "",
-      "class_name" : "CubeEffect",
-      "description" : [ "A wireframe cube" ],
-      "examples" : [ ],
-      "importance" : 90,
-      "name" : "Cube",
-      "parameters" : {
-        "angular_velocity_x" : "0.015707963267948967",
-        "angular_velocity_y" : "0.018479956785822312",
-        "angular_velocity_z" : "0.02026833970057931",
-        "edge_length" : "3",
-        "enable_rotation" : "true",
-        "iterations" : "200",
-        "outline_only" : "true",
-        "particle" : "flame",
-        "particles" : "8",
-        "period" : "5",
-        "type" : "repeating"
+      "cube" : {
+        "category" : "",
+        "class_name" : "CubeEffect",
+        "description" : [ "A wireframe cube" ],
+        "examples" : [ ],
+        "importance" : 90,
+        "name" : "Cube",
+        "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
+          "edge_length" : "3",
+          "enable_rotation" : "true",
+          "iterations" : "200",
+          "outline_only" : "true",
+          "particle" : "flame",
+          "particles" : "8",
+          "period" : "5",
+          "type" : "repeating"
+        },
+        "short_class" : "Cube"
       },
-      "short_class" : "Cube"
-    },
-    "cuboid" : {
-      "category" : "",
-      "class_name" : "CuboidEffect",
-      "description" : [ "" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Cuboid",
-      "parameters" : {
-        "block_snap" : "false",
-        "iterations" : "200",
-        "padding" : "0.0",
-        "particle" : "flame",
-        "particles" : "8",
-        "period" : "5",
-        "type" : "repeating",
-        "x_length" : "0.0",
-        "y_length" : "0.0",
-        "z_length" : "0.0"
+      "cuboid" : {
+        "category" : "",
+        "class_name" : "CuboidEffect",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Cuboid",
+        "parameters" : {
+          "block_snap" : "false",
+          "iterations" : "200",
+          "padding" : "0.0",
+          "particle" : "flame",
+          "particles" : "8",
+          "period" : "5",
+          "type" : "repeating",
+          "x_length" : "0.0",
+          "y_length" : "0.0",
+          "z_length" : "0.0"
+        },
+        "short_class" : "Cuboid"
       },
-      "short_class" : "Cuboid"
-    },
-    "cylinder" : {
-      "category" : "",
-      "class_name" : "CylinderEffect",
-      "description" : [ "A cylinder that may be hollow or solid" ],
-      "examples" : [ ],
-      "importance" : 80,
-      "name" : "Cylinder",
-      "parameters" : {
-        "angular_velocity_x" : "0.015707963267948967",
-        "angular_velocity_y" : "0.018479956785822312",
-        "angular_velocity_z" : "0.02026833970057931",
-        "enable_rotation" : "true",
-        "height" : "3",
-        "iterations" : "200",
-        "orient" : "false",
-        "particle" : "flame",
-        "particles" : "100",
-        "period" : "2",
-        "radius" : "1",
-        "rotation_x" : "0",
-        "rotation_y" : "0",
-        "rotation_z" : "0",
-        "solid" : "false",
-        "type" : "repeating"
+      "cylinder" : {
+        "category" : "",
+        "class_name" : "CylinderEffect",
+        "description" : [ "A cylinder that may be hollow or solid" ],
+        "examples" : [ ],
+        "importance" : 80,
+        "name" : "Cylinder",
+        "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
+          "enable_rotation" : "true",
+          "height" : "3",
+          "iterations" : "200",
+          "orient" : "false",
+          "particle" : "flame",
+          "particles" : "100",
+          "period" : "2",
+          "radius" : "1",
+          "rotation_x" : "0",
+          "rotation_y" : "0",
+          "rotation_z" : "0",
+          "solid" : "false",
+          "type" : "repeating"
+        },
+        "short_class" : "Cylinder"
       },
-      "short_class" : "Cylinder"
-    },
-    "disco_ball" : {
-      "category" : "",
-      "class_name" : "DiscoBallEffect",
-      "description" : [ "A shiny disco ball in the sky" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Disco Ball",
-      "parameters" : {
-        "direction-disco_ball_effect_direction" : "down",
-        "iterations" : "500",
-        "line_color" : null,
-        "line_particle" : "redstone",
-        "line_particles" : "100",
-        "max" : "15",
-        "max_lines" : "7",
-        "period" : "7",
-        "sphere_color" : null,
-        "sphere_particle" : "flame",
-        "sphere_particles" : "50",
-        "sphere_radius" : "0.6",
-        "type" : "repeating"
+      "disco_ball" : {
+        "category" : "",
+        "class_name" : "DiscoBallEffect",
+        "description" : [ "A shiny disco ball in the sky" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Disco Ball",
+        "parameters" : {
+          "direction-disco_ball_effect_direction" : "down",
+          "iterations" : "500",
+          "line_color" : null,
+          "line_particle" : "redstone",
+          "line_particles" : "100",
+          "max" : "15",
+          "max_lines" : "7",
+          "period" : "7",
+          "sphere_color" : null,
+          "sphere_particle" : "flame",
+          "sphere_particles" : "50",
+          "sphere_radius" : "0.6",
+          "type" : "repeating"
+        },
+        "short_class" : "DiscoBall"
       },
-      "short_class" : "DiscoBall"
-    },
-    "dna" : {
-      "category" : "",
-      "class_name" : "DnaEffect",
-      "description" : [ "Extends a strand of DNA with helixes rotating around a base" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Dna",
-      "parameters" : {
-        "base_interval" : "10",
-        "color_base1" : null,
-        "color_base2" : null,
-        "color_helix" : null,
-        "grow" : "0.2",
-        "iterations" : "500",
-        "length" : "15",
-        "particle_base1" : "water_wake",
-        "particle_base2" : "redstone",
-        "particle_helix" : "flame",
-        "particles_base" : "15",
-        "particles_helix" : "3",
-        "radials" : "0.10471975511965977",
-        "radius" : "1.5",
-        "type" : "repeating"
+      "dna" : {
+        "category" : "",
+        "class_name" : "DnaEffect",
+        "description" : [ "Extends a strand of DNA with helixes rotating around a base" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Dna",
+        "parameters" : {
+          "base_interval" : "10",
+          "color_base1" : null,
+          "color_base2" : null,
+          "color_helix" : null,
+          "grow" : "0.2",
+          "iterations" : "500",
+          "length" : "15",
+          "particle_base1" : "water_wake",
+          "particle_base2" : "redstone",
+          "particle_helix" : "flame",
+          "particles_base" : "15",
+          "particles_helix" : "3",
+          "radials" : "0.10471975511965977",
+          "radius" : "1.5",
+          "type" : "repeating"
+        },
+        "short_class" : "Dna"
       },
-      "short_class" : "Dna"
-    },
-    "donut" : {
-      "category" : "",
-      "class_name" : "DonutEffect",
-      "description" : [ "A torus shape" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Donut",
-      "parameters" : {
-        "circles" : "36",
-        "iterations" : "20",
-        "particle" : "flame",
-        "particles_circle" : "10",
-        "period" : "10",
-        "radius_donut" : "2",
-        "radius_tube" : "0.5",
-        "type" : "repeating",
-        "x_rotation" : "0",
-        "y_rotation" : "0",
-        "z_rotation" : "0"
+      "donut" : {
+        "category" : "",
+        "class_name" : "DonutEffect",
+        "description" : [ "A torus shape" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Donut",
+        "parameters" : {
+          "circles" : "36",
+          "iterations" : "20",
+          "particle" : "flame",
+          "particles_circle" : "10",
+          "period" : "10",
+          "radius_donut" : "2",
+          "radius_tube" : "0.5",
+          "type" : "repeating",
+          "x_rotation" : "0",
+          "y_rotation" : "0",
+          "z_rotation" : "0"
+        },
+        "short_class" : "Donut"
       },
-      "short_class" : "Donut"
-    },
-    "dragon" : {
-      "category" : "",
-      "class_name" : "DragonEffect",
-      "description" : [ "Strands of fire that shoot out in arcs" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Dragon",
-      "parameters" : {
-        "arcs" : "20",
-        "iterations" : "200",
-        "length" : "4",
-        "particle" : "flame",
-        "particles" : "30",
-        "period" : "2",
-        "steps_per_iteration" : "2",
-        "type" : "repeating"
+      "dragon" : {
+        "category" : "",
+        "class_name" : "DragonEffect",
+        "description" : [ "Strands of fire that shoot out in arcs" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Dragon",
+        "parameters" : {
+          "arcs" : "20",
+          "iterations" : "200",
+          "length" : "4",
+          "particle" : "flame",
+          "particles" : "30",
+          "period" : "2",
+          "steps_per_iteration" : "2",
+          "type" : "repeating"
+        },
+        "short_class" : "Dragon"
       },
-      "short_class" : "Dragon"
-    },
-    "earth" : {
-      "category" : "",
-      "class_name" : "EarthEffect",
-      "description" : [ "A sphere that resembles the earth" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Earth",
-      "parameters" : {
-        "iterations" : "200",
-        "mountain_height" : "0.5",
-        "particle1" : "villager_happy",
-        "particle2" : "drip_water",
-        "particles" : "500",
-        "period" : "5",
-        "precision" : "100",
-        "radius" : "1",
-        "type" : "repeating"
+      "earth" : {
+        "category" : "",
+        "class_name" : "EarthEffect",
+        "description" : [ "A sphere that resembles the earth" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Earth",
+        "parameters" : {
+          "iterations" : "200",
+          "mountain_height" : "0.5",
+          "particle1" : "villager_happy",
+          "particle2" : "drip_water",
+          "particles" : "500",
+          "period" : "5",
+          "precision" : "100",
+          "radius" : "1",
+          "type" : "repeating"
+        },
+        "short_class" : "Earth"
       },
-      "short_class" : "Earth"
-    },
-    "equation" : {
-      "category" : "",
-      "class_name" : "EquationEffect",
-      "description" : [ "Uses equations to render a particle each tick.", "Is capable of parametric equations, rendering multiple particles per tick.", "Equations use a 't' variable by default to represent the current tick, this variable starts at zero and counts up." ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Equation",
-      "parameters" : {
-        "cycle_mini_step" : "true",
-        "iterations" : "100",
-        "max_steps" : "0",
-        "orient" : "true",
-        "orient_pitch" : "true",
-        "particle" : "redstone",
-        "particles" : "1",
-        "particles2" : "0",
-        "type" : "repeating",
-        "variable" : "t",
-        "variable2" : "t2",
-        "x2_equation" : null,
-        "x_equation" : "t",
-        "y2_equation" : null,
-        "y_equation" : "0",
-        "z2_equation" : null,
-        "z_equation" : "0"
+      "equation" : {
+        "category" : "",
+        "class_name" : "EquationEffect",
+        "description" : [ "Uses equations to render a particle each tick.", "Is capable of parametric equations, rendering multiple particles per tick.", "Equations use a 't' variable by default to represent the current tick, this variable starts at zero and counts up." ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Equation",
+        "parameters" : {
+          "cycle_mini_step" : "true",
+          "iterations" : "100",
+          "max_steps" : "0",
+          "orient" : "true",
+          "orient_pitch" : "true",
+          "particle" : "redstone",
+          "particles" : "1",
+          "particles2" : "0",
+          "type" : "repeating",
+          "variable" : "t",
+          "variable2" : "t2",
+          "x2_equation" : null,
+          "x_equation" : "t",
+          "y2_equation" : null,
+          "y_equation" : "0",
+          "z2_equation" : null,
+          "z_equation" : "0"
+        },
+        "short_class" : "Equation"
       },
-      "short_class" : "Equation"
-    },
-    "explode" : {
-      "category" : "",
-      "class_name" : "ExplodeEffect",
-      "description" : [ "A large explosion" ],
-      "examples" : [ ],
-      "importance" : 30,
-      "name" : "Explode",
-      "parameters" : {
-        "amount" : "25",
-        "particle1" : "explosion_normal",
-        "particle2" : "explosion_huge",
-        "sound" : "entity_generic_explode",
-        "speed" : "0.5"
+      "explode" : {
+        "category" : "",
+        "class_name" : "ExplodeEffect",
+        "description" : [ "A large explosion" ],
+        "examples" : [ ],
+        "importance" : 30,
+        "name" : "Explode",
+        "parameters" : {
+          "amount" : "25",
+          "particle1" : "explosion_normal",
+          "particle2" : "explosion_huge",
+          "sound" : "entity_generic_explode",
+          "speed" : "0.5"
+        },
+        "short_class" : "Explode"
       },
-      "short_class" : "Explode"
-    },
-    "flame" : {
-      "category" : "",
-      "class_name" : "FlameEffect",
-      "description" : [ "Make something look like it's on fire" ],
-      "examples" : [ ],
-      "importance" : 30,
-      "name" : "Flame",
-      "parameters" : {
-        "iterations" : "600",
-        "particle" : "flame",
-        "type" : "repeating"
+      "flame" : {
+        "category" : "",
+        "class_name" : "FlameEffect",
+        "description" : [ "Make something look like it's on fire" ],
+        "examples" : [ ],
+        "importance" : 30,
+        "name" : "Flame",
+        "parameters" : {
+          "iterations" : "600",
+          "particle" : "flame",
+          "type" : "repeating"
+        },
+        "short_class" : "Flame"
       },
-      "short_class" : "Flame"
-    },
-    "fountain" : {
-      "category" : "",
-      "class_name" : "FountainEffect",
-      "description" : [ "A fountain of particles shooting up in the sky" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Fountain",
-      "parameters" : {
-        "height" : "3",
-        "height_spout" : "7",
-        "iterations" : "100",
-        "particle" : "water_splash",
-        "particles_spout" : "200",
-        "particles_strand" : "150",
-        "period" : "2",
-        "radius" : "5",
-        "radius_spout" : "0.1",
-        "rotation" : "0.7853981633974483",
-        "strands" : "10",
-        "type" : "repeating"
+      "fountain" : {
+        "category" : "",
+        "class_name" : "FountainEffect",
+        "description" : [ "A fountain of particles shooting up in the sky" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Fountain",
+        "parameters" : {
+          "height" : "3",
+          "height_spout" : "7",
+          "iterations" : "100",
+          "particle" : "water_splash",
+          "particles_spout" : "200",
+          "particles_strand" : "150",
+          "period" : "2",
+          "radius" : "5",
+          "radius_spout" : "0.1",
+          "rotation" : "0.7853981633974483",
+          "strands" : "10",
+          "type" : "repeating"
+        },
+        "short_class" : "Fountain"
       },
-      "short_class" : "Fountain"
-    },
-    "grid" : {
-      "category" : "",
-      "class_name" : "GridEffect",
-      "description" : [ "Create a 2D wireframe grid" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Grid",
-      "parameters" : {
-        "center" : "false",
-        "columns" : "10",
-        "height_cell" : "1",
-        "iterations" : "50",
-        "particle" : "flame",
-        "particles_height" : "3",
-        "particles_width" : "4",
-        "period" : "5",
-        "rotation" : "0",
-        "rotation_x" : "0.0",
-        "rotation_z" : "0.0",
-        "rows" : "5",
-        "width_cell" : "1"
+      "grid" : {
+        "category" : "",
+        "class_name" : "GridEffect",
+        "description" : [ "Create a 2D wireframe grid" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Grid",
+        "parameters" : {
+          "center" : "false",
+          "columns" : "10",
+          "height_cell" : "1",
+          "iterations" : "50",
+          "particle" : "flame",
+          "particles_height" : "3",
+          "particles_width" : "4",
+          "period" : "5",
+          "rotation" : "0",
+          "rotation_x" : "0.0",
+          "rotation_z" : "0.0",
+          "rows" : "5",
+          "width_cell" : "1"
+        },
+        "short_class" : "Grid"
       },
-      "short_class" : "Grid"
-    },
-    "heart" : {
-      "category" : "",
-      "class_name" : "HeartEffect",
-      "description" : [ "Creates a 2D heart in 3D space" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Heart",
-      "parameters" : {
-        "compilaction" : "2",
-        "compress_y_factor_total" : "2",
-        "factor_inner_spike" : "0.8",
-        "particle" : "crit_magic",
-        "particles" : "50",
-        "x_factor" : "1",
-        "x_rotation" : "0",
-        "y_factor" : "1",
-        "y_rotation" : "0",
-        "z_rotation" : "0"
+      "heart" : {
+        "category" : "",
+        "class_name" : "HeartEffect",
+        "description" : [ "Creates a 2D heart in 3D space" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Heart",
+        "parameters" : {
+          "compilaction" : "2",
+          "compress_y_factor_total" : "2",
+          "factor_inner_spike" : "0.8",
+          "particle" : "crit_magic",
+          "particles" : "50",
+          "x_factor" : "1",
+          "x_rotation" : "0",
+          "y_factor" : "1",
+          "y_rotation" : "0",
+          "z_rotation" : "0"
+        },
+        "short_class" : "Heart"
       },
-      "short_class" : "Heart"
-    },
-    "helix" : {
-      "category" : "",
-      "class_name" : "HelixEffect",
-      "description" : [ "A flat spiralling helix" ],
-      "examples" : [ ],
-      "importance" : 90,
-      "name" : "Helix",
-      "parameters" : {
-        "curve" : "10",
-        "iterations" : "8",
-        "particle" : "flame",
-        "particles" : "80",
-        "period" : "10",
-        "radius" : "10",
-        "rotation" : "0.7853981633974483",
-        "strands" : "8",
-        "type" : "repeating"
+      "helix" : {
+        "category" : "",
+        "class_name" : "HelixEffect",
+        "description" : [ "A flat spiralling helix" ],
+        "examples" : [ ],
+        "importance" : 90,
+        "name" : "Helix",
+        "parameters" : {
+          "curve" : "10",
+          "iterations" : "8",
+          "particle" : "flame",
+          "particles" : "80",
+          "period" : "10",
+          "radius" : "10",
+          "rotation" : "0.7853981633974483",
+          "strands" : "8",
+          "type" : "repeating"
+        },
+        "short_class" : "Helix"
       },
-      "short_class" : "Helix"
-    },
-    "hill" : {
-      "category" : "",
-      "class_name" : "HillEffect",
-      "description" : [ "Waving hills" ],
-      "examples" : [ ],
-      "importance" : 20,
-      "name" : "Hill",
-      "parameters" : {
-        "edge_length" : "6.5",
-        "height" : "2.5",
-        "iterations" : "20",
-        "particle" : "flame",
-        "particles" : "30",
-        "period" : "10",
-        "type" : "repeating",
-        "y_rotation" : "0.4487989505128276"
+      "hill" : {
+        "category" : "",
+        "class_name" : "HillEffect",
+        "description" : [ "Waving hills" ],
+        "examples" : [ ],
+        "importance" : 20,
+        "name" : "Hill",
+        "parameters" : {
+          "edge_length" : "6.5",
+          "height" : "2.5",
+          "iterations" : "20",
+          "particle" : "flame",
+          "particles" : "30",
+          "period" : "10",
+          "type" : "repeating",
+          "y_rotation" : "0.4487989505128276"
+        },
+        "short_class" : "Hill"
       },
-      "short_class" : "Hill"
-    },
-    "icon" : {
-      "category" : "",
-      "class_name" : "IconEffect",
-      "description" : [ "A single particle appears above the target" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Icon",
-      "parameters" : {
-        "iterations" : "25",
-        "particle" : "villager_angry",
-        "period" : "4",
-        "type" : "repeating",
-        "y_offset" : "2"
+      "icon" : {
+        "category" : "",
+        "class_name" : "IconEffect",
+        "description" : [ "A single particle appears above the target" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Icon",
+        "parameters" : {
+          "iterations" : "25",
+          "particle" : "villager_angry",
+          "period" : "4",
+          "type" : "repeating",
+          "y_offset" : "2"
+        },
+        "short_class" : "Icon"
       },
-      "short_class" : "Icon"
-    },
-    "image" : {
-      "category" : "",
-      "class_name" : "ImageEffect",
-      "description" : [ "Render a monochrome image from an image file or animated gif.", "Black pixels will be skipped, all other pixels display as the selected particle type" ],
-      "examples" : [ ],
-      "importance" : 80,
-      "name" : "Image",
-      "parameters" : {
-        "angular_velocity_x" : "0.015707963267948967",
-        "angular_velocity_y" : "0.018479956785822312",
-        "angular_velocity_z" : "0.02026833970057931",
-        "enable_rotation" : "true",
-        "file_name" : null,
-        "frame_delay" : "5",
-        "invert" : "false",
-        "iterations" : "200",
-        "orient" : "true",
-        "orient_pitch" : "false",
-        "particle" : "redstone",
-        "period" : "2",
-        "plane" : "xyz",
-        "rotation_vector" : null,
-        "size" : "0.025",
-        "step_x" : "10",
-        "step_y" : "10",
-        "transparency" : "false",
-        "type" : "repeating"
+      "image" : {
+        "category" : "",
+        "class_name" : "ImageEffect",
+        "description" : [ "Render a monochrome image from an image file or animated gif.", "Black pixels will be skipped, all other pixels display as the selected particle type" ],
+        "examples" : [ ],
+        "importance" : 80,
+        "name" : "Image",
+        "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
+          "enable_rotation" : "true",
+          "file_name" : null,
+          "frame_delay" : "5",
+          "invert" : "false",
+          "iterations" : "200",
+          "orient" : "true",
+          "orient_pitch" : "false",
+          "particle" : "redstone",
+          "period" : "2",
+          "plane" : "xyz",
+          "rotation_vector" : null,
+          "size" : "0.025",
+          "step_x" : "10",
+          "step_y" : "10",
+          "transparency" : "false",
+          "type" : "repeating"
+        },
+        "short_class" : "Image"
       },
-      "short_class" : "Image"
-    },
-    "jump" : {
-      "category" : "",
-      "class_name" : "JumpEffect",
-      "description" : [ "Apply velocity to the target entity" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Jump",
-      "parameters" : {
-        "asynchronous" : "false",
-        "iterations" : "1",
-        "period" : "20",
-        "power" : "0.5"
+      "jump" : {
+        "category" : "",
+        "class_name" : "JumpEffect",
+        "description" : [ "Apply velocity to the target entity" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Jump",
+        "parameters" : {
+          "asynchronous" : "false",
+          "iterations" : "1",
+          "period" : "20",
+          "power" : "0.5"
+        },
+        "short_class" : "Jump"
       },
-      "short_class" : "Jump"
-    },
-    "line" : {
-      "category" : "",
-      "class_name" : "LineEffect",
-      "description" : [ "Extend a line from the source to the target" ],
-      "examples" : [ ],
-      "importance" : 80,
-      "name" : "Line",
-      "parameters" : {
-        "is_zig_zag" : "false",
-        "iterations" : "1",
-        "length" : "0",
-        "particle" : "flame",
-        "particles" : "100",
-        "type" : "repeating",
-        "zig_zag_offset" : "0.0,0.1,0",
-        "zig_zags" : "10"
+      "line" : {
+        "category" : "",
+        "class_name" : "LineEffect",
+        "description" : [ "Extend a line from the source to the target" ],
+        "examples" : [ ],
+        "importance" : 80,
+        "name" : "Line",
+        "parameters" : {
+          "is_zig_zag" : "false",
+          "iterations" : "1",
+          "length" : "0",
+          "particle" : "flame",
+          "particles" : "100",
+          "type" : "repeating",
+          "zig_zag_offset" : "0.0,0.1,0",
+          "zig_zags" : "10"
+        },
+        "short_class" : "Line"
       },
-      "short_class" : "Line"
-    },
-    "love" : {
-      "category" : "",
-      "class_name" : "LoveEffect",
-      "description" : [ "Make hearts bubble out of the target" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Love",
-      "parameters" : {
-        "iterations" : "600",
-        "particle" : "heart",
-        "period" : "2",
-        "type" : "repeating"
+      "love" : {
+        "category" : "",
+        "class_name" : "LoveEffect",
+        "description" : [ "Make hearts bubble out of the target" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Love",
+        "parameters" : {
+          "iterations" : "600",
+          "particle" : "heart",
+          "period" : "2",
+          "type" : "repeating"
+        },
+        "short_class" : "Love"
       },
-      "short_class" : "Love"
-    },
-    "modified" : {
-      "category" : "",
-      "class_name" : "ModifiedEffect",
-      "description" : [ "Modify any other effect using equations", "Equations can be applied to any parameter of the contained effect.", "Equations can also be used to move the entire effect around." ],
-      "examples" : [ "day" ],
-      "importance" : 100,
-      "name" : "Modified",
-      "parameters" : {
-        "effect_class" : null,
-        "effectlib_effect" : null,
-        "iterations" : "100",
-        "orient" : "true",
-        "orient_pitch" : "false",
-        "parameters" : "{}",
-        "type" : "repeating",
-        "variable_a" : "0.0",
-        "variable_b" : "0.0",
-        "x_equation" : null,
-        "y_equation" : null,
-        "z_equation" : null
+      "modified" : {
+        "category" : "",
+        "class_name" : "ModifiedEffect",
+        "description" : [ "Modify any other effect using equations", "Equations can be applied to any parameter of the contained effect.", "Equations can also be used to move the entire effect around." ],
+        "examples" : [ "day" ],
+        "importance" : 100,
+        "name" : "Modified",
+        "parameters" : {
+          "effect_class" : null,
+          "effectlib_effect" : null,
+          "iterations" : "100",
+          "orient" : "true",
+          "orient_pitch" : "false",
+          "parameters" : "{}",
+          "type" : "repeating",
+          "variable_a" : "0.0",
+          "variable_b" : "0.0",
+          "x_equation" : null,
+          "y_equation" : null,
+          "z_equation" : null
+        },
+        "short_class" : "Modified"
       },
-      "short_class" : "Modified"
-    },
-    "music" : {
-      "category" : "",
-      "class_name" : "MusicEffect",
-      "description" : [ "A ring of musical notes" ],
-      "examples" : [ ],
-      "importance" : 20,
-      "name" : "Music",
-      "parameters" : {
-        "iterations" : "400",
-        "particle" : "note",
-        "radials_per_step" : "0.39269908169872414",
-        "radius" : "0.4",
-        "type" : "repeating"
+      "music" : {
+        "category" : "",
+        "class_name" : "MusicEffect",
+        "description" : [ "A ring of musical notes" ],
+        "examples" : [ ],
+        "importance" : 20,
+        "name" : "Music",
+        "parameters" : {
+          "iterations" : "400",
+          "particle" : "note",
+          "radials_per_step" : "0.39269908169872414",
+          "radius" : "0.4",
+          "type" : "repeating"
+        },
+        "short_class" : "Music"
       },
-      "short_class" : "Music"
-    },
-    "particle" : {
-      "category" : "",
-      "class_name" : "ParticleEffect",
-      "description" : [ "" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Particle",
-      "parameters" : {
-        "iterations" : "1",
-        "particle" : "villager_angry",
-        "type" : "repeating"
+      "particle" : {
+        "category" : "",
+        "class_name" : "ParticleEffect",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Particle",
+        "parameters" : {
+          "iterations" : "1",
+          "particle" : "villager_angry",
+          "type" : "repeating"
+        },
+        "short_class" : "Particle"
       },
-      "short_class" : "Particle"
-    },
-    "plot" : {
-      "category" : "",
-      "class_name" : "PlotEffect",
-      "description" : [ "Create a simple graph of an equation using separate x and y equations.", "This is primarily intended for testing equations, and not really meant to be used for in-game effects" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Plot",
-      "parameters" : {
-        "iterations" : "100",
-        "particle" : "redstone",
-        "persistent" : "true",
-        "type" : "repeating",
-        "x_equation" : null,
-        "x_scale" : "1",
-        "y_equation" : null,
-        "y_scale" : "1",
-        "z_equation" : null,
-        "z_scale" : "1"
+      "plot" : {
+        "category" : "",
+        "class_name" : "PlotEffect",
+        "description" : [ "Create a simple graph of an equation using separate x and y equations.", "This is primarily intended for testing equations, and not really meant to be used for in-game effects" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Plot",
+        "parameters" : {
+          "iterations" : "100",
+          "particle" : "redstone",
+          "persistent" : "true",
+          "type" : "repeating",
+          "x_equation" : null,
+          "x_scale" : "1",
+          "y_equation" : null,
+          "y_scale" : "1",
+          "z_equation" : null,
+          "z_scale" : "1"
+        },
+        "short_class" : "Plot"
       },
-      "short_class" : "Plot"
-    },
-    "pyramid" : {
-      "category" : "",
-      "class_name" : "PyramidEffect",
-      "description" : [ "" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Pyramid",
-      "parameters" : {
-        "block_snap" : "false",
-        "iterations" : "200",
-        "particle" : "flame",
-        "particles" : "8",
-        "period" : "5",
-        "radius" : "0.0",
-        "type" : "repeating"
+      "pyramid" : {
+        "category" : "",
+        "class_name" : "PyramidEffect",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Pyramid",
+        "parameters" : {
+          "block_snap" : "false",
+          "iterations" : "200",
+          "particle" : "flame",
+          "particles" : "8",
+          "period" : "5",
+          "radius" : "0.0",
+          "type" : "repeating"
+        },
+        "short_class" : "Pyramid"
       },
-      "short_class" : "Pyramid"
-    },
-    "shield" : {
-      "category" : "",
-      "class_name" : "ShieldEffect",
-      "description" : [ "Creat a dome around the target" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Shield",
-      "parameters" : {
-        "iterations" : "500",
-        "particle" : "flame",
-        "particles" : "50",
-        "radius" : "3",
-        "sphere" : "false",
-        "type" : "repeating"
+      "shield" : {
+        "category" : "",
+        "class_name" : "ShieldEffect",
+        "description" : [ "Creat a dome around the target" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Shield",
+        "parameters" : {
+          "iterations" : "500",
+          "particle" : "flame",
+          "particles" : "50",
+          "radius" : "3",
+          "sphere" : "false",
+          "type" : "repeating"
+        },
+        "short_class" : "Shield"
       },
-      "short_class" : "Shield"
-    },
-    "sky_rocket" : {
-      "category" : "",
-      "class_name" : "SkyRocketEffect",
-      "description" : [ "Send the target entity flying into the sky" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Sky Rocket",
-      "parameters" : {
-        "asynchronous" : "false",
-        "iterations" : "1",
-        "period" : "20",
-        "power" : "10"
+      "sky_rocket" : {
+        "category" : "",
+        "class_name" : "SkyRocketEffect",
+        "description" : [ "Send the target entity flying into the sky" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Sky Rocket",
+        "parameters" : {
+          "asynchronous" : "false",
+          "iterations" : "1",
+          "period" : "20",
+          "power" : "10"
+        },
+        "short_class" : "SkyRocket"
       },
-      "short_class" : "SkyRocket"
-    },
-    "smoke" : {
-      "category" : "",
-      "class_name" : "SmokeEffect",
-      "description" : [ "Make it appear as though the target is smoldering" ],
-      "examples" : [ ],
-      "importance" : 50,
-      "name" : "Smoke",
-      "parameters" : {
-        "iterations" : "300",
-        "particle" : "smoke_normal",
-        "particles" : "20",
-        "type" : "repeating"
+      "smoke" : {
+        "category" : "",
+        "class_name" : "SmokeEffect",
+        "description" : [ "Make it appear as though the target is smoldering" ],
+        "examples" : [ ],
+        "importance" : 50,
+        "name" : "Smoke",
+        "parameters" : {
+          "iterations" : "300",
+          "particle" : "smoke_normal",
+          "particles" : "20",
+          "type" : "repeating"
+        },
+        "short_class" : "Smoke"
       },
-      "short_class" : "Smoke"
-    },
-    "sound" : {
-      "category" : "",
-      "class_name" : "SoundEffect",
-      "description" : [ "" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Sound",
-      "parameters" : {
-        "iterations" : "1",
-        "sound" : null,
-        "type" : "repeating"
+      "sound" : {
+        "category" : "",
+        "class_name" : "SoundEffect",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Sound",
+        "parameters" : {
+          "iterations" : "1",
+          "sound" : null,
+          "type" : "repeating"
+        },
+        "short_class" : "Sound"
       },
-      "short_class" : "Sound"
-    },
-    "sphere" : {
-      "category" : "",
-      "class_name" : "SphereEffect",
-      "description" : [ "Create a 3D sphere" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Sphere",
-      "parameters" : {
-        "iterations" : "500",
-        "particle" : "spell_mob",
-        "particles" : "50",
-        "radius" : "0.6",
-        "radius_increase" : "0",
-        "type" : "repeating",
-        "y_offset" : "0"
+      "sphere" : {
+        "category" : "",
+        "class_name" : "SphereEffect",
+        "description" : [ "Create a 3D sphere" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Sphere",
+        "parameters" : {
+          "iterations" : "500",
+          "particle" : "spell_mob",
+          "particles" : "50",
+          "radius" : "0.6",
+          "radius_increase" : "0",
+          "type" : "repeating",
+          "y_offset" : "0"
+        },
+        "short_class" : "Sphere"
       },
-      "short_class" : "Sphere"
-    },
-    "star" : {
-      "category" : "",
-      "class_name" : "StarEffect",
-      "description" : [ "Create a 2D star" ],
-      "examples" : [ ],
-      "importance" : 80,
-      "name" : "Star",
-      "parameters" : {
-        "inner_radius" : "0.5",
-        "iterations" : "50",
-        "particle" : "flame",
-        "particles" : "50",
-        "period" : "4",
-        "spike_height" : "3.5",
-        "spikes_half" : "3",
-        "type" : "repeating"
+      "star" : {
+        "category" : "",
+        "class_name" : "StarEffect",
+        "description" : [ "Create a 2D star" ],
+        "examples" : [ ],
+        "importance" : 80,
+        "name" : "Star",
+        "parameters" : {
+          "inner_radius" : "0.5",
+          "iterations" : "50",
+          "particle" : "flame",
+          "particles" : "50",
+          "period" : "4",
+          "spike_height" : "3.5",
+          "spikes_half" : "3",
+          "type" : "repeating"
+        },
+        "short_class" : "Star"
       },
-      "short_class" : "Star"
-    },
-    "text" : {
-      "category" : "",
-      "class_name" : "TextEffect",
-      "description" : [ "Render text in the air using particles" ],
-      "examples" : [ ],
-      "importance" : 90,
-      "name" : "Text",
-      "parameters" : {
-        "font" : "Tahoma 16",
-        "font_size" : "0.2",
-        "invert" : "false",
-        "iterations" : "20",
-        "particle" : "fireworks_spark",
-        "period" : "40",
-        "realtime" : "false",
-        "step_x" : "1",
-        "step_y" : "1",
-        "text" : "text",
-        "type" : "repeating"
+      "text" : {
+        "category" : "",
+        "class_name" : "TextEffect",
+        "description" : [ "Render text in the air using particles" ],
+        "examples" : [ ],
+        "importance" : 90,
+        "name" : "Text",
+        "parameters" : {
+          "font" : "Tahoma 16",
+          "font_size" : "0.2",
+          "invert" : "false",
+          "iterations" : "20",
+          "particle" : "fireworks_spark",
+          "period" : "40",
+          "realtime" : "false",
+          "step_x" : "1",
+          "step_y" : "1",
+          "text" : "text",
+          "type" : "repeating"
+        },
+        "short_class" : "Text"
       },
-      "short_class" : "Text"
-    },
-    "tornado" : {
-      "category" : "",
-      "class_name" : "TornadoEffect",
-      "description" : [ "A swirling tornado of particles" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Tornado",
-      "parameters" : {
-        "circle_height" : "0.0",
-        "circle_particles" : "64",
-        "cloud_color" : null,
-        "cloud_particle" : "cloud",
-        "cloud_particles" : "100",
-        "cloud_size" : "2.5",
-        "distance" : "0.375",
-        "iterations" : "20",
-        "max_tornado_radius" : "5",
-        "period" : "5",
-        "show_cloud" : "true",
-        "show_tornado" : "true",
-        "tornado_color" : null,
-        "tornado_height" : "5",
-        "tornado_particle" : "flame",
-        "type" : "repeating",
-        "y_offset" : "0.8"
+      "tornado" : {
+        "category" : "",
+        "class_name" : "TornadoEffect",
+        "description" : [ "A swirling tornado of particles" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Tornado",
+        "parameters" : {
+          "circle_height" : "0.0",
+          "circle_particles" : "64",
+          "cloud_color" : null,
+          "cloud_particle" : "cloud",
+          "cloud_particles" : "100",
+          "cloud_size" : "2.5",
+          "distance" : "0.375",
+          "iterations" : "20",
+          "max_tornado_radius" : "5",
+          "period" : "5",
+          "show_cloud" : "true",
+          "show_tornado" : "true",
+          "tornado_color" : null,
+          "tornado_height" : "5",
+          "tornado_particle" : "flame",
+          "type" : "repeating",
+          "y_offset" : "0.8"
+        },
+        "short_class" : "Tornado"
       },
-      "short_class" : "Tornado"
-    },
-    "trace" : {
-      "category" : "",
-      "class_name" : "TraceEffect",
-      "description" : [ "Trail particles behind the target entity" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Trace",
-      "parameters" : {
-        "iterations" : "600",
-        "max_way_points" : "30",
-        "particle" : "flame",
-        "refresh" : "5",
-        "type" : "repeating"
+      "trace" : {
+        "category" : "",
+        "class_name" : "TraceEffect",
+        "description" : [ "Trail particles behind the target entity" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Trace",
+        "parameters" : {
+          "iterations" : "600",
+          "max_way_points" : "30",
+          "particle" : "flame",
+          "refresh" : "5",
+          "type" : "repeating"
+        },
+        "short_class" : "Trace"
       },
-      "short_class" : "Trace"
-    },
-    "turn" : {
-      "category" : "",
-      "class_name" : "TurnEffect",
-      "description" : [ "Make the target entity change directions" ],
-      "examples" : [ ],
-      "importance" : 0,
-      "name" : "Turn",
-      "parameters" : {
-        "asynchronous" : "false",
-        "iterations" : "160",
-        "step" : "11.25",
-        "type" : "repeating"
+      "turn" : {
+        "category" : "",
+        "class_name" : "TurnEffect",
+        "description" : [ "Make the target entity change directions" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Turn",
+        "parameters" : {
+          "asynchronous" : "false",
+          "iterations" : "160",
+          "step" : "11.25",
+          "type" : "repeating"
+        },
+        "short_class" : "Turn"
       },
-      "short_class" : "Turn"
-    },
-    "vortex" : {
-      "category" : "",
-      "class_name" : "VortexEffect",
-      "description" : [ "Create a swirling vortex" ],
-      "examples" : [ ],
-      "importance" : 90,
-      "name" : "Vortex",
-      "parameters" : {
-        "circles" : "3",
-        "grow" : "0.05",
-        "helixes" : "4",
-        "iterations" : "200",
-        "particle" : "flame",
-        "radials" : "0.19634954084936207",
-        "radius" : "2",
-        "type" : "repeating"
+      "vortex" : {
+        "category" : "",
+        "class_name" : "VortexEffect",
+        "description" : [ "Create a swirling vortex" ],
+        "examples" : [ ],
+        "importance" : 90,
+        "name" : "Vortex",
+        "parameters" : {
+          "circles" : "3",
+          "grow" : "0.05",
+          "helixes" : "4",
+          "iterations" : "200",
+          "particle" : "flame",
+          "radials" : "0.19634954084936207",
+          "radius" : "2",
+          "type" : "repeating"
+        },
+        "short_class" : "Vortex"
       },
-      "short_class" : "Vortex"
-    },
-    "warp" : {
-      "category" : "",
-      "class_name" : "WarpEffect",
-      "description" : [ "Rings that descend around the target, as if they had stepped on a teleporter pad" ],
-      "examples" : [ ],
-      "importance" : 100,
-      "name" : "Warp",
-      "parameters" : {
-        "grow" : "0.2",
-        "iterations" : "12",
-        "particle" : "fireworks_spark",
-        "particles" : "20",
-        "period" : "2",
-        "radius" : "1",
-        "rings" : "12",
-        "type" : "repeating"
+      "warp" : {
+        "category" : "",
+        "class_name" : "WarpEffect",
+        "description" : [ "Rings that descend around the target, as if they had stepped on a teleporter pad" ],
+        "examples" : [ ],
+        "importance" : 100,
+        "name" : "Warp",
+        "parameters" : {
+          "grow" : "0.2",
+          "iterations" : "12",
+          "particle" : "fireworks_spark",
+          "particles" : "20",
+          "period" : "2",
+          "radius" : "1",
+          "rings" : "12",
+          "type" : "repeating"
+        },
+        "short_class" : "Warp"
       },
-      "short_class" : "Warp"
-    },
-    "wave" : {
-      "category" : "",
-      "class_name" : "WaveEffect",
-      "description" : [ "Create a wavy horizontal plane" ],
-      "examples" : [ ],
-      "importance" : 70,
-      "name" : "Wave",
-      "parameters" : {
-        "cloud_color" : null,
-        "cloud_particle" : "cloud",
-        "depth_front" : "1",
-        "height" : "2",
-        "height_back" : "0.5",
-        "iterations" : "50",
-        "length_back" : "3",
-        "length_front" : "1.5",
-        "particle" : "drip_water",
-        "particles_back" : "10",
-        "particles_front" : "10",
-        "period" : "5",
-        "rows" : "20",
-        "type" : "repeating",
-        "velocity-vector" : "0.0,0.0,0",
-        "width" : "5"
-      },
-      "short_class" : "Wave"
+      "wave" : {
+        "category" : "",
+        "class_name" : "WaveEffect",
+        "description" : [ "Create a wavy horizontal plane" ],
+        "examples" : [ ],
+        "importance" : 70,
+        "name" : "Wave",
+        "parameters" : {
+          "cloud_color" : null,
+          "cloud_particle" : "cloud",
+          "depth_front" : "1",
+          "height" : "2",
+          "height_back" : "0.5",
+          "iterations" : "50",
+          "length_back" : "3",
+          "length_front" : "1.5",
+          "particle" : "drip_water",
+          "particles_back" : "10",
+          "particles_front" : "10",
+          "period" : "5",
+          "rows" : "20",
+          "type" : "repeating",
+          "velocity-vector" : "0.0,0.0,0",
+          "width" : "5"
+        },
+        "short_class" : "Wave"
+      }
     }
-  }
   },
   "properties" : {
     "action_class" : {
