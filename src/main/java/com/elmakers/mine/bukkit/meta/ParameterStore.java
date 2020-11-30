@@ -68,7 +68,11 @@ public class ParameterStore {
     public void mergeType(String typeName, ParameterList parameters) {
         ParameterType parameterType = getParameterType(typeName, Map.class);
         Map<String, String> options = parameterType.getOptions();
-        options.putAll(parameters);
+        for (Map.Entry<String, String> entry : options.entrySet()) {
+            if (!options.containsKey(entry.getKey())) {
+                options.put(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     public Map<String, Parameter> getParameters() {
