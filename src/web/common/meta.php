@@ -144,6 +144,24 @@ function mapFields($meta, $type, $propertyHolder = null) {
 
 // Populate contextual lists of parameters
 if (isset($_REQUEST['context'])) {
+    $contextType = $_REQUEST['context'];
+    // remove the plural s, kinda hacky
+    $contextType = substr($contextType, 0, -1);
+    $baseProperties = array();
+    $baseParameters = array();
+    $propertiesKey = $contextType . '_properties';
+    if (isset($meta[$propertiesKey])) {
+        $baseProperties = mapFields($meta, $propertiesKey);
+    }
+    $parametersKey = $contextType . '_parameters';
+    if (isset($meta[$parametersKey])) {
+        $baseParameters = mapFields($meta, $parametersKey);
+    }
+
+    $meta['base_properties'] = $baseProperties;
+    $meta['base_parameters'] = $baseParameters;
+
+    // TODO: PURGE
     $meta['context'] = array(
         'spell_properties'  => mapFields($meta, 'spell_properties'),
         'spell_parameters'  => mapFields($meta, 'spell_parameters'),
