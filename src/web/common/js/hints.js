@@ -18,24 +18,22 @@ function Hints() {
 
     this.getContext = function(line, lineNumber) {
         let trimmed = line.trimStart();
-        let token = line.trim();
+        let kv = getKeyValue(line);
+        let token = kv[0];
+        let value = kv[1];
         let isListStart = trimmed.startsWith('-');
         let isKey = token.endsWith(':');
         let indent = line.length - trimmed.length;
-        if (isListStart) {
-            token = token.substring(2);
-        }
-        if (isKey) {
-            token = token.substr(0, token.length - 1);
-        }
         return {
             token: token,
+            value: value,
             line: line,
             lineNumber: lineNumber,
             trimmed: trimmed,
             isComment: trimmed.startsWith('#'),
             isEmpty: trimmed == '',
             isListStart: isListStart,
+            isListItem: isListStart,
             isKey: isKey,
             indent: indent,
             listIndent: isListStart ? indent - 2 : indent
@@ -54,6 +52,18 @@ function Hints() {
         while (previousLineNumber > 0) {
             let testLine = this.cm.getLine(--previousLineNumber);
             let context = this.getContext(testLine, previousLineNumber);
+            if (!context.isEmpty && !context.isComment) {
+                return context;
+            }
+        }
+        return null;
+    };
+
+    this.getNextLine = function(lineNumber) {
+        let nextLineNumber = lineNumber;
+        while (nextLineNumber < this.cm.lineCount() - 1) {
+            let testLine = this.cm.getLine(++nextLineNumber);
+            let context = this.getContext(testLine, nextLineNumber);
             if (!context.isEmpty && !context.isComment) {
                 return context;
             }
@@ -187,6 +197,14 @@ function Hints() {
             //}
         }
 
+        if (!this.context.isListItem) {
+            let siblings = this.getSiblings(this.context);
+            values = filterMap(values, siblings);
+            if (inherited != null) {
+                inherited = filterMap(inherited, siblings);
+            }
+        }
+
         // Filter and sort list, adding suggestions based on class type
         let result = this.getSorted(values, inherited, defaultValue, currentToken.word, suffix, this.metadata, classType, valueType);
 
@@ -313,6 +331,7 @@ function Hints() {
         }
         return startsWith;
     };
+
     this.renderHint = function(element, pos, hint) {
         let titleCell = $('<td>').text(hint.text);
         if (hint.inherited) {
@@ -359,4 +378,31 @@ function Hints() {
         };
         return hint;
     };
+
+    this.getSiblings = function(context) {
+        let siblings = {};
+        let currentLine = context.lineNumber;
+        while (true) {
+            let previous = this.getPreviousLine(currentLine);
+            if (previous == null) break;
+            if (previous.indent < context.indent) break;
+
+            if (previous.indent == context.indent) {
+                siblings[previous.token] = previous.value;
+            }
+            currentLine = previous.lineNumber;
+        }
+        currentLine = context.lineNumber;
+        while (true) {
+            let next = this.getNextLine(currentLine);
+            if (next == null) break;
+            if (next.indent < context.indent) break;
+
+            if (next.indent == context.indent) {
+                siblings[next.token] = next.value;
+            }
+            currentLine = next.lineNumber;
+        }
+        return siblings;
+    }
 }

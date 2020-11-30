@@ -70,3 +70,28 @@ function trimTags(description) {
 
     return description;
 }
+
+function filterMap(map, toRemove) {
+    let newMap = map;
+    for (let key in toRemove) {
+        if (toRemove.hasOwnProperty(key) && map.hasOwnProperty(key)) {
+            if (newMap == map) {
+                newMap = $.extend({}, map);
+            }
+            delete newMap[key];
+        }
+    }
+    return newMap;
+}
+
+function getKeyValue(line) {
+    line = line.replace('- ', '');
+    let kv = line.split(':');
+    kv[0] = kv[0].trim();
+    if (kv.length == 1) {
+        kv[1] = '';
+    } else {
+        kv[1] = kv[1].trim();
+    }
+    return kv;
+}
