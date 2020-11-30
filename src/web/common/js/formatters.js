@@ -83,15 +83,3 @@ function filterMap(map, toRemove) {
     }
     return newMap;
 }
-
-function getKeyValue(line) {
-    line = line.replace('- ', '');
-    let kv = line.split(':');
-    kv[0] = kv[0].trim();
-    if (kv.length == 1) {
-        kv[1] = '';
-    } else {
-        kv[1] = kv[1].trim();
-    }
-    return kv;
-}

@@ -22,8 +22,7 @@ function initialize() {
     // Register hints
     let hints = new Hints();
     hints.setNavigationPanel($('#navigation'));
-    CodeMirror.registerHelper('hint', 'yaml', hints.hintHelper.bind(hints));
-
+    hints.register();
 
     if ($("#newSelector").children().length == 0) {
         $("#newSelector").remove();

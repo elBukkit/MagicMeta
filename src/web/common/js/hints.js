@@ -12,13 +12,43 @@ function Hints() {
     this.metadata = null;
     this.navigationPanel = null;
 
-    this.hintHelper = function(cm, opts) {
+    this.register = function() {
+        CodeMirror.registerHelper('hint', 'yaml', this.generateHints.bind(this));
+        CodeMirror.commands.magicNewlineAndIndent = this.newlineAndIndent.bind(this);
+        CodeMirror.keyMap['basic']['Enter'] = 'magicNewlineAndIndent';
+    };
+
+    this.initialize = function(cm) {
         if (cm.metadata == null) {
+            alert("Sorry, failed to load metadata- the editor will not work!");
             return;
         }
         this.cm = cm;
         this.metadata = cm.metadata;
         this.cursor = cm.getCursor();
+    };
+
+    this.newlineAndIndent = function(cm) {
+        this.initialize(cm);
+        if (cm.getOption("disableInput")) return CodeMirror.Pass;
+        let context = this.getCurrentContext();
+        if (context.isSectionStart) {
+            let indent = context.indent;
+            let nextLine = this.getNextLine(context.lineNumber);
+            if (nextLine && nextLine.indent > indent) {
+                indent = nextLine.indent;
+            }
+            let replacement = " ".repeat(indent);
+            cm.replaceSelections(["\n" + replacement]);
+            cm.execCommand("autocomplete");
+            return;
+        }
+        cm.execCommand("newlineAndIndent");
+        return;
+    };
+
+    this.generateHints = function(cm) {
+        this.initialize(cm);
 
         // No hints for first line
         if (this.cursor.line == 0) return;
@@ -68,6 +98,7 @@ function Hints() {
         let valueType = null;
         let defaultValue = null;
         let inherited = null;
+        let prefix = '';
         let suffix = '';
 
         // Determine if we are populating keys or values
@@ -84,6 +115,18 @@ function Hints() {
             suffix = ': ';
             classType = 'properties';
             values = parent.properties;
+
+            // If we just started a new map, indent the suggestions
+            let previousLine = this.getPreviousLine(this.context.lineNumber);
+            if (parent.lineNumber == previousLine.lineNumber) {
+                let nextLine = this.getNextLine(this.context.lineNumber);
+                // Use indentation from next line if it is a child
+                if (nextLine.indent > parent.indent) {
+
+                } else {
+                    prefix = '  ';
+                }
+            }
         }
 
         if (!this.context.isListItem) {
@@ -95,7 +138,7 @@ function Hints() {
         }
 
         // Filter and sort list, adding suggestions based on class type
-        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, suffix, this.metadata, classType, valueType);
+        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, prefix, suffix, this.metadata, classType, valueType);
 
         // Generate suggestions
         let suggestion = false;
@@ -114,7 +157,7 @@ function Hints() {
         }
     };
 
-    this.getSorted = function(values, inheritedValues, defaultValue, word, suffix, metadata, classType, valueType) {
+    this.getSorted = function(values, inheritedValues, defaultValue, word, prefix, suffix, metadata, classType, valueType) {
         let includeContains = true;
         switch (valueType) {
             case 'milliseconds':
@@ -155,7 +198,7 @@ function Hints() {
             let match = kw + trimmedDescription;
             if (isDefault) foundDefault = true;
             if (match.indexOf(word) !== -1) {
-                let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, false, isDefault);
+                let hint = this.convertHint(prefix + kw + suffix, description, metadata, classType, valueType, false, isDefault);
                 if (match.startsWith(word)) {
                     startsWith.push(hint);
                 } else {
@@ -171,7 +214,7 @@ function Hints() {
                 let match = kw + trimmedDescription;
                 if (isDefault) foundDefault = true;
                 if (match.indexOf(word) !== -1) {
-                    let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, true, isDefault);
+                    let hint = this.convertHint(prefix + kw + suffix, description, metadata, classType, valueType, true, isDefault);
                     if (match.startsWith(word)) {
                         startsWith.push(hint);
                     } else {
@@ -183,9 +226,9 @@ function Hints() {
 
         if (defaultValue != null && !foundDefault && defaultValue.indexOf(word) !== -1) {
             if (defaultValue.startsWith(word)) {
-                startsWith.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
+                startsWith.push(convertHint(prefix + defaultValue + suffix, null, metadata, classType, valueType, false, true));
             } else {
-                contains.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
+                contains.push(convertHint(prefix + defaultValue + suffix, null, metadata, classType, valueType, false, true));
             }
         }
 
@@ -327,11 +370,21 @@ function Hints() {
 
     this.getContext = function(line, lineNumber) {
         let trimmed = line.trimStart();
-        let kv = getKeyValue(line);
-        let token = kv[0];
-        let value = kv[1];
+        let isKey = false;
+        let isSectionStart = false;
+        let token = line.trim();
+        let value = '';
+        token = token.replace('- ', '');
+        if (token.indexOf(':') >= 0) {
+            isKey = true;
+            isSectionStart = token.endsWith(':');
+            let keyValue = token.split(':');
+            token = keyValue[0];
+            if (keyValue.length > 1) {
+                value = keyValue[1];
+            }
+        }
         let isListStart = trimmed.startsWith('-');
-        let isKey = token.endsWith(':');
         let indent = line.length - trimmed.length;
         return {
             token: token,
@@ -344,6 +397,7 @@ function Hints() {
             isListStart: isListStart,
             isListItem: isListStart,
             isKey: isKey,
+            isSectionStart: isSectionStart,
             indent: indent,
             listIndent: isListStart ? indent - 2 : indent
         }
