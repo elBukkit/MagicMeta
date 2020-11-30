@@ -147,10 +147,10 @@ if (isset($_REQUEST['context'])) {
     $contextType = $_REQUEST['context'];
     // remove the plural s, kinda hacky
     $contextType = substr($contextType, 0, -1);
-    $baseProperties = array();
     $propertiesKey = $contextType . '_properties';
-    if (isset($meta[$propertiesKey])) {
-        $baseProperties = mapFields($meta, $propertiesKey);
+    if (isset($meta[$propertiesKey]) && isset($meta['types'][$propertiesKey])) {
+        $meta['types'][$propertiesKey]['options'] = $meta[$propertiesKey];
+        unset($meta[$propertiesKey]);
     }
     $parametersKey = $contextType . '_parameters';
     if (isset($meta[$parametersKey]) && isset($meta['types'][$parametersKey])) {
@@ -158,6 +158,7 @@ if (isset($_REQUEST['context'])) {
         unset($meta[$parametersKey]);
     }
 
+    /*
     $meta['base_properties'] = $baseProperties;
 
     // TODO: PURGE
@@ -190,6 +191,7 @@ if (isset($_REQUEST['context'])) {
         $effects[$effect['class_name']] = mapFields($meta, 'parameters', $effect);
     }
     $meta['context']['effects'] = $effects;
+    */
 }
 
 echo json_encode($meta);

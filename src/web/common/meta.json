@@ -17967,6 +17967,12 @@
       "name" : "Spell Parameters",
       "options" : { }
     },
+    "spell_properties" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of spell properties common to every spell" ],
+      "name" : "Spell Properties",
+      "options" : { }
+    },
     "spell_result" : {
       "class_name" : "com.elmakers.mine.bukkit.api.spell.SpellResult",
       "description" : [ "A result of a spell action or cast" ],

@@ -12,110 +12,6 @@ function Hints() {
     this.metadata = null;
     this.navigationPanel = null;
 
-    this.setNavigationPanel = function(panel) {
-        this.navigationPanel = panel;
-    };
-
-    this.getContext = function(line, lineNumber) {
-        let trimmed = line.trimStart();
-        let kv = getKeyValue(line);
-        let token = kv[0];
-        let value = kv[1];
-        let isListStart = trimmed.startsWith('-');
-        let isKey = token.endsWith(':');
-        let indent = line.length - trimmed.length;
-        return {
-            token: token,
-            value: value,
-            line: line,
-            lineNumber: lineNumber,
-            trimmed: trimmed,
-            isComment: trimmed.startsWith('#'),
-            isEmpty: trimmed == '',
-            isListStart: isListStart,
-            isListItem: isListStart,
-            isKey: isKey,
-            indent: indent,
-            listIndent: isListStart ? indent - 2 : indent
-        }
-    };
-
-    this.getCurrentContext = function() {
-        let currentLine = this.cm.getLine(this.cursor.line);
-        let context = this.getContext(currentLine, this.cursor.line);
-        context.indent = Math.min(context.indent, this.cursor.ch);
-        return context;
-    };
-
-    this.getPreviousLine = function(lineNumber) {
-        let previousLineNumber = lineNumber;
-        while (previousLineNumber > 0) {
-            let testLine = this.cm.getLine(--previousLineNumber);
-            let context = this.getContext(testLine, previousLineNumber);
-            if (!context.isEmpty && !context.isComment) {
-                return context;
-            }
-        }
-        return null;
-    };
-
-    this.getNextLine = function(lineNumber) {
-        let nextLineNumber = lineNumber;
-        while (nextLineNumber < this.cm.lineCount() - 1) {
-            let testLine = this.cm.getLine(++nextLineNumber);
-            let context = this.getContext(testLine, nextLineNumber);
-            if (!context.isEmpty && !context.isComment) {
-                return context;
-            }
-        }
-        return null;
-    };
-
-    this.getHierarchy = function() {
-        let hierarchy = [this.context];
-        let currentLine = this.context;
-        let previousLine = this.getPreviousLine(this.context.lineNumber);
-        while (previousLine != null) {
-            // Check indent
-            let isNewParent = false;
-            if (previousLine.indent < currentLine.indent) {
-                isNewParent = true;
-            } else if (previousLine.indent == currentLine.indent && currentLine.isListStart && !previousLine.isListStart) {
-                isNewParent = true;
-            } else if (!currentLine.isListStart && currentLine.listIndent == previousLine.listIndent && previousLine.isListStart) {
-                isNewParent = true;
-            }
-
-            if (isNewParent) {
-                hierarchy.unshift(previousLine);
-                currentLine = previousLine;
-            }
-
-            // Go to previous step
-            previousLine = this.getPreviousLine(previousLine.lineNumber);
-        }
-        return hierarchy;
-    };
-
-    this.getCurrentToken = function() {
-        let token = this.cm.getTokenAt(this.cursor);
-        let start = token.end;
-        let end = token.end;
-        let currentLine = this.context.line;
-
-        // walk `start` back until whitespace char or end of line
-        while (start && this.WORD.test(currentLine.charAt(start - 1))) --start;
-        // walk `end` forwards until non-word or end of line
-        while (end < currentLine.length && this.WORD.test(currentLine.charAt(end))) ++end;
-
-        return {
-            word: currentLine.slice(start, end),
-            token: token,
-            start: start,
-            end: end
-        };
-    };
-
     this.hintHelper = function(cm, opts) {
         if (cm.metadata == null) {
             return;
@@ -154,6 +50,14 @@ function Hints() {
             this.navigationPanel.html(path);
         }
 
+        if (hierarchy.length < 2) {
+            return;
+        }
+        let parent = hierarchy[hierarchy.length - 2];
+        if (!parent.hasOwnProperty('properties')) {
+            return;
+        }
+
         // Get the current parsed token
         let currentToken = this.getCurrentToken();
 
@@ -168,33 +72,18 @@ function Hints() {
 
         // Determine if we are populating keys or values
         if (this.LEAF_KV.test(this.context.trimmed)) {
-            // Look for values to populate
             let fieldName = hierarchy[hierarchy.length - 1].token;
-            if (hierarchy.length == 2) {
-                // Base spell property values
-                if (this.metadata.base_properties.hasOwnProperty(fieldName)) {
-                    let propertyKey = this.metadata.base_properties[fieldName];
-                    if (this.metadata.properties.hasOwnProperty(propertyKey)) {
-                        valueType = this.metadata.properties[propertyKey].type;
-                        values = this.metadata.types[valueType].options;
-                    }
+            if (parent.properties.hasOwnProperty(fieldName)) {
+                let propertyKey = parent.properties[fieldName];
+                if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                    valueType = this.metadata.properties[propertyKey].type;
+                    values = this.metadata.types[valueType].options;
                 }
             }
         } else {
             suffix = ': ';
             classType = 'properties';
-
-            // Look for new property keys or list items
-            if (hierarchy.length == 2) {
-                // Add base properties
-                values = this.metadata.base_properties;
-            }
-
-            //var siblings = getSiblings(pos, indent, cm);
-            //properties = filterMap(properties, siblings);
-            //if (inherited != null) {
-            //    inherited = filterMap(inherited, siblings);
-            //}
+            values = parent.properties;
         }
 
         if (!this.context.isListItem) {
@@ -404,5 +293,155 @@ function Hints() {
             currentLine = next.lineNumber;
         }
         return siblings;
-    }
+    };
+
+    this.getProperties = function(typeName) {
+        if (!this.metadata.hasOwnProperty('context')) {
+            this.metadata['context'] = {};
+        }
+        if (!this.metadata.context.hasOwnProperty(typeName)) {
+            let properties = this.metadata.properties;
+            let context = {};
+            if (this.metadata.types.hasOwnProperty(typeName)) {
+                let type = this.metadata.types[typeName];
+                for (let key in type.options) {
+                    if (type.options.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
+                        let property = properties[key];
+                        if (!property.hasOwnProperty('alias') && property.importance >= 0) {
+                            context[property['field']] = key;
+                        }
+                    }
+                }
+            }
+            this.metadata.context[typeName] = context;
+        }
+        return this.metadata.context[typeName];
+    };
+
+    this.getBaseProperties = function() {
+        let contextType = _fileType;
+        // Remove the "s", kind of hacky
+        contextType = contextType.substr(0, contextType.length - 1);
+        return this.getProperties(contextType + '_properties');
+   };
+
+    this.getContext = function(line, lineNumber) {
+        let trimmed = line.trimStart();
+        let kv = getKeyValue(line);
+        let token = kv[0];
+        let value = kv[1];
+        let isListStart = trimmed.startsWith('-');
+        let isKey = token.endsWith(':');
+        let indent = line.length - trimmed.length;
+        return {
+            token: token,
+            value: value,
+            line: line,
+            lineNumber: lineNumber,
+            trimmed: trimmed,
+            isComment: trimmed.startsWith('#'),
+            isEmpty: trimmed == '',
+            isListStart: isListStart,
+            isListItem: isListStart,
+            isKey: isKey,
+            indent: indent,
+            listIndent: isListStart ? indent - 2 : indent
+        }
+    };
+
+    this.getCurrentContext = function() {
+        let currentLine = this.cm.getLine(this.cursor.line);
+        let context = this.getContext(currentLine, this.cursor.line);
+        context.indent = Math.min(context.indent, this.cursor.ch);
+        return context;
+    };
+
+    this.getPreviousLine = function(lineNumber) {
+        let previousLineNumber = lineNumber;
+        while (previousLineNumber > 0) {
+            let testLine = this.cm.getLine(--previousLineNumber);
+            let context = this.getContext(testLine, previousLineNumber);
+            if (!context.isEmpty && !context.isComment) {
+                return context;
+            }
+        }
+        return null;
+    };
+
+    this.getNextLine = function(lineNumber) {
+        let nextLineNumber = lineNumber;
+        while (nextLineNumber < this.cm.lineCount() - 1) {
+            let testLine = this.cm.getLine(++nextLineNumber);
+            let context = this.getContext(testLine, nextLineNumber);
+            if (!context.isEmpty && !context.isComment) {
+                return context;
+            }
+        }
+        return null;
+    };
+
+    this.getHierarchy = function() {
+        let hierarchy = [this.context];
+        let currentLine = this.context;
+        let previousLine = this.getPreviousLine(this.context.lineNumber);
+        while (previousLine != null) {
+            // Check indent
+            let isNewParent = false;
+            if (previousLine.indent < currentLine.indent) {
+                isNewParent = true;
+            } else if (previousLine.indent == currentLine.indent && currentLine.isListStart && !previousLine.isListStart) {
+                isNewParent = true;
+            } else if (!currentLine.isListStart && currentLine.listIndent == previousLine.listIndent && previousLine.isListStart) {
+                isNewParent = true;
+            }
+
+            if (isNewParent) {
+                hierarchy.unshift(previousLine);
+                currentLine = previousLine;
+            }
+
+            // Go to previous step
+            previousLine = this.getPreviousLine(previousLine.lineNumber);
+        }
+
+        // Walk down the tree to figure out types of everything in the path
+        let parent = hierarchy[0];
+        parent.properties = this.getBaseProperties();
+        for (let i = 1; i < hierarchy.length; i++) {
+            let key = hierarchy[i].token;
+            if (parent.properties.hasOwnProperty(key)) {
+                let property = parent.properties[key];
+                if (this.metadata.properties.hasOwnProperty(property)) {
+                    hierarchy[i].properties = this.getProperties(this.metadata.properties[property].type);
+                }
+            } else {
+                break;
+            }
+        }
+
+        return hierarchy;
+    };
+
+    this.getCurrentToken = function() {
+        let token = this.cm.getTokenAt(this.cursor);
+        let start = token.end;
+        let end = token.end;
+        let currentLine = this.context.line;
+
+        // walk `start` back until whitespace char or end of line
+        while (start && this.WORD.test(currentLine.charAt(start - 1))) --start;
+        // walk `end` forwards until non-word or end of line
+        while (end < currentLine.length && this.WORD.test(currentLine.charAt(end))) ++end;
+
+        return {
+            word: currentLine.slice(start, end),
+            token: token,
+            start: start,
+            end: end
+        };
+    };
+
+    this.setNavigationPanel = function(panel) {
+        this.navigationPanel = panel;
+    };
 }
