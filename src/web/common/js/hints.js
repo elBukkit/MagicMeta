@@ -101,6 +101,14 @@ function Hints() {
         let prefix = '';
         let suffix = '';
 
+        // Don't suggest creating mis-aligned lists or maps
+        if (parent.isSectionStart && this.context.indent > parent.indent) {
+            let firstChild = this.getFirstChild(parent);
+            if (firstChild && firstChild.indent != this.context.indent) {
+                return;
+            }
+        }
+
         // Determine if we are populating keys or values
         if (this.LEAF_KV.test(this.context.trimmed)) {
             let fieldName = hierarchy[hierarchy.length - 1].token;
@@ -430,6 +438,17 @@ function Hints() {
             if (!context.isEmpty && !context.isComment) {
                 return context;
             }
+        }
+        return null;
+    };
+
+    this.getFirstChild = function(context) {
+        let lineNumber = context.lineNumber;
+        while (true) {
+            let next = this.getNextLine(lineNumber);
+            if (next == null) break;
+            if (next.indent > context.indent) return next;
+            lineNumber = next.lineNumber;
         }
         return null;
     };
