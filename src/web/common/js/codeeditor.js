@@ -10,6 +10,7 @@ function CodeEditor(container)
         gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
         extraKeys: {
             "Ctrl-S": function() { editor.save(); },
+            "Cmd-S": function() { editor.save(); },
             'Shift-Tab': 'indentLess',
             'Tab': 'indentMore',
             "Ctrl-Space": "autocomplete"
