@@ -74,7 +74,6 @@ function initialize() {
         type: "GET",
         url: "common/meta.php",
         data: {
-            context: _fileType,
             legacyIcons: _legacyIcons
         },
         dataType: 'json',
