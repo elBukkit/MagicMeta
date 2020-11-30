@@ -173,42 +173,52 @@ public class MetaData {
 
     public void addWandParameters(ParameterList parameters) {
         wandParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("wand_properties", modifierParameters);
     }
 
     public void addClassParameters(ParameterList parameters) {
         classParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("class_properties", modifierParameters);
     }
 
     public void addModifierParameters(ParameterList parameters) {
         modifierParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("modifier_properties", modifierParameters);
     }
 
     public void addEffectLibParameters(ParameterList parameters) {
         effectLibParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("effectlib_properties", effectLibParameters);
     }
 
     public void addEffectParameters(ParameterList parameters) {
         effectParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("effect_properties", effectParameters);
     }
 
     public void addMobParameters(ParameterList parameters) {
         mobParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("mob_properties", mobParameters);
     }
 
     public void addActionParameters(ParameterList parameters) {
         actionParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("action_parameters", actionParameters);
     }
 
     public void addCompoundActionParameters(ParameterList parameters) {
         compoundActionParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("compound_action_parameters", compoundActionParameters);
     }
 
     public void addSpellParameters(ParameterList parameters) {
         spellParameters.merge(parameters, parameterStore);
+        parameterStore.mergeType("spell_parameters", spellParameters);
     }
 
     public void addSpellProperties(ParameterList parameters) {
         spellProperties.merge(parameters, parameterStore);
+        parameterStore.mergeType("spell_properties", spellProperties);
     }
 
     public Parameter getParameter(String key, Class<?> defaultClass) {
