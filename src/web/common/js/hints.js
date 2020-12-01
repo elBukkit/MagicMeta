@@ -55,17 +55,22 @@ function Hints() {
         to.ch += text.length;
         this.initialize(cm);
         if (this.context != null) {
-            if (this.context.isList || this.context.isMap) {
-                let indent = this.context.indent + 2;
+            if (this.context.isList || this.context.isMap || this.context.isListStart || this.context.isListItem) {
+                let indent = this.context.indent;
+                let prefix = '';
+                if (!this.context.isListItem) {
+                    indent += 2;
+                    prefix = ':';
+                }
                 indent = " ".repeat(indent);
                 if (!this.context.isMap) {
                     indent = indent + '- ';
                 }
-                cm.replaceRange(':\n' + indent, from, to, "complete");
+                cm.replaceRange(prefix + '\n' + indent, from, to, "complete");
             } else if (this.context.value == '') {
                 cm.replaceRange(': ', from, to, "complete");
-
             }
+            cm.execCommand("autocomplete");
         }
     };
 
@@ -173,6 +178,18 @@ function Hints() {
                 // Style base properties as inherited
                 inherited = values;
                 values = parent.populatedProperties;
+            } else if (parent.isMap) {
+                let keyType = parent.type.key_type;
+                if (this.metadata.types.hasOwnProperty(keyType)) {
+                    keyType = this.metadata.types[keyType];
+                    values = keyType.options;
+                }
+            } else if (parent.isList) {
+                let valueType = parent.type.value_type;
+                if (this.metadata.types.hasOwnProperty(valueType)) {
+                    valueType = this.metadata.types[valueType];
+                    values = valueType.options;
+                }
             }
         }
 
@@ -528,9 +545,14 @@ function Hints() {
                 valueType = this.metadata.properties[propertyKey].type;
             }
         }
+        if (!valueType && parent.isMap) {
+            valueType = parent.type.value_type;
+        }
         if (valueType) {
             if (this.metadata.types.hasOwnProperty(valueType)) {
+                let key = valueType;
                 valueType = this.metadata.types[valueType];
+                valueType.key = key;
             } else {
                 valueType = null;
             }
