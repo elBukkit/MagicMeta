@@ -218,3 +218,9 @@ Editor.prototype.startTutorial = function() {
 Editor.prototype.undo = function() {
     this.getActiveEditor().undo();
 };
+
+Editor.prototype.setTheme = function(theme) {
+    if (this.codeEditor != null) {
+        this.codeEditor.editor.setOption("theme", theme);
+    }
+};

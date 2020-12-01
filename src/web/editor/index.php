@@ -37,6 +37,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/loading.css" />
     <link rel="stylesheet" href="common/css/user.css"/>
     <link rel="stylesheet" href="common/css/codemirror.css"/>
+    <link rel="stylesheet" href="common/css/darcula.css"/>
     <link rel="stylesheet" href="common/css/show-hint.css"/>
     <link rel="stylesheet" href="common/css/dialog.css"/>
     <link rel="stylesheet" href="common/css/lint.css"/>
@@ -45,8 +46,9 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="css/editor.css"/>
     <link rel="stylesheet" href="css/tutorial.css"/>
 
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="common/js/jquery.cookie.js"></script>
     <script src="common/js/codemirror.js"></script>
     <script src="common/js/show-hint.js"></script>
     <script src="common/js/js-yaml.min.js"></script>
@@ -81,7 +83,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
 </head>
 <body>
 <div id="container" style="display: none">
-    <div id="header">
+    <div id="header" class="themed">
         <span id="saveButtonContainer">
             <button type="button" id="saveButton" title="Save your spell and reload the sandbox server configs">Save</button>
         </span>
@@ -101,23 +103,26 @@ setcookie('tutorial', true, time()+60*60*24*30);
             <button type="button" id="referenceButton" title="Open the reference guide in a new window">Reference</button>
         </span>
         <span id="userInfoContainer">
-        <span id="userInfo">
-            <div id="skinContainer">
-                <span id="userSkin">&nbsp;</span>
-                <span id="userOverlay">&nbsp;</span>
-            </div>
-            <div>
-                <span id="userName"></span>
-            </div>
+            <span id="themeControls">
+                <span id="darkMode">Dark Mode</span>
+            </span>
+            <span id="userInfo">
+                <div id="skinContainer">
+                    <span id="userSkin">&nbsp;</span>
+                    <span id="userOverlay">&nbsp;</span>
+                </div>
+                <div>
+                    <span id="userName"></span>
+                </div>
+            </span>
         </span>
-    </span>
     </div>
 
     <div id="codeEditor">
         <textarea id="editor"></textarea>
     </div>
 
-    <div id="footer">
+    <div id="footer" class="themed">
         <span id="navigation"></span>
     </div>
 

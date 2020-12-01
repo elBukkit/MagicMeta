@@ -35,7 +35,6 @@ label {
 }
 
 #userInfo {
-    background: #DDDDDD;
     display: flex;
     flex-direction: row;
     padding-right: 1em;

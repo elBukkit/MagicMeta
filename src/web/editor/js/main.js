@@ -1,5 +1,6 @@
 $(document).ready(initialize);
 var editor = null;
+var preferences = {};
 
 function initialize() {
     $("#loadButton").button().click(function() { editor.load(); });
@@ -9,15 +10,15 @@ function initialize() {
     $('#referenceButton').button().click(function() { editor.openReference(); });
     $('#downloadButton').button().click(function() { editor.download(); });
     $('#helpButton').button().click(function() { editor.startTutorial(); });
-    $('#deleteButton').button().click(function() { editor.deleteSpell(); });
-    $('#forkButton').button().click(function() { editor.fork(); });
-    $('#modeSelector input[type=radio]').change(function() { editor.checkMode(); });
-    $("#loadSpellList").selectable({filter: 'tr'});
     $('.clipboard').click(function() { copyTextToClipboard($(this)); });
     $('.template').each(function() {
         var newOption = $('<option>').val($(this).prop('id').replace('template', '')).text($(this).data('label'));
         $('#newSelector').append(newOption);
     });
+    $('#darkMode').button({
+        text: false,
+        icon: "ui-icon-lightbulb"
+    }).click(toggleTheme);
 
     // Register hints
     let hints = new Hints();
@@ -69,6 +70,11 @@ function initialize() {
         editor.startNew("Basic");
     }
 
+    let preferencesData = $.cookie('preferences');
+    if (preferencesData) {
+        loadPreferences(preferencesData);
+    }
+
     $.ajax( {
         type: "GET",
         url: "common/meta.php",
@@ -106,4 +112,31 @@ function copyToClipboard(text) {
     $('#copyCode').val(text);
     $('#copyCode').select();
     document.execCommand("copy");
+}
+
+function toggleTheme() {
+    if (preferences.hasOwnProperty('theme') && preferences.theme == 'darcula') {
+        selectTheme('default');
+    } else {
+        selectTheme('darcula');
+    }
+}
+
+function selectTheme(theme) {
+    if (preferences.hasOwnProperty('theme') && preferences.theme != theme) {
+        $('.themed').removeClass(preferences.theme);
+    }
+    preferences.theme = theme;
+    $('.themed').addClass(preferences.theme);
+    editor.setTheme(theme);
+    savePreferences();
+}
+
+function savePreferences() {
+    $.cookie("preferences", JSON.stringify(preferences));
+}
+
+function loadPreferences(preferencesData) {
+    preferences = JSON.parse(preferencesData);
+    selectTheme(preferences.theme);
 }
