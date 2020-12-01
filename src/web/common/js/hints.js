@@ -54,8 +54,8 @@ function Hints() {
         from.ch += text.length;
         to.ch += text.length;
         this.initialize(cm);
-        if (this.context != null) {
-            if (this.context.isList || this.context.isMap || this.context.isListStart || this.context.isListItem) {
+        if (this.context != null && this.context.value == '') {
+            if (this.context.isList || this.context.isMap) {
                 let indent = this.context.indent;
                 let prefix = '';
                 if (!this.context.isListItem) {
@@ -67,7 +67,7 @@ function Hints() {
                     indent = indent + '- ';
                 }
                 cm.replaceRange(prefix + '\n' + indent, from, to, "complete");
-            } else if (this.context.value == '') {
+            } else if (this.context.value == '' && !this.context.isListItem) {
                 cm.replaceRange(': ', from, to, "complete");
             }
             cm.execCommand("autocomplete");
@@ -83,12 +83,16 @@ function Hints() {
             parent = hierarchy[hierarchy.length - 1];
         }
         let parentIsList = parent != null && parent.isList && parent.value == '';
-        if (this.context.isSectionStart || (parent != null && parent.isMap) || parentIsList) {
+        if (!parentIsList && !parent.isMap && parent.isListStart) {
+            parentIsList = true;
+        }
+        let parentIsMap = parent != null && parent.isMap;
+        if (this.context.isSectionStart || parentIsMap || parentIsList) {
             let indent = this.context.indent;
             let nextLine = this.getNextLine(this.context.lineNumber);
             if (nextLine && nextLine.indent > indent) {
                 indent = nextLine.indent;
-            } else {
+            } else if (!parent.isListStart) {
                 indent += 2;
             }
             let replacement = " ".repeat(indent);
@@ -168,6 +172,16 @@ function Hints() {
             valueType = this.getPropertyType(parent, fieldName);
             if (valueType) {
                 values = valueType.options;
+                // We assume most lists in magic can also be expressed as a single string
+                // We assume most lists in magic can also be expressed as a single string
+                if (this.context.isList) {
+                    let valueType = this.context.type.value_type;
+                    if (this.metadata.types.hasOwnProperty(valueType)) {
+                        valueType = this.metadata.types[valueType];
+                        values = $.extend({}, values);
+                        values = $.extend({}, valueType.options);
+                    }
+                }
             }
         } else {
             classType = 'properties';
@@ -544,6 +558,13 @@ function Hints() {
             }
         }
         if (!valueType && parent.isMap) {
+            if (fieldName == '') {
+                valueType = parent.type.key_type;
+            } else {
+                valueType = parent.type.value_type;
+            }
+        }
+        if (!valueType && parent.isList) {
             valueType = parent.type.value_type;
         }
         if (valueType) {
@@ -646,6 +667,8 @@ function Hints() {
                     current.isMap = true;
                 }
                 if (current.type.class_name == 'java.util.List') {
+                    current.isList = true;
+                } else if (current.type.hasOwnProperty("alternate_class_name") && current.type.alternate_class_name == 'java.util.List') {
                     current.isList = true;
                 }
             } else {
