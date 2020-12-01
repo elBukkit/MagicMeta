@@ -206,6 +206,9 @@ Editor.prototype.setMetadata = function(meta) {
             meta.types.path.options = _session.paths.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.spell.options = _session.spells.reduce((a,b)=> (a[b]=null,a),{});
         }
+        if (_session.hasOwnProperty('currencies')) {
+            meta.types.cost_type.options = $.extend(_session.currencies.reduce((a,b)=> (a[b]=null,a),{}), meta.types.cost_type.options);
+        }
     }
 
     this.metadata = meta;
