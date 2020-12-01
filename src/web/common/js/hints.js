@@ -9,6 +9,7 @@ function Hints() {
     this.cm = null;
     this.cursor = null;
     this.context = null;
+    this.hierarchy = null;
     this.metadata = null;
     this.navigationPanel = null;
 
@@ -26,17 +27,24 @@ function Hints() {
         this.cm = cm;
         this.metadata = cm.metadata;
         this.cursor = cm.getCursor();
+        this.hierarchy = this.getHierarchy();
     };
 
     this.newlineAndIndent = function(cm) {
         this.initialize(cm);
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
-        let context = this.getCurrentContext();
-        if (context.isSectionStart) {
-            let indent = context.indent;
-            let nextLine = this.getNextLine(context.lineNumber);
+        let hierarchy = this.hierarchy;
+        let parent = null;
+        if (hierarchy.length > 1) {
+            parent = hierarchy[hierarchy.length - 1];
+        }
+        if (this.context.isSectionStart || (parent != null && parent.isMap) || (parent != null && parent.isList)) {
+            let indent = this.context.indent;
+            let nextLine = this.getNextLine(this.context.lineNumber);
             if (nextLine && nextLine.indent > indent) {
                 indent = nextLine.indent;
+            } else {
+                indent += 2;
             }
             let replacement = " ".repeat(indent);
             cm.replaceSelections(["\n" + replacement]);
@@ -54,11 +62,10 @@ function Hints() {
         if (this.cursor.line == 0) return;
 
         // Or for comments
-        this.context = this.getCurrentContext();
         if (this.context.isComment) return;
 
         // Get hierarchy
-        let hierarchy = this.getHierarchy();
+        let hierarchy = this.hierarchy;
         if (this.navigationPanel) {
             let path = '';
             if (_fileType) {
@@ -98,17 +105,6 @@ function Hints() {
         let valueType = null;
         let defaultValue = null;
         let inherited = null;
-        let prefix = '';
-        let suffix = '';
-
-        // Check for some special cases that will include options based on other sections
-        let allSections = null;
-        let populateFrom = parent.type.populate_from;
-        if (parent.hasOwnProperty('type') && parent.type.hasOwnProperty('populate_from')) {
-            if (this.metadata.classed.hasOwnProperty(populateFrom)) {
-                allSections = this.getAllClasses(populateFrom);
-            }
-        }
 
         // Don't suggest creating mis-aligned lists or maps
         if (parent.isSectionStart && this.context.indent > parent.indent) {
@@ -121,47 +117,19 @@ function Hints() {
         // Determine if we are populating keys or values
         if (this.LEAF_KV.test(this.context.trimmed)) {
             let fieldName = hierarchy[hierarchy.length - 1].token;
-            if (parent.properties.hasOwnProperty(fieldName)) {
-                let propertyKey = parent.properties[fieldName];
-                if (this.metadata.properties.hasOwnProperty(propertyKey)) {
-                    valueType = this.metadata.properties[propertyKey].type;
-                    values = this.metadata.types[valueType].options;
-                }
-            }
-
-            // Add in parameter values from actions (or other things, maybe, in the future, but probably not)
-            if (valueType == null && allSections != null) {
-                for (let i = 0; i < allSections.length; i++) {
-                    let section = allSections[i];
-                    let classType = this.getMappedClass(populateFrom, section);
-                    if (classType != null && classType.properties.hasOwnProperty(fieldName)) {
-                        let propertyKey =  classType.properties[fieldName];
-                        if (this.metadata.properties.hasOwnProperty(propertyKey)) {
-                            valueType = this.metadata.properties[propertyKey].type;
-                            values = this.metadata.types[valueType].options;
-                            break;
-                        }
-                    }
-                }
+            valueType = this.getPropertyType(parent, fieldName);
+            if (valueType &&  this.metadata.types.hasOwnProperty(valueType)) {
+                values = this.metadata.types[valueType].options;
             }
         } else {
-            suffix = ': ';
             classType = 'properties';
             values = parent.properties;
 
             // Add in parameters from actions (or other things, maybe, in the future, but probably not)
-            if (allSections != null) {
+            if (parent.hasOwnProperty('populatedProperties')) {
                 // Style base properties as inherited
                 inherited = values;
-                // Don't modify the metadata!
-                values = {};
-                for (let i = 0; i < allSections.length; i++) {
-                    let section = allSections[i];
-                    let classType = this.getMappedClass(populateFrom, section);
-                    if (classType != null) {
-                        values = $.extend(values, classType.properties);
-                    }
-                }
+                values = parent.populatedProperties;
             }
         }
 
@@ -175,7 +143,7 @@ function Hints() {
         }
 
         // Filter and sort list, adding suggestions based on class type
-        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, prefix, suffix, this.metadata, classType, valueType);
+        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, this.metadata, classType, valueType);
 
         // Generate suggestions
         let suggestion = false;
@@ -252,8 +220,9 @@ function Hints() {
         return null;
     };
 
-    this.getSorted = function(values, inheritedValues, defaultValue, word, prefix, suffix, metadata, classType, valueType) {
+    this.getSorted = function(values, inheritedValues, defaultValue, word, metadata, classType, valueType) {
         let includeContains = true;
+        let suffix = '';
         switch (valueType) {
             case 'milliseconds':
             case 'percentage':
@@ -293,7 +262,7 @@ function Hints() {
             let match = kw + trimmedDescription;
             if (isDefault) foundDefault = true;
             if (match.indexOf(word) !== -1) {
-                let hint = this.convertHint(prefix + kw + suffix, description, metadata, classType, valueType, false, isDefault);
+                let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, false, isDefault);
                 if (match.startsWith(word)) {
                     startsWith.push(hint);
                 } else {
@@ -309,7 +278,7 @@ function Hints() {
                 let match = kw + trimmedDescription;
                 if (isDefault) foundDefault = true;
                 if (match.indexOf(word) !== -1) {
-                    let hint = this.convertHint(prefix + kw + suffix, description, metadata, classType, valueType, true, isDefault);
+                    let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, true, isDefault);
                     if (match.startsWith(word)) {
                         startsWith.push(hint);
                     } else {
@@ -321,9 +290,9 @@ function Hints() {
 
         if (defaultValue != null && !foundDefault && defaultValue.indexOf(word) !== -1) {
             if (defaultValue.startsWith(word)) {
-                startsWith.push(convertHint(prefix + defaultValue + suffix, null, metadata, classType, valueType, false, true));
+                startsWith.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
             } else {
-                contains.push(convertHint(prefix + defaultValue + suffix, null, metadata, classType, valueType, false, true));
+                contains.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
             }
         }
 
@@ -498,6 +467,25 @@ function Hints() {
         }
     };
 
+    this.getPropertyType = function(parent, fieldName) {
+        let valueType = null;
+        if (parent.properties.hasOwnProperty(fieldName)) {
+            let propertyKey = parent.properties[fieldName];
+            if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                valueType = this.metadata.properties[propertyKey].type;
+            }
+        }
+
+        // Add in parameter values from actions (or other things, maybe, in the future, but probably not)
+        if (!valueType && parent.hasOwnProperty('populatedProperties') && parent.populatedProperties.hasOwnProperty(fieldName)) {
+            let propertyKey = parent.populatedProperties[fieldName];
+            if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                valueType = this.metadata.properties[propertyKey].type;
+            }
+        }
+        return valueType;
+    };
+
     this.getCurrentContext = function() {
         let currentLine = this.cm.getLine(this.cursor.line);
         let context = this.getContext(currentLine, this.cursor.line);
@@ -541,6 +529,7 @@ function Hints() {
     };
 
     this.getHierarchy = function() {
+        this.context = this.getCurrentContext();
         let hierarchy = [this.context];
         let currentLine = this.context;
         let previousLine = this.getPreviousLine(this.context.lineNumber);
@@ -568,17 +557,45 @@ function Hints() {
         let parent = hierarchy[0];
         parent.type = this.getBasePropertyKey();
         parent.properties = this.getProperties(parent.type);
+        if (this.metadata['types'].hasOwnProperty(parent.type)) {
+            parent.type = this.metadata['types'][parent.type];
+        }
         for (let i = 1; i < hierarchy.length; i++) {
-            let key = hierarchy[i].token;
-            if (parent.properties.hasOwnProperty(key)) {
-                let property = parent.properties[key];
-                if (this.metadata.properties.hasOwnProperty(property)) {
-                    let typeKey = this.metadata.properties[property].type;
-                    hierarchy[i].type = this.metadata['types'][typeKey];
-                    hierarchy[i].properties = this.getProperties(typeKey);
+            parent = hierarchy[i - 1];
+            let current = hierarchy[i];
+            let key = current.token;
+
+            // Find type from parent property map
+            let propertyType = this.getPropertyType(parent, key);
+            if (propertyType && this.metadata.types.hasOwnProperty(propertyType)) {
+                current.type = this.metadata['types'][propertyType];
+                current.properties = this.getProperties(propertyType);
+                if (current.type.class_name == 'java.util.Map') {
+                    current.isMap = true;
+                }
+                if (current.type.class_name == 'java.util.List') {
+                    current.isList = true;
                 }
             } else {
                 break;
+            }
+
+            // See if this inherits properties from a classed set of objects elsewhere in the config
+            // The only current use-case for this is spell parameters and the action lists
+            if (current.hasOwnProperty('type') && current.type.hasOwnProperty('populate_from')) {
+                let populateFrom = current.type.populate_from;
+                if (this.metadata.classed.hasOwnProperty(populateFrom)) {
+                    let allSections = this.getAllClasses(populateFrom);
+                    let populatedProperties = {};
+                    for (let i = 0; i < allSections.length; i++) {
+                        let section = allSections[i];
+                        let classType = this.getMappedClass(populateFrom, section);
+                        if (classType != null) {
+                            populatedProperties = $.extend(populatedProperties, classType.properties);
+                        }
+                    }
+                    current.populatedProperties = populatedProperties;
+                }
             }
         }
 
