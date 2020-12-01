@@ -53,7 +53,7 @@
       "name" : "Wand"
     }
   },
-  "classed": {
+  "classed" : {
     "action" : {
       "absorb" : {
         "category" : "construction",
@@ -17816,7 +17816,6 @@
       "class_name" : "java.util.Map",
       "description" : [ "A map of spell parameters", "These can include base spell parameters or any parameters used by this spell's actions" ],
       "name" : "Spell Parameters",
-      "populate_from" : "actions",
       "options" : {
         "allow_max_range" : "false",
         "aura" : "false",
@@ -17941,7 +17940,8 @@
         "unsafe" : null,
         "vertical_range" : "8",
         "warmup" : "0"
-      }
+      },
+      "populate_from" : "actions"
     },
     "spell_properties" : {
       "class_name" : "java.util.Map",

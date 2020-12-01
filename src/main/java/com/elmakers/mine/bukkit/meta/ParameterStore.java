@@ -66,11 +66,28 @@ public class ParameterStore {
     }
 
     public void mergeType(String typeName, ParameterList parameters) {
+        Map<String, Parameter> fields = new HashMap<>();
+        for (String key : parameters.keySet()) {
+            Parameter parameter = getParameter(key);
+            if (parameter == null) {
+                System.out.println("Missing parameter: " + key);
+                continue;
+            }
+            fields.put(parameter.getField(), parameter);
+        }
+
         ParameterType parameterType = getParameterType(typeName, Map.class);
         Map<String, String> options = parameterType.getOptions();
         for (Map.Entry<String, String> entry : parameters.entrySet()) {
-            if (!options.containsKey(entry.getKey())) {
-                options.put(entry.getKey(), entry.getValue());
+            String key = entry.getKey();
+            Parameter parameter = getParameter(key);
+            if (parameter == null) {
+                System.out.println("Missing parameter: " + key);
+                continue;
+            }
+            Parameter existing = fields.get(parameter.getField());
+            if (existing == null) {
+                options.put(key, entry.getValue());
             }
         }
     }
