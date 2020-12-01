@@ -8,9 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MetaData {
     private Map<String, Category> categories = new HashMap<>();
-    private Map<String, SpellActionDescription> actions = new HashMap<>();
-    private Map<String, EffectDescription> effects = new HashMap<>();
     private ParameterStore parameterStore = new ParameterStore();
+    private ClassStore classStore = new ClassStore();
 
     @JsonProperty("categories")
     public Map<String, Category> getCategories() {
@@ -30,22 +29,13 @@ public class MetaData {
         this.parameterStore.setParameters(allParameters);
     }
 
-    @JsonProperty("action_classes")
-    public Map<String, SpellActionDescription> getActions() {
-        return actions;
+    @JsonProperty("classed")
+    public ClassStore getClasses() {
+        return classStore;
     }
 
-    public void setActions(Map<String, SpellActionDescription> actions) {
-        this.actions = actions;
-    }
-
-    @JsonProperty("effectlib_classes")
-    public Map<String, EffectDescription> getEffects() {
-        return effects;
-    }
-
-    public void setEffects(Map<String, EffectDescription> effects) {
-        this.effects = effects;
+    public void setClasses(ClassStore classStore) {
+        this.classStore = classStore;
     }
 
     @JsonProperty("types")
@@ -116,22 +106,11 @@ public class MetaData {
     }
 
     public void addEffect(String key, EffectDescription effect) {
-        EffectDescription existing = effects.get(key);
-        if (existing != null) {
-            existing.merge(effect, parameterStore);
-        } else {
-            effects.put(key, effect);
-        }
+        classStore.addEffect(key, effect, parameterStore);
     }
 
     public void addAction(String key, SpellActionDescription action) {
-        // Merge with existing actions
-        SpellActionDescription existing = actions.get(key);
-        if (existing != null) {
-            existing.merge(action, parameterStore);
-        } else {
-            actions.put(key, action);
-        }
+        classStore.addAction(key, action, parameterStore);
     }
 
     public void update() {
@@ -140,13 +119,8 @@ public class MetaData {
 
     public void loaded() {
         parameterStore.loaded();
+        classStore.loaded();
         for (Map.Entry<String, Category> entry : categories.entrySet()) {
-            entry.getValue().setKey(entry.getKey());
-        }
-        for (Map.Entry<String, SpellActionDescription> entry : actions.entrySet()) {
-            entry.getValue().setKey(entry.getKey());
-        }
-        for (Map.Entry<String, EffectDescription> entry : effects.entrySet()) {
             entry.getValue().setKey(entry.getKey());
         }
     }
