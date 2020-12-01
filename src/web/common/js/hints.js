@@ -51,17 +51,20 @@ function Hints() {
         let from = completion.from || data.from;
         let to = completion.to || data.to;
         cm.replaceRange(text, from, to, "complete");
+        from.ch += text.length;
+        to.ch += text.length;
         this.initialize(cm);
         if (this.context != null) {
             if (this.context.isList || this.context.isMap) {
-                from.ch += text.length;
-                to.ch += text.length;
                 let indent = this.context.indent + 2;
                 indent = " ".repeat(indent);
                 if (!this.context.isMap) {
                     indent = indent + '- ';
                 }
                 cm.replaceRange(':\n' + indent, from, to, "complete");
+            } else if (this.context.value == '') {
+                cm.replaceRange(': ', from, to, "complete");
+
             }
         }
     };
@@ -74,7 +77,8 @@ function Hints() {
         if (hierarchy.length > 1) {
             parent = hierarchy[hierarchy.length - 1];
         }
-        if (this.context.isSectionStart || (parent != null && parent.isMap) || (parent != null && parent.isList)) {
+        let parentIsList = parent != null && parent.isList && parent.value == '';
+        if (this.context.isSectionStart || (parent != null && parent.isMap) || parentIsList) {
             let indent = this.context.indent;
             let nextLine = this.getNextLine(this.context.lineNumber);
             if (nextLine && nextLine.indent > indent) {
@@ -83,6 +87,9 @@ function Hints() {
                 indent += 2;
             }
             let replacement = " ".repeat(indent);
+            if (parentIsList) {
+                replacement += "- ";
+            }
             cm.replaceSelections(["\n" + replacement]);
             cm.execCommand("autocomplete");
             return;
@@ -483,7 +490,7 @@ function Hints() {
             let keyValue = token.split(':');
             token = keyValue[0];
             if (keyValue.length > 1) {
-                value = keyValue[1];
+                value = keyValue[1].trim();
             }
         }
         let isListStart = trimmed.startsWith('-');
