@@ -14,7 +14,8 @@ function Hints() {
     this.metadata = null;
     this.navigationPanel = null;
 
-    this.register = function(cm) {
+    this.register = function(editor) {
+        let cm = editor.getCodeMirror();
         CodeMirror.registerHelper('hint', 'yaml', this.generateHints.bind(this));
         CodeMirror.commands.magicNewlineAndIndent = this.newlineAndIndent.bind(this);
         CodeMirror.keyMap['basic']['Enter'] = 'magicNewlineAndIndent';

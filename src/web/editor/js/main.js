@@ -39,8 +39,8 @@ function initialize() {
     $('.controlgroup').controlgroup();
 
     $('#container').show();
-    editor = new Editor();
-    hints.register(editor.getCodeEditor().editor);
+    editor = new Editor($('#editor'));
+    hints.register(editor);
 
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null && _session.contents != '') {

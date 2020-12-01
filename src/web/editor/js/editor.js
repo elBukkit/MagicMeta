@@ -1,18 +1,34 @@
-function Editor()
+function Editor(container)
 {
     this.tutorial = new Tutorial($('#tutorialMask'));
     this.saving = false;
+    this.editor = CodeMirror.fromTextArea(container.get(0), {
+        mode: 'yaml',
+        styleActiveLine: true,
+        lineNumbers: true,
+        showTrailingSpace: true,
+        foldGutter: true,
+        lint: true,
+        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        extraKeys: {
+            "Ctrl-S": function() { editor.save(); },
+            "Cmd-S": function() { editor.save(); },
+            'Shift-Tab': 'indentLess',
+            'Tab': 'indentMore',
+            "Ctrl-Space": "autocomplete"
+        }
+    });
     this.metadata = null;
-    this.codeEditor = null;
+    this.editor.metadata = null;
 };
 
 Editor.prototype.getSpellConfig = function() {
-    return this.getActiveEditor().getValue();
+    return this.editor.getValue();
 };
 
 Editor.prototype.setSpellConfig = function(spellConfig) {
     spellConfig = !spellConfig ? '' : spellConfig;
-    this.getActiveEditor().setValue(spellConfig);
+    this.editor.setValue(spellConfig);
 };
 
 Editor.prototype.simpleParse = function(spellConfig) {
@@ -51,7 +67,7 @@ Editor.prototype.save = function() {
         return;
     }
 
-    if (!this.getActiveEditor().isValid()) {
+    if (!this.editor.isValid()) {
         alert("You have errors in your code, please fix them before saving!");
         return;
     }
@@ -150,21 +166,6 @@ Editor.prototype.startNew = function(template) {
     this.setSpellConfig(contents);
 };
 
-Editor.prototype.getActiveEditor = function() {
-    return this.getCodeEditor();
-};
-
-Editor.prototype.getCodeEditor = function() {
-    if (this.codeEditor == null) {
-        this.codeEditor = new CodeEditor($('#editor'));
-        if (this.metadata != null) {
-            this.codeEditor.setMetadata(this.metadata);
-        }
-    }
-
-    return this.codeEditor;
-};
-
 Editor.prototype.openReference = function() {
     window.open(referenceURL, '_blank');
 };
@@ -203,12 +204,7 @@ Editor.prototype.setMetadata = function(meta) {
     }
 
     this.metadata = meta;
-    if (this.codeEditor != null) {
-        this.codeEditor.setMetadata(meta);
-    }
-    if (this.guiEditor != null) {
-        this.guiEditor.setMetadata(meta);
-    }
+    this.editor.metadata = meta;
 };
 
 Editor.prototype.startTutorial = function() {
@@ -216,11 +212,13 @@ Editor.prototype.startTutorial = function() {
 };
 
 Editor.prototype.undo = function() {
-    this.getActiveEditor().undo();
+    this.editor.undo();
 };
 
 Editor.prototype.setTheme = function(theme) {
-    if (this.codeEditor != null) {
-        this.codeEditor.editor.setOption("theme", theme);
-    }
+    this.editor.setOption("theme", theme);
 };
+
+Editor.prototype.getCodeMirror = function() {
+    return this.editor;
+}
