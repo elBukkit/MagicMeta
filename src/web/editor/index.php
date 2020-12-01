@@ -1,6 +1,7 @@
 <?php
 require_once('../config.inc.php');
 if (!$sandboxServer) die('No sandbox server defined');
+$version = 3;
 
 $session = null;
 $sessionId = null;
@@ -33,9 +34,6 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <title><?= $title ?> Editor</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/>
-    <link rel="stylesheet" href="common/css/common.css" />
-    <link rel="stylesheet" href="common/css/loading.css" />
-    <link rel="stylesheet" href="common/css/user.css"/>
     <link rel="stylesheet" href="common/css/codemirror.css"/>
     <link rel="stylesheet" href="common/css/darcula.css"/>
     <link rel="stylesheet" href="common/css/show-hint.css"/>
@@ -43,8 +41,12 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/lint.css"/>
     <link rel="stylesheet" href="common/css/foldgutter.css"/>
     <link rel="stylesheet" href="common/css/trailingspace.css"/>
-    <link rel="stylesheet" href="css/editor.css"/>
-    <link rel="stylesheet" href="css/tutorial.css"/>
+
+    <link rel="stylesheet" href="common/css/common.css?v=<?=$version?>" />
+    <link rel="stylesheet" href="common/css/loading.css?v=<?=$version?>" />
+    <link rel="stylesheet" href="common/css/user.css?v=<?=$version?>"/>
+    <link rel="stylesheet" href="css/editor.css?v=<?=$version?>"/>
+    <link rel="stylesheet" href="css/tutorial.css?v=<?=$version?>"/>
 
     <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -58,18 +60,18 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/dialog.js"></script>
     <script src="common/js/searchcursor.js"></script>
     <script src="common/js/search.js"></script>
-    <script src="js/editor.js?v=2"></script>
-    <script src="common/js/codeeditor.js"></script>
-    <script src="js/tutorial.js"></script>
-    <script src="js/main.js"></script>
     <script src="common/js/trailingspace.js"></script>
     <script src="common/js/trailingspace.js"></script>
     <script src="common/js/yaml-mode.js"></script>
     <script src="common/js/indent-fold.js"></script>
     <script src="common/js/foldcode.js"></script>
     <script src="common/js/foldgutter.js"></script>
-    <script src="common/js/formatters.js"></script>
-    <script src="common/js/hints.js"></script>
+
+    <script src="common/js/formatters.js?v=<?=$version?>"></script>
+    <script src="common/js/hints.js?v=<?=$version?>"></script>
+    <script src="js/editor.js?v=<?=$version?>"></script>
+    <script src="js/tutorial.js?v=<?=$version?>"></script>
+    <script src="js/main.js?v=<?=$version?>"></script>
 
     <script type="text/javascript">
         var referenceURL = '//<?= $referenceURL ?>';
