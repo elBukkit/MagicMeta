@@ -4831,6 +4831,14 @@
       "name" : "Add Modifiers",
       "type" : "modifier_list"
     },
+    "add_modifiers_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "add_modifiers",
+      "importance" : 0,
+      "name" : "Add Modifiers",
+      "type" : "map"
+    },
     "add_sell_shop" : {
       "category" : "",
       "description" : [ "" ],
@@ -11317,6 +11325,14 @@
       "name" : "Remove Modifiers",
       "type" : "modifier_list"
     },
+    "remove_modifiers_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_modifiers",
+      "importance" : 0,
+      "name" : "Remove Modifiers",
+      "type" : "list"
+    },
     "removes_spells" : {
       "category" : "base",
       "description" : [ "" ],
@@ -14452,18 +14468,18 @@
       "class_name" : "java.util.List",
       "description" : [ "An action handler, which will run a list of actions in order" ],
       "options" : {
-          "cast" : "The default casting behavior",
-          "alternate_down" : "Cast when a player is looking mostly downward at the ground",
-          "alternate_up" : "Cast when a player is looking mostly upward to the sky",
-          "alternate_sneak" : "Cast when a player is sneaking (holding the shift key)",
-          "alternate_jumping" : "Cast when a player is jumping"
+        "alternate_down" : "Cast when a player is looking mostly downward at the ground",
+        "alternate_jumping" : "Cast when a player is jumping",
+        "alternate_sneak" : "Cast when a player is sneaking (holding the shift key)",
+        "alternate_up" : "Cast when a player is looking mostly upward to the sky",
+        "cast" : "The default casting behavior"
       }
     },
     "action_trigger_map" : {
       "class_name" : "java.util.Map",
       "description" : [ "An action handler map, with lists of actions defined for triggered events such as 'cast'" ],
-      "name" : "Action Trigger Map",
-      "key_type" : "action_trigger"
+      "key_type" : "action_trigger",
+      "name" : "Action Trigger Map"
     },
     "actions" : {
       "class_name" : "java.util.Map",
@@ -15195,9 +15211,9 @@
     "entity_type_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of entity types" ],
+      "item_type" : "entity_type",
       "name" : "Entity Type List",
-      "options" : { },
-      "item_type" : "entity_type"
+      "options" : { }
     },
     "firework_effect_type" : {
       "class_name" : "org.bukkit.FireworkEffect$Type",
@@ -15296,9 +15312,9 @@
     "mage_class_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of mage classes" ],
+      "item_type" : "mage_class",
       "name" : "Mage Class List",
-      "options" : { },
-      "item_type" : "mage_class"
+      "options" : { }
     },
     "mage_modify_type" : {
       "class_name" : "com.elmakers.mine.bukkit.action.builtin.ModifyMageAction$ModifyType",
@@ -16411,13 +16427,13 @@
     "material_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of item or block materials", "Included in this list can be pre-defined material lists from materials.yml", "Several builtin material sets are defined in the default configs and are used in default spells for things like which blocks spell can target through ('transparent') or which block are considered 'solid'" ],
+      "item_type" : "material",
       "name" : "Material List",
       "options" : {
         "destructible" : "What block types can be modified by spells by default",
         "solid" : "Which blocks are considered solid",
         "transparent" : "The list of blocks spell consider transparent and can target through"
-      },
-      "item_type" : "material"
+      }
     },
     "material_map" : {
       "class_name" : "java.util.Map",
@@ -16541,9 +16557,9 @@
     "modifier_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of modifiers" ],
+      "item_type" : "modifier",
       "name" : "Modifier List",
-      "options" : { },
-      "item_type" : "modifier"
+      "options" : { }
     },
     "modifier_properties" : {
       "class_name" : "java.util.Map",
@@ -16728,19 +16744,19 @@
     "potion_effect_list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
+      "item_type" : "potion_effect_type",
       "name" : "Potion Effect List",
-      "options" : { },
-      "item_type" : "potion_effect_type"
+      "options" : { }
     },
     "potion_effect_map" : {
       "alternate_class_name" : "java.util.List",
       "class_name" : "java.util.Map",
       "description" : [ "A map (or list) of potion effects, where the key is a potion effect type and the value is an amplifier" ],
+      "item_type" : "potion_effect_type",
       "key_type" : "potion_effect_type",
       "name" : "Potion Effect Map",
       "options" : { },
-      "value_type" : "integer",
-      "item_type" : "potion_effect_type"
+      "value_type" : "integer"
     },
     "potion_effect_type" : {
       "class_name" : "org.bukkit.potion.PotionEffectType",
@@ -17832,9 +17848,9 @@
     "spell_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of spells" ],
+      "item_type" : "spell",
       "name" : "Spell List",
-      "options" : { },
-      "item_type" : "spell"
+      "options" : { }
     },
     "spell_parameters" : {
       "class_name" : "java.util.Map",
@@ -18099,9 +18115,9 @@
     "string_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of strings" ],
+      "item_type" : "string",
       "name" : "String List",
-      "options" : { },
-      "item_type" : "string"
+      "options" : { }
     },
     "target_type" : {
       "class_name" : "com.elmakers.mine.bukkit.api.spell.TargetType",
