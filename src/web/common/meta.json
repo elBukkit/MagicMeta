@@ -10221,6 +10221,14 @@
       "name" : "Parameters",
       "type" : "spell_parameters"
     },
+    "parameters_map" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "parameters",
+      "importance" : 0,
+      "name" : "Parameters",
+      "type" : "map"
+    },
     "particle" : {
       "category" : "effects",
       "description" : [ "The type of particle to use in this effect" ],
