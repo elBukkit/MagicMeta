@@ -44,7 +44,7 @@ function initialize() {
 
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null && _session.contents != '') {
-            editor.setSpellConfig(_session.contents);
+            editor.setText(_session.contents);
         } else {
             if (_session.hasOwnProperty('key') && _session.key != null) {
                 editor.startNamed("Basic", _session.key);

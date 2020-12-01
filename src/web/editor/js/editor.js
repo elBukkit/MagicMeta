@@ -22,11 +22,11 @@ function Editor(container)
     this.editor.metadata = null;
 };
 
-Editor.prototype.getSpellConfig = function() {
+Editor.prototype.getText = function() {
     return this.editor.getValue();
 };
 
-Editor.prototype.setSpellConfig = function(spellConfig) {
+Editor.prototype.setText = function(spellConfig) {
     spellConfig = !spellConfig ? '' : spellConfig;
     this.editor.setValue(spellConfig);
 };
@@ -60,6 +60,11 @@ Editor.prototype.simpleParse = function(spellConfig) {
     }
 };
 
+Editor.prototype.isValid = function() {
+    let errors = CodeMirror.lint.yaml(this.getText());
+    return errors.length == 0;
+};
+
 Editor.prototype.save = function() {
     if (this.saving) return;
     if (_session == null || _sessionId == null) {
@@ -67,20 +72,20 @@ Editor.prototype.save = function() {
         return;
     }
 
-    if (!this.editor.isValid()) {
+    if (!this.isValid()) {
         alert("You have errors in your code, please fix them before saving!");
         return;
     }
 
-    var spellConfig = this.getSpellConfig();
+    let text = this.getText();
 
-    var parsed = this.simpleParse(spellConfig);
+    let parsed = this.simpleParse(text);
     if (_session.type != 'config' && _session.type != 'messages') {
         if (parsed.keyCount == 1 || _session.key == null || _session.key == "") {
             _session.key = parsed.key;
         }
     }
-    _session.contents = spellConfig;
+    _session.contents = text;
 
     this.saving = true;
     var me = this;
@@ -122,7 +127,7 @@ Editor.prototype.save = function() {
 Editor.prototype.startNamed = function(template, name) {
     let config = $('#template' + template).val();
     if (!config) {
-        this.setSpellConfig('');
+        this.setText('');
         return;
     }
     let lines = config.split("\n");
@@ -144,7 +149,7 @@ Editor.prototype.startNamed = function(template, name) {
             break;
         }
     }
-    this.setSpellConfig(lines.join("\n"));
+    this.setText(lines.join("\n"));
 };
 
 Editor.prototype.startNew = function(template) {
@@ -152,7 +157,7 @@ Editor.prototype.startNew = function(template) {
     if (!contents) {
         contents  = '';
     } else {
-        let currentConfig = this.getSpellConfig();
+        let currentConfig = this.getText();
         if (currentConfig && currentConfig.length > 0) {
             let lines = currentConfig.split("\n");
             for (let i = 0; i < lines.length; i++) {
@@ -163,7 +168,7 @@ Editor.prototype.startNew = function(template) {
             }
         }
     }
-    this.setSpellConfig(contents);
+    this.setText(contents);
 };
 
 Editor.prototype.openReference = function() {
@@ -171,15 +176,15 @@ Editor.prototype.openReference = function() {
 };
 
 Editor.prototype.download = function() {
-    var spellConfig = this.getSpellConfig();
-    var key = this.simpleParse(spellConfig).key;
+    let text = this.getText();
+    let key = this.simpleParse(text).key;
     if (key == null || key == '') {
         alert("Nothing to download... ?");
         return;
     }
 
-    var downloadLink = document.createElement('a');
-    downloadLink.setAttribute('href', 'data:text/yaml;charset=utf-8,' + encodeURIComponent(spellConfig));
+    let downloadLink = document.createElement('a');
+    downloadLink.setAttribute('href', 'data:text/yaml;charset=utf-8,' + encodeURIComponent(text));
     downloadLink.setAttribute('download', key + ".yml");
     downloadLink.click();
 };

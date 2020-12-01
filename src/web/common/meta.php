@@ -121,25 +121,12 @@ $sounds = array_fill_keys($sounds, null);
 $meta['types']['sound']['options'] = array_merge($meta['types']['sound']['options'], $sounds);
 
 // Populate action, effect and effectlib class types
-$actions = array_column($meta['actions'], 'short_class');
+$actions = array_column($meta['classed']['actions'], 'short_class');
 $actions = array_fill_keys($actions, null);
 $meta['types']['action_class']['options'] = $actions;
 
-$effects = array_column($meta['effectlib_effects'], 'short_class');
+$effects = array_column($meta['classed']['effectlib_effects'], 'short_class');
 $effects = array_fill_keys($effects, null);
 $meta['types']['effectlib_class']['options'] = $effects;
-
-function mapFields($meta, $type, $propertyHolder = null) {
-    $propertyHolder = is_null($propertyHolder) ? $meta : $propertyHolder;
-    $keys = array_keys($propertyHolder[$type]);
-    $properties = $meta['properties'];
-    $mapped = array();
-    foreach ($keys as $key) {
-        $property = $properties[$key];
-        if (isset($property['alias']) || $property['importance'] < 0) continue;
-        $mapped[$property['field']] = $key;
-    }
-    return $mapped;
-}
 
 echo json_encode($meta);
