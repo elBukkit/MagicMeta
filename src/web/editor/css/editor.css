@@ -45,7 +45,7 @@ body {
     background-color: #F8F8F8;
 }
 
-#header.darcula {
+.darcula #header {
     background-color: #1B1B1B;
     color: white;
 }
@@ -60,7 +60,7 @@ body {
     padding-top: 8px;
 }
 
-#footer.darcula {
+.darcula #footer {
     background-color: #2B2B2B;
     color: white;
 }
@@ -285,11 +285,4 @@ li.CodeMirror-hint:hover {
 
 .delimiter {
     color: #AAAAAA;
-}
-
-div.darcula .ui-button {
-    background-color: #444 !important;
-    background-blend-mode: darken;
-    color: white;
-    border-color: #888;
 }

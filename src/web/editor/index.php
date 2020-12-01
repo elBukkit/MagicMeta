@@ -83,7 +83,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
 </head>
 <body>
 <div id="container" style="display: none">
-    <div id="header" class="themed">
+    <div id="header">
         <span id="saveButtonContainer">
             <button type="button" id="saveButton" title="Save your spell and reload the sandbox server configs">Save</button>
         </span>
@@ -122,7 +122,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
         <textarea id="editor"></textarea>
     </div>
 
-    <div id="footer" class="themed">
+    <div id="footer">
         <span id="navigation"></span>
     </div>
 

@@ -31,6 +31,11 @@
     margin: 2px;
 }
 
+.darcula .code {
+    background: #000000;
+    color: #DDDDDD;
+}
+
 .titleBanner {
     width: 600px;
     padding: 5px;
@@ -52,4 +57,25 @@
     background-position: -32px -32px;
     background-repeat: no-repeat;
     display: inline-block;
+}
+
+.darcula .ui-button {
+    background-color: #444 !important;
+    background-blend-mode: darken;
+    color: white;
+    border-color: #888;
+}
+
+.darcula .ui-widget-content {
+    background-color: #444 !important;
+    background-blend-mode: darken;
+    color: white;
+    border-color: #888;
+}
+
+.darcula .ui-widget-header {
+    background-color: #666 !important;
+    background-blend-mode: darken;
+    color: white;
+    border-color: #888;
 }

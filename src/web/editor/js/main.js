@@ -124,10 +124,10 @@ function toggleTheme() {
 
 function selectTheme(theme) {
     if (preferences.hasOwnProperty('theme') && preferences.theme != theme) {
-        $('.themed').removeClass(preferences.theme);
+        $('body').removeClass(preferences.theme);
     }
     preferences.theme = theme;
-    $('.themed').addClass(preferences.theme);
+    $('body').addClass(preferences.theme);
     editor.setTheme(theme);
     savePreferences();
 }
