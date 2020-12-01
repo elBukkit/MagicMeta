@@ -9,25 +9,60 @@ function Hints() {
     this.cm = null;
     this.cursor = null;
     this.context = null;
+    this.parent = null;
     this.hierarchy = null;
     this.metadata = null;
     this.navigationPanel = null;
 
-    this.register = function() {
+    this.register = function(cm) {
         CodeMirror.registerHelper('hint', 'yaml', this.generateHints.bind(this));
         CodeMirror.commands.magicNewlineAndIndent = this.newlineAndIndent.bind(this);
         CodeMirror.keyMap['basic']['Enter'] = 'magicNewlineAndIndent';
+        cm.on('change', function onChange(editor, input) {
+            if (input.from.line != input.to.line) return;
+            let line = cm.getLine(input.from.line);
+            if (line.indexOf(':') > 0 && !line.endsWith(' ')) return;
+            if (line.trim().startsWith('-') && !line.endsWith(' ')) return;
+            CodeMirror.commands.autocomplete(cm, null, {
+                // closeOnUnfocus: false,
+                completeSingle: false
+            });
+        });
     };
 
     this.initialize = function(cm) {
-        if (cm.metadata == null) {
-            alert("Sorry, failed to load metadata- the editor will not work!");
-            return;
+        if (cm) {
+            if (cm.metadata == null) {
+                alert("Sorry, failed to load metadata- the editor will not work!");
+                return;
+            }
+            this.cm = cm;
         }
-        this.cm = cm;
-        this.metadata = cm.metadata;
-        this.cursor = cm.getCursor();
+        if (this.cm == null) return;
+        this.metadata = this.cm.metadata;
+        this.cursor = this.cm.getCursor();
         this.hierarchy = this.getHierarchy();
+        this.parent = this.hierarchy.length > 1 ? this.hierarchy[this.hierarchy.length - 2] : null;
+    };
+
+    this.onPickHint = function(cm, data, completion) {
+        let text = completion.text;
+        let from = completion.from || data.from;
+        let to = completion.to || data.to;
+        cm.replaceRange(text, from, to, "complete");
+        this.initialize(cm);
+        if (this.context != null) {
+            if (this.context.isList || this.context.isMap) {
+                from.ch += text.length;
+                to.ch += text.length;
+                let indent = this.context.indent + 2;
+                indent = " ".repeat(indent);
+                if (!this.context.isMap) {
+                    indent = indent + '- ';
+                }
+                cm.replaceRange(':\n' + indent, from, to, "complete");
+            }
+        }
     };
 
     this.newlineAndIndent = function(cm) {
@@ -118,8 +153,8 @@ function Hints() {
         if (this.LEAF_KV.test(this.context.trimmed)) {
             let fieldName = hierarchy[hierarchy.length - 1].token;
             valueType = this.getPropertyType(parent, fieldName);
-            if (valueType &&  this.metadata.types.hasOwnProperty(valueType)) {
-                values = this.metadata.types[valueType].options;
+            if (valueType) {
+                values = valueType.options;
             }
         } else {
             classType = 'properties';
@@ -147,18 +182,22 @@ function Hints() {
 
         // Generate suggestions
         let suggestion = false;
+        let hintCompleteCallback = this.onPickHint.bind(this);
         for (let key in result) {
-            if (result.hasOwnProperty(key) && result[key].text != currentToken.word) {
-                suggestion = true;
-                break;
+            if (result.hasOwnProperty(key)) {
+                if (result[key].text != currentToken.word) {
+                    suggestion = true;
+                }
+                result[key].hint = hintCompleteCallback;
             }
         }
         if (suggestion) {
-            return {
+            let suggest = {
                 list: result,
                 from: CodeMirror.Pos(this.cursor.line, currentToken.start),
                 to: CodeMirror.Pos(this.cursor.line, currentToken.end)
             };
+            return suggest;
         }
     };
 
@@ -402,34 +441,32 @@ function Hints() {
         return siblings;
     };
 
-    this.getProperties = function(typeName) {
-        if (!this.metadata.hasOwnProperty('mapped_properties')) {
-            this.metadata['mapped_properties'] = {};
-        }
-        if (!this.metadata.mapped_properties.hasOwnProperty(typeName)) {
+    this.getProperties = function(propertyType) {
+        if (!propertyType.hasOwnProperty('mapped_properties')) {
             let properties = this.metadata.properties;
             let context = {};
-            if (this.metadata.types.hasOwnProperty(typeName)) {
-                let type = this.metadata.types[typeName];
-                for (let key in type.options) {
-                    if (type.options.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
-                        let property = properties[key];
-                        if (!property.hasOwnProperty('alias') && property.importance >= 0) {
-                            context[property['field']] = key;
-                        }
+            for (let key in propertyType.options) {
+                if (propertyType.options.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
+                    let property = properties[key];
+                    if (!property.hasOwnProperty('alias') && property.importance >= 0) {
+                        context[property['field']] = key;
                     }
                 }
             }
-            this.metadata.mapped_properties[typeName] = context;
+            propertyType.mapped_properties = context;
         }
-        return this.metadata.mapped_properties[typeName];
+        return propertyType.mapped_properties;
     };
 
-    this.getBasePropertyKey = function() {
+    this.getBasePropertyType = function() {
         let contextType = _fileType;
         // Remove the "s", kind of hacky
         contextType = depluralize(contextType);
-        return contextType + '_properties';
+        contextType = contextType + '_properties';
+        if (this.metadata.types.hasOwnProperty(contextType)) {
+            return this.metadata.types[contextType];
+        }
+        return null;
    };
 
     this.getContext = function(line, lineNumber) {
@@ -481,6 +518,13 @@ function Hints() {
             let propertyKey = parent.populatedProperties[fieldName];
             if (this.metadata.properties.hasOwnProperty(propertyKey)) {
                 valueType = this.metadata.properties[propertyKey].type;
+            }
+        }
+        if (valueType) {
+            if (this.metadata.types.hasOwnProperty(valueType)) {
+                valueType = this.metadata.types[valueType];
+            } else {
+                valueType = null;
             }
         }
         return valueType;
@@ -555,7 +599,7 @@ function Hints() {
 
         // Walk down the tree to figure out types of everything in the path
         let parent = hierarchy[0];
-        parent.type = this.getBasePropertyKey();
+        parent.type = this.getBasePropertyType();
         parent.properties = this.getProperties(parent.type);
         if (this.metadata['types'].hasOwnProperty(parent.type)) {
             parent.type = this.metadata['types'][parent.type];
@@ -567,8 +611,8 @@ function Hints() {
 
             // Find type from parent property map
             let propertyType = this.getPropertyType(parent, key);
-            if (propertyType && this.metadata.types.hasOwnProperty(propertyType)) {
-                current.type = this.metadata['types'][propertyType];
+            if (propertyType) {
+                current.type = propertyType;
                 current.properties = this.getProperties(propertyType);
                 if (current.type.class_name == 'java.util.Map') {
                     current.isMap = true;

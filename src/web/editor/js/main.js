@@ -23,7 +23,6 @@ function initialize() {
     // Register hints
     let hints = new Hints();
     hints.setNavigationPanel($('#navigation'));
-    hints.register();
 
     if ($("#newSelector").children().length == 0) {
         $("#newSelector").remove();
@@ -41,6 +40,7 @@ function initialize() {
 
     $('#container').show();
     editor = new Editor();
+    hints.register(editor.getCodeEditor().editor);
 
     if (_session != null) {
         if (_session.hasOwnProperty('contents') && _session.contents != null && _session.contents != '') {
