@@ -14448,11 +14448,22 @@
         "requires_target" : "false"
       }
     },
+    "action_trigger" : {
+      "class_name" : "java.util.List",
+      "description" : [ "An action handler, which will run a list of actions in order" ],
+      "options" : {
+          "cast" : "The default casting behavior",
+          "alternate_down" : "Cast when a player is looking mostly downward at the ground",
+          "alternate_up" : "Cast when a player is looking mostly upward to the sky",
+          "alternate_sneak" : "Cast when a player is sneaking (holding the shift key)",
+          "alternate_jumping" : "Cast when a player is jumping"
+      }
+    },
     "action_trigger_map" : {
       "class_name" : "java.util.Map",
-      "description" : [ "An action handler, with lists of actions defined for triggered events such as 'cast'" ],
+      "description" : [ "An action handler map, with lists of actions defined for triggered events such as 'cast'" ],
       "name" : "Action Trigger Map",
-      "options" : { }
+      "key_type" : "action_trigger"
     },
     "actions" : {
       "class_name" : "java.util.Map",
