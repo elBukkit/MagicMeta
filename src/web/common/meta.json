@@ -15197,7 +15197,7 @@
       "description" : [ "A list of entity types" ],
       "name" : "Entity Type List",
       "options" : { },
-      "value_type" : "entity_type"
+      "item_type" : "entity_type"
     },
     "firework_effect_type" : {
       "class_name" : "org.bukkit.FireworkEffect$Type",
@@ -15298,7 +15298,7 @@
       "description" : [ "A list of mage classes" ],
       "name" : "Mage Class List",
       "options" : { },
-      "value_type" : "mage_class"
+      "item_type" : "mage_class"
     },
     "mage_modify_type" : {
       "class_name" : "com.elmakers.mine.bukkit.action.builtin.ModifyMageAction$ModifyType",
@@ -16417,7 +16417,7 @@
         "solid" : "Which blocks are considered solid",
         "transparent" : "The list of blocks spell consider transparent and can target through"
       },
-      "value_type" : "material"
+      "item_type" : "material"
     },
     "material_map" : {
       "class_name" : "java.util.Map",
@@ -16543,7 +16543,7 @@
       "description" : [ "A list of modifiers" ],
       "name" : "Modifier List",
       "options" : { },
-      "value_type" : "modifier"
+      "item_type" : "modifier"
     },
     "modifier_properties" : {
       "class_name" : "java.util.Map",
@@ -16730,7 +16730,7 @@
       "description" : [ "" ],
       "name" : "Potion Effect List",
       "options" : { },
-      "value_type" : "potion_effect_type"
+      "item_type" : "potion_effect_type"
     },
     "potion_effect_map" : {
       "alternate_class_name" : "java.util.List",
@@ -16739,7 +16739,8 @@
       "key_type" : "potion_effect_type",
       "name" : "Potion Effect Map",
       "options" : { },
-      "value_type" : "integer"
+      "value_type" : "integer",
+      "item_type" : "potion_effect_type"
     },
     "potion_effect_type" : {
       "class_name" : "org.bukkit.potion.PotionEffectType",
@@ -17833,7 +17834,7 @@
       "description" : [ "A list of spells" ],
       "name" : "Spell List",
       "options" : { },
-      "value_type" : "spell"
+      "item_type" : "spell"
     },
     "spell_parameters" : {
       "class_name" : "java.util.Map",
@@ -18100,7 +18101,7 @@
       "description" : [ "A list of strings" ],
       "name" : "String List",
       "options" : { },
-      "value_type" : "string"
+      "item_type" : "string"
     },
     "target_type" : {
       "class_name" : "com.elmakers.mine.bukkit.api.spell.TargetType",

@@ -21,6 +21,7 @@ public class ParameterType {
     private Map<String, String> options;
     private String valueType;
     private String keyType;
+    private String itemType;
     private String populateFrom;
 
     public ParameterType() {
@@ -38,7 +39,7 @@ public class ParameterType {
 
     public ParameterType(@Nonnull String key, ParameterType listValueType) {
         this(key, List.class);
-        valueType = listValueType.getKey();
+        itemType = listValueType.getKey();
     }
 
     public ParameterType(@Nonnull String key, ParameterType mapKeyType, ParameterType mapValueType) {
@@ -150,6 +151,15 @@ public class ParameterType {
     @JsonProperty("key_type")
     public void setKeyType(String keyType) {
         this.keyType = keyType;
+    }
+
+    @JsonProperty("item_type")
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public String getItemType() {
+        return itemType;
     }
 
     @JsonIgnore

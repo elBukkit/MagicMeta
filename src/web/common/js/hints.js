@@ -175,7 +175,7 @@ function Hints() {
                 // We assume most lists in magic can also be expressed as a single string
                 // We assume most lists in magic can also be expressed as a single string
                 if (this.context.isList) {
-                    let valueType = this.context.type.value_type;
+                    let valueType = this.context.type.item_type;
                     if (this.metadata.types.hasOwnProperty(valueType)) {
                         valueType = this.metadata.types[valueType];
                         values = $.extend({}, values);
@@ -199,7 +199,7 @@ function Hints() {
                     values = keyType.options;
                 }
             } else if (parent.isList) {
-                let valueType = parent.type.value_type;
+                let valueType = parent.type.item_type;
                 if (this.metadata.types.hasOwnProperty(valueType)) {
                     valueType = this.metadata.types[valueType];
                     values = valueType.options;
@@ -565,7 +565,7 @@ function Hints() {
             }
         }
         if (!valueType && parent.isList) {
-            valueType = parent.type.value_type;
+            valueType = parent.type.item_type;
         }
         if (valueType) {
             if (this.metadata.types.hasOwnProperty(valueType)) {
