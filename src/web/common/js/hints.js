@@ -124,6 +124,22 @@ function Hints() {
             classType = 'properties';
             values = parent.properties;
 
+            // Check for some special cases that will include options based on other sections
+            if (parent.hasOwnProperty('type') && parent.type.hasOwnProperty('populate_from')) {
+                let populateFrom = parent.type.populate_from;
+                let allSections = this.getAllClasses(populateFrom);
+                if (this.metadata.classed.hasOwnProperty(populateFrom)) {
+                    for (let i = 0; i < allSections.length; i++) {
+                        let section = allSections[i];
+                        let classType = this.getMappedClass(populateFrom, section);
+                        if (classType != null) {
+                            inherited = values;
+                            values = $.extend(values, classType.properties);
+                        }
+                    }
+                }
+            }
+
             // If we just started a new map, indent the suggestions
             let previousLine = this.getPreviousLine(this.context.lineNumber);
             if (parent.lineNumber == previousLine.lineNumber) {
@@ -137,6 +153,7 @@ function Hints() {
             }
         }
 
+        // Filter out duplicate map suggestions
         if (!this.context.isListItem) {
             let siblings = this.getSiblings(this.context);
             values = filterMap(values, siblings);
@@ -163,6 +180,64 @@ function Hints() {
                 to: CodeMirror.Pos(this.cursor.line, currentToken.end)
             };
         }
+    };
+
+    this.getMappedClass = function(classType, key) {
+        if (!this.metadata.classed.hasOwnProperty(classType)) {
+            return null;
+        }
+        let classedSection = this.metadata.classed[classType];
+
+        // TODO: Make this fully generic
+        if (classType == 'actions') {
+            if (!key.endsWith("Action")) {
+                key = key + "Action";
+            }
+        } else if (classType == 'effectlib_effects') {
+            if (!key.endsWith("Effect")) {
+                key = key + "Effect";
+            }
+        }
+
+        // Create a map from class names to keys
+        if (!this.metadata.hasOwnProperty('mapped_classes')) {
+            this.metadata['mapped_classes'] = {};
+        }
+        if (!this.metadata.mapped_classes.hasOwnProperty(classType)) {
+            this.metadata.mapped_classes[classType] = {};
+            for (let key in classedSection) {
+                if (classedSection.hasOwnProperty(key)) {
+                    this.metadata.mapped_classes[classType][classedSection[key]['class_name']] = key;
+                }
+            }
+        }
+
+        // Map class name to key
+        if (!this.metadata.mapped_classes[classType].hasOwnProperty(key)) {
+            return null;
+        }
+        key = this.metadata.mapped_classes[classType][key];
+
+        // Look up class parameters
+        if (classedSection.hasOwnProperty(key)) {
+            let classed = this.metadata.classed[classType][key];
+
+            // Need to map properties here
+            if (!classed.hasOwnProperty('properties')) {
+                classed.properties = {};
+                let properties = this.metadata.properties;
+                for (let key in classed.parameters) {
+                    if (classed.parameters.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
+                        let property = properties[key];
+                        if (!property.hasOwnProperty('alias') && property.importance >= 0) {
+                            classed.properties[property['field']] = key;
+                        }
+                    }
+                }
+            }
+            return classed;
+        }
+        return null;
     };
 
     this.getSorted = function(values, inheritedValues, defaultValue, word, prefix, suffix, metadata, classType, valueType) {
@@ -347,10 +422,10 @@ function Hints() {
     };
 
     this.getProperties = function(typeName) {
-        if (!this.metadata.hasOwnProperty('context')) {
-            this.metadata['context'] = {};
+        if (!this.metadata.hasOwnProperty('mapped_properties')) {
+            this.metadata['mapped_properties'] = {};
         }
-        if (!this.metadata.context.hasOwnProperty(typeName)) {
+        if (!this.metadata.mapped_properties.hasOwnProperty(typeName)) {
             let properties = this.metadata.properties;
             let context = {};
             if (this.metadata.types.hasOwnProperty(typeName)) {
@@ -364,16 +439,16 @@ function Hints() {
                     }
                 }
             }
-            this.metadata.context[typeName] = context;
+            this.metadata.mapped_properties[typeName] = context;
         }
-        return this.metadata.context[typeName];
+        return this.metadata.mapped_properties[typeName];
     };
 
-    this.getBaseProperties = function() {
+    this.getBasePropertyKey = function() {
         let contextType = _fileType;
         // Remove the "s", kind of hacky
-        contextType = contextType.substr(0, contextType.length - 1);
-        return this.getProperties(contextType + '_properties');
+        contextType = depluralize(contextType);
+        return contextType + '_properties';
    };
 
     this.getContext = function(line, lineNumber) {
@@ -479,13 +554,16 @@ function Hints() {
 
         // Walk down the tree to figure out types of everything in the path
         let parent = hierarchy[0];
-        parent.properties = this.getBaseProperties();
+        parent.type = this.getBasePropertyKey();
+        parent.properties = this.getProperties(parent.type);
         for (let i = 1; i < hierarchy.length; i++) {
             let key = hierarchy[i].token;
             if (parent.properties.hasOwnProperty(key)) {
                 let property = parent.properties[key];
                 if (this.metadata.properties.hasOwnProperty(property)) {
-                    hierarchy[i].properties = this.getProperties(this.metadata.properties[property].type);
+                    let typeKey = this.metadata.properties[property].type;
+                    hierarchy[i].type = this.metadata['types'][typeKey];
+                    hierarchy[i].properties = this.getProperties(typeKey);
                 }
             } else {
                 break;
@@ -516,5 +594,37 @@ function Hints() {
 
     this.setNavigationPanel = function(panel) {
         this.navigationPanel = panel;
+    };
+
+    this.getAllClasses = function(fromSection) {
+        let cm = this.cm;
+        let sectionStart = 0;
+        let sectionIndent = 0;
+        for (let i = 1; i < cm.lineCount(); i++) {
+            let line = cm.getLine(i);
+            let context = this.getContext(line, i);
+            sectionIndent = context.indent;
+            if (context.trimmed == fromSection + ":") {
+                sectionStart = i;
+                break;
+            }
+        }
+
+        let classes = [];
+        let current = sectionStart + 1;
+        while (current < cm.lineCount()) {
+            let line = cm.getLine(current);
+            let context = this.getContext(line, current);
+            let indent = context.indent;
+            if (indent <= sectionIndent) break;
+            line = line.replace("-", "").trim();
+            if (line.startsWith("class:")) {
+                let sectionClass = line.replace("class: ", "");
+                classes.push(sectionClass);
+            }
+            current++;
+        }
+
+        return classes;
     };
 }

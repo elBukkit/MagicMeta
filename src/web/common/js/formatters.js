@@ -83,3 +83,10 @@ function filterMap(map, toRemove) {
     }
     return newMap;
 }
+
+function depluralize(s) {
+    if (s.endsWith('s')) {
+        s = s.substr(0, s.length - 1);
+    }
+    return s;
+}
