@@ -193,13 +193,11 @@ function Hints() {
             }
         }
 
-        // Filter out duplicate map suggestions
-        if (!this.context.isListItem) {
-            let siblings = this.getSiblings(this.context);
-            values = filterMap(values, siblings);
-            if (inherited != null) {
-                inherited = filterMap(inherited, siblings);
-            }
+        // Filter out duplicate list and map suggestions
+        let siblings = this.getSiblings(this.context);
+        values = filterMap(values, siblings);
+        if (inherited != null) {
+            inherited = filterMap(inherited, siblings);
         }
 
         // Filter and sort list, adding suggestions based on class type
