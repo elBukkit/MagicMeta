@@ -4829,7 +4829,7 @@
       "field" : "add_modifiers",
       "importance" : 0,
       "name" : "Add Modifiers",
-      "type" : "map"
+      "type" : "modifier_list"
     },
     "add_sell_shop" : {
       "category" : "",
@@ -11315,7 +11315,7 @@
       "field" : "remove_modifiers",
       "importance" : 0,
       "name" : "Remove Modifiers",
-      "type" : "list"
+      "type" : "modifier_list"
     },
     "removes_spells" : {
       "category" : "base",
@@ -16520,6 +16520,19 @@
         "weakness" : null,
         "xp" : "0"
       }
+    },
+    "modifier" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A modifier created in magic configuratoins" ],
+      "name" : "Modifier",
+      "options" : { }
+    },
+    "modifier_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of modifiers" ],
+      "name" : "Modifier List",
+      "options" : { },
+      "value_type" : "modifier"
     },
     "modifier_properties" : {
       "class_name" : "java.util.Map",
