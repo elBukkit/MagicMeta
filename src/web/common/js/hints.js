@@ -101,6 +101,15 @@ function Hints() {
         let prefix = '';
         let suffix = '';
 
+        // Check for some special cases that will include options based on other sections
+        let allSections = null;
+        let populateFrom = parent.type.populate_from;
+        if (parent.hasOwnProperty('type') && parent.type.hasOwnProperty('populate_from')) {
+            if (this.metadata.classed.hasOwnProperty(populateFrom)) {
+                allSections = this.getAllClasses(populateFrom);
+            }
+        }
+
         // Don't suggest creating mis-aligned lists or maps
         if (parent.isSectionStart && this.context.indent > parent.indent) {
             let firstChild = this.getFirstChild(parent);
@@ -119,36 +128,39 @@ function Hints() {
                     values = this.metadata.types[valueType].options;
                 }
             }
+
+            // Add in parameter values from actions (or other things, maybe, in the future, but probably not)
+            if (valueType == null && allSections != null) {
+                for (let i = 0; i < allSections.length; i++) {
+                    let section = allSections[i];
+                    let classType = this.getMappedClass(populateFrom, section);
+                    if (classType != null && classType.properties.hasOwnProperty(fieldName)) {
+                        let propertyKey =  classType.properties[fieldName];
+                        if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                            valueType = this.metadata.properties[propertyKey].type;
+                            values = this.metadata.types[valueType].options;
+                            break;
+                        }
+                    }
+                }
+            }
         } else {
             suffix = ': ';
             classType = 'properties';
             values = parent.properties;
 
-            // Check for some special cases that will include options based on other sections
-            if (parent.hasOwnProperty('type') && parent.type.hasOwnProperty('populate_from')) {
-                let populateFrom = parent.type.populate_from;
-                let allSections = this.getAllClasses(populateFrom);
-                if (this.metadata.classed.hasOwnProperty(populateFrom)) {
-                    for (let i = 0; i < allSections.length; i++) {
-                        let section = allSections[i];
-                        let classType = this.getMappedClass(populateFrom, section);
-                        if (classType != null) {
-                            inherited = values;
-                            values = $.extend(values, classType.properties);
-                        }
+            // Add in parameters from actions (or other things, maybe, in the future, but probably not)
+            if (allSections != null) {
+                // Style base properties as inherited
+                inherited = values;
+                // Don't modify the metadata!
+                values = {};
+                for (let i = 0; i < allSections.length; i++) {
+                    let section = allSections[i];
+                    let classType = this.getMappedClass(populateFrom, section);
+                    if (classType != null) {
+                        values = $.extend(values, classType.properties);
                     }
-                }
-            }
-
-            // If we just started a new map, indent the suggestions
-            let previousLine = this.getPreviousLine(this.context.lineNumber);
-            if (parent.lineNumber == previousLine.lineNumber) {
-                let nextLine = this.getNextLine(this.context.lineNumber);
-                // Use indentation from next line if it is a child
-                if (nextLine.indent > parent.indent) {
-
-                } else {
-                    prefix = '  ';
                 }
             }
         }
