@@ -14450,15 +14450,15 @@
     "action_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A a list of actions to perform in order" ],
+      "item_type" : "action_parameters",
       "name" : "Action List",
-      "options" : { },
-      "item_type" : "action_parameters"
+      "options" : { }
     },
     "action_parameters" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Action Parameters",
-      "options" : {
+      "parameters" : {
         "action_class" : null,
         "ignore_result" : "false",
         "requires_entity_target" : "false",
@@ -14632,10 +14632,10 @@
       }
     },
     "class_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Class Properties",
-      "options" : {
+      "parameters" : {
         "attributes" : null,
         "brush_inventory" : null,
         "brushes" : null,
@@ -14679,10 +14679,10 @@
       }
     },
     "compound_action_parameters" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Compound Action Parameters",
-      "options" : {
+      "parameters" : {
         "action_class" : null,
         "actions" : null,
         "ignore_result" : "false",
@@ -14853,10 +14853,10 @@
       }
     },
     "effect_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Effect Properties",
-      "options" : {
+      "parameters" : {
         "color" : null,
         "color2" : null,
         "color_override" : null,
@@ -14924,10 +14924,10 @@
       "options" : { }
     },
     "effectlib_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Effectlib Properties",
-      "options" : {
+      "parameters" : {
         "asynchronous" : "true",
         "auto_orient" : "false",
         "color" : null,
@@ -16476,10 +16476,10 @@
       }
     },
     "mob_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Mob Properties",
-      "options" : {
+      "parameters" : {
         "aggro" : "true",
         "ai" : "true",
         "amount" : "1",
@@ -16564,10 +16564,10 @@
       "options" : { }
     },
     "modifier_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Modifier Properties",
-      "options" : {
+      "parameters" : {
         "attributes" : null,
         "brush_inventory" : null,
         "brushes" : null,
@@ -17855,10 +17855,10 @@
       "options" : { }
     },
     "spell_parameters" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "A map of spell parameters", "These can include base spell parameters or any parameters used by this spell's actions" ],
       "name" : "Spell Parameters",
-      "options" : {
+      "parameters" : {
         "allow_max_range" : "false",
         "aura" : "false",
         "backfire_chance" : "0",
@@ -17986,10 +17986,10 @@
       "populate_from" : "actions"
     },
     "spell_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "A map of spell properties common to every spell" ],
       "name" : "Spell Properties",
-      "options" : {
+      "parameters" : {
         "actions_map" : null,
         "active_costs" : null,
         "alias" : "",
@@ -18248,10 +18248,10 @@
       }
     },
     "wand_properties" : {
-      "class_name" : "java.util.Map",
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Wand Properties",
-      "options" : {
+      "parameters" : {
         "active_brush" : null,
         "active_effects" : null,
         "active_spell" : null,

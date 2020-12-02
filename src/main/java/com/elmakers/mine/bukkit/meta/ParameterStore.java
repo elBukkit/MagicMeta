@@ -14,6 +14,7 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.potion.PotionEffectType;
@@ -66,10 +67,24 @@ public class ParameterStore {
     }
 
     public void mergeType(String typeName, ParameterList parameters) {
-        ParameterType parameterType = getParameterType(typeName, Map.class);
-        Map<String, String> options = parameterType.getOptions();
+
+        ParameterType parameterType = parameterTypes.get(typeName);
+        if (parameterType == null) {
+            parameterType = new ParameterType(typeName);
+            parameterTypes.put(typeName, parameterType);
+        }
+
+        // Temporary re-create
+        parameterType.setClassType(ConfigurationSection.class);
+        Map<String, String> existingParameters = parameterType.getParameters();
+        if (existingParameters == null) {
+            parameterType.setParameters(parameterType.getOptions());
+        }
+        parameterType.setOptions(null);
+
+        Map<String, String> typeParameters = parameterType.getParameters();
         Map<String, Parameter> fields = new HashMap<>();
-        for (String key : options.keySet()) {
+        for (String key : typeParameters.keySet()) {
             Parameter parameter = getParameter(key);
             if (parameter == null) {
                 System.out.println("Missing parameter: " + key);
@@ -86,7 +101,7 @@ public class ParameterStore {
             }
             String field = parameter.getField();
             if (!fields.containsKey(field)) {
-                options.put(field, entry.getValue());
+                typeParameters.put(field, entry.getValue());
                 System.out.println("    Adding new " + typeName + " parameter: " + key + " => " +field);
             }
         }

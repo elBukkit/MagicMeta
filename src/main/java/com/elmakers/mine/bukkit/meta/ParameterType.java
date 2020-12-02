@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.WordUtils;
+import org.bukkit.configuration.ConfigurationSection;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,6 +21,7 @@ public class ParameterType {
     private String name;
     private List<String> description;
     private Map<String, String> options;
+    private Map<String, String> parameters;
     private String valueType;
     private String keyType;
     private String itemType;
@@ -48,6 +51,12 @@ public class ParameterType {
         valueType = mapValueType.getKey();
     }
 
+    public ParameterType(@Nonnull String key) {
+        this(key, ConfigurationSection.class);
+        options = null;
+        parameters = new HashMap<>();
+    }
+
     @JsonIgnore
     public String getKey() {
         return this.key;
@@ -68,6 +77,10 @@ public class ParameterType {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void setClassType(Class<?> classType) {
+        this.classType = classType;
     }
 
     @JsonProperty("alternate_class_name")
@@ -117,6 +130,14 @@ public class ParameterType {
 
     public void setOptions(Map<String, String> options) {
         this.options = options;
+    }
+
+    public Map<String, String> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Map<String, String> parameters) {
+        this.parameters = parameters;
     }
 
     public List<String> getDescription() {
