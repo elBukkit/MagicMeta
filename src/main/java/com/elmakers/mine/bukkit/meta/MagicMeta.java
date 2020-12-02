@@ -189,7 +189,7 @@ public class MagicMeta {
                 ParameterList spellParameters = actionConfiguration.getParameters();
                 spellParameters.removeDefaults(baseParameters);
                 SpellActionDescription spellAction = new SpellActionDescription(actionClass, spellParameters);
-                if (CompoundAction.class.isAssignableFrom(actionClass)) {
+                if (testAction instanceof CompoundAction) {
                     spellAction.setCategory(getCategory("compound").getKey());
                     CompoundAction testCompound = (CompoundAction)testAction;
                     for (String handler : testCompound.getAllHandlerKeys()) {
@@ -197,6 +197,12 @@ public class MagicMeta {
                         String handlerKey = handler;
                         if (!handler.equals("actions")) {
                             handlerKey += "_actions";
+
+                            // This is kind of hacky and will probably bite me later
+                            Parameter parameter = parameterStore.getParameter(handler);
+                            if (parameter != null && parameter.getType().equals("string")) {
+                                parameterStore.removeParameter(handler);
+                            }
                         }
                         Parameter handlerParameter = parameterStore.getParameter(handlerKey);
                         if (handlerParameter == null) {

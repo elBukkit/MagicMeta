@@ -125,6 +125,10 @@ public class ParameterStore {
         return parameters.get(key);
     }
 
+    public void removeParameter(String key) {
+        parameters.remove(key);
+    }
+
     public Parameter getParameter(String field, Class<?> defaultClass) {
         if (defaultClass.isPrimitive()) {
             defaultClass = ClassUtils.primitiveToWrapper(defaultClass);
