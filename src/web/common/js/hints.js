@@ -89,7 +89,7 @@ function Hints() {
         if (this.context.isSectionStart || parentIsMap || parentIsList) {
             let indent = this.context.indent;
             let nextLine = this.getNextLine(this.context.lineNumber);
-            if (nextLine && nextLine.indent > indent) {
+            if (nextLine && nextLine.indent >= indent) {
                 indent = nextLine.indent;
             } else if (!parent.isListStart) {
                 indent += 2;
