@@ -249,7 +249,7 @@
           "show_name" : "false",
           "silent" : "false",
           "sitting" : "false",
-          "spawn" : null,
+          "spawn_actions" : null,
           "speed" : "0",
           "strength" : null,
           "tags" : null,
@@ -325,7 +325,7 @@
           "fov_weight" : "4",
           "gravity" : "0",
           "head_transform" : null,
-          "headshot" : null,
+          "headshot_actions" : null,
           "headshot_effects" : "headshot",
           "health" : "1",
           "helmet" : null,
@@ -365,7 +365,7 @@
           "max_health" : "1",
           "min_block_range" : "0",
           "min_entity_range" : "0",
-          "miss" : null,
+          "miss_actions" : null,
           "miss_effects" : "miss",
           "modifiers" : null,
           "mount" : null,
@@ -436,7 +436,7 @@
           "target_self" : "false",
           "target_self_timeout" : "0",
           "teleport" : "true",
-          "tick" : null,
+          "tick_actions" : null,
           "tick_effects" : "tick",
           "tick_size" : "0.5",
           "tmo" : "0",
@@ -782,7 +782,7 @@
           "allow_brush" : "false",
           "allowed" : null,
           "direction" : null,
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "set_target" : "false",
           "use_target" : "true"
@@ -1107,7 +1107,7 @@
           "fov" : "0.3",
           "fov_weight" : "4",
           "gravity" : "0",
-          "headshot" : null,
+          "headshot_actions" : null,
           "headshot_effects" : "headshot",
           "hit_count" : "1",
           "hit_effects" : "hit",
@@ -1167,7 +1167,7 @@
           "target_min_offset" : "0",
           "target_self" : "false",
           "target_self_timeout" : "0",
-          "tick" : null,
+          "tick_actions" : null,
           "tick_effects" : "tick",
           "tick_size" : "0.5",
           "tmo" : "0",
@@ -1497,7 +1497,7 @@
           "fov" : "0.3",
           "fov_weight" : "4",
           "gravity" : "0",
-          "headshot" : null,
+          "headshot_actions" : null,
           "headshot_effects" : "headshot",
           "hit_count" : "1",
           "hit_effects" : "hit",
@@ -1514,7 +1514,7 @@
           "location_offset" : null,
           "min_block_range" : "0",
           "min_entity_range" : "0",
-          "miss" : null,
+          "miss_actions" : null,
           "miss_effects" : "miss",
           "no_target" : "true",
           "npc_weight" : "-1",
@@ -1562,7 +1562,7 @@
           "target_self" : "false",
           "target_self_timeout" : "0",
           "teleport" : "true",
-          "tick" : null,
+          "tick_actions" : null,
           "tick_effects" : "tick",
           "tick_size" : "0.5",
           "tmo" : "0",
@@ -1744,7 +1744,8 @@
           "silent" : "false",
           "speed" : "0.1",
           "start" : "0",
-          "tick" : null,
+          "start_actions" : null,
+          "tick_actions" : null,
           "ticks_flown" : "0",
           "track_projectile" : "false",
           "trail" : "false",
@@ -2647,7 +2648,8 @@
           "speed" : "0.6000000238418579",
           "spread" : "12",
           "start" : "0",
-          "tick" : null,
+          "start_actions" : null,
+          "tick_actions" : null,
           "tick_increase" : "1180",
           "track_projectile" : "true",
           "use_block_location" : "false",
@@ -3410,8 +3412,8 @@
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
           "size" : "6",
-          "start" : null,
-          "tick" : null,
+          "start_actions" : null,
+          "tick_actions" : null,
           "tnt_velocity" : "1",
           "track_projectile" : "true"
         },
@@ -3502,8 +3504,8 @@
           "speed" : "0.6000000238418579",
           "speed_max" : "0.6000000238418579",
           "speed_min" : "0.6000000238418579",
-          "start" : null,
-          "tick" : null,
+          "start_actions" : null,
+          "tick_actions" : null,
           "track_projectile" : "false",
           "use_block_location" : "false",
           "use_cast_location" : "false",
@@ -3535,10 +3537,10 @@
           "speed" : "1",
           "speed_max" : "1",
           "speed_min" : "1",
-          "start" : null,
+          "start_actions" : null,
           "temporary" : "true",
           "throw_wand" : "false",
-          "tick" : null,
+          "tick_actions" : null,
           "track_projectile" : "false",
           "unbreakable" : "false",
           "use_block_location" : "false",
@@ -7972,13 +7974,13 @@
       "name" : "Fade Out",
       "type" : "integer"
     },
-    "fail" : {
+    "fail_actions" : {
       "category" : "",
-      "description" : [ "Runs sub actions on fail instead of success" ],
+      "description" : [ "Actions to run on fail instead of success" ],
       "field" : "fail",
       "importance" : 0,
-      "name" : "Fail",
-      "type" : "string"
+      "name" : "Fail Actions",
+      "type" : "action_list"
     },
     "fall_damage" : {
       "category" : "",
@@ -8380,13 +8382,13 @@
       "name" : "Head Transform",
       "type" : "string"
     },
-    "headshot" : {
+    "headshot_actions" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Actions perfomed when a projectile hits the head of an entity" ],
       "field" : "headshot",
       "importance" : 0,
-      "name" : "Headshot",
-      "type" : "string"
+      "name" : "Headshot Actions",
+      "type" : "action_list"
     },
     "headshot_effect_list" : {
       "category" : "effects",
@@ -9773,13 +9775,13 @@
       "name" : "Min Speed",
       "type" : "double"
     },
-    "miss" : {
+    "miss_actions" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Actions performed when a projectile misses completely, expiring in mid-air" ],
       "field" : "miss",
       "importance" : 0,
-      "name" : "Miss",
-      "type" : "string"
+      "name" : "Miss Actions",
+      "type" : "action_list"
     },
     "miss_effect_list" : {
       "category" : "effects",
@@ -12373,13 +12375,13 @@
       "name" : "Sp Multiplier",
       "type" : "double"
     },
-    "spawn" : {
+    "spawn_actions" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Actions performed immediately after spawning the entity" ],
       "field" : "spawn",
       "importance" : 0,
-      "name" : "Spawn",
-      "type" : "string"
+      "name" : "Spawn Actions",
+      "type" : "action_list"
     },
     "spawn_reason" : {
       "category" : "",
@@ -12572,6 +12574,14 @@
       "importance" : 0,
       "name" : "Start",
       "type" : "integer"
+    },
+    "start_actions" : {
+      "category" : "",
+      "description" : [ "Actions performed at the start of a projectile's launch" ],
+      "field" : "start",
+      "importance" : 0,
+      "name" : "Start Actions",
+      "type" : "action_list"
     },
     "start_at_target" : {
       "category" : "",
@@ -13205,13 +13215,13 @@
       "name" : "Throw Wand",
       "type" : "boolean"
     },
-    "tick" : {
+    "tick_actions" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Actions performed on a every tick while a projectile is in flight" ],
       "field" : "tick",
       "importance" : 0,
-      "name" : "Tick",
-      "type" : "string"
+      "name" : "Tick Actions",
+      "type" : "action_list"
     },
     "tick_effect_list" : {
       "category" : "effects",

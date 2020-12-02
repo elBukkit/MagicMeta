@@ -179,18 +179,35 @@ public class MagicMeta {
                 continue;
             }
             System.out.println("Scanning " + actionClass.getName());
+            ParameterStore parameterStore = data.getParameterStore();
             try {
                 SpellAction testAction = actionClass.getConstructor().newInstance();
-                InterrogatingConfiguration actionConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+                InterrogatingConfiguration actionConfiguration = new InterrogatingConfiguration(parameterStore);
                 testAction.initialize(spell, actionConfiguration);
                 testAction.prepare(context, actionConfiguration);
 
                 ParameterList spellParameters = actionConfiguration.getParameters();
                 spellParameters.removeDefaults(baseParameters);
-                spellParameters.removeDefaults(compoundParameters);
                 SpellActionDescription spellAction = new SpellActionDescription(actionClass, spellParameters);
                 if (CompoundAction.class.isAssignableFrom(actionClass)) {
                     spellAction.setCategory(getCategory("compound").getKey());
+                    CompoundAction testCompound = (CompoundAction)testAction;
+                    for (String handler : testCompound.getAllHandlerKeys()) {
+                        System.out.println("  Adding action handler: " + handler);
+                        String handlerKey = handler;
+                        if (!handler.equals("actions")) {
+                            handlerKey += "_actions";
+                        }
+                        Parameter handlerParameter = parameterStore.getParameter(handlerKey);
+                        if (handlerParameter == null) {
+                            ParameterType type = parameterStore.getParameterType("action_list", java.util.List.class);
+                            handlerParameter = new Parameter(handlerKey, handler, type);
+                            parameterStore.addParameter(handlerKey, handlerParameter);
+                        }
+                        spellParameters.remove(handler);
+                        spellParameters.add(handlerParameter, null);
+                    }
+                    spellParameters.removeDefaults(compoundParameters);
                 }
                 data.addAction(spellAction.getKey(), spellAction);
             } catch (Exception e) {
