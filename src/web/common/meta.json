@@ -62,7 +62,9 @@
         "examples" : [ "absorb" ],
         "importance" : 0,
         "name" : "Absorb",
-        "parameters" : { },
+        "parameters" : {
+          "wildcard" : "false"
+        },
         "short_class" : "Absorb"
       },
       "add_spell" : {
@@ -568,6 +570,7 @@
           "brush" : null,
           "brushes" : null,
           "brushmod" : null,
+          "replacements" : null,
           "sample" : "false"
         },
         "short_class" : "Brush"
@@ -655,7 +658,8 @@
         "importance" : 0,
         "name" : "Change Biome",
         "parameters" : {
-          "biome" : ""
+          "biome" : "",
+          "biome_replacements" : null
         },
         "short_class" : "ChangeBiome"
       },
@@ -775,6 +779,7 @@
         "importance" : 20,
         "name" : "Check Block",
         "parameters" : {
+          "allow_brush" : "false",
           "allowed" : null,
           "direction" : null,
           "fail" : null,
@@ -2464,6 +2469,7 @@
           "orient_target" : "false",
           "pitch" : "0",
           "pitch_offset" : "0",
+          "target_block" : "false",
           "yaw" : "0",
           "yaw_offset" : "0"
         },
@@ -2941,6 +2947,7 @@
           "costs" : null,
           "currency" : "0",
           "earn" : "0.0",
+          "earn_modifiers" : null,
           "earn_scale" : "1.0",
           "earn_type" : "currency",
           "earns" : null,
@@ -3033,6 +3040,7 @@
           "costs" : null,
           "costs_map" : null,
           "earn" : "0.0",
+          "earn_modifiers" : null,
           "earn_scale" : "1.0",
           "earn_type" : "currency",
           "earns" : null,
@@ -4927,6 +4935,14 @@
       "name" : "Allow Blocks",
       "type" : "boolean"
     },
+    "allow_brush" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_brush",
+      "importance" : 0,
+      "name" : "Allow Brush",
+      "type" : "boolean"
+    },
     "allow_caster" : {
       "category" : "",
       "description" : [ "" ],
@@ -5471,6 +5487,14 @@
       "importance" : 0,
       "name" : "Biome",
       "type" : "biome"
+    },
+    "biome_replacements" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "biome_replacements",
+      "importance" : 0,
+      "name" : "Biome Replacements",
+      "type" : "map"
     },
     "biomes" : {
       "category" : "",
@@ -7364,6 +7388,14 @@
       "name" : "Earn",
       "type" : "double"
     },
+    "earn_modifiers" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "earn_modifiers",
+      "importance" : 0,
+      "name" : "Earn Modifiers",
+      "type" : "list"
+    },
     "earn_multiplier" : {
       "category" : "",
       "description" : [ "" ],
@@ -8764,6 +8796,14 @@
       "importance" : 0,
       "name" : "Ignore Types",
       "type" : "list"
+    },
+    "ignored_by_mobs" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignored_by_mobs",
+      "importance" : 0,
+      "name" : "Ignored By Mobs",
+      "type" : "string"
     },
     "immortal" : {
       "category" : "wand",
@@ -11397,6 +11437,14 @@
       "name" : "Replace",
       "type" : "boolean"
     },
+    "replacements" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replacements",
+      "importance" : 0,
+      "name" : "Replacements",
+      "type" : "map"
+    },
     "require_block" : {
       "category" : "",
       "description" : [ "" ],
@@ -12755,6 +12803,14 @@
       "field" : "target_attachment",
       "importance" : 0,
       "name" : "Target Attachment",
+      "type" : "boolean"
+    },
+    "target_block" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "target_block",
+      "importance" : 0,
+      "name" : "Target Block",
       "type" : "boolean"
     },
     "target_block_timeout" : {
@@ -14119,6 +14175,14 @@
       "name" : "Width Cell",
       "type" : "float"
     },
+    "wildcard" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "wildcard",
+      "importance" : 0,
+      "name" : "Wildcard",
+      "type" : "boolean"
+    },
     "world_border_restricted" : {
       "category" : "base",
       "description" : [ "" ],
@@ -14646,6 +14710,7 @@
         "earn_multiplier" : null,
         "hotbar_count" : null,
         "icon" : null,
+        "ignored_by_mobs" : null,
         "mana" : null,
         "mana_max" : null,
         "mana_max_boost" : null,
@@ -16578,6 +16643,7 @@
         "earn_multiplier" : null,
         "hotbar_count" : null,
         "icon" : null,
+        "ignored_by_mobs" : null,
         "items" : null,
         "mana" : null,
         "mana_max" : null,
@@ -18325,6 +18391,7 @@
         "icon" : null,
         "icon_inactive" : null,
         "icon_inactive_delay" : null,
+        "ignored_by_mobs" : null,
         "immortal" : "false",
         "indestructible" : "false",
         "inventory_rows" : "5",
