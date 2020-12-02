@@ -57,7 +57,6 @@ function Hints() {
         if (this.context != null && this.context.value == '') {
             if (this.context.isList || this.context.isMap) {
                 let indent = this.context.indent;
-                let prefix = '';
                 if (!this.context.isListItem) {
                     indent += 2;
                     prefix = ':';
@@ -139,24 +138,16 @@ function Hints() {
             this.navigationPanel.html(path);
         }
 
+        // Don't show hints for the first line
         if (hierarchy.length < 2) {
             return;
         }
-        let parent = hierarchy[hierarchy.length - 2];
+
+        // We won't be able to identify this if we haven't identified the parent
+        let parent = this.parent;
         if (!parent.hasOwnProperty('properties')) {
             return;
         }
-
-        // Get the current parsed token
-        let currentToken = this.getCurrentToken();
-
-        // Determine the list of options to show
-        // Optionally provide class types and other information that helps suggestions and sorting
-        let values = {};
-        let classType = '';
-        let valueType = null;
-        let defaultValue = null;
-        let inherited = null;
 
         // Don't suggest creating mis-aligned lists or maps
         if (parent.isSectionStart && this.context.indent > parent.indent) {
@@ -166,26 +157,37 @@ function Hints() {
             }
         }
 
+        // Get the current parsed token
+        let currentToken = this.getCurrentToken();
+
+        // Determine the list of options to show
+        let suggestions = null;
+
         // Determine if we are populating keys or values
         if (this.LEAF_KV.test(this.context.trimmed)) {
             let fieldName = hierarchy[hierarchy.length - 1].token;
-            valueType = this.getPropertyType(parent, fieldName);
+            let defaultValue = null;
+            let valueType = this.getPropertyType(parent, fieldName);
             if (valueType) {
-                values = valueType.options;
-                // We assume most lists in magic can also be expressed as a single string
+                let values = valueType.options;
+
                 // We assume most lists in magic can also be expressed as a single string
                 if (this.context.isList) {
-                    let valueType = this.context.type.item_type;
-                    if (this.metadata.types.hasOwnProperty(valueType)) {
-                        valueType = this.metadata.types[valueType];
+                    let itemType = this.context.type.item_type;
+                    if (this.metadata.types.hasOwnProperty(itemType)) {
+                        valueType = this.metadata.types[itemType];
                         values = $.extend({}, values);
-                        values = $.extend({}, valueType.options);
+                        values = $.extend(values, valueType.options);
                     }
                 }
+
+                // Filter and sort list, adding suggestions based on value type
+                suggestions = this.getSortedValues(values, defaultValue, currentToken.word, valueType.key);
             }
         } else {
-            classType = 'properties';
-            values = parent.properties;
+            let inherited = null;
+            let classType = 'properties';
+            let values = parent.properties;
 
             // Add in parameters from actions (or other things, maybe, in the future, but probably not)
             if (parent.hasOwnProperty('populatedProperties')) {
@@ -196,41 +198,57 @@ function Hints() {
                 let keyType = parent.type.key_type;
                 if (this.metadata.types.hasOwnProperty(keyType)) {
                     keyType = this.metadata.types[keyType];
-                    values = keyType.options;
+                    if (keyType.hasOwnProperty('parameters')) {
+                        values = this.getProperties(keyType);
+                    } else {
+                        classType = '';
+                        values = keyType.options;
+                    }
                 }
             } else if (parent.isList) {
                 let valueType = parent.type.item_type;
                 if (this.metadata.types.hasOwnProperty(valueType)) {
                     valueType = this.metadata.types[valueType];
-                    values = valueType.options;
+                    if (valueType.hasOwnProperty('parameters')) {
+                        values = this.getProperties(valueType);
+                    } else {
+                        classType = '';
+                        values = valueType.options;
+                    }
                 }
             }
+
+            // Filter out duplicate list and map suggestions
+            let siblings = this.getSiblings(this.context);
+            values = filterMap(values, siblings);
+            if (inherited != null) {
+                inherited = filterMap(inherited, siblings);
+            }
+
+            // Filter and sort list, adding suggestions based on class type
+            suggestions = this.getSortedKeys(values, inherited, null, currentToken.word, this.metadata, classType, null);
         }
 
-        // Filter out duplicate list and map suggestions
-        let siblings = this.getSiblings(this.context);
-        values = filterMap(values, siblings);
-        if (inherited != null) {
-            inherited = filterMap(inherited, siblings);
+        // If we didn't find any suggestions, just return
+        if (suggestions == null) {
+            return null;
         }
-
-        // Filter and sort list, adding suggestions based on class type
-        let result = this.getSorted(values, inherited, defaultValue, currentToken.word, this.metadata, classType, valueType);
 
         // Generate suggestions
         let suggestion = false;
         let hintCompleteCallback = this.onPickHint.bind(this);
-        for (let key in result) {
-            if (result.hasOwnProperty(key)) {
-                if (result[key].text != currentToken.word) {
+        for (let key in suggestions) {
+            if (suggestions.hasOwnProperty(key)) {
+                // Don't show hints unless we have something that's not what they've already typed
+                if (suggestions[key].text != currentToken.word) {
                     suggestion = true;
                 }
-                result[key].hint = hintCompleteCallback;
+                suggestions[key].hint = hintCompleteCallback;
             }
         }
         if (suggestion) {
             let suggest = {
-                list: result,
+                list: suggestions,
                 from: CodeMirror.Pos(this.cursor.line, currentToken.start),
                 to: CodeMirror.Pos(this.cursor.line, currentToken.end)
             };
@@ -296,9 +314,8 @@ function Hints() {
         return null;
     };
 
-    this.getSorted = function(values, inheritedValues, defaultValue, word, metadata, classType, valueType) {
+    this.getSortedValues = function(values, defaultValue, currentInput, valueType) {
         let includeContains = true;
-        let suffix = '';
         switch (valueType) {
             case 'milliseconds':
             case 'percentage':
@@ -310,9 +327,9 @@ function Hints() {
                 if (defaultValue != null) {
                     addMultiples(defaultValue, values, 0);
                 }
-                if (word != '') {
-                    values[word] = null;
-                    addPowersOfTen(parseInt(word), values);
+                if (currentInput != '') {
+                    values[currentInput] = null;
+                    addPowersOfTen(parseInt(currentInput), values);
                 }
                 break;
             case 'double':
@@ -321,62 +338,34 @@ function Hints() {
                 if (defaultValue != null) {
                     addMultiples(defaultValue, values, 5);
                 }
-                if (word != '') {
-                    values[word] = null;
-                    addPowersOfTen(parseInt(word), values);
+                if (currentInput != '') {
+                    values[currentInput] = null;
+                    addPowersOfTen(parseInt(currentInput), values);
                 }
                 break;
         }
 
         let startsWith = [];
         let contains = [];
-        let foundDefault = false;
-        for (let kw in values) {
-            let isDefault = defaultValue == kw;
-            let description = values[kw];
-            let trimmedDescription = trimTags(description);
-            let match = kw + trimmedDescription;
-            if (isDefault) foundDefault = true;
-            if (match.indexOf(word) !== -1) {
-                let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, false, isDefault);
-                if (match.startsWith(word)) {
-                    startsWith.push(hint);
-                } else {
-                    contains.push(hint);
-                }
-            }
-        }
-        if (inheritedValues != null) {
-            for (let kw in inheritedValues) {
-                let isDefault = defaultValue == kw;
-                let description = inheritedValues[kw];
-                let trimmedDescription = trimTags(description);
-                let match = kw + trimmedDescription;
-                if (isDefault) foundDefault = true;
-                if (match.indexOf(word) !== -1) {
-                    let hint = this.convertHint(kw + suffix, description, metadata, classType, valueType, true, isDefault);
-                    if (match.startsWith(word)) {
-                        startsWith.push(hint);
-                    } else {
-                        contains.push(hint);
-                    }
-                }
-            }
-        }
+        let foundDefault = true;this.matchProperties(values, defaultValue, currentInput, 'properties', valueType, false, startsWith, contains);
 
-        if (defaultValue != null && !foundDefault && defaultValue.indexOf(word) !== -1) {
-            if (defaultValue.startsWith(word)) {
-                startsWith.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
-            } else {
-                contains.push(convertHint(defaultValue + suffix, null, metadata, classType, valueType, false, true));
-            }
+        if (defaultValue != null && !foundDefault) {
+            this.checkMatch(defaultValue, '', currentInput, 'properties', valueType, false, true, startsWith, contains);
         }
+        this.sortProperties(startsWith);
+        this.sortProperties(contains);
+        if (includeContains) {
+            startsWith = startsWith.concat(contains);;
+        }
+        return startsWith;
+    };
 
+    this.sortProperties = function(properties, currentInput) {
         function sortProperties(a, b) {
-            if (a == word) {
+            if (a == currentInput) {
                 return -1;
             }
-            if (b == word) {
+            if (b == currentInput) {
                 return 1;
             }
             if (a.isDefault && !b.isDefault) {
@@ -396,11 +385,44 @@ function Hints() {
             }
             return b.importance - a.importance;
         }
-        startsWith.sort(sortProperties);
-        contains.sort(sortProperties);
-        if (includeContains) {
-            startsWith = startsWith.concat(contains);;
+        properties.sort(sortProperties);
+    };
+
+    this.checkMatch = function(value, description, currentInput, classType, valueType, inherited, isDefault, startsWith, contains) {
+        let trimmedDescription = trimTags(description);
+        let match = value + trimmedDescription;
+        if (match.indexOf(currentInput) !== -1) {
+            let hint = this.convertHint(value, description, this.metadata, classType, valueType, inherited, isDefault);
+            if (match.startsWith(currentInput)) {
+                startsWith.push(hint);
+            } else {
+                contains.push(hint);
+            }
         }
+    };
+
+    // Returns true if the default value was found
+    this.matchProperties = function(values, defaultValue, currentInput, classType, valueType, inherited, startsWith, contains) {
+        let foundDefault = false;
+        for (let kw in values) {
+            let isDefault = defaultValue == kw;
+            let description = values[kw];
+            if (isDefault) foundDefault = true;
+            this.checkMatch(kw, description, currentInput, classType, valueType, inherited, isDefault, startsWith, contains);
+        }
+        return foundDefault;
+    };
+
+    this.getSortedKeys = function(values, inheritedValues, defaultValue, currentInput, metadata, classType, valueType) {
+        let startsWith = [];
+        let contains = [];
+        this.matchProperties(values, defaultValue, currentInput, classType, valueType, false, startsWith, contains);
+        if (inheritedValues != null) {
+            this.matchProperties(inheritedValues, defaultValue, currentInput, classType, valueType, true, startsWith, contains);
+        }
+        this.sortProperties(startsWith);
+        this.sortProperties(contains);
+        startsWith = startsWith.concat(contains);
         return startsWith;
     };
 
@@ -458,6 +480,7 @@ function Hints() {
             let previous = this.getPreviousLine(currentLine);
             if (previous == null) break;
             if (previous.indent < context.indent) break;
+            if (context.isListStart) break;
 
             if (previous.indent == context.indent) {
                 siblings[previous.token] = previous.value;
@@ -469,6 +492,7 @@ function Hints() {
             let next = this.getNextLine(currentLine);
             if (next == null) break;
             if (next.indent < context.indent) break;
+            if (context.isListStart && next.isListStart) break;
 
             if (next.indent == context.indent) {
                 siblings[next.token] = next.value;
@@ -482,11 +506,13 @@ function Hints() {
         if (!propertyType.hasOwnProperty('mapped_properties')) {
             let properties = this.metadata.properties;
             let context = {};
-            for (let key in propertyType.options) {
-                if (propertyType.options.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
-                    let property = properties[key];
-                    if (!property.hasOwnProperty('alias') && property.importance >= 0) {
-                        context[property['field']] = key;
+            if (propertyType.hasOwnProperty('parameters')) {
+                for (let key in propertyType.parameters) {
+                    if (propertyType.parameters.hasOwnProperty(key) && properties.hasOwnProperty(key)) {
+                        let property = properties[key];
+                        if (!property.hasOwnProperty('alias') && property.importance >= 0) {
+                            context[property['field']] = key;
+                        }
                     }
                 }
             }
@@ -537,7 +563,8 @@ function Hints() {
             isKey: isKey,
             isSectionStart: isSectionStart,
             indent: indent,
-            listIndent: isListStart ? indent - 2 : indent
+            // This is where the key/value starts, should be two spaces after "-" in a list
+            listIndent: isListStart ? indent + 2 : indent
         }
     };
 
@@ -656,6 +683,7 @@ function Hints() {
         for (let i = 1; i < hierarchy.length; i++) {
             parent = hierarchy[i - 1];
             let current = hierarchy[i];
+            current.parent = parent;
             let key = current.token;
 
             // Find type from parent property map
