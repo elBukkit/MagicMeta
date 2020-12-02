@@ -802,7 +802,7 @@
           "allowed_entity_classes" : null,
           "denied_entities" : null,
           "denied_entity_classes" : null,
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "on_fire" : "false",
           "only_caster" : "false"
@@ -818,7 +818,7 @@
         "name" : "Check Health",
         "parameters" : {
           "as_percentages" : "false",
-          "fail" : null,
+          "fail_actions" : null,
           "full_health" : "false",
           "invert" : "false",
           "max_health" : "0.0",
@@ -834,7 +834,7 @@
         "importance" : 0,
         "name" : "Check Inventory",
         "parameters" : {
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "item" : null
         },
@@ -848,7 +848,7 @@
         "importance" : 20,
         "name" : "Check Mana",
         "parameters" : {
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "require_mana" : "0",
           "require_mana_empty" : "false",
@@ -867,7 +867,7 @@
         "parameters" : {
           "blocked" : null,
           "blocked_list" : null,
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "required" : null,
           "required_list" : null
@@ -883,7 +883,7 @@
         "name" : "Check Potion Effects",
         "parameters" : {
           "blocked" : null,
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "required" : null
         },
@@ -897,7 +897,7 @@
         "importance" : 0,
         "name" : "Check Requirements",
         "parameters" : {
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "requirement" : null,
           "requirements" : null,
@@ -913,7 +913,7 @@
         "importance" : 0,
         "name" : "Check Trigger",
         "parameters" : {
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "trigger" : ""
         },
@@ -927,7 +927,7 @@
         "importance" : 0,
         "name" : "Check Velocity",
         "parameters" : {
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false",
           "max_speed" : "nan",
           "min_speed" : "nan"
@@ -1123,7 +1123,7 @@
           "lifetime" : "8000",
           "min_block_range" : "0",
           "min_entity_range" : "0",
-          "miss" : null,
+          "miss_actions" : null,
           "miss_effects" : "miss",
           "npc_weight" : "-1",
           "orient" : "true",
@@ -1735,7 +1735,7 @@
           "firework" : null,
           "flicker" : "false",
           "hit_effects" : "hit",
-          "launch" : "false",
+          "launch_actions" : null,
           "lifetime" : "10000",
           "power" : "1",
           "projectile_effects" : "projectile",
@@ -1744,7 +1744,6 @@
           "silent" : "false",
           "speed" : "0.1",
           "start" : "0",
-          "launch_actions" : null,
           "tick_actions" : null,
           "ticks_flown" : "0",
           "track_projectile" : "false",
@@ -2635,6 +2634,7 @@
           "damage" : "0",
           "fire" : "false",
           "hit_effects" : "hit",
+          "launch_actions" : null,
           "lifetime" : "10000",
           "orient" : "true",
           "pickup" : "disallowed",
@@ -2648,7 +2648,6 @@
           "speed" : "0.6000000238418579",
           "spread" : "12",
           "start" : "0",
-          "launch_actions" : null,
           "tick_actions" : null,
           "tick_increase" : "1180",
           "track_projectile" : "true",
@@ -3232,7 +3231,7 @@
           "show_name" : "false",
           "silent" : "false",
           "sitting" : "false",
-          "spawn" : null,
+          "spawn_actions" : null,
           "speed" : "0",
           "split" : "true",
           "strength" : null,
@@ -3407,12 +3406,12 @@
           "fire" : "false",
           "fuse" : "80",
           "hit_effects" : "hit",
+          "launch_actions" : null,
           "lifetime" : "10000",
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
           "size" : "6",
-          "launch_actions" : null,
           "tick_actions" : null,
           "tnt_velocity" : "1",
           "track_projectile" : "true"
@@ -3429,7 +3428,7 @@
         "parameters" : {
           "costs" : null,
           "costs_map" : null,
-          "fail" : null,
+          "fail_actions" : null,
           "invert" : "false"
         },
         "short_class" : "TakeCosts"
@@ -3493,6 +3492,7 @@
           "fall_damage" : "0",
           "hit_effects" : "hit",
           "hurts" : "true",
+          "launch_actions" : null,
           "lifetime" : "10000",
           "max_damage" : "0",
           "orient" : "true",
@@ -3504,7 +3504,6 @@
           "speed" : "0.6000000238418579",
           "speed_max" : "0.6000000238418579",
           "speed_min" : "0.6000000238418579",
-          "launch_actions" : null,
           "tick_actions" : null,
           "track_projectile" : "false",
           "use_block_location" : "false",
@@ -3527,6 +3526,7 @@
           "age_items" : "5500",
           "hit_effects" : "hit",
           "item" : null,
+          "launch_actions" : null,
           "lifetime" : "10000",
           "orient" : "true",
           "projectile_effects" : "projectile",
@@ -3537,7 +3537,6 @@
           "speed" : "1",
           "speed_max" : "1",
           "speed_min" : "1",
-          "launch_actions" : null,
           "temporary" : "true",
           "throw_wand" : "false",
           "tick_actions" : null,
@@ -9143,6 +9142,14 @@
       "name" : "Launch",
       "type" : "boolean"
     },
+    "launch_actions" : {
+      "category" : "",
+      "description" : [ "Actions performed at the start of a projectile's launch" ],
+      "field" : "launch",
+      "importance" : 0,
+      "name" : "Launch Actions",
+      "type" : "action_list"
+    },
     "ledge_range" : {
       "category" : "",
       "description" : [ "" ],
@@ -12574,14 +12581,6 @@
       "importance" : 0,
       "name" : "Start",
       "type" : "integer"
-    },
-    "launch_actions" : {
-      "category" : "",
-      "description" : [ "Actions performed at the start of a projectile's launch" ],
-      "field" : "launch",
-      "importance" : 0,
-      "name" : "Launch Actions",
-      "type" : "action_list"
     },
     "start_at_target" : {
       "category" : "",
