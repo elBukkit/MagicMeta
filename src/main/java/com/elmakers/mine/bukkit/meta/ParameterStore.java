@@ -74,14 +74,6 @@ public class ParameterStore {
             parameterTypes.put(typeName, parameterType);
         }
 
-        // Temporary re-create
-        parameterType.setClassType(ConfigurationSection.class);
-        Map<String, String> existingParameters = parameterType.getParameters();
-        if (existingParameters == null) {
-            parameterType.setParameters(parameterType.getOptions());
-        }
-        parameterType.setOptions(null);
-
         Map<String, String> typeParameters = parameterType.getParameters();
         Map<String, Parameter> fields = new HashMap<>();
         for (String key : typeParameters.keySet()) {
