@@ -1744,7 +1744,7 @@
           "silent" : "false",
           "speed" : "0.1",
           "start" : "0",
-          "start_actions" : null,
+          "launch_actions" : null,
           "tick_actions" : null,
           "ticks_flown" : "0",
           "track_projectile" : "false",
@@ -2648,7 +2648,7 @@
           "speed" : "0.6000000238418579",
           "spread" : "12",
           "start" : "0",
-          "start_actions" : null,
+          "launch_actions" : null,
           "tick_actions" : null,
           "tick_increase" : "1180",
           "track_projectile" : "true",
@@ -3412,7 +3412,7 @@
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
           "size" : "6",
-          "start_actions" : null,
+          "launch_actions" : null,
           "tick_actions" : null,
           "tnt_velocity" : "1",
           "track_projectile" : "true"
@@ -3504,7 +3504,7 @@
           "speed" : "0.6000000238418579",
           "speed_max" : "0.6000000238418579",
           "speed_min" : "0.6000000238418579",
-          "start_actions" : null,
+          "launch_actions" : null,
           "tick_actions" : null,
           "track_projectile" : "false",
           "use_block_location" : "false",
@@ -3537,7 +3537,7 @@
           "speed" : "1",
           "speed_max" : "1",
           "speed_min" : "1",
-          "start_actions" : null,
+          "launch_actions" : null,
           "temporary" : "true",
           "throw_wand" : "false",
           "tick_actions" : null,
@@ -12575,12 +12575,12 @@
       "name" : "Start",
       "type" : "integer"
     },
-    "start_actions" : {
+    "launch_actions" : {
       "category" : "",
       "description" : [ "Actions performed at the start of a projectile's launch" ],
-      "field" : "start",
+      "field" : "launch",
       "importance" : 0,
-      "name" : "Start Actions",
+      "name" : "Launch Actions",
       "type" : "action_list"
     },
     "start_at_target" : {
