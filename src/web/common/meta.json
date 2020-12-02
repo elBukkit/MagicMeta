@@ -6506,7 +6506,7 @@
       "field" : "cool",
       "importance" : 0,
       "name" : "Cool",
-      "type" : "integer"
+      "type" : "milliseconds"
     },
     "cooldown" : {
       "category" : "base",
@@ -6514,7 +6514,7 @@
       "field" : "cooldown",
       "importance" : 190,
       "name" : "Cooldown",
-      "type" : "integer"
+      "type" : "milliseconds"
     },
     "cooldown_free" : {
       "category" : "",
@@ -15278,6 +15278,19 @@
         "100" : null
       }
     },
+    "potion_effect_amplifier" : {
+      "class_name" : "java.lang.Integer",
+      "description" : [ "The amplifier (intensity) of a potion effect" ],
+      "name" : "Integer",
+      "options" : {
+        "0" : "Default intensity",
+        "1" : "Amplifier I",
+        "2" : "Amplifier II",
+        "3" : "Amplifier III",
+        "4" : "Amplifier IV",
+        "5" : "Amplifier V"
+      }
+    },
     "list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
@@ -16457,7 +16470,7 @@
     },
     "milliseconds" : {
       "class_name" : "java.lang.Integer",
-      "description" : [ "A number of millisecons" ],
+      "description" : [ "A number of milliseconds" ],
       "name" : "Milliseconds",
       "options" : {
         "0" : "Immediate",
@@ -16758,7 +16771,7 @@
       "key_type" : "potion_effect_type",
       "name" : "Potion Effect Map",
       "options" : { },
-      "value_type" : "integer"
+      "value_type" : "potion_effect_amplifier"
     },
     "potion_effect_type" : {
       "class_name" : "org.bukkit.potion.PotionEffectType",
