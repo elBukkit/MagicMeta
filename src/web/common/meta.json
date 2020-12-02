@@ -21,7 +21,7 @@
       "name" : "Construction"
     },
     "control" : {
-      "description" : [ "Actions that modify the structor or process of a spell" ],
+      "description" : [ "Actions that modify the structure or process of a spell" ],
       "name" : "Control"
     },
     "effects" : {
@@ -14451,7 +14451,8 @@
       "class_name" : "java.util.List",
       "description" : [ "A a list of actions to perform in order" ],
       "name" : "Action List",
-      "options" : { }
+      "options" : { },
+      "item_type" : "action_parameters"
     },
     "action_parameters" : {
       "class_name" : "java.util.Map",
@@ -14465,7 +14466,7 @@
       }
     },
     "action_trigger" : {
-      "class_name" : "java.util.List",
+      "class_name" : "java.lang.String",
       "description" : [ "An action handler, which will run a list of actions in order" ],
       "options" : {
         "alternate_down" : "Cast when a player is looking mostly downward at the ground",
@@ -14479,7 +14480,8 @@
       "class_name" : "java.util.Map",
       "description" : [ "An action handler map, with lists of actions defined for triggered events such as 'cast'" ],
       "key_type" : "action_trigger",
-      "name" : "Action Trigger Map"
+      "name" : "Action Trigger Map",
+      "value_type" : "action_list"
     },
     "actions" : {
       "class_name" : "java.util.Map",
