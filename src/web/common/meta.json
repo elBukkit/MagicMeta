@@ -15278,19 +15278,6 @@
         "100" : null
       }
     },
-    "potion_effect_amplifier" : {
-      "class_name" : "java.lang.Integer",
-      "description" : [ "The amplifier (intensity) of a potion effect" ],
-      "name" : "Integer",
-      "options" : {
-        "0" : "Default intensity",
-        "1" : "Amplifier I",
-        "2" : "Amplifier II",
-        "3" : "Amplifier III",
-        "4" : "Amplifier IV",
-        "5" : "Amplifier V"
-      }
-    },
     "list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
@@ -16754,6 +16741,19 @@
         "0" : null,
         "45" : null,
         "90" : null
+      }
+    },
+    "potion_effect_amplifier" : {
+      "class_name" : "java.lang.Integer",
+      "description" : [ "The amplifier (intensity) of a potion effect" ],
+      "name" : "Integer",
+      "options" : {
+        "0" : "Default intensity",
+        "1" : "Amplifier I",
+        "2" : "Amplifier II",
+        "3" : "Amplifier III",
+        "4" : "Amplifier IV",
+        "5" : "Amplifier V"
       }
     },
     "potion_effect_list" : {
