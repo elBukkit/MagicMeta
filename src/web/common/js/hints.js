@@ -130,11 +130,16 @@ function Hints() {
         if (this.context.isComment) return;
 
         // Get hierarchy
+
+        // Update navigation
+        // TOOD: move this out of here and update on cursor change
         let hierarchy = this.hierarchy;
         if (this.navigationPanel) {
-            let path = '';
+            let lineNumber = this.cursor.line + 1;
+            let chNumber = this.cursor.ch + 1;
+            let path = '<span class="cursorLocation">(' + lineNumber + ',' + chNumber + ')</span>';
             if (_fileType) {
-                path = _fileType;
+                path += _fileType;
                 if (hierarchy.length > 0) {
                     path += '<span class="delimiter"> / </span>';
                 }

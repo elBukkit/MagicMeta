@@ -56,13 +56,31 @@ body {
     flex-direction: row;
     background-color: #F8F8F8;
     height: 2em;
-    padding-left: 2em;
     padding-top: 8px;
 }
 
 .darcula #footer {
     background-color: #2B2B2B;
-    color: white;
+    color: #888888;
+}
+
+.cursorLocation {
+    padding-left: 1em;
+    padding-right: 2em;
+    color: #222222;
+}
+
+.darcula .cursorLocation {
+    background-color: #2B2B2B;
+    color: #666666;
+}
+
+.delimiter {
+    color: #AAAAAA;
+}
+
+.darcula .delimiter {
+    color: #444444;
 }
 
 #modeSelector {
@@ -281,8 +299,4 @@ li.CodeMirror-hint:hover {
     background: #DDDDDD;
     font-family: monospace;
     border: 0;
-}
-
-.delimiter {
-    color: #AAAAAA;
 }
