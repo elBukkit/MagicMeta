@@ -62,7 +62,7 @@ function makeSelectable(tab, details, populate, depth) {
 
 function populatePropertyList(list, sectionKey) {
     var properties = metadata.properties;
-    var defaultValues = metadata[sectionKey];
+    var defaultValues = metadata.types[sectionKey];
     var section = Object.keys(defaultValues).sort();
     for (var i = 0; i < section.length; i++) {
         var key = section[i];
@@ -187,7 +187,7 @@ function populateOptions(options, container, title) {
 }
 
 function populatePropertyHolderList(list, sectionKey) {
-    var section = metadata[sectionKey];
+    var section = metadata.classed[sectionKey];
     for (var key in section) {
         if (!section.hasOwnProperty(key)) continue;
         var holder = section[key];
@@ -379,7 +379,7 @@ function initialize() {
         makePropertySelector($("#spellParameterList"), "spell_parameters", $('#spellParameterDetails'));
         makePropertySelector($("#wandParameterList"), "wand_properties", $('#wandParameterDetails'));
         makePropertySelector($("#mobParameterList"), "mob_properties", $('#mobParameterDetails'));
-        makePropertySelector($("#effectParameterList"), "effect_parameters", $('#effectParameterDetails'));
+        makePropertySelector($("#effectParameterList"), "effect_properties", $('#effectParameterDetails'));
 
         makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_parameters');
         makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');
