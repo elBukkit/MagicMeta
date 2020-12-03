@@ -4775,11 +4775,11 @@
       "field" : "actions",
       "importance" : 0,
       "name" : "Actions",
-      "type" : "actions"
+      "type" : "action_list"
     },
     "actions_map" : {
       "category" : "actions",
-      "description" : [ "A map of events to actions to run. The most comment event used by all spells is 'cast'", "Actions determine the behavior of a spell, defining what it does" ],
+      "description" : [ "A map of events to actions to run. The most common event used by spells is 'cast'", "Actions determine the behavior of a spell, defining what it does" ],
       "field" : "actions",
       "importance" : 100,
       "name" : "Actions",
@@ -14549,12 +14549,6 @@
       "key_type" : "action_trigger",
       "name" : "Action Trigger Map",
       "value_type" : "action_list"
-    },
-    "actions" : {
-      "class_name" : "java.util.Map",
-      "description" : [ "" ],
-      "name" : "Actions",
-      "options" : { }
     },
     "attribute" : {
       "class_name" : "java.lang.String",

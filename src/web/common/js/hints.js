@@ -838,7 +838,8 @@ function Hints(fileType) {
                 if (classType != null) {
                     context.properties = $.extend(context.properties, classType.properties);
                     if (classType.hasOwnProperty('category') && classType.category == 'compound') {
-                        context.properties = $.extend(context.properties, this.metadata.types['compound_action_parameters'].parameters);
+                        let compoundType = this.metadata.types['compound_action_parameters'];
+                        context.properties = $.extend(context.properties, this.getProperties(compoundType));
                     }
                 }
             }
