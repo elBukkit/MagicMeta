@@ -546,6 +546,7 @@ function Hints(fileType) {
 
             // Objects in lists look for key siblings, not list item siblings
             if (context.isObject && current.isListItem) break;
+            if (this.parent != null && this.parent.isObject && current.isListItem) break;
 
             if (previous.listIndent == context.listIndent) {
                 siblings[previous.token] = previous.value;
@@ -830,8 +831,16 @@ function Hints(fileType) {
         context.properties = this.getProperties(type);
         if (type.classed) {
             let classType = this.getCurrentClass(context);
-            if (classType != null) {
+            if (classType != null && this.metadata.classed.hasOwnProperty(type.classed)) {
                 context.classed_class = classType;
+                context.properties = $.extend({}, context.properties);
+                classType = this.getMappedClass(type.classed, classType);
+                if (classType != null) {
+                    context.properties = $.extend(context.properties, classType.properties);
+                    if (classType.hasOwnProperty('category') && classType.category == 'compound') {
+                        context.properties = $.extend(context.properties, this.metadata.types['compound_action_parameters'].parameters);
+                    }
+                }
             }
         }
     };

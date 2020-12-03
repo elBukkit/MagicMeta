@@ -14524,7 +14524,7 @@
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "The configuration of one action in a spell", "Actions determine what a spell does", "Each action must have at least a 'class' parameter specifying what type of action to perform" ],
       "name" : "Spell Action",
-      "classed" : "action",
+      "classed" : "actions",
       "parameters" : {
         "action_class" : null,
         "ignore_result" : "false",
