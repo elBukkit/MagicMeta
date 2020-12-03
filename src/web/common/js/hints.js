@@ -538,6 +538,7 @@ function Hints() {
         while (true) {
             let next = this.getNextLine(currentLine);
             if (next == null) break;
+            if (this.parent != null && this.parent.isObject && next.isListItem) break;
             if (next.indent < context.indent) break;
             if (context.isListItem && !next.isListItem) break;
 
@@ -741,7 +742,7 @@ function Hints() {
                     itemType = this.metadata.types[itemType];
                     if (itemType.class_name == 'org.bukkit.configuration.ConfigurationSection' || itemType.class_name == 'java.util.Map') {
                         let objectWrapper = current;
-                        if (!objectWrapper.isListItem && objectWrapper.lineNumber > 0) {
+                        while (!objectWrapper.isListItem && objectWrapper.lineNumber > 0 && objectWrapper.listIndent >= current.listIndent) {
                             objectWrapper = this.getPreviousLine(objectWrapper.lineNumber);
                         }
                         objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
