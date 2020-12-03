@@ -630,17 +630,7 @@ function Hints() {
             }
         }
         if (!valueType && parent.isList) {
-            let itemType = parent.type.item_type;
-            if (this.metadata.types.hasOwnProperty(itemType)) {
-                itemType = this.metadata.types[itemType];
-                let itemProperties = this.getProperties(itemType);
-                if (itemProperties.hasOwnProperty(fieldName)) {
-                    let propertyKey = itemProperties[fieldName];
-                    if (this.metadata.properties.hasOwnProperty(propertyKey)) {
-                        valueType = this.metadata.properties[propertyKey].type;
-                    }
-                }
-            }
+            valueType = parent.type.item_type;
         }
         if (valueType) {
             if (this.metadata.types.hasOwnProperty(valueType)) {
@@ -731,9 +721,31 @@ function Hints() {
         for (let i = 1; i < hierarchy.length; i++) {
             parent = hierarchy[i - 1];
             let current = hierarchy[i];
-            current.parent = parent;
             let key = current.token;
 
+            // Object properties in lists have anonymous parents to represent the object itself
+            if (parent.isList && parent.type.hasOwnProperty('item_type')) {
+                let itemType = parent.type.item_type;
+                if (this.metadata.types.hasOwnProperty(itemType)) {
+                    itemType = this.metadata.types[itemType];
+                    if (itemType.class_name == 'org.bukkit.configuration.ConfigurationSection' || itemType.class_name == 'java.util.Map') {
+                        let listStart = current;
+                        if (!listStart.isListStart && listStart.lineNumber > 0) {
+                            listStart = this.getPreviousLine(listStart.lineNumber);
+                        }
+                        listStart = this.getContext(listStart.line, listStart.lineNumber);
+                        listStart.type = itemType;
+                        listStart.token = '{}';
+                        listStart.parent = parent;
+                        listStart.properties = this.getProperties(itemType);
+                        parent = listStart;
+                        hierarchy.splice(i, 0, listStart);
+                        i++;
+                    }
+                }
+            }
+
+            current.parent = parent;
             // Find type from parent property map
             let propertyType = this.getPropertyType(parent, key);
             if (propertyType) {
@@ -741,6 +753,9 @@ function Hints() {
                 current.properties = this.getProperties(propertyType);
                 if (current.type.class_name == 'java.util.Map') {
                     current.isMap = true;
+                }
+                if (current.type.class_name == 'org.bukkit.configuration.ConfigurationSection') {
+                    current.isObject = true;
                 }
                 if (current.type.class_name == 'java.util.List') {
                     current.isList = true;
