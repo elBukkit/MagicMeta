@@ -96,7 +96,7 @@ function Hints() {
             parent = hierarchy[hierarchy.length - 1];
         }
         let parentIsList = parent != null && parent.isList && parent.value == '';
-        if (!parentIsList && !parent.isMap && parent.isListStart) {
+        if (!parentIsList && !parent.isMap && parent.isListItem) {
             parentIsList = true;
         }
         let parentIsMap = parent != null && parent.isMap;
@@ -105,7 +105,7 @@ function Hints() {
             let nextLine = this.getNextLine(this.context.lineNumber);
             if (nextLine && nextLine.indent >= indent) {
                 indent = nextLine.indent;
-            } else if (!parent.isListStart) {
+            } else if (!parent.isListItem) {
                 indent += 2;
             }
             let replacement = " ".repeat(indent);
@@ -145,7 +145,7 @@ function Hints() {
             }
             for (let i = 0; i < hierarchy.length; i++) {
                 let token = hierarchy[i].token;
-                if (hierarchy[i].isListStart) {
+                if (hierarchy[i].isListItem) {
                     token = "[" + token + "]";
                 }
                 let title = '';
@@ -518,7 +518,7 @@ function Hints() {
             let previous = this.getPreviousLine(currentLine);
             if (previous == null) break;
             if (previous.indent < context.indent) break;
-            if (context.isListStart) break;
+            if (context.isListItem && !previous.isListItem) break;
 
             if (previous.indent == context.indent) {
                 siblings[previous.token] = previous.value;
@@ -530,7 +530,7 @@ function Hints() {
             let next = this.getNextLine(currentLine);
             if (next == null) break;
             if (next.indent < context.indent) break;
-            if (context.isListStart && next.isListStart) break;
+            if (context.isListItem && !next.isListItem) break;
 
             if (next.indent == context.indent) {
                 siblings[next.token] = next.value;
@@ -586,7 +586,7 @@ function Hints() {
                 value = keyValue[1].trim();
             }
         }
-        let isListStart = trimmed.startsWith('-');
+        let isListItem = trimmed.startsWith('-');
         let indent = line.length - trimmed.length;
         return {
             token: token,
@@ -596,13 +596,12 @@ function Hints() {
             trimmed: trimmed,
             isComment: trimmed.startsWith('#'),
             isEmpty: trimmed == '',
-            isListStart: isListStart,
-            isListItem: isListStart,
+            isListItem: isListItem,
             isKey: isKey,
             isSectionStart: isSectionStart,
             indent: indent,
             // This is where the key/value starts, should be two spaces after "-" in a list
-            listIndent: isListStart ? indent + 2 : indent
+            listIndent: isListItem ? indent + 2 : indent
         }
     };
 
@@ -696,9 +695,9 @@ function Hints() {
             let isNewParent = false;
             if (previousLine.indent < currentLine.indent) {
                 isNewParent = true;
-            } else if (previousLine.indent == currentLine.indent && currentLine.isListStart && !previousLine.isListStart) {
+            } else if (previousLine.indent == currentLine.indent && currentLine.isListItem && !previousLine.isListItem) {
                 isNewParent = true;
-            } else if (!currentLine.isListStart && currentLine.listIndent == previousLine.listIndent && previousLine.isListStart) {
+            } else if (!currentLine.isListItem && currentLine.listIndent == previousLine.listIndent && previousLine.isListItem) {
                 isNewParent = true;
             }
 
@@ -729,17 +728,18 @@ function Hints() {
                 if (this.metadata.types.hasOwnProperty(itemType)) {
                     itemType = this.metadata.types[itemType];
                     if (itemType.class_name == 'org.bukkit.configuration.ConfigurationSection' || itemType.class_name == 'java.util.Map') {
-                        let listStart = current;
-                        if (!listStart.isListStart && listStart.lineNumber > 0) {
-                            listStart = this.getPreviousLine(listStart.lineNumber);
+                        let objectWrapper = current;
+                        if (!objectWrapper.isListItem && objectWrapper.lineNumber > 0) {
+                            objectWrapper = this.getPreviousLine(objectWrapper.lineNumber);
                         }
-                        listStart = this.getContext(listStart.line, listStart.lineNumber);
-                        listStart.type = itemType;
-                        listStart.token = '{}';
-                        listStart.parent = parent;
-                        listStart.properties = this.getProperties(itemType);
-                        parent = listStart;
-                        hierarchy.splice(i, 0, listStart);
+                        objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
+                        objectWrapper.type = itemType;
+                        objectWrapper.token = '{}';
+                        objectWrapper.parent = parent;
+                        objectWrapper.properties = this.getProperties(itemType);
+                        objectWrapper.isObject = true;
+                        parent = objectWrapper;
+                        hierarchy.splice(i, 0, objectWrapper);
                         i++;
                     }
                 }
