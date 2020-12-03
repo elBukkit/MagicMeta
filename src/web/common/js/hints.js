@@ -760,7 +760,7 @@ function Hints(fileType) {
                         }
                         objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
                         objectWrapper.type = itemType;
-                        objectWrapper.token = '{}';
+                        objectWrapper.token = '...';
                         objectWrapper.parent = parent;
                         objectWrapper.properties = this.getProperties(itemType);
                         objectWrapper.isObject = true;
