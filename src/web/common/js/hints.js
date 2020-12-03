@@ -79,6 +79,7 @@ function Hints() {
 
             // Check to see if this is the start of a new key
             // If that is the case we are going to add a colon suffix and go to the next line
+            let inObject = this.parent != null && this.parent.isObject;
             if (this.context.isList || this.context.isMap) {
                 let prefix = '';
                 let indent = this.context.indent;
@@ -92,7 +93,7 @@ function Hints() {
                     indent = indent + '- ';
                 }
                 cm.replaceRange(prefix + '\n' + indent, from, to, "complete");
-            } else if (this.context.value == '' && !this.context.isListItem) {
+            } else if (this.context.value == '' && (!this.context.isListItem || inObject)) {
                 // If this is a key, just put a colon after
                 cm.replaceRange(': ', from, to, "complete");
             }
@@ -109,21 +110,30 @@ function Hints() {
         if (!parentIsList && !parent.isMap && parent.isListItem) {
             parentIsList = true;
         }
+        let currentIsList = this.context.isList && !this.context.isListItem;
         let parentIsMap = parent != null && parent.isMap;
         let parentIsObject = parent != null && parent.isObject;
-        if (this.context.isSectionStart || parentIsMap || parentIsList || parentIsObject) {
-            let indent = this.context.indent;
+        if (this.context.isSectionStart || parentIsMap || parentIsList || parentIsObject || currentIsList) {
+            let indent = this.context.listIndent;
             let nextLine = this.getNextLine(this.context.lineNumber);
-            if (nextLine && nextLine.listIndent >= indent) {
-                indent = nextLine.listIndent;
-            } else if (!parent.isListItem || parentIsObject) {
-                indent += 2;
+            if (parentIsObject) {
+                if (nextLine && nextLine.listIndent >= indent) {
+                    indent = nextLine.listIndent;
+                } else if (!parent.isListItem) {
+                    indent += 2;
+                }
+            } else if (nextLine && nextLine.indent >= indent) {
+                indent = nextLine.indent;
+            }
+            let prefix = '';
+            if (currentIsList || (parentIsList && !parentIsObject && !parentIsMap)) {
+                prefix = "- ";
+                if (parent.lineNumber != this.context.lineNumber) {
+                    indent -= 2;
+                }
             }
             let replacement = " ".repeat(indent);
-            if (parentIsList && !parentIsObject && !parentIsMap) {
-                replacement += "- ";
-            }
-            cm.replaceSelections(["\n" + replacement]);
+            cm.replaceSelections(["\n" + replacement + prefix]);
             cm.execCommand("autocomplete");
             return;
         }
