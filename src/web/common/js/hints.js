@@ -62,7 +62,9 @@ function Hints() {
                 } else if (this.parent.isObject || this.parent.isMap) {
                     // Objects and maps inside of lists will have an anonymous parent, so the first
                     // line of their properties needs to act like the first list item
-                    if (this.parent.parent != null && this.parent.parent.isList) {
+                    // Avoid this if this is not the first line, though, in which case the
+                    // parent will be a list item
+                    if (!this.parent.isListItem && this.parent.parent != null && this.parent.parent.isList) {
                         isInList  = true;
                     }
                 }
