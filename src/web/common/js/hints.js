@@ -129,11 +129,18 @@ function Hints() {
         if (this.navigationPanel) {
             let lineNumber = this.cursor.line + 1;
             let chNumber = this.cursor.ch + 1;
-            let path = '<span class="cursorLocation">(' + lineNumber + ',' + chNumber + ')</span>';
+            let path = $('<div>');
+            path.append($('<span>').addClass("cursorLocation")
+                .append($('<span>').addClass('delimiter').text('('))
+                .append($('<span>').text(lineNumber))
+                .append($('<span>').addClass('delimiter').text(','))
+                .append($('<span>').text(chNumber))
+                .append($('<span>').addClass('delimiter').text(')'))
+            );
             if (_fileType) {
-                path += _fileType;
+                path.append($('<span>').text(_fileType));
                 if (hierarchy.length > 0) {
-                    path += '<span class="delimiter"> / </span>';
+                    path.append($('<span>').addClass('delimiter').text(' / '));
                 }
             }
             for (let i = 0; i < hierarchy.length; i++) {
@@ -141,12 +148,21 @@ function Hints() {
                 if (hierarchy[i].isListStart) {
                     token = "[" + token + "]";
                 }
-                path += token;
+                let title = '';
+                if (hierarchy[i].hasOwnProperty('type')) {
+                    let type = hierarchy[i].type;
+                    title = type.name;
+                    if (type.description.length > 0) {
+                        title = title + ": " + type.description;
+                    }
+                }
+                path.append($('<span>').prop('title', title).text(token));
                 if (i < hierarchy.length - 1) {
-                    path += '<span class="delimiter"> . </span>';
+                    path.append($('<span>').addClass('delimiter').text(' . '));
                 }
             }
-            this.navigationPanel.html(path);
+            this.navigationPanel.empty();
+            this.navigationPanel.append(path);
         }
     };
 
