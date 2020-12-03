@@ -614,7 +614,17 @@ function Hints() {
             }
         }
         if (!valueType && parent.isList) {
-            valueType = parent.type.item_type;
+            let itemType = parent.type.item_type;
+            if (this.metadata.types.hasOwnProperty(itemType)) {
+                itemType = this.metadata.types[itemType];
+                let itemProperties = this.getProperties(itemType);
+                if (itemProperties.hasOwnProperty(fieldName)) {
+                    let propertyKey = itemProperties[fieldName];
+                    if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                        valueType = this.metadata.properties[propertyKey].type;
+                    }
+                }
+            }
         }
         if (valueType) {
             if (this.metadata.types.hasOwnProperty(valueType)) {
