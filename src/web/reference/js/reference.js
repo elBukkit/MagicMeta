@@ -62,7 +62,7 @@ function makeSelectable(tab, details, populate, depth) {
 
 function populatePropertyList(list, sectionKey) {
     var properties = metadata.properties;
-    var defaultValues = metadata.types[sectionKey];
+    var defaultValues = metadata.types[sectionKey].parameters;
     var section = Object.keys(defaultValues).sort();
     for (var i = 0; i < section.length; i++) {
         var key = section[i];
@@ -221,7 +221,7 @@ function sortList(ul) {
 }
 
 function addPropertyHolderDetails(container, key, section, baseProperties, targetCategory, categoryProperties) {
-    var propertyHolder = metadata[section][key];
+    var propertyHolder = metadata['classed'][section][key];
 
     var title = $('<div class="titleBanner"/>').text(propertyHolder.name);
     container.append(title);
@@ -274,9 +274,9 @@ function addPropertyHolderDetails(container, key, section, baseProperties, targe
         parameterItem.data('default', defaultValues[propertyKey]);
         parameterList.append(parameterItem);
     }
-    baseProperties = metadata[baseProperties];
+    baseProperties = metadata['types'][baseProperties].parameters
     if (targetCategory && propertyHolder.hasOwnProperty('category') && propertyHolder.category == targetCategory) {
-        baseProperties = jQuery.extend({}, baseProperties, metadata[categoryProperties]);
+        baseProperties = jQuery.extend({}, baseProperties, metadata['types'][categoryProperties].parameters);
     }
     var baseParameters = Object.keys(baseProperties);
     sortProperties(baseParameters);
@@ -381,7 +381,7 @@ function initialize() {
         makePropertySelector($("#mobParameterList"), "mob_properties", $('#mobParameterDetails'));
         makePropertySelector($("#effectParameterList"), "effect_properties", $('#effectParameterDetails'));
 
-        makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_parameters');
+        makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_properties');
         makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');
 
         // Kinda hacky but not sure how to work around this
