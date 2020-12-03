@@ -49,13 +49,25 @@ function Hints() {
     this.onPickHint = function(cm, data, completion) {
         let text = completion.text;
         let from = completion.from || data.from;
+        let fromChar = from.ch;
         let to = completion.to || data.to;
+        let toChar = to.ch;
         cm.replaceRange(text, from, to, "complete");
-        from.ch += text.length;
-        to.ch += text.length;
         this.initialize(cm);
         if (this.context != null && this.context.value == '') {
+            // Check to see if this should start a new list
+            if (this.parent != null && !this.context.isListStart && this.parent.isList) {
+                from.ch -= 2;
+                cm.replaceRange('- ', from, to, "complete");
+            }
+
+            from.ch = fromChar + text.length;
+            to.ch = toChar + text.length;
+
+            // Check to see if this is the start of a new key
+            // If that is the case we are going to add a colon suffix and go to the next line
             if (this.context.isList || this.context.isMap) {
+                let prefix = '';
                 let indent = this.context.indent;
                 if (!this.context.isListItem) {
                     indent += 2;
@@ -63,10 +75,12 @@ function Hints() {
                 }
                 indent = " ".repeat(indent);
                 if (!this.context.isMap) {
+                    // Start a new list item in this list
                     indent = indent + '- ';
                 }
                 cm.replaceRange(prefix + '\n' + indent, from, to, "complete");
             } else if (this.context.value == '' && !this.context.isListItem) {
+                // If this is a key, just put a colon after
                 cm.replaceRange(': ', from, to, "complete");
             }
             cm.execCommand("autocomplete");
