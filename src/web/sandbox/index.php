@@ -19,8 +19,8 @@ $user = getUser();
     <link rel="stylesheet" href="common/css/show-hint.css"/>
     <link rel="stylesheet" href="common/css/lint.css"/>
     <link rel="stylesheet" href="common/css/ui.fancytree.css"/>
-    <link rel="stylesheet" href="css/editor.css"/>
-    <link rel="stylesheet" href="css/tutorial.css"/>
+    <link rel="stylesheet" href="common/css/editor.css"/>
+    <link rel="stylesheet" href="common/css/tutorial.css"/>
 
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

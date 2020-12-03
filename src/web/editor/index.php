@@ -45,8 +45,8 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <link rel="stylesheet" href="common/css/common.css?v=<?=$version?>" />
     <link rel="stylesheet" href="common/css/loading.css?v=<?=$version?>" />
     <link rel="stylesheet" href="common/css/user.css?v=<?=$version?>"/>
-    <link rel="stylesheet" href="css/editor.css?v=<?=$version?>"/>
-    <link rel="stylesheet" href="css/tutorial.css?v=<?=$version?>"/>
+    <link rel="stylesheet" href="common/css/editor.css?v=<?=$version?>"/>
+    <link rel="stylesheet" href="common/css/tutorial.css?v=<?=$version?>"/>
 
     <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
