@@ -29,19 +29,17 @@ function Hints() {
                 completeSingle: false
             });
         });
+        cm.on('cursorActivity', this.onCursorActivity.bind(this));
     };
 
     this.initialize = function(cm) {
         if (cm) {
-            if (cm.metadata == null) {
-                alert("Sorry, failed to load metadata- the editor will not work!");
-                return;
-            }
             this.cm = cm;
         }
         if (this.cm == null) return;
         this.metadata = this.cm.metadata;
         this.cursor = this.cm.getCursor();
+        if (this.metadata == null) return;
         this.hierarchy = this.getHierarchy();
         this.parent = this.hierarchy.length > 1 ? this.hierarchy[this.hierarchy.length - 2] : null;
     };
@@ -54,6 +52,7 @@ function Hints() {
         let toChar = to.ch;
         cm.replaceRange(text, from, to, "complete");
         this.initialize(cm);
+        if (this.metadata == null) return;
         if (this.context != null && this.context.value == '') {
             // Check to see if this should start a new list
             if (this.parent != null && !this.context.isListStart && this.parent.isList) {
@@ -89,6 +88,7 @@ function Hints() {
 
     this.newlineAndIndent = function(cm) {
         this.initialize(cm);
+        if (this.metadata == null) return;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
         let hierarchy = this.hierarchy;
         let parent = null;
@@ -120,20 +120,12 @@ function Hints() {
         return;
     };
 
-    this.generateHints = function(cm) {
+    this.onCursorActivity = function(cm) {
         this.initialize(cm);
-
-        // No hints for first line
-        if (this.cursor.line == 0) return;
-
-        // Or for comments
-        if (this.context.isComment) return;
-
-        // Get hierarchy
-
-        // Update navigation
-        // TOOD: move this out of here and update on cursor change
+        if (this.cursor == null || this.metadata == null) return;
         let hierarchy = this.hierarchy;
+
+        // Update navigation bar
         if (this.navigationPanel) {
             let lineNumber = this.cursor.line + 1;
             let chNumber = this.cursor.ch + 1;
@@ -156,8 +148,19 @@ function Hints() {
             }
             this.navigationPanel.html(path);
         }
+    };
+
+    this.generateHints = function(cm) {
+        this.initialize(cm);
+
+        // No hints for first line
+        if (this.cursor.line == 0) return;
+
+        // Or for comments
+        if (this.context.isComment) return;
 
         // Don't show hints for the first line
+        let hierarchy = this.hierarchy;
         if (hierarchy.length < 2) {
             return;
         }
