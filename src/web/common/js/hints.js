@@ -55,7 +55,19 @@ function Hints() {
         if (this.metadata == null) return;
         if (this.context != null && this.context.value == '') {
             // Check to see if this should start a new list
-            if (this.parent != null && !this.context.isListStart && this.parent.isList) {
+            let isInList = false;
+            if (this.parent != null) {
+                if (this.parent.isList) {
+                    isInList = true;
+                } else if (this.parent.isObject || this.parent.isMap) {
+                    // Objects and maps inside of lists will have an anonymous parent, so the first
+                    // line of their properties needs to act like the first list item
+                    if (this.parent.parent != null && this.parent.parent.isList) {
+                        isInList  = true;
+                    }
+                }
+            }
+            if (this.parent != null && !this.context.isListItem && isInList) {
                 from.ch -= 2;
                 cm.replaceRange('- ', from, to, "complete");
             }
