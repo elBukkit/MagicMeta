@@ -2,8 +2,6 @@ $(document).ready(initialize);
 var editor = null;
 
 function initialize() {
-    editor = new Editor();
-
     $("#loadButton").button().click(function() { editor.load(); });
     $("#newButton").button().click(function() { editor.startNew("Basic"); });
     $("#saveButton").button().click(function() { editor.save(); });
@@ -29,7 +27,13 @@ function initialize() {
         loadSpell = currentHash.substring(1);
     }
     $('.controlgroup').controlgroup();
-    editor.checkMode();
+
+    // Register hints and create editor
+    let hints = new Hints('spells');
+    hints.setNavigationPanel($('#navigation'));
+    editor = new Editor($('#editor'));
+    hints.register(editor);
+
     if (loadSpell != null) {
         editor.loadFile(loadSpell);
     } else {

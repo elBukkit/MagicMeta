@@ -1,6 +1,5 @@
 <?php
 require_once('../config.inc.php');
-if (!$sandboxServer) die('No sandbox server defined');
 $version = 3;
 
 $session = null;
@@ -33,6 +32,7 @@ setcookie('tutorial', true, time()+60*60*24*30);
 <head>
     <title><?= $title ?> Editor</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" href="common/css/codemirror.css"/>
     <link rel="stylesheet" href="common/css/darcula.css"/>
@@ -60,7 +60,6 @@ setcookie('tutorial', true, time()+60*60*24*30);
     <script src="common/js/dialog.js"></script>
     <script src="common/js/searchcursor.js"></script>
     <script src="common/js/search.js"></script>
-    <script src="common/js/trailingspace.js"></script>
     <script src="common/js/trailingspace.js"></script>
     <script src="common/js/yaml-mode.js"></script>
     <script src="common/js/indent-fold.js"></script>

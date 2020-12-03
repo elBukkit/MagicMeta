@@ -1,4 +1,4 @@
-function Editor()
+function Editor(container)
 {
     this.tutorial = new Tutorial($('#tutorialMask'));
     this.saving = false;
@@ -8,16 +8,32 @@ function Editor()
     this.metadata = null;
     this.spellKeys = {};
 
-    this.codeEditor = null;
-    this.guiEditor = null;
+    this.editor = CodeMirror.fromTextArea(container.get(0), {
+        mode: 'yaml',
+        styleActiveLine: true,
+        lineNumbers: true,
+        showTrailingSpace: true,
+        foldGutter: true,
+        lint: true,
+        gutters: ["CodeMirror-lint-markers", "CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        extraKeys: {
+            "Ctrl-S": function() { editor.save(); },
+            "Cmd-S": function() { editor.save(); },
+            'Shift-Tab': 'indentLess',
+            'Tab': 'indentMore',
+            "Ctrl-Space": "autocomplete"
+        }
+    });
+    this.metadata = null;
+    this.editor.metadata = null;
 };
 
 Editor.prototype.getSpellConfig = function() {
-    return this.getActiveEditor().getValue();
+    return this.editor.getValue();
 };
 
 Editor.prototype.setSpellConfig = function(spellConfig) {
-    this.getActiveEditor().setValue(spellConfig);
+    this.editor.setValue(spellConfig);
 };
 
 Editor.prototype.save = function() {
@@ -28,7 +44,7 @@ Editor.prototype.save = function() {
         return;
     }
 
-    if (!this.getActiveEditor().isValid()) {
+    if (!this.isValid()) {
         alert("You have errors in your code, please fix them before saving!");
         return;
     }
@@ -58,6 +74,11 @@ Editor.prototype.save = function() {
             me.spellFiles = null;
         }
     });
+};
+
+Editor.prototype.isValid = function() {
+    let errors = CodeMirror.lint.yaml(this.getText());
+    return errors.length == 0;
 };
 
 Editor.prototype.startNew = function(template) {
@@ -215,68 +236,6 @@ Editor.prototype.populateSpellFiles = function() {
     }
 };
 
-Editor.prototype.getActiveEditor = function() {
-    var currentMode = $('#modeSelector').find('input:checked').prop('id');
-    if (currentMode == 'editorModeButton') {
-        return this.getGUIEditor();
-    }
-
-    return this.getCodeEditor();
-};
-
-Editor.prototype.getGUIEditor = function() {
-    if (this.guiEditor == null) {
-        this.guiEditor = new GUIEditor($('#editorTree'));
-        if (this.metadata != null) {
-            this.guiEditor.setMetadata(this.metadata);
-        }
-    }
-
-    return this.guiEditor;
-};
-
-Editor.prototype.getCodeEditor = function() {
-    if (this.codeEditor == null) {
-        this.codeEditor = new CodeEditor($('#editor'));
-        if (this.metadata != null) {
-            this.codeEditor.setMetadata(this.metadata);
-        }
-    }
-
-    return this.codeEditor;
-};
-
-Editor.prototype.checkMode = function() {
-    var currentMode = $('#modeSelector').find('input:checked').prop('id');
-    if (currentMode == 'editorModeButton') {
-        var gui = this.getGUIEditor();
-        if (this.codeEditor != nul) {
-            if (!this.codeEditor.isValid()) {
-                alert("You have errors in your code, please fix them before switching modes!");
-                setTimeout(function() {
-                    $('#codeModeButton').prop('checked', true);
-                    $('#modeSelector').controlgroup('refresh');
-                }, 1);
-                return;
-            }
-            gui.setValue(this.codeEditor.getValue());
-        }
-
-        $('#codeEditor').hide();
-        $('#guiEditor').show();
-        $('#validateButton').hide();
-    } else {
-        $('#codeEditor').show();
-        $('#guiEditor').hide();
-        $('#validateButton').show();
-
-        var code = this.getCodeEditor();
-        if (this.guiEditor != null) {
-            code.setValue(this.guiEditor.getValue());
-        }
-    }
-};
-
 Editor.prototype.simpleParse = function(spellConfig) {
     var lines = spellConfig.split("\n");
     var keyLine = 0;
@@ -400,15 +359,23 @@ Editor.prototype.setMetadata = function(meta) {
         alert("Error loading metadata, please reload and try again.");
         return;
     }
+
     this.metadata = meta;
-    if (this.codeEditor != null) {
-        this.codeEditor.setMetadata(meta);
-    }
-    if (this.guiEditor != null) {
-        this.guiEditor.setMetadata(meta);
-    }
+    this.editor.metadata = meta;
 };
 
 Editor.prototype.startTutorial = function() {
     this.tutorial.start($('#welcomeTutorial'));
+};
+
+Editor.prototype.undo = function() {
+    this.editor.undo();
+};
+
+Editor.prototype.setTheme = function(theme) {
+    this.editor.setOption("theme", theme);
+};
+
+Editor.prototype.getCodeMirror = function() {
+    return this.editor;
 };

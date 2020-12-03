@@ -20,10 +20,6 @@ function initialize() {
         icon: "ui-icon-lightbulb"
     }).click(toggleTheme);
 
-    // Register hints
-    let hints = new Hints();
-    hints.setNavigationPanel($('#navigation'));
-
     if ($("#newSelector").children().length == 0) {
         $("#newSelector").remove();
     } else {
@@ -39,6 +35,10 @@ function initialize() {
     $('.controlgroup').controlgroup();
 
     $('#container').show();
+
+    // Register hints and create editor
+    let hints = new Hints(_fileType);
+    hints.setNavigationPanel($('#navigation'));
     editor = new Editor($('#editor'));
     hints.register(editor);
 

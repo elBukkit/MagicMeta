@@ -230,4 +230,4 @@ Editor.prototype.setTheme = function(theme) {
 
 Editor.prototype.getCodeMirror = function() {
     return this.editor;
-}
+};

@@ -1,4 +1,4 @@
-function Hints() {
+function Hints(fileType) {
     this.WHITESPACE = /\s+/;
     this.WORD = /[\w\.]+/;
     this.OBJECT_KEY = /^[\s-]*?(\w+)\s*?:\s*?$/;
@@ -13,6 +13,7 @@ function Hints() {
     this.hierarchy = null;
     this.metadata = null;
     this.navigationPanel = null;
+    this.fileType = fileType;
 
     this.register = function(editor) {
         let cm = editor.getCodeMirror();
@@ -158,8 +159,8 @@ function Hints() {
                 .append($('<span>').text(chNumber))
                 .append($('<span>').addClass('delimiter').text(')'))
             );
-            if (_fileType) {
-                path.append($('<span>').text(_fileType));
+            if (this.fileType) {
+                path.append($('<span>').text(this.fileType));
                 if (hierarchy.length > 0) {
                     path.append($('<span>').addClass('delimiter').text(' / '));
                 }
@@ -582,7 +583,7 @@ function Hints() {
     };
 
     this.getBasePropertyType = function() {
-        let contextType = _fileType;
+        let contextType = this.fileType;
         // Remove the "s", kind of hacky
         contextType = depluralize(contextType);
         contextType = contextType + '_properties';

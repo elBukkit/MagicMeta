@@ -28,8 +28,7 @@ myspell:
   # specific to the set of actions you are using.
   parameters:
     range: 32
-    damage: 10
-    </textarea>
+    damage: 10</textarea>
     <textarea id="templateProjectile">myprojectile:
   name: My Projectile
   description: Damage Your Target
@@ -59,8 +58,7 @@ myspell:
   parameters:
     range: 32
     velocity: 20
-    damage: 10
-    </textarea>
+    damage: 10</textarea>
     <textarea id="templateAOE">myareaofeffect:
   name: My AOE
   description: Levitate Everything Around You
@@ -83,8 +81,7 @@ myspell:
     target: self
     radius: 8
     add_effects:
-      levitation: 2
-    </textarea>
+      levitation: 2</textarea>
     <textarea id="templateSphere">mysphere:
   name: My Sphere
   description: Make a temporary sphere of blocks
@@ -136,8 +133,7 @@ myspell:
     # Spell can be given cooldowns, so they can't be spam-cast.
     # This spell is limited to every 15 seconds, allowing it to undo
     # before it can be cast again.
-    cooldown: 15000
-    </textarea>
+    cooldown: 15000</textarea>
     <textarea id="templateBreak">mybreak:
   name: My Break
   description: Break a Block
@@ -179,8 +175,7 @@ myspell:
     destructible: solid
     # Almost everything in Magic is undoable. We don't want our world filled with
     # random holes, so we will make this one last only 10 seconds.
-    undo: 10000
-    </textarea>
+    undo: 10000</textarea>
     <textarea id="templateRepeating">goldwalker:
   name: Goldwalker
   description: Turn everything around you to gold
@@ -228,6 +223,5 @@ myspell:
     # The undo_speed parameter can be used to make undo animated.
     # This will undo 20 blocks per second, rather than undoing all at once.
     undo_speed: 20
-    cooldown: 2000
-    </textarea>
+    cooldown: 2000</textarea>
 </div>
