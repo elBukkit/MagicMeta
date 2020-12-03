@@ -26,6 +26,7 @@ public class ParameterType {
     private String keyType;
     private String itemType;
     private String populateFrom;
+    private String classed;
 
     public ParameterType() {
 
@@ -200,5 +201,13 @@ public class ParameterType {
 
     public void setPopulateFrom(String populateFrom) {
         this.populateFrom = populateFrom;
+    }
+
+    public String getClassed() {
+        return classed;
+    }
+
+    public void setClassed(String classed) {
+        this.classed = classed;
     }
 }

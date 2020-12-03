@@ -536,16 +536,22 @@ function Hints(fileType) {
     this.getSiblings = function(context) {
         let siblings = {};
         let currentLine = context.lineNumber;
+        let current = context;
         while (true) {
             let previous = this.getPreviousLine(currentLine);
             if (previous == null) break;
             if (previous.listIndent < context.listIndent) break;
+            // Don't move across lists
             if (context.isListItem && !previous.isListItem) break;
+
+            // Objects in lists look for key siblings, not list item siblings
+            if (context.isObject && current.isListItem) break;
 
             if (previous.listIndent == context.listIndent) {
                 siblings[previous.token] = previous.value;
             }
             currentLine = previous.lineNumber;
+            current = previous;
         }
         currentLine = context.lineNumber;
         while (true) {
@@ -553,12 +559,19 @@ function Hints(fileType) {
             if (next == null) break;
             if (this.parent != null && this.parent.isObject && next.isListItem) break;
             if (next.indent < context.indent) break;
-            if (context.isListItem && !next.isListItem) break;
 
-            if (next.indent == context.indent) {
+            // Objects in lists look for key siblings, not list item siblings
+            if (context.isObject) {
+                if (!current.isListItem && next.isListItem) break;
+            } else {
+                if (context.isListItem && !next.isListItem) break;
+            }
+
+            if (next.listIndent == context.listIndent) {
                 siblings[next.token] = next.value;
             }
             currentLine = next.lineNumber;
+            current = next;
         }
         return siblings;
     };
@@ -738,8 +751,7 @@ function Hints(fileType) {
 
         // Walk down the tree to figure out types of everything in the path
         let parent = hierarchy[0];
-        parent.type = this.getBasePropertyType();
-        parent.properties = this.getProperties(parent.type);
+        this.setContextType(parent, this.getBasePropertyType());
         if (this.metadata['types'].hasOwnProperty(parent.type)) {
             parent.type = this.metadata['types'][parent.type];
         }
@@ -759,11 +771,9 @@ function Hints(fileType) {
                             objectWrapper = this.getPreviousLine(objectWrapper.lineNumber);
                         }
                         objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
-                        objectWrapper.type = itemType;
-                        objectWrapper.token = '...';
-                        objectWrapper.parent = parent;
-                        objectWrapper.properties = this.getProperties(itemType);
                         objectWrapper.isObject = true;
+                        this.setContextType(objectWrapper, itemType, parent);
+                        objectWrapper.token = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
                         parent = objectWrapper;
                         hierarchy.splice(i, 0, objectWrapper);
                         i++;
@@ -771,12 +781,10 @@ function Hints(fileType) {
                 }
             }
 
-            current.parent = parent;
             // Find type from parent property map
             let propertyType = this.getPropertyType(parent, key);
             if (propertyType) {
-                current.type = propertyType;
-                current.properties = this.getProperties(propertyType);
+                this.setContextType(current, propertyType, parent);
                 if (current.type.class_name == 'java.util.Map') {
                     current.isMap = true;
                 }
@@ -812,6 +820,33 @@ function Hints(fileType) {
         }
 
         return hierarchy;
+    };
+
+    this.setContextType = function(context, type, parent) {
+        if (parent) {
+            context.parent = parent;
+        }
+        context.type = type;
+        context.properties = this.getProperties(type);
+        if (type.classed) {
+            let classType = this.getCurrentClass(context);
+            if (classType != null) {
+                context.classed_class = classType;
+            }
+        }
+    };
+
+    this.getCurrentClass = function(context) {
+        let currentClass = null;
+        if (context.token == 'class') {
+            currentClass = context.value;
+        } else {
+            let siblings = this.getSiblings(context);
+            if (siblings.hasOwnProperty("class")) {
+                currentClass = siblings['class'];
+            }
+        }
+        return currentClass;
     };
 
     this.getCurrentToken = function() {

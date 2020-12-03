@@ -14524,6 +14524,7 @@
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "The configuration of one action in a spell", "Actions determine what a spell does", "Each action must have at least a 'class' parameter specifying what type of action to perform" ],
       "name" : "Spell Action",
+      "classed" : "action",
       "parameters" : {
         "action_class" : null,
         "ignore_result" : "false",
@@ -14992,8 +14993,9 @@
     },
     "effectlib_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
-      "description" : [ "" ],
+      "description" : [ "An EffectLib effect, which will be started when this effect plays" ],
       "name" : "Effectlib Properties",
+      "classed" : "effectlib_effect",
       "parameters" : {
         "asynchronous" : "true",
         "auto_orient" : "false",
