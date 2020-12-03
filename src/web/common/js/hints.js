@@ -222,7 +222,7 @@ function Hints() {
                 let values = valueType.options;
 
                 // We assume most lists in magic can also be expressed as a single string
-                if (this.context.isList) {
+                if (this.context.isList || this.context.isAlternateList) {
                     let itemType = this.context.type.item_type;
                     if (this.metadata.types.hasOwnProperty(itemType)) {
                         valueType = this.metadata.types[itemType];
@@ -772,7 +772,7 @@ function Hints() {
                 if (current.type.class_name == 'java.util.List') {
                     current.isList = true;
                 } else if (current.type.hasOwnProperty("alternate_class_name") && current.type.alternate_class_name == 'java.util.List') {
-                    current.isList = true;
+                    current.isAlternateList = true;
                 }
             } else {
                 break;
