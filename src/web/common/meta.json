@@ -5041,22 +5041,6 @@
       "name" : "Allowed Entity Classes",
       "type" : "list"
     },
-    "alternate_down_actions" : {
-      "category" : "actions",
-      "description" : [ "A list of actions to perform immediately when this spell is cast, if the player is looking straight down" ],
-      "field" : "alternate_down",
-      "importance" : 30,
-      "name" : "Alt-Down Actions",
-      "type" : "action_list"
-    },
-    "alternate_sneak_actions" : {
-      "category" : "actions",
-      "description" : [ "A list of actions to perform immediately when this spell is cast, if the player is holding shift" ],
-      "field" : "alternate_sneak",
-      "importance" : 50,
-      "name" : "Alt-Sneak Actions",
-      "type" : "action_list"
-    },
     "alternate_spell" : {
       "category" : "wand",
       "description" : [ "The spell to cast when performing the action bound to alt_cast on this wand" ],
@@ -5072,14 +5056,6 @@
       "importance" : 40,
       "name" : "Alternate Spell 2",
       "type" : "spell"
-    },
-    "alternate_up_actions" : {
-      "category" : "actions",
-      "description" : [ "A list of actions to perform immediately when this spell is cast, if the player is looking straight up" ],
-      "field" : "alternate_up",
-      "importance" : 30,
-      "name" : "Alt-Up Actions",
-      "type" : "action_list"
     },
     "amount" : {
       "category" : "mob",
@@ -5594,14 +5570,6 @@
       "name" : "Blocked",
       "type" : "list"
     },
-    "blockmiss_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform each tick of a projectile that does not hit a block", "These effects are mostly used to debug particle movement and not generally used in a real spell." ],
-      "field" : "block_miss",
-      "importance" : 0,
-      "name" : "Block Miss Effects",
-      "type" : "effects_list"
-    },
     "body_transform" : {
       "category" : "",
       "description" : [ "" ],
@@ -5955,22 +5923,6 @@
       "importance" : -1,
       "name" : "Cast",
       "type" : "map"
-    },
-    "cast_actions" : {
-      "category" : "actions",
-      "description" : [ "A list of actions to perform immediately when this spell is cast", "Actions determine the behavior of a spell, defining what it does" ],
-      "field" : "actions",
-      "importance" : 100,
-      "name" : "Actions",
-      "type" : "action_list"
-    },
-    "cast_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform immediately when this spell is cast", "Actions determine the behavior of a spell, defining what it does" ],
-      "field" : "cast",
-      "importance" : 100,
-      "name" : "Cast Effects",
-      "type" : "effects_list"
     },
     "cast_for_tags" : {
       "category" : "",
@@ -8384,19 +8336,11 @@
     },
     "headshot_actions" : {
       "category" : "",
-      "description" : [ "Actions perfomed when a projectile hits the head of an entity" ],
+      "description" : [ "Actions performed when a projectile hits the head of an entity" ],
       "field" : "headshot",
       "importance" : 0,
       "name" : "Headshot Actions",
       "type" : "action_list"
-    },
-    "headshot_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile spell hits an entity in the head", "Only works with the CustomProjectile action" ],
-      "field" : "hit",
-      "importance" : 80,
-      "name" : "Headshot Effects",
-      "type" : "effects_list"
     },
     "headshot_effects" : {
       "category" : "",
@@ -8534,14 +8478,6 @@
       "name" : "Hide Messages",
       "type" : "list"
     },
-    "hit_block_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile spell hits a block (but not an entity)", "If this effect list plays, so will the 'hit' effect list." ],
-      "field" : "hit_block",
-      "importance" : 30,
-      "name" : "Hit Block Effects",
-      "type" : "effects_list"
-    },
     "hit_count" : {
       "category" : "",
       "description" : [ "How many entities the projectile can hit before expiring" ],
@@ -8550,14 +8486,6 @@
       "name" : "Hit Count",
       "type" : "integer"
     },
-    "hit_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile spell hits a block or entity target", "This is often used to attach effects to the entity hit by a spell" ],
-      "field" : "hit",
-      "importance" : 90,
-      "name" : "Hit Effects",
-      "type" : "effects_list"
-    },
     "hit_effects" : {
       "category" : "",
       "description" : [ "An effect key, specifying which effects to play when the projectile hits" ],
@@ -8565,14 +8493,6 @@
       "importance" : 0,
       "name" : "Hit Effects",
       "type" : "string"
-    },
-    "hit_entity_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile spell hits an entity", "If this effect list plays, so will the 'hit' effect list." ],
-      "field" : "hit_entity",
-      "importance" : 30,
-      "name" : "Hit Entity Effects",
-      "type" : "effects_list"
     },
     "hit_on_miss" : {
       "category" : "",
@@ -9783,14 +9703,6 @@
       "name" : "Miss Actions",
       "type" : "action_list"
     },
-    "miss_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile misses completely, expiring in mid-air" ],
-      "field" : "miss",
-      "importance" : 50,
-      "name" : "Miss Effects",
-      "type" : "effects_list"
-    },
     "miss_effects" : {
       "category" : "",
       "description" : [ "" ],
@@ -10807,14 +10719,6 @@
       "name" : "Precision",
       "type" : "integer"
     },
-    "prehit_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform just before a projectile hits its target", "These effects are mostly used to debug particle movement and not generally used in a real spell." ],
-      "field" : "prehit",
-      "importance" : 0,
-      "name" : "Pre-Hit Effects",
-      "type" : "effects_list"
-    },
     "preuse" : {
       "category" : "",
       "description" : [ "This wand will consue a use prior to casting a spell, rather than after the spell completes" ],
@@ -10903,17 +10807,9 @@
       "name" : "Projectile Actions",
       "type" : "action_list"
     },
-    "projectile_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to to attach to a projectile before launching it" ],
-      "field" : "projectile",
-      "importance" : 60,
-      "name" : "Projectile Effects",
-      "type" : "effects_list"
-    },
     "projectile_effects" : {
       "category" : "",
-      "description" : [ "An effect key, specifying effects to use to attach tot he projectile" ],
+      "description" : [ "An effect key, specifying effects to use to attach to the projectile" ],
       "field" : "projectile_effects",
       "importance" : 0,
       "name" : "Projectile Effects",
@@ -11246,14 +11142,6 @@
       "importance" : 0,
       "name" : "Reflect Count",
       "type" : "integer"
-    },
-    "reflect_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform when a projectile is reflected", "Spells can be reflected by certain spells, blocks, or items" ],
-      "field" : "reflect",
-      "importance" : 45,
-      "name" : "Reflect Effects",
-      "type" : "effects_list"
     },
     "reflect_reorient" : {
       "category" : "",
@@ -12615,14 +12503,6 @@
       "name" : "Step",
       "type" : "float"
     },
-    "step_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to perform once per tick on a projectile", "This is similar to tick effects, but only happens once per tick, regardless of the particle's velocity" ],
-      "field" : "step",
-      "importance" : 40,
-      "name" : "Step Effects",
-      "type" : "effects_list"
-    },
     "step_x" : {
       "category" : "",
       "description" : [ "Each stepX pixel will be shown. Saves packets for lower fontsizes." ],
@@ -13214,14 +13094,6 @@
       "importance" : 0,
       "name" : "Tick Actions",
       "type" : "action_list"
-    },
-    "tick_effect_list" : {
-      "category" : "effects",
-      "description" : [ "A list of effects to to perform every tick while a projectile is in flight", "This is often used to make a projectile visible as it flies.", "The effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!", "Only works with the CustomProjectile action" ],
-      "field" : "tick",
-      "importance" : 70,
-      "name" : "Tick Effects",
-      "type" : "effects_list"
     },
     "tick_effects" : {
       "category" : "",
@@ -14533,6 +14405,7 @@
       }
     },
     "action_trigger" : {
+      "name" : "Action Trigger",
       "class_name" : "java.lang.String",
       "description" : [ "An action handler, which will run a list of actions in order" ],
       "options" : {
@@ -15034,9 +14907,29 @@
     },
     "effects_trigger_map" : {
       "class_name" : "java.util.Map",
-      "description" : [ "Lists of effects defined for triggered events such as 'cast'" ],
-      "name" : "Event Trigger Map",
-      "options" : { }
+      "description" : [ "An event trigger map, with lists of effects defined for triggered events such as 'cast'" ],
+      "name" : "Effects Trigger Map",
+      "key_type" : "effect_trigger",
+      "value_type" : "effects_list"
+    },
+    "effect_trigger" : {
+      "name" : "Effects Trigger",
+      "class_name" : "java.lang.String",
+      "description" : [ "An effect handler, which will perform a list of effects" ],
+      "options" : {
+        "cast" : "Performed immediately when this spell is cast",
+        "tick" : "Performed every tick while a projectile is in flight\nThis is often used to make a projectile visible as it flies.\nThe effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!\nOnly works with projectile actions",
+        "hit" : "Performed when a projectile spell hits a block or entity target\nThis is often used to attach effects to the entity hit by a spell",
+        "hit_entity" : "Performed when a projectile spell hits an entity\nIf this effect list plays, so will the 'hit' effect list.",
+        "hit_block" : "Performed when a projectile spell hits a block (but not an entity)\nIf this effect list plays, so will the 'hit' effect list.",
+        "blockmiss" : "Performed each tick of a projectile that does not hit a block\nThese effects are mostly used to debug particle movement and not generally used in a real spell.",
+        "prehit" : "Performed just before a projectile hits its target\nThese effects are mostly used to debug particle movement and not generally used in a real spell.",
+        "step" : "Performed once per tick on a projectile\nThis is similar to tick effects, but only happens once per tick, regardless of the particle's velocity",
+        "reflect" : "Performed when a projectile is reflected\nSpells can be reflected by certain spells, blocks, or items",
+        "miss" : "Performed when a projectile misses completely, expiring in mid-air",
+        "headshot" : "Performed when a projectile spell hits an entity in the head\nOnly works with the CustomProjectile action",
+        "projectile" : "Effects to to attach to a projectile before launching it"
+      }
     },
     "enchantment" : {
       "class_name" : "org.bukkit.enchantments.Enchantment",
