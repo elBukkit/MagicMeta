@@ -185,6 +185,11 @@ li.CodeMirror-hint:hover {
     color: #000000;
 }
 
+.darcula li.CodeMirror-hint:hover {
+    background: #444444;
+    color: #CC7832;
+}
+
 .CodeMirror-hint td div {
     max-height: 30px;
     overflow: hidden;
@@ -194,10 +199,18 @@ li.CodeMirror-hint:hover {
     text-overflow: ellipsis;
 }
 
+.darcula .CodeMirror-hint {
+    color: #BB6822;
+}
+
 .CodeMirror-hint-active td div {
     max-height: inherit;
     white-space: pre-wrap;
     color: #000000;
+}
+
+.darcula .CodeMirror-hint-active {
+    color: #CC7832;
 }
 
 .CodeMirror-hint:hover td div {
