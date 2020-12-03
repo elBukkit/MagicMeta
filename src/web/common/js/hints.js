@@ -102,26 +102,23 @@ function Hints() {
         this.initialize(cm);
         if (this.metadata == null) return;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
-        let hierarchy = this.hierarchy;
-        let parent = null;
-        if (hierarchy.length > 1) {
-            parent = hierarchy[hierarchy.length - 1];
-        }
+        let parent = this.parent;
         let parentIsList = parent != null && parent.isList && parent.value == '';
         if (!parentIsList && !parent.isMap && parent.isListItem) {
             parentIsList = true;
         }
         let parentIsMap = parent != null && parent.isMap;
-        if (this.context.isSectionStart || parentIsMap || parentIsList) {
+        let parentIsObject = parent != null && parent.isObject;
+        if (this.context.isSectionStart || parentIsMap || parentIsList || parentIsObject) {
             let indent = this.context.indent;
             let nextLine = this.getNextLine(this.context.lineNumber);
-            if (nextLine && nextLine.indent >= indent) {
-                indent = nextLine.indent;
-            } else if (!parent.isListItem) {
+            if (nextLine && nextLine.listIndent >= indent) {
+                indent = nextLine.listIndent;
+            } else if (!parent.isListItem || parentIsObject) {
                 indent += 2;
             }
             let replacement = " ".repeat(indent);
-            if (parentIsList) {
+            if (parentIsList && !parentIsObject && !parentIsMap) {
                 replacement += "- ";
             }
             cm.replaceSelections(["\n" + replacement]);
@@ -529,10 +526,10 @@ function Hints() {
         while (true) {
             let previous = this.getPreviousLine(currentLine);
             if (previous == null) break;
-            if (previous.indent < context.indent) break;
+            if (previous.listIndent < context.listIndent) break;
             if (context.isListItem && !previous.isListItem) break;
 
-            if (previous.indent == context.indent) {
+            if (previous.listIndent == context.listIndent) {
                 siblings[previous.token] = previous.value;
             }
             currentLine = previous.lineNumber;
@@ -705,13 +702,16 @@ function Hints() {
         while (previousLine != null) {
             // Check indent
             let isNewParent = false;
-            if (previousLine.indent < currentLine.indent) {
+            if (previousLine.listIndent < currentLine.listIndent) {
                 isNewParent = true;
             } else if (previousLine.indent == currentLine.indent && currentLine.isListItem && !previousLine.isListItem) {
                 isNewParent = true;
-            } else if (!currentLine.isListItem && currentLine.listIndent == previousLine.listIndent && previousLine.isListItem) {
+            }
+            /*
+            else if (!currentLine.isListItem && currentLine.listIndent == previousLine.listIndent && previousLine.isListItem) {
                 isNewParent = true;
             }
+            */
 
             if (isNewParent) {
                 hierarchy.unshift(previousLine);
