@@ -802,18 +802,23 @@ function Hints(fileType) {
         let hierarchy = [this.context];
         let currentLine = this.context;
         let previousLine = this.getPreviousLine(this.context.lineNumber);
+        let isInList = currentLine.isListItem;
         while (previousLine != null) {
             // Check indent
             let isNewParent = false;
             if (previousLine.listIndent < currentLine.listIndent) {
                 isNewParent = true;
-            } else if (previousLine.indent == currentLine.indent && currentLine.isListItem && !previousLine.isListItem) {
+            } else if (previousLine.indent == currentLine.indent && isInList && !previousLine.isListItem) {
                 isNewParent = true;
             }
 
             if (isNewParent) {
                 hierarchy.unshift(previousLine);
                 currentLine = previousLine;
+                isInList = currentLine.isListItem;
+            }
+            if (!isInList && previousLine.isListItem) {
+                isInList = true;
             }
 
             // Go to previous step
