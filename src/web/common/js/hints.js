@@ -162,16 +162,11 @@ function Hints(fileType) {
             return;
         }
 
-        // See if we need a new sub-key of a map or object
-        if (!current.isSectionStart) {
-            cm.execCommand("newlineAndIndent");
-            return;
-        }
-
-        if (currentIsObject) {
+        // See if we need a new sub-key of a map or object)
+        if (currentIsObject && current.isSectionStart) {
             let nextLine = this.getNextLine(current.lineNumber);
             let indent = current.indent + 2;
-            if (nextLine.indent >= indent) {
+            if (nextLine != null && nextLine.indent >= indent) {
                 indent = nextLine.indent;
             }
             let replacement = " ".repeat(indent);
@@ -180,9 +175,18 @@ function Hints(fileType) {
             return;
         }
 
+        // If the parent is an object, we want to indent to match any existing keys
         if (parentIsObject) {
-            //let nextLine = this.getNextLine(current.lineNumber);
-            cm.execCommand("newlineAndIndent");
+            let nextLine = this.getNextLine(parent.lineNumber);
+            if (nextLine.lineNumber == current.lineNumber) {
+                nextLine = this.getNextLine(current.lineNumber);
+            }
+            let indent = parent.indent + 2;
+            if (nextLine != null && nextLine.listIndent >= indent) {
+                indent = nextLine.listIndent;
+            }
+            let replacement = " ".repeat(indent);
+            cm.replaceSelections(["\n" + replacement]);
             cm.execCommand("autocomplete");
             return;
         }
