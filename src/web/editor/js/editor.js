@@ -16,9 +16,11 @@ function Editor(container)
             'Shift-Tab': 'indentLess',
             'Tab': 'indentMore',
             "Ctrl-Space": "autocomplete",
-            "Cmd-Space": "autocomplete",
             "Ctrl-Enter": "autocomplete",
-            "Cmd-Enter": "autocomplete"
+            "Cmd-Space": "autocomplete",
+            "Cmd-Enter": "autocomplete",
+            "Alt-Enter": "autocomplete",
+            "Alt-Space": "autocomplete"
         }
     });
     this.metadata = null;
