@@ -584,6 +584,21 @@ function Hints(fileType) {
         return hint;
     };
 
+    this.getChildren = function(context) {
+        let children = {};
+        let firstLine = this.getNextLine(context.lineNumber);
+        if (firstLine == null || firstLine.indent <= context.indent) return children;
+        children[firstLine.token] = firstLine.value;
+        let nextLine = this.getNextLine(firstLine);
+        while (nextLine != null && nextLine.indent >= firstLine.indent) {
+            if (nextLine.indent == firstLine.indent) {
+                children[nextLine.token] = nextLine.value;
+            }
+            nextLine = this.getNextLine(nextLine);
+        }
+        return children;
+    };
+
     this.getSiblings = function(context) {
         let siblings = {};
         let currentLine = context.lineNumber;
@@ -602,6 +617,9 @@ function Hints(fileType) {
             // Don't move across lists
             if (previous[indentType] < context[indentType]) break;
             if (context.isListItem && !previous.isListItem) break;
+            // Ok if this might be a new key that is a sibling with a list, but not ok
+            // if this is a sub-key of an object in a list
+            if (current.isListItem && !previous.isListItem && previous.indent > context.indent) break;
 
             // Objects in lists look for key siblings, not list item siblings
             if (context.isObject && current.isListItem) break;
@@ -829,8 +847,9 @@ function Hints(fileType) {
                         if (objectWrapper.indent < current.indent - 1 || objectWrapper.lineNumber == current.lineNumber) {
                             objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
                             objectWrapper.isObject = true;
+                            // Force using anonymous display
+                            objectWrapper.display = '';
                             this.setContextType(objectWrapper, itemType, parent);
-                            objectWrapper.display = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
                             parent = objectWrapper;
                             hierarchy.splice(i, 0, objectWrapper);
                             i++;
@@ -901,16 +920,31 @@ function Hints(fileType) {
                 }
             }
         }
+
+        // Change navbar to use class type if available
+        if (context.hasOwnProperty('classed_class')) {
+            if (context.display != '') {
+                context.display += ":";
+            }
+            context.display += context.classed_class;
+        } else if (context.display == '') {
+            context.display = '...';
+        }
     };
 
     this.getCurrentClass = function(context) {
         let currentClass = null;
         if (context.token == 'class') {
             currentClass = context.value;
-        } else {
+        } else if (context.isListItem) {
             let siblings = this.getSiblings(context);
             if (siblings.hasOwnProperty("class")) {
                 currentClass = siblings['class'];
+            }
+        } else {
+            let children = this.getChildren(context);
+            if (children.hasOwnProperty("class")) {
+                currentClass = children['class'];
             }
         }
         return currentClass;
