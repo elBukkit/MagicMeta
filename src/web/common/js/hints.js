@@ -774,14 +774,8 @@ function Hints(fileType) {
     };
 
     this.getFirstChild = function(context) {
-        let lineNumber = context.lineNumber;
-        while (true) {
-            let next = this.getNextLine(lineNumber);
-            if (next == null) break;
-            if (next.indent > context.indent) return next;
-            lineNumber = next.lineNumber;
-        }
-        return null;
+        let nextLine = this.getNextLine(context);
+        return nextLine != null && nextLine.listIndent > context.listIndent ? nextLine : null;
     };
 
     this.getHierarchy = function() {
