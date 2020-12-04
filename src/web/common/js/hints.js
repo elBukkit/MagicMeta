@@ -602,11 +602,17 @@ function Hints(fileType) {
 
     this.getContext = function(line, lineNumber) {
         let trimmed = line.trimStart();
+        let indent = line.length - trimmed.length;
         let isKey = false;
         let isSectionStart = false;
-        let token = line.trim();
+        let token = trimmed;
+        let isListItem = token.startsWith('-');
+        if (isListItem) {
+            token = token.substring(1).trim();
+        }
+        let listIndent = line.length - token.length;
+        token = token.trimRight();
         let value = '';
-        token = token.replace('- ', '');
         if (token.indexOf(':') >= 0) {
             isKey = true;
             isSectionStart = token.endsWith(':');
@@ -616,8 +622,6 @@ function Hints(fileType) {
                 value = keyValue[1].trim();
             }
         }
-        let isListItem = trimmed.startsWith('-');
-        let indent = line.length - trimmed.length;
         return {
             token: token,
             value: value,
@@ -630,8 +634,7 @@ function Hints(fileType) {
             isKey: isKey,
             isSectionStart: isSectionStart,
             indent: indent,
-            // This is where the key/value starts, should be two spaces after "-" in a list
-            listIndent: isListItem ? indent + 2 : indent
+            listIndent: listIndent
         }
     };
 
