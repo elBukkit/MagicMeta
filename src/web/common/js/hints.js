@@ -81,19 +81,9 @@ function Hints(fileType) {
             // Check to see if this is the start of a new key
             // If that is the case we are going to add a colon suffix and go to the next line
             let inObject = this.parent != null && this.parent.isObject;
-            if (this.context.isList || this.context.isMap) {
-                let prefix = '';
-                let indent = this.context.indent;
-                if (!this.context.isListItem) {
-                    indent += 2;
-                    prefix = ':';
-                }
-                indent = " ".repeat(indent);
-                if (!this.context.isMap) {
-                    // Start a new list item in this list
-                    indent = indent + '- ';
-                }
-                cm.replaceRange(prefix + '\n' + indent, from, to, "complete");
+            if (this.context.isList || this.context.isMap || this.context.isObject) {
+                cm.replaceRange(':', from, to, "complete");
+                cm.execCommand('magicNewlineAndIndent');
             } else if (this.context.value == '' && (!this.context.isListItem || inObject)) {
                 // If this is a key, just put a colon after
                 cm.replaceRange(': ', from, to, "complete");
