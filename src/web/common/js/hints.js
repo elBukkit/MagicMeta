@@ -816,13 +816,18 @@ function Hints(fileType) {
                         while (!objectWrapper.isListItem && objectWrapper.lineNumber > 0 && objectWrapper.listIndent >= current.listIndent) {
                             objectWrapper = this.getPreviousLine(objectWrapper.lineNumber);
                         }
-                        objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
-                        objectWrapper.isObject = true;
-                        this.setContextType(objectWrapper, itemType, parent);
-                        objectWrapper.token = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
-                        parent = objectWrapper;
-                        hierarchy.splice(i, 0, objectWrapper);
-                        i++;
+
+                        // Skip this if it doesn't align, this helps the pick function align it and listify if needed,
+                        // since it is getting the hierarchy in a potentially intermediate state
+                        if (objectWrapper.indent < current.indent - 1 || objectWrapper.lineNumber == current.lineNumber) {
+                            objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
+                            objectWrapper.isObject = true;
+                            this.setContextType(objectWrapper, itemType, parent);
+                            objectWrapper.token = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
+                            parent = objectWrapper;
+                            hierarchy.splice(i, 0, objectWrapper);
+                            i++;
+                        }
                     }
                 }
             }
