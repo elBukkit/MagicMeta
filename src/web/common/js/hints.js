@@ -674,7 +674,7 @@ function Hints(fileType) {
         let token = trimmed;
         let isListItem = token.startsWith('-');
         if (isListItem) {
-            token = token.substring(1).trim();
+            token = token.substring(1).trimLeft();
         }
         let listIndent = line.length - token.length;
         token = token.trimRight();
