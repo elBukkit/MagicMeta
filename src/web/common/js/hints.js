@@ -107,24 +107,27 @@ function Hints(fileType) {
         if (this.metadata == null) return;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
         let parent = this.parent;
+        let current = this.context;
         let parentIsList = parent != null && parent.isList && parent.value == '';
         if (!parentIsList && !parent.isMap && parent.isListItem) {
             parentIsList = true;
         }
-        let currentIsList = this.context.isList && !this.context.isListItem;
+        let currentIsList = current.isList && !this.context.isListItem && this.context.value == '';
         let parentIsMap = parent != null && parent.isMap;
         let parentIsObject = parent != null && parent.isObject;
+        let currentIsObject = current.isObject;
+        let currentIsMap = current.isObject;
         if (this.context.isSectionStart || parentIsMap || parentIsList || parentIsObject || currentIsList) {
             let indent = this.context.listIndent;
             let nextLine = this.getNextLine(this.context.lineNumber);
-            if (parentIsObject) {
-                if (nextLine && nextLine.listIndent >= indent) {
+            if (currentIsObject || currentIsMap) {
+                if (nextLine && nextLine.listIndent >= indent && currentIsList == nextLine.isListItem) {
                     indent = nextLine.listIndent;
-                } else if (!parent.isListItem) {
+                } else if (!parent.isListItem && !currentIsList) {
                     indent += 2;
                 }
-            } else if (nextLine && nextLine.indent >= indent) {
-                indent = nextLine.indent;
+            } else if (nextLine && nextLine.listIndent >= indent) {
+                indent = nextLine.listIndent;
             }
             let prefix = '';
             if (currentIsList || (parentIsList && !parentIsObject && !parentIsMap)) {
