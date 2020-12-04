@@ -805,12 +805,13 @@ function Hints(fileType) {
         let currentLine = this.context;
         let previousLine = this.getPreviousLine(this.context.lineNumber);
         let isInList = currentLine.isListItem;
+        let listIndent = currentLine.indent;
         while (previousLine != null) {
             // Check indent
             let isNewParent = false;
             if (previousLine.listIndent < currentLine.listIndent) {
                 isNewParent = true;
-            } else if (previousLine.indent == currentLine.indent && isInList && !previousLine.isListItem) {
+            } else if (previousLine.indent == listIndent && isInList && !previousLine.isListItem) {
                 isNewParent = true;
             }
 
@@ -818,6 +819,7 @@ function Hints(fileType) {
                 hierarchy.unshift(previousLine);
                 currentLine = previousLine;
                 isInList = currentLine.isListItem;
+                listIndent = currentLine.indent;
             }
             if (!isInList && previousLine.isListItem) {
                 isInList = true;
