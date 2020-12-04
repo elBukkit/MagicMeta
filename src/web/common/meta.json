@@ -7448,7 +7448,7 @@
     },
     "effect_class" : {
       "category" : "",
-      "description" : [ "What type of effect to player", "Most often this can be left out, it defaults to EffectSingle which means to play the effect just once." ],
+      "description" : [ "What type of effect to play", "Most often this can be left out, it defaults to EffectSingle which means to play the effect just once." ],
       "field" : "class",
       "importance" : 0,
       "name" : "Effect Class",
@@ -7564,11 +7564,11 @@
       "field" : "effectlib",
       "importance" : 100,
       "name" : "EffectLib Effect",
-      "type" : "map"
+      "type" : "effectlib_properties"
     },
     "effectlib_class" : {
       "category" : "base",
-      "description" : [ "The class this effect uses", "This determines the type of effect that will be shown" ],
+      "description" : [ "The class this EffectLib effect uses", "This determines the type of effect that will be shown" ],
       "field" : "class",
       "importance" : 100,
       "name" : "EffectLib Class",
@@ -9259,7 +9259,7 @@
       "category" : "effects",
       "description" : [ "Where to play this effect" ],
       "field" : "location",
-      "importance" : 100,
+      "importance" : 200,
       "name" : "Location",
       "type" : "effect_location"
     },
@@ -14862,7 +14862,7 @@
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "An EffectLib effect, which will be started when this effect plays" ],
       "name" : "Effectlib Properties",
-      "classed" : "effectlib_effect",
+      "classed" : "effectlib_effects",
       "parameters" : {
         "asynchronous" : "true",
         "auto_orient" : "false",
@@ -14903,6 +14903,7 @@
       "class_name" : "java.util.List",
       "description" : [ "A a list of effects to perform in order" ],
       "name" : "Effect List",
+      "item_type" : "effect_properties",
       "options" : { }
     },
     "effects_trigger_map" : {
@@ -14922,8 +14923,8 @@
         "hit" : "Performed when a projectile spell hits a block or entity target\nThis is often used to attach effects to the entity hit by a spell",
         "hit_entity" : "Performed when a projectile spell hits an entity\nIf this effect list plays, so will the 'hit' effect list.",
         "hit_block" : "Performed when a projectile spell hits a block (but not an entity)\nIf this effect list plays, so will the 'hit' effect list.",
-        "blockmiss" : "Performed each tick of a projectile that does not hit a block\nThese effects are mostly used to debug particle movement and not generally used in a real spell.",
-        "prehit" : "Performed just before a projectile hits its target\nThese effects are mostly used to debug particle movement and not generally used in a real spell.",
+        "blockmiss" : "Performed each tick of a projectile that does not hit a block\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
+        "prehit" : "Performed just before a projectile hits its target\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
         "step" : "Performed once per tick on a projectile\nThis is similar to tick effects, but only happens once per tick, regardless of the particle's velocity",
         "reflect" : "Performed when a projectile is reflected\nSpells can be reflected by certain spells, blocks, or items",
         "miss" : "Performed when a projectile misses completely, expiring in mid-air",
