@@ -296,9 +296,9 @@ function Hints(fileType) {
                 suggestions = this.getSortedValues(values, defaultValue, currentToken.word, valueType.key);
             }
         } else {
-            let inherited = null;
             let classType = 'properties';
             let values = parent.properties;
+            let inherited = parent.inherited;
 
             // Add in parameters from actions (or other things, maybe, in the future, but probably not)
             if (parent.hasOwnProperty('populatedProperties')) {
@@ -904,15 +904,16 @@ function Hints(fileType) {
             context.parent = parent;
         }
         context.type = type;
+        context.inherited = null;
         context.properties = this.getProperties(type);
         if (type.classed) {
             let classType = this.getCurrentClass(context);
             if (classType != null && this.metadata.classed.hasOwnProperty(type.classed)) {
                 context.classed_class = classType;
-                context.properties = $.extend({}, context.properties);
                 classType = this.getMappedClass(type.classed, classType);
                 if (classType != null) {
-                    context.properties = $.extend(context.properties, classType.properties);
+                    context.inherited = context.properties;
+                    context.properties = $.extend({}, classType.properties);
                     if (classType.hasOwnProperty('category') && classType.category == 'compound') {
                         let compoundType = this.metadata.types['compound_action_parameters'];
                         context.properties = $.extend(context.properties, this.getProperties(compoundType));
