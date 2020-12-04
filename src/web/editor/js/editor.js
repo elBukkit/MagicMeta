@@ -15,7 +15,10 @@ function Editor(container)
             "Cmd-S": function() { editor.save(); },
             'Shift-Tab': 'indentLess',
             'Tab': 'indentMore',
-            "Ctrl-Space": "autocomplete"
+            "Ctrl-Space": "autocomplete",
+            "Cmd-Space": "autocomplete",
+            "Ctrl-Enter": "autocomplete",
+            "Cmd-Enter": "autocomplete"
         }
     });
     this.metadata = null;
