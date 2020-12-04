@@ -165,7 +165,7 @@ function Hints(fileType) {
         // See if we need a new sub-key of a map or object)
         if (currentIsObject && current.isSectionStart) {
             let nextLine = this.getNextLine(current.lineNumber);
-            let indent = current.indent + 2;
+            let indent = current.listIndent + 2;
             if (nextLine != null && nextLine.indent >= indent) {
                 indent = nextLine.indent;
             }
