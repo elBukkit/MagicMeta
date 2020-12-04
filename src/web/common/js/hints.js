@@ -637,6 +637,7 @@ function Hints(fileType) {
             if (next == null) break;
             if (this.parent != null && this.parent.isObject && next.isListItem) break;
             if (next.indent < context.indent) break;
+            if (next.isListItem && next.value != '') break;
 
             // Objects in lists look for key siblings, not list item siblings
             if (context.isObject) {
