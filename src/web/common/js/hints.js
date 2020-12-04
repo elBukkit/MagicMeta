@@ -217,7 +217,7 @@ function Hints(fileType) {
                 }
             }
             for (let i = 0; i < hierarchy.length; i++) {
-                let token = hierarchy[i].token;
+                let token = hierarchy[i].display;
                 if (hierarchy[i].isListItem) {
                     token = "[" + token + "]";
                 }
@@ -690,6 +690,7 @@ function Hints(fileType) {
         }
         return {
             token: token,
+            display: token,
             value: value,
             line: line,
             lineNumber: lineNumber,
@@ -829,7 +830,7 @@ function Hints(fileType) {
                             objectWrapper = this.getContext(objectWrapper.line, objectWrapper.lineNumber);
                             objectWrapper.isObject = true;
                             this.setContextType(objectWrapper, itemType, parent);
-                            objectWrapper.token = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
+                            objectWrapper.display = objectWrapper.hasOwnProperty('classed_class') ? objectWrapper.classed_class : '...';
                             parent = objectWrapper;
                             hierarchy.splice(i, 0, objectWrapper);
                             i++;
