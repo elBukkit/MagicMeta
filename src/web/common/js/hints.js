@@ -837,6 +837,7 @@ function Hints(fileType) {
         for (let i = 1; i < hierarchy.length; i++) {
             parent = hierarchy[i - 1];
             let current = hierarchy[i];
+            current.parent = parent;
             let key = current.token;
 
             // Object properties in lists have anonymous parents to represent the object itself
@@ -882,7 +883,7 @@ function Hints(fileType) {
                     current.isAlternateList = true;
                 }
             } else {
-                break;
+                continue;
             }
 
             // See if this inherits properties from a classed set of objects elsewhere in the config
