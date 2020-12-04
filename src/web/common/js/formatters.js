@@ -90,3 +90,9 @@ function depluralize(s) {
     }
     return s;
 }
+
+function deepCopy(a) {
+    let c = {};
+    $.extend(true, c, a);
+    return c;
+}
