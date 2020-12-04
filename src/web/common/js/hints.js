@@ -92,47 +92,85 @@ function Hints(fileType) {
         }
     };
 
+    this.isList = function(context) {
+        if (!context) return false;
+        let isList = context.isList;
+        // Types can be both lists and maps, but we will only consider this one a list if
+        // it already has list items
+        if (context.isMap || context.isObject) {
+            isList = false;
+            let nextLine = this.getNextLine(context);
+            if (nextLine != null && nextLine.listIndent > context.indent && nextLine.isListItem) {
+                isList = true;
+            }
+        }
+        return isList;
+    };
+
     this.newlineAndIndent = function(cm) {
         this.initialize(cm);
         if (this.metadata == null) return;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
-        let parent = this.parent;
         let current = this.context;
-        let parentIsList = parent != null && parent.isList && parent.value == '';
-        if (!parentIsList && !parent.isMap && parent.isListItem) {
-            parentIsList = true;
+        if (current.isComment || current.isEmpty) return;
+        let parent = this.parent;
+        let parentIsList = this.isList(parent);
+        let currentIsList = this.isList(current);
+        let parentIsObject = parent != null && (parent.isObject || parent.isMap);
+        let currentIsObject = current.isMap || current.isObject;
+
+        // See if the next line is a list item
+        let addListItem = false;
+        if (parentIsList && current.isListItem) {
+            addListItem = true;
+        } else if (currentIsList && current.isSectionStart) {
+            addListItem = true;
         }
-        let currentIsList = current.isList && !this.context.isListItem && this.context.value == '';
-        let parentIsMap = parent != null && parent.isMap;
-        let parentIsObject = parent != null && parent.isObject;
-        let currentIsObject = current.isObject;
-        let currentIsMap = current.isObject;
-        if (this.context.isSectionStart || parentIsMap || parentIsList || parentIsObject || currentIsList) {
-            let indent = this.context.listIndent;
-            let nextLine = this.getNextLine(this.context.lineNumber);
-            if (currentIsObject || currentIsMap) {
-                if (nextLine && nextLine.listIndent >= indent && currentIsList == nextLine.isListItem) {
-                    indent = nextLine.listIndent;
-                } else if (!parent.isListItem && !currentIsList) {
-                    indent += 2;
+
+        if (addListItem) {
+            let indent = current.indent;
+
+            // if we were already on a list item, add another one at that same indent
+            if (!current.isListItem) {
+                // otherwise this should be the list parent, so indent twice
+                indent += 2;
+                // unless there's already a list item we're inserting in front of ..
+                let nextLine = this.getNextLine(current.lineNumber);
+                if (nextLine.isListItem) {
+                    indent = nextLine.indent;
                 }
-            } else if (nextLine && nextLine.listIndent >= indent) {
-                indent = nextLine.listIndent;
             }
-            let prefix = '';
-            if (currentIsList || (parentIsList && !parentIsObject && !parentIsMap)) {
-                prefix = "- ";
-                if (parent.lineNumber != this.context.lineNumber) {
-                    indent -= 2;
-                }
+            let replacement = " ".repeat(indent) + "- ";
+            cm.replaceSelections(["\n" + replacement]);
+            cm.execCommand("autocomplete");
+            return;
+        }
+
+        // See if we need a new sub-key of a map or object
+        if (!current.isSectionStart) {
+            cm.execCommand("newlineAndIndent");
+            return;
+        }
+
+        if (currentIsObject) {
+            let nextLine = this.getNextLine(current.lineNumber);
+            let indent = current.indent + 2;
+            if (nextLine.indent >= indent) {
+                indent = nextLine.indent;
             }
             let replacement = " ".repeat(indent);
-            cm.replaceSelections(["\n" + replacement + prefix]);
+            cm.replaceSelections(["\n" + replacement]);
+            cm.execCommand("autocomplete");
+            return;
+        }
+
+        if (parentIsObject) {
+            //let nextLine = this.getNextLine(current.lineNumber);
+            cm.execCommand("newlineAndIndent");
             cm.execCommand("autocomplete");
             return;
         }
         cm.execCommand("newlineAndIndent");
-        return;
     };
 
     this.onCursorActivity = function(cm) {
