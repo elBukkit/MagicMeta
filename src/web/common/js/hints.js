@@ -584,18 +584,26 @@ function Hints(fileType) {
         let siblings = {};
         let currentLine = context.lineNumber;
         let current = context;
+        let isInList = this.parent != null && this.parent.isList;
+
+        // Don't use list indent if we are in a list
+        // This helps align object properties in lists with the first item in the list
+        // And also helps align new list items which don't have a manual - in front, this will
+        // be added when the hint is picked.
+        let indentType = isInList ? 'indent' : 'listIndent';
         while (true) {
             let previous = this.getPreviousLine(currentLine);
             if (previous == null) break;
             if (previous.listIndent < context.listIndent) break;
             // Don't move across lists
+            if (previous[indentType] < context[indentType]) break;
             if (context.isListItem && !previous.isListItem) break;
 
             // Objects in lists look for key siblings, not list item siblings
             if (context.isObject && current.isListItem) break;
             if (this.parent != null && this.parent.isObject && current.isListItem) break;
 
-            if (previous.listIndent == context.listIndent) {
+            if (previous[indentType] == context[indentType]) {
                 siblings[previous.token] = previous.value;
             }
             currentLine = previous.lineNumber;
@@ -615,7 +623,7 @@ function Hints(fileType) {
                 if (context.isListItem && !next.isListItem) break;
             }
 
-            if (next.listIndent == context.listIndent) {
+            if (next[indentType] == context[indentType]) {
                 siblings[next.token] = next.value;
             }
             currentLine = next.lineNumber;
