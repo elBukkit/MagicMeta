@@ -120,13 +120,18 @@ $sounds = array_keys($soundsJson);
 $sounds = array_fill_keys($sounds, null);
 $meta['types']['sound']['options'] = array_merge($meta['types']['sound']['options'], $sounds);
 
-// Populate action, effect and effectlib class types
-$actions = array_column($meta['classed']['actions'], 'short_class');
-$actions = array_fill_keys($actions, null);
-$meta['types']['action_class']['options'] = $actions;
+function getClassedOptions($meta, $type) {
+    $options = array();
+    $classes = $meta['classed'][$type];
+    foreach ($classes as $class) {
+        $description = implode("\n", $class['description']);
+        $options[$class['short_class']] = $description;
+    }
+    return $options;
+}
 
-$effects = array_column($meta['classed']['effectlib_effects'], 'short_class');
-$effects = array_fill_keys($effects, null);
-$meta['types']['effectlib_class']['options'] = $effects;
+// Populate action, effect and effectlib class types
+$meta['types']['action_class']['options'] = getClassedOptions($meta, 'actions');
+$meta['types']['effectlib_class']['options'] = getClassedOptions($meta, 'effectlib_effects');
 
 echo json_encode($meta);
