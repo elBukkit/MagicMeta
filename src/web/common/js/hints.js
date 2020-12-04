@@ -152,7 +152,7 @@ function Hints(fileType) {
                 indent += 2;
                 // unless there's already a list item we're inserting in front of ..
                 let nextLine = this.getNextLine(current.lineNumber);
-                if (nextLine.isListItem) {
+                if (nextLine.isListItem && nextLine.listIndent > parent.listIndent) {
                     indent = nextLine.indent;
                 }
             }
