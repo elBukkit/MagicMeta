@@ -7580,7 +7580,7 @@
       "field" : "effect",
       "importance" : 100,
       "name" : "EffectLib Effect",
-      "type" : "map"
+      "type" : "effectlib_properties"
     },
     "effects" : {
       "category" : "base",
