@@ -588,7 +588,7 @@ function Hints(fileType) {
         let siblings = {};
         let currentLine = context.lineNumber;
         let current = context;
-        let isInList = this.parent != null && this.parent.isList;
+        let isInList = this.parent != null && this.parent.isList && current.isListItem;
 
         // Don't use list indent if we are in a list
         // This helps align object properties in lists with the first item in the list
