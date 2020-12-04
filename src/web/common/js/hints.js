@@ -108,21 +108,6 @@ function Hints(fileType) {
         }
     };
 
-    this.isList = function(context) {
-        if (!context) return false;
-        let isList = context.isList;
-        // Types can be both lists and maps, but we will only consider this one a list if
-        // it already has list items
-        if (context.isMap || context.isObject) {
-            isList = false;
-            let nextLine = this.getNextLine(context);
-            if (nextLine != null && nextLine.listIndent > context.indent && nextLine.isListItem) {
-                isList = true;
-            }
-        }
-        return isList;
-    };
-
     this.newlineAndIndent = function(cm) {
         this.initialize(cm);
         if (this.metadata == null) return;
@@ -1015,5 +1000,20 @@ function Hints(fileType) {
         }
 
         return classes;
+    };
+
+    this.isList = function(context) {
+        if (!context) return false;
+        let isList = context.isList;
+        // Types can be both lists and maps, but we will only consider this one a list if
+        // it already has list items
+        if (context.isMap || context.isObject) {
+            isList = false;
+            let nextLine = this.getNextLine(context);
+            if (nextLine != null && nextLine.listIndent > context.indent && nextLine.isListItem) {
+                isList = true;
+            }
+        }
+        return isList;
     };
 }
