@@ -836,6 +836,7 @@ function Hints(fileType) {
         let previousLine = this.getPreviousLine(this.context.lineNumber);
         let isInList = currentLine.isListItem;
         let listIndent = currentLine.indent;
+        let lookForInlineList = true;
         while (previousLine != null) {
             // Check indent
             let isNewParent = false;
@@ -850,8 +851,9 @@ function Hints(fileType) {
                 currentLine = previousLine;
                 isInList = currentLine.isListItem;
                 listIndent = currentLine.indent;
+                lookForInlineList = false;
             }
-            if (!isInList && previousLine.isListItem) {
+            if (!isInList && previousLine.isListItem && lookForInlineList) {
                 isInList = true;
                 listIndent = previousLine.indent;
             }
