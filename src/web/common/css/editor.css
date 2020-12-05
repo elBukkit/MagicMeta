@@ -219,6 +219,11 @@ li.CodeMirror-hint:hover {
     color: #000000;
 }
 
+
+.darcula .CodeMirror-hint:hover td div {
+    color: #222222;
+}
+
 .spellIcon {
     width: 16px;
     height: 16px;
