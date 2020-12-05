@@ -47,6 +47,8 @@ $user = getUser();
     <script src="common/js/foldcode.js"></script>
     <script src="common/js/foldgutter.js"></script>
 
+    <script src="common/js/user.js?v=<?=$version?>"></script>
+
     <script src="common/js/formatters.js?v=<?=$version?>"></script>
     <script src="common/js/hints.js?v=<?=$version?>"></script>
     <script src="js/editor.js?v=<?=$version?>"></script>
