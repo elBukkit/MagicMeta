@@ -180,6 +180,19 @@ Editor.prototype.openReference = function() {
     window.open(referenceURL, '_blank');
 };
 
+Editor.prototype.clean = function() {
+    let text = this.getText();
+    text = text.split("\n");
+    let newLines = [];
+    for (let i = 0; i < text.length; i++) {
+        let line = text[i];
+        let trimmed = line.trim();
+        if (trimmed == "" || trimmed.startsWith('#')) continue;
+        newLines.push(line);
+    }
+    this.setText(newLines.join("\n"));
+};
+
 Editor.prototype.download = function() {
     let text = this.getText();
     let key = this.simpleParse(text).key;

@@ -9,6 +9,7 @@ function initialize() {
     $("#undoButton").button().click(function() { editor.undo(); });
     $('#referenceButton').button().click(function() { editor.openReference(); });
     $('#downloadButton').button().click(function() { editor.download(); });
+    $('#cleanButton').button().click(function() { editor.clean(); });
     $('#helpButton').button().click(function() { editor.startTutorial(); });
     $('.clipboard').click(function() { copyTextToClipboard($(this)); });
     $('.template').each(function() {
