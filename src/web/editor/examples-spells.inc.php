@@ -23,6 +23,8 @@ myspell:
     - location: target
       effectlib:
         class: Sphere
+        # This effect will last 2 seconds
+        duration: 2000
     - sound: magic.zap
   # Parameters change how a spell behaves, these may be base spell parameters or
   # specific to the set of actions you are using.
@@ -51,6 +53,8 @@ myspell:
     - location: target
       effectlib:
         class: Sphere
+        # This effect will last 2 seconds
+        duration: 2000
     # These effects will play each tick as the projectile travels. This can be used
     # to make your projectile visible.
     tick:
@@ -79,6 +83,8 @@ myspell:
     - location: targets
       effectlib:
         class: AnimatedBall
+        # This effect will last 2 seconds
+        duration: 2000
   parameters:
     target: self
     radius: 8
