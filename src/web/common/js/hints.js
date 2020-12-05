@@ -117,6 +117,25 @@ function Hints(fileType) {
         let current = this.context;
         if (current.isComment || current.isEmpty) return CodeMirror.Pass;
         let parent = this.parent;
+
+        // Special behavior for pressing enter after a main config key, we'll almost always want to indent
+        if (parent == null) {
+            // Make sure we're really at the first line
+            let previousLine = this.getPreviousLine(current.lineNumber);
+            if (previousLine == null) {
+                // Find a good indent
+                let nextLine = this.getNextLine(current.lineNumber);
+                let indent = current.indent + 2;
+                if (nextLine != null) {
+                    indent = nextLine.indent;
+                }
+                let replacement = " ".repeat(indent);
+                cm.replaceSelections(["\n" + replacement]);
+                cm.execCommand("autocomplete");
+                return;
+            }
+        }
+
         let parentIsList = this.isList(parent);
         let currentIsList = this.isList(current);
         let parentIsObject = parent != null && (parent.isObject || parent.isMap);
