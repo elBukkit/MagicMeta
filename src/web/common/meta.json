@@ -9961,11 +9961,11 @@
     },
     "options" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "The options that will be shown in the selector GUI" ],
       "field" : "options",
       "importance" : 0,
       "name" : "Options",
-      "type" : "list"
+      "type" : "options_list"
     },
     "orbitals" : {
       "category" : "",
@@ -15240,6 +15240,19 @@
       "description" : [ "" ],
       "name" : "List",
       "options" : { }
+    },
+    "options_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "" ],
+      "name" : "List",
+      "value_type" : "selector_option",
+      "options" : { }
+    },
+    "selector_option" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "An option in a Selector that will be shown as an icon in the GUI" ],
+      "name" : "Selector Option",
+      "parameters" : { }
     },
     "lock_type" : {
       "class_name" : "java.lang.String",
