@@ -35,6 +35,7 @@ $version = 3;
             <li><a href="#classes">Classes</a></li>
             <li><a href="#modifiers">Modifiers</a></li>
             <li><a href="#mobs">Mobs</a></li>
+            <li><a href="#crafting">Crafting</a></li>
             <?php include "common/userinfo.inc.php" ?>
         </ul>
     </div>
@@ -227,6 +228,23 @@ $version = 3;
                 Mobs can be added to mobs.yml, and spawned in game using <span class="code">/mmob spawn</span>.
                 <br/><br/>
                 Select a mob property for details.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="crafting" class="flextab">
+        <div class="flexContainer">
+            <div class="scrollingTab">
+                <ol id="craftingParameterList">
+                </ol>
+            </div>
+            <div class="details" id="craftingParameterDetails">
+                <div>
+                Magic has a customizeable crafting system allowing you to create custom recipes for magic and vanilla items.
+                <br/><br/>
+                Currently only workbench recipes are supported.
+                <br/><br/>
+                Select a recipe property for details.
                 </div>
             </div>
         </div>

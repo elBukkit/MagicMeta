@@ -382,6 +382,7 @@ function initialize() {
         makePropertySelector($("#effectParameterList"), "effect_properties", $('#effectParameterDetails'));
         makePropertySelector($("#classParameterList"), "class_properties", $('#classParameterDetails'));
         makePropertySelector($("#modifierParameterList"), "modifier_properties", $('#modifierParameterDetails'));
+        makePropertySelector($("#craftingParameterList"), "crafting_properties", $('#craftingParameterDetails'));
 
         makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_properties');
         makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');
