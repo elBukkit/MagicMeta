@@ -5393,6 +5393,14 @@
       "name" : "Auto Close",
       "type" : "boolean"
     },
+    "auto_discover" : {
+      "category" : "",
+      "description" : [ "Whether or not players learn this recipe automatically" ],
+      "field" : "auto_discover",
+      "importance" : 0,
+      "name" : "Auto Discover",
+      "type" : "boolean"
+    },
     "auto_orient" : {
       "category" : "",
       "description" : [ "If set to true, and this effect has a target location, the two locations will orient to face one another" ],
@@ -7110,6 +7118,14 @@
       "name" : "Direction Y",
       "type" : "double"
     },
+    "disable_default" : {
+      "category" : "",
+      "description" : [ "Should the vanilla recipe for this output be unavailable" ],
+      "field" : "disable_default",
+      "importance" : 0,
+      "name" : "Disable Default",
+      "type" : "boolean"
+    },
     "disable_mana_regeneration" : {
       "category" : "base",
       "description" : [ "If true, this spell will disable mana regeneration for the caster while the spell is active", "This can be used with toggleable spells that have active costs, to preven the caster's mana regeneration rate from overcoming the cost drain." ],
@@ -7141,6 +7157,14 @@
       "importance" : 50,
       "name" : "Disappear With Target Entity",
       "type" : "boolean"
+    },
+    "discover" : {
+      "category" : "",
+      "description" : [ "Recipes that should be discovered by a player when they craft this one" ],
+      "field" : "discover",
+      "importance" : 0,
+      "name" : "Discover",
+      "type" : "recipe_list"
     },
     "disguise" : {
       "category" : "",
@@ -7900,7 +7924,7 @@
       "field" : "faces",
       "importance" : 0,
       "name" : "Faces",
-      "type" : "list"
+      "type" : "faces_list"
     },
     "factor_inner_spike" : {
       "category" : "",
@@ -8302,6 +8326,14 @@
       "name" : "Gravity",
       "type" : "boolean"
     },
+    "group" : {
+      "category" : "",
+      "description" : [ "Put this recipe in a group, it will show in the crafting book as grouped with other recipes in the same group" ],
+      "field" : "group",
+      "importance" : 0,
+      "name" : "Group",
+      "type" : "string"
+    },
     "grow" : {
       "category" : "",
       "description" : [ "" ],
@@ -8670,6 +8702,14 @@
       "importance" : 0,
       "name" : "Ignore Currencies",
       "type" : "list"
+    },
+    "ignore_damage" : {
+      "category" : "",
+      "description" : [ "If this recipe should allow ingredients (tools) to be damaged" ],
+      "field" : "ignore_damage",
+      "importance" : 0,
+      "name" : "Ignore Damage",
+      "type" : "boolean"
     },
     "ignore_hit_entities" : {
       "category" : "",
@@ -10142,6 +10182,22 @@
       "importance" : 0,
       "name" : "Outline Only",
       "type" : "boolean"
+    },
+    "output" : {
+      "category" : "",
+      "description" : [ "What this recipe should produce" ],
+      "field" : "output",
+      "importance" : 500,
+      "name" : "Output",
+      "type" : "wand"
+    },
+    "output_type" : {
+      "category" : "",
+      "description" : [ "Produce a specific output type, useful if there are spells, wands or items with the same key" ],
+      "field" : "output_type",
+      "importance" : 0,
+      "name" : "Output Type",
+      "type" : "recipe_output_type"
     },
     "override" : {
       "category" : "",
@@ -12599,6 +12655,46 @@
       "name" : "Sub Message Key",
       "type" : "string"
     },
+    "substitute" : {
+      "category" : "",
+      "description" : [ "An item to use in place of the vanilla recipe output" ],
+      "field" : "substitute",
+      "importance" : 0,
+      "name" : "Substitute",
+      "type" : "string"
+    },
+    "row_1" : {
+      "category" : "",
+      "description" : [ "The first row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_1",
+      "importance" : 1000,
+      "name" : "Row 1",
+      "type" : "ingredient_string"
+    },
+    "row_2" : {
+      "category" : "",
+      "description" : [ "The second row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_2",
+      "importance" : 1000,
+      "name" : "Row 2",
+      "type" : "ingredient_string"
+    },
+    "row_3" : {
+      "category" : "",
+      "description" : [ "The third row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_3",
+      "importance" : 1000,
+      "name" : "Row 3",
+      "type" : "ingredient_string"
+    },
+    "crafting_materials" : {
+      "category" : "",
+      "description" : [ "A map of materials to use as ingredients", "Pick a unique character for each material, these characters are used in row_1, row_2 and row_3 to define the recipe shape" ],
+      "field" : "materials",
+      "importance" : 1000,
+      "name" : "Ingredients",
+      "type" : "ingredient_map"
+    },
     "swap" : {
       "category" : "",
       "description" : [ "What action the wand should perform when the player uses the swap (F by default) button" ],
@@ -14403,6 +14499,81 @@
     }
   },
   "types" : {
+    "ingredient_key" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A single character used to represent a specific ingredient in a crafting recipe" ],
+      "name" : "Recipe Ingredient",
+      "options" : {
+        "x" : null,
+        "o" : null,
+        "i" : null,
+        "." : null,
+        "a" : null,
+        "b" : null,
+        "c" : null,
+        "y" : null,
+        "z" : null
+      }
+    },
+    "ingredient_string" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A list of 0 to 3 characters that define one row of a 3x3 ingredient shape", "These character must be mapped to items in the materials property of the recipe", "Note that you may have to surround strings with leading spaces in quotes" ],
+      "name" : "Recipe Ingredient",
+      "options" : {
+        "x x" : null,
+        "' x '" : null,
+        "xox" : null,
+        "x.x" : null,
+        ".oo" : null,
+        "'  x'" : null,
+        "o.o" : null
+      }
+    },
+    "ingredient_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of characters (used in recipe rows) to material ingredients" ],
+      "key_type" : "ingredient_key",
+      "name" : "Ingredient map",
+      "options" : { },
+      "value_type" : "material"
+    },
+    "recipe_output_type" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "What type of object a recipe should produce" ],
+      "name" : "Recipe Output Type",
+      "options" : {
+        "wand" : "A wand",
+        "item" : "A vanilla item, or a wand spell, brush or other magical item",
+        "spell" : "A spell, which the player can drop on a wand to learn",
+        "brush" :  "A material brush, which the player can drop on a wand to learn"
+      }
+    },
+    "faces_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of block faces" ],
+      "item_type" : "string",
+      "name" : "Block Face List",
+      "options" : { }
+    },
+    "recipe_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of crafting recipes" ],
+      "item_type" : "recipe",
+      "name" : "Recipe List",
+      "options" : { }
+    },
+    "recipe" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A crafting recipe key, referring to a configured recipe" ],
+      "name" : "Crafting Recipe",
+      "options" : { }
+    },
+    "wand" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A wand key, referring to a configured wand" ],
+      "name" : "Wand",
+      "options" : { }
+    },
     "action_class" : {
       "class_name" : "java.lang.String",
       "description" : [ "A builtin or external SpellAction class" ],
@@ -14677,6 +14848,25 @@
         "mana" : "Mana",
         "sp" : "Spell Points",
         "xp" : "Player experience, calculated from level and percent progress"
+      }
+    },
+    "crafting_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Crafting Properties",
+      "parameters" : {
+        "auto_discover" : "false",
+        "disable_default" : "false",
+        "discover" : null,
+        "group" : "",
+        "ignore_damage" : "false",
+        "output" : null,
+        "output_type" : "item",
+        "substitute" : null,
+        "crafting_materials" : null,
+        "row_1" : "",
+        "row_2" : "",
+        "row_3" : ""
       }
     },
     "damage_type" : {
@@ -16687,12 +16877,7 @@
       "class_name" : "java.lang.String",
       "description" : [ "A progression path" ],
       "name" : "Path",
-      "options" : {
-        "airbender" : null,
-        "beginner" : null,
-        "jedi" : null,
-        "student" : null
-      }
+      "options" : { }
     },
     "percentage" : {
       "class_name" : "java.lang.Float",
