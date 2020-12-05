@@ -197,6 +197,12 @@ function Hints(fileType) {
                 .append($('<span>').text(chNumber))
                 .append($('<span>').addClass('delimiter').text(')'))
             );
+            if (this.context.isComment) {
+                path.append(this.context.token);
+                this.navigationPanel.empty();
+                this.navigationPanel.append(path);
+                return;
+            }
             if (this.fileType) {
                 path.append($('<span>').text(this.fileType));
                 if (hierarchy.length > 0) {
