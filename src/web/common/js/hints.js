@@ -37,12 +37,13 @@ function Hints(fileType) {
         if (cm) {
             this.cm = cm;
         }
-        if (this.cm == null) return;
+        if (this.cm == null) return false;
         this.metadata = this.cm.metadata;
         this.cursor = this.cm.getCursor();
-        if (this.metadata == null) return;
+        if (this.metadata == null) return false;
         this.hierarchy = this.getHierarchy();
         this.parent = this.hierarchy.length > 1 ? this.hierarchy[this.hierarchy.length - 2] : null;
+        return true;
     };
 
     this.onPickHint = function(cm, data, completion) {
@@ -51,7 +52,7 @@ function Hints(fileType) {
         let to = completion.to || data.to;
 
         // First determine if this is a list item that we need to fix up
-        this.initialize(cm);
+        if (!this.initialize(cm)) return;
         if (this.metadata == null) return;
         // There is a hacky check here for "additional" picks, which at this point always means choosing a key
         // value of a parent's map, when we are in a maybe-list.
@@ -111,7 +112,7 @@ function Hints(fileType) {
     };
 
     this.newlineAndIndent = function(cm) {
-        this.initialize(cm);
+        if (!this.initialize(cm)) return CodeMirror.Pass;
         if (this.metadata == null) return CodeMirror.Pass;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
         let current = this.context;
@@ -200,7 +201,7 @@ function Hints(fileType) {
     };
 
     this.onCursorActivity = function(cm) {
-        this.initialize(cm);
+        if (!this.initialize(cm)) return;
         if (this.cursor == null || this.metadata == null) return;
         let hierarchy = this.hierarchy;
 
@@ -252,7 +253,7 @@ function Hints(fileType) {
     };
 
     this.generateHints = function(cm) {
-        this.initialize(cm);
+        if (!this.initialize(cm)) return;
 
         // No hints for first line
         if (this.cursor.line == 0) return;
