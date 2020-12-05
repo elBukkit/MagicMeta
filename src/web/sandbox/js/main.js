@@ -77,6 +77,11 @@ function savePreferences() {
     $.cookie("preferences", JSON.stringify(preferences));
 }
 
+function loadPreferences(preferencesData) {
+    preferences = JSON.parse(preferencesData);
+    selectTheme(preferences.theme);
+}
+
 function toggleTheme() {
     if (preferences.hasOwnProperty('theme') && preferences.theme == 'darcula') {
         selectTheme('default');
