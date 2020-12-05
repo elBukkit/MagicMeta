@@ -28,11 +28,11 @@ function Editor(container)
     this.editor.metadata = null;
 };
 
-Editor.prototype.getSpellConfig = function() {
+Editor.prototype.getText = function() {
     return this.editor.getValue();
 };
 
-Editor.prototype.setSpellConfig = function(spellConfig) {
+Editor.prototype.setText = function(spellConfig) {
     this.editor.setValue(spellConfig);
 };
 
@@ -49,7 +49,7 @@ Editor.prototype.save = function() {
         return;
     }
 
-    var spellConfig = this.getSpellConfig();
+    var spellConfig = this.getText();
     var spellKey = this.simpleParse(spellConfig).key;
     if (spellKey != null) {
         this.updateHash(spellKey);
@@ -82,7 +82,7 @@ Editor.prototype.isValid = function() {
 };
 
 Editor.prototype.startNew = function(template) {
-    this.setSpellConfig($('#template' + template).val());
+    this.setText($('#template' + template).val());
 };
 
 Editor.prototype.getSpellFiles = function(callback) {
@@ -166,7 +166,7 @@ Editor.prototype.loadFile = function(fileName) {
         if (!response.success) {
             alert("Failed to fetch spell: " + response.message);
         } else {
-            me.setSpellConfig(response.yml);
+            me.setText(response.yml);
         }
     });
 };
@@ -260,7 +260,7 @@ Editor.prototype.simpleParse = function(spellConfig) {
 Editor.prototype.deleteSpell = function() {
     if (this.deleting) return;
 
-    var spellConfig = this.getSpellConfig();
+    var spellConfig = this.getText();
     spellConfig = this.simpleParse(spellConfig);
 
     if (spellConfig.lines.length == 0 || spellConfig.lines[0].trim().length == 0) {
@@ -301,7 +301,7 @@ Editor.prototype.fork = function() {
     var spells = this.getSpellFiles(function() { me.fork(); });
     if (spells == null) return;
 
-    var spellConfig = this.getSpellConfig();
+    var spellConfig = this.getText();
     spellConfig = this.simpleParse(spellConfig);
 
     if (spellConfig.lines.length == 0 || spellConfig.lines[0].trim().length == 0) {
@@ -331,7 +331,7 @@ Editor.prototype.fork = function() {
     var newSpell = lines.join("\n");
     this.spellKeys[key] = true;
 
-    this.setSpellConfig(newSpell);
+    this.setText(newSpell);
 
     return true;
 };
@@ -341,7 +341,7 @@ Editor.prototype.openReference = function() {
 };
 
 Editor.prototype.download = function() {
-    var spellConfig = this.getSpellConfig();
+    var spellConfig = this.getText();
     var key = this.simpleParse(spellConfig).key;
     if (key == null || key == '') {
         alert("Nothing to download... ?");
