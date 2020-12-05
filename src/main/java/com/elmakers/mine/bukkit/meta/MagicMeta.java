@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 
 import org.bukkit.configuration.MemoryConfiguration;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
 
@@ -351,7 +352,12 @@ public class MagicMeta {
     private void generateMobMeta() {
         System.out.println("Scanning EntityData");
         InterrogatingConfiguration mobConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        // First one to get defaults
         new EntityData(controller, "interrogator", mobConfiguration);
+        for (EntityType entityType : EntityType.values()) {
+            mobConfiguration.set("type", entityType.name().toLowerCase());
+            new EntityData(controller, "interrogator", mobConfiguration);
+        }
         ParameterList mobParameters = mobConfiguration.getParameters();
         data.addMobParameters(mobParameters);
     }

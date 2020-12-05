@@ -5457,6 +5457,14 @@
       "name" : "Base Potion Type",
       "type" : "string"
     },
+    "base_potion_type_potion_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "base_potion_type",
+      "importance" : 0,
+      "name" : "Base Potion Type",
+      "type" : "potion_type"
+    },
     "baseplate" : {
       "category" : "",
       "description" : [ "" ],
@@ -6052,6 +6060,14 @@
       "name" : "Cast Velocity Direction",
       "type" : "double"
     },
+    "cat_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cat_type",
+      "importance" : 0,
+      "name" : "Cat Type",
+      "type" : "cat_type"
+    },
     "category" : {
       "category" : "base",
       "description" : [ "Used for wand organization and grouping spells in spell lists and spell books" ],
@@ -6630,6 +6646,14 @@
       "name" : "Count",
       "type" : "integer"
     },
+    "crafting_materials" : {
+      "category" : "",
+      "description" : [ "A map of materials to use as ingredients", "Pick a unique character for each material, these characters are used in row_1, row_2 and row_3 to define the recipe shape" ],
+      "field" : "materials",
+      "importance" : 1000,
+      "name" : "Ingredients",
+      "type" : "ingredient_map"
+    },
     "crash_braking" : {
       "category" : "",
       "description" : [ "" ],
@@ -6772,6 +6796,14 @@
       "field" : "cross_world",
       "importance" : 0,
       "name" : "Cross World",
+      "type" : "boolean"
+    },
+    "crouching" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crouching",
+      "importance" : 0,
+      "name" : "Crouching",
       "type" : "boolean"
     },
     "currency" : {
@@ -7166,6 +7198,14 @@
       "name" : "Discover",
       "type" : "recipe_list"
     },
+    "discover_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "discover",
+      "importance" : 0,
+      "name" : "Discover",
+      "type" : "list"
+    },
     "disguise" : {
       "category" : "",
       "description" : [ "" ],
@@ -7254,6 +7294,14 @@
       "name" : "Docile",
       "type" : "boolean"
     },
+    "domestication" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "domestication",
+      "importance" : 0,
+      "name" : "Domestication",
+      "type" : "integer"
+    },
     "drag" : {
       "category" : "",
       "description" : [ "" ],
@@ -7277,6 +7325,14 @@
       "importance" : 0,
       "name" : "Drop Count",
       "type" : "integer"
+    },
+    "drop_items" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "drop_items",
+      "importance" : 0,
+      "name" : "Drop Items",
+      "type" : "boolean"
     },
     "drop_skull" : {
       "category" : "",
@@ -8190,6 +8246,14 @@
       "name" : "Fov Weight",
       "type" : "double"
     },
+    "fox_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "fox_type",
+      "importance" : 0,
+      "name" : "Fox Type",
+      "type" : "fox_type"
+    },
     "frame_delay" : {
       "category" : "",
       "description" : [ "" ],
@@ -8357,6 +8421,14 @@
       "importance" : 100,
       "name" : "Item in Hand",
       "type" : "material"
+    },
+    "has_chest" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "has_chest",
+      "importance" : 0,
+      "name" : "Has Chest",
+      "type" : "boolean"
     },
     "has_uses" : {
       "category" : "wand",
@@ -8582,6 +8654,30 @@
       "name" : "Hitbox Size",
       "type" : "double"
     },
+    "horse_color" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "horse_color",
+      "importance" : 0,
+      "name" : "Horse Color",
+      "type" : "horse_color"
+    },
+    "horse_jump_strength" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "horse_jump_strength",
+      "importance" : 0,
+      "name" : "Horse Jump Strength",
+      "type" : "double"
+    },
+    "horse_style" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "horse_style",
+      "importance" : 0,
+      "name" : "Horse Style",
+      "type" : "horse_style"
+    },
     "hotbar" : {
       "category" : "wand",
       "description" : [ "The currently selected hotbar", "Does not generally need to be set in a configuration" ],
@@ -8604,6 +8700,14 @@
       "field" : "hurt",
       "importance" : 0,
       "name" : "Hurt",
+      "type" : "boolean"
+    },
+    "hurt_entities" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "hurt_entities",
+      "importance" : 0,
+      "name" : "Hurt Entities",
       "type" : "boolean"
     },
     "hurts" : {
@@ -8927,6 +9031,14 @@
       "name" : "Interval Requires Target",
       "type" : "boolean"
     },
+    "inventory" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "inventory",
+      "importance" : 0,
+      "name" : "Inventory",
+      "type" : "list"
+    },
     "inventory_rows" : {
       "category" : "wand",
       "description" : [ "How many rows to show in the spell inventory in chest and skills mobde" ],
@@ -9053,6 +9165,14 @@
       "field" : "jump_controllable",
       "importance" : 0,
       "name" : "Jump Controllable",
+      "type" : "double"
+    },
+    "jump_strength" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "jump_strength",
+      "importance" : 0,
+      "name" : "Jump Strength",
       "type" : "double"
     },
     "keep" : {
@@ -9294,6 +9414,22 @@
       "importance" : 90,
       "name" : "Living Entity Speed",
       "type" : "double"
+    },
+    "llama_color" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "llama_color",
+      "importance" : 0,
+      "name" : "Llama Color",
+      "type" : "string"
+    },
+    "llama_strength" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "llama_strength",
+      "importance" : 0,
+      "name" : "Llama Strength",
+      "type" : "integer"
     },
     "load" : {
       "category" : "",
@@ -9550,6 +9686,14 @@
       "importance" : 0,
       "name" : "Max Deceleration",
       "type" : "double"
+    },
+    "max_domestication" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_domestication",
+      "importance" : 0,
+      "name" : "Max Domestication",
+      "type" : "integer"
     },
     "max_enchant_count" : {
       "category" : "wand",
@@ -10223,6 +10367,14 @@
       "name" : "Owned",
       "type" : "boolean"
     },
+    "owner" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "owner",
+      "importance" : 0,
+      "name" : "Owner",
+      "type" : "string"
+    },
     "padding" : {
       "category" : "",
       "description" : [ "" ],
@@ -10270,6 +10422,14 @@
       "importance" : 0,
       "name" : "Parameters",
       "type" : "map"
+    },
+    "parrot_variant" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "parrot_variant",
+      "importance" : 0,
+      "name" : "Parrot Variant",
+      "type" : "parrot_variant"
     },
     "particle" : {
       "category" : "effects",
@@ -10639,6 +10799,14 @@
       "name" : "Persistent",
       "type" : "boolean"
     },
+    "phase" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "phase",
+      "importance" : 0,
+      "name" : "Phase",
+      "type" : "string"
+    },
     "physics" : {
       "category" : "",
       "description" : [ "" ],
@@ -10998,6 +11166,14 @@
       "importance" : 0,
       "name" : "Quiet",
       "type" : "boolean"
+    },
+    "rabbit_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "rabbit_type",
+      "importance" : 0,
+      "name" : "Rabbit Type",
+      "type" : "rabbit_type"
     },
     "radials" : {
       "category" : "",
@@ -11767,6 +11943,30 @@
       "name" : "Rotation Z",
       "type" : "double"
     },
+    "row_1" : {
+      "category" : "",
+      "description" : [ "The first row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_1",
+      "importance" : 1000,
+      "name" : "Row 1",
+      "type" : "ingredient_string"
+    },
+    "row_2" : {
+      "category" : "",
+      "description" : [ "The second row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_2",
+      "importance" : 1000,
+      "name" : "Row 2",
+      "type" : "ingredient_string"
+    },
+    "row_3" : {
+      "category" : "",
+      "description" : [ "The third row of the recipe, a string using characters defined in the materials map" ],
+      "field" : "row_3",
+      "importance" : 1000,
+      "name" : "Row 3",
+      "type" : "ingredient_string"
+    },
     "rows" : {
       "category" : "",
       "description" : [ "" ],
@@ -11821,6 +12021,14 @@
       "field" : "scope",
       "importance" : 0,
       "name" : "Scope",
+      "type" : "string"
+    },
+    "second_trusted" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "second_trusted",
+      "importance" : 0,
+      "name" : "Second Trusted",
       "type" : "string"
     },
     "selected" : {
@@ -12663,38 +12871,6 @@
       "name" : "Substitute",
       "type" : "string"
     },
-    "row_1" : {
-      "category" : "",
-      "description" : [ "The first row of the recipe, a string using characters defined in the materials map" ],
-      "field" : "row_1",
-      "importance" : 1000,
-      "name" : "Row 1",
-      "type" : "ingredient_string"
-    },
-    "row_2" : {
-      "category" : "",
-      "description" : [ "The second row of the recipe, a string using characters defined in the materials map" ],
-      "field" : "row_2",
-      "importance" : 1000,
-      "name" : "Row 2",
-      "type" : "ingredient_string"
-    },
-    "row_3" : {
-      "category" : "",
-      "description" : [ "The third row of the recipe, a string using characters defined in the materials map" ],
-      "field" : "row_3",
-      "importance" : 1000,
-      "name" : "Row 3",
-      "type" : "ingredient_string"
-    },
-    "crafting_materials" : {
-      "category" : "",
-      "description" : [ "A map of materials to use as ingredients", "Pick a unique character for each material, these characters are used in row_1, row_2 and row_3 to define the recipe shape" ],
-      "field" : "materials",
-      "importance" : 1000,
-      "name" : "Ingredients",
-      "type" : "ingredient_map"
-    },
     "swap" : {
       "category" : "",
       "description" : [ "What action the wand should perform when the player uses the swap (F by default) button" ],
@@ -13472,6 +13648,14 @@
       "name" : "Triggers",
       "type" : "map"
     },
+    "trusted" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "trusted",
+      "importance" : 0,
+      "name" : "Trusted",
+      "type" : "string"
+    },
     "tworld" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -14025,6 +14209,14 @@
       "name" : "Vertical Range",
       "type" : "integer"
     },
+    "villager_profession" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "villager_profession",
+      "importance" : 0,
+      "name" : "Villager Profession",
+      "type" : "villager_profession"
+    },
     "visibility" : {
       "category" : "",
       "description" : [ "Who can see this effect" ],
@@ -14499,81 +14691,6 @@
     }
   },
   "types" : {
-    "ingredient_key" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "A single character used to represent a specific ingredient in a crafting recipe" ],
-      "name" : "Recipe Ingredient",
-      "options" : {
-        "x" : null,
-        "o" : null,
-        "i" : null,
-        "." : null,
-        "a" : null,
-        "b" : null,
-        "c" : null,
-        "y" : null,
-        "z" : null
-      }
-    },
-    "ingredient_string" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "A list of 0 to 3 characters that define one row of a 3x3 ingredient shape", "These character must be mapped to items in the materials property of the recipe", "Note that you may have to surround strings with leading spaces in quotes" ],
-      "name" : "Recipe Ingredient",
-      "options" : {
-        "x x" : null,
-        "' x '" : null,
-        "xox" : null,
-        "x.x" : null,
-        ".oo" : null,
-        "'  x'" : null,
-        "o.o" : null
-      }
-    },
-    "ingredient_map" : {
-      "class_name" : "java.util.Map",
-      "description" : [ "A map of characters (used in recipe rows) to material ingredients" ],
-      "key_type" : "ingredient_key",
-      "name" : "Ingredient map",
-      "options" : { },
-      "value_type" : "material"
-    },
-    "recipe_output_type" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "What type of object a recipe should produce" ],
-      "name" : "Recipe Output Type",
-      "options" : {
-        "wand" : "A wand",
-        "item" : "A vanilla item, or a wand spell, brush or other magical item",
-        "spell" : "A spell, which the player can drop on a wand to learn",
-        "brush" :  "A material brush, which the player can drop on a wand to learn"
-      }
-    },
-    "faces_list" : {
-      "class_name" : "java.util.List",
-      "description" : [ "A list of block faces" ],
-      "item_type" : "string",
-      "name" : "Block Face List",
-      "options" : { }
-    },
-    "recipe_list" : {
-      "class_name" : "java.util.List",
-      "description" : [ "A list of crafting recipes" ],
-      "item_type" : "recipe",
-      "name" : "Recipe List",
-      "options" : { }
-    },
-    "recipe" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "A crafting recipe key, referring to a configured recipe" ],
-      "name" : "Crafting Recipe",
-      "options" : { }
-    },
-    "wand" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "A wand key, referring to a configured wand" ],
-      "name" : "Wand",
-      "options" : { }
-    },
     "action_class" : {
       "class_name" : "java.lang.String",
       "description" : [ "A builtin or external SpellAction class" ],
@@ -14766,6 +14883,24 @@
         "255" : null
       }
     },
+    "cat_type" : {
+      "class_name" : "org.bukkit.entity.Cat$Type",
+      "description" : [ "" ],
+      "name" : "Cat Type",
+      "options" : {
+        "all_black" : null,
+        "black" : null,
+        "british_shorthair" : null,
+        "calico" : null,
+        "jellie" : null,
+        "persian" : null,
+        "ragdoll" : null,
+        "red" : null,
+        "siamese" : null,
+        "tabby" : null,
+        "white" : null
+      }
+    },
     "class_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
@@ -14856,17 +14991,17 @@
       "name" : "Crafting Properties",
       "parameters" : {
         "auto_discover" : "false",
+        "crafting_materials" : null,
         "disable_default" : "false",
         "discover" : null,
         "group" : "",
         "ignore_damage" : "false",
         "output" : null,
         "output_type" : "item",
-        "substitute" : null,
-        "crafting_materials" : null,
         "row_1" : "",
         "row_2" : "",
-        "row_3" : ""
+        "row_3" : "",
+        "substitute" : null
       }
     },
     "damage_type" : {
@@ -15398,6 +15533,13 @@
       "name" : "Entity Type List",
       "options" : { }
     },
+    "faces_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of block faces" ],
+      "item_type" : "string",
+      "name" : "Block Face List",
+      "options" : { }
+    },
     "firework_effect_type" : {
       "class_name" : "org.bukkit.FireworkEffect$Type",
       "description" : [ "The type of firework effect" ],
@@ -15428,6 +15570,15 @@
       "name" : "Font",
       "options" : { }
     },
+    "fox_type" : {
+      "class_name" : "org.bukkit.entity.Fox$Type",
+      "description" : [ "" ],
+      "name" : "Fox Type",
+      "options" : {
+        "red" : null,
+        "snow" : null
+      }
+    },
     "game_mode" : {
       "class_name" : "org.bukkit.GameMode",
       "description" : [ "A vanilla game mode" ],
@@ -15439,6 +15590,32 @@
         "survival" : null
       }
     },
+    "horse_color" : {
+      "class_name" : "org.bukkit.entity.Horse$Color",
+      "description" : [ "" ],
+      "name" : "Horse Color",
+      "options" : {
+        "black" : null,
+        "brown" : null,
+        "chestnut" : null,
+        "creamy" : null,
+        "dark_brown" : null,
+        "gray" : null,
+        "white" : null
+      }
+    },
+    "horse_style" : {
+      "class_name" : "org.bukkit.entity.Horse$Style",
+      "description" : [ "" ],
+      "name" : "Horse Style",
+      "options" : {
+        "black_dots" : null,
+        "none" : null,
+        "white" : null,
+        "white_dots" : null,
+        "whitefield" : null
+      }
+    },
     "icon" : {
       "class_name" : "java.lang.String",
       "description" : [ "An icon from a resource pack" ],
@@ -15446,6 +15623,44 @@
       "options" : {
         "diamond_axe:2" : null,
         "diamond_hoe:4" : null
+      }
+    },
+    "ingredient_key" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A single character used to represent a specific ingredient in a crafting recipe" ],
+      "name" : "Recipe Ingredient",
+      "options" : {
+        "." : null,
+        "a" : null,
+        "b" : null,
+        "c" : null,
+        "i" : null,
+        "o" : null,
+        "x" : null,
+        "y" : null,
+        "z" : null
+      }
+    },
+    "ingredient_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "A map of characters (used in recipe rows) to material ingredients" ],
+      "key_type" : "ingredient_key",
+      "name" : "Ingredient map",
+      "options" : { },
+      "value_type" : "material"
+    },
+    "ingredient_string" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A list of 0 to 3 characters that define one row of a 3x3 ingredient shape", "These character must be mapped to items in the materials property of the recipe", "Note that you may have to surround strings with leading spaces in quotes" ],
+      "name" : "Recipe Ingredient",
+      "options" : {
+        "'  x'" : null,
+        "' x '" : null,
+        ".oo" : null,
+        "o.o" : null,
+        "x x" : null,
+        "x.x" : null,
+        "xox" : null
       }
     },
     "integer" : {
@@ -16665,30 +16880,46 @@
         "ai" : "true",
         "amount" : "1",
         "angry" : "false",
+        "arms" : "false",
         "baby" : "false",
+        "base_potion_type" : null,
+        "baseplate" : "true",
         "boots" : null,
         "can_pickup_items" : "false",
         "cast" : null,
         "cast_requires_item" : null,
         "cast_requires_target" : "true",
+        "cat_type" : null,
         "chestplate" : null,
         "color" : null,
+        "crouching" : "false",
         "default_drops" : "true",
         "dialog" : null,
         "dialog_interval" : "2000",
         "dialog_range" : "3.0",
+        "disabled_slots" : "0",
         "disguise-map" : null,
         "docile" : "false",
+        "domestication" : "0",
+        "drop_items" : "false",
         "drop_xp" : "0",
         "drops" : null,
         "drops_require_player_killer" : "false",
+        "duration" : "2000",
+        "duration_on_use" : "0",
         "entity_attributes" : null,
+        "fox_type" : null,
         "gravity" : "true",
         "gravity_boolean" : "true",
         "hand_item" : null,
+        "has_chest" : "false",
         "health" : "1",
         "helmet" : null,
         "hidden" : "false",
+        "horse_color" : null,
+        "horse_jump_strength" : "0.0",
+        "horse_style" : null,
+        "hurt_entities" : "true",
         "interact_command_source" : "console",
         "interact_commands" : null,
         "interact_costs" : null,
@@ -16698,10 +16929,18 @@
         "interact_spell_source" : "player",
         "interact_spell_target" : "mob",
         "interval_requires_target" : "true",
+        "inventory" : null,
+        "invisible" : "false",
         "invulnerable" : "false",
+        "jump_strength" : "0.0",
         "leggings" : null,
         "lifetime" : "0",
+        "llama_color" : null,
+        "llama_strength" : "1",
         "mage" : null,
+        "marker" : "false",
+        "material" : null,
+        "max_domestication" : "0",
         "max_health" : "1",
         "mob_attributes" : null,
         "mob_cast_interval" : "0",
@@ -16711,14 +16950,26 @@
         "mount" : null,
         "npc" : "false",
         "offhand" : null,
+        "owner" : null,
+        "parrot_variant" : null,
+        "particle" : null,
         "persist" : "false",
+        "phase" : null,
         "potion_effects" : null,
         "prevent_melee" : "false",
         "prevent_projectiles" : "false",
         "protection" : null,
+        "rabbit_type" : null,
+        "radius" : "5.0",
+        "radius_on_use" : "0.0",
+        "radius_per_tick" : "0.0",
+        "reapplication_delay" : "0",
+        "second_trusted" : null,
         "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
+        "size" : "1",
+        "small" : "false",
         "split" : "true",
         "strength" : null,
         "tags" : null,
@@ -16726,7 +16977,10 @@
         "track_radius" : "128",
         "transformable" : "true",
         "triggers" : null,
+        "trusted" : null,
         "type" : null,
+        "villager_profession" : null,
+        "wait_time" : "0",
         "weakness" : null,
         "xp" : "0"
       }
@@ -16787,6 +17041,18 @@
       "item_type" : "selector_option",
       "name" : "List",
       "options" : { }
+    },
+    "parrot_variant" : {
+      "class_name" : "org.bukkit.entity.Parrot$Variant",
+      "description" : [ "" ],
+      "name" : "Parrot Variant",
+      "options" : {
+        "blue" : null,
+        "cyan" : null,
+        "gray" : null,
+        "green" : null,
+        "red" : null
+      }
     },
     "particle" : {
       "class_name" : "org.bukkit.Particle",
@@ -16994,6 +17260,72 @@
         "water_breathing" : null,
         "weakness" : null,
         "wither" : null
+      }
+    },
+    "potion_type" : {
+      "class_name" : "org.bukkit.potion.PotionType",
+      "description" : [ "" ],
+      "name" : "Potion Type",
+      "options" : {
+        "awkward" : null,
+        "fire_resistance" : null,
+        "instant_damage" : null,
+        "instant_heal" : null,
+        "invisibility" : null,
+        "jump" : null,
+        "luck" : null,
+        "mundane" : null,
+        "night_vision" : null,
+        "poison" : null,
+        "regen" : null,
+        "slow_falling" : null,
+        "slowness" : null,
+        "speed" : null,
+        "strength" : null,
+        "thick" : null,
+        "turtle_master" : null,
+        "uncraftable" : null,
+        "water" : null,
+        "water_breathing" : null,
+        "weakness" : null
+      }
+    },
+    "rabbit_type" : {
+      "class_name" : "org.bukkit.entity.Rabbit$Type",
+      "description" : [ "" ],
+      "name" : "Rabbit Type",
+      "options" : {
+        "black" : null,
+        "black_and_white" : null,
+        "brown" : null,
+        "gold" : null,
+        "salt_and_pepper" : null,
+        "the_killer_bunny" : null,
+        "white" : null
+      }
+    },
+    "recipe" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A crafting recipe key, referring to a configured recipe" ],
+      "name" : "Crafting Recipe",
+      "options" : { }
+    },
+    "recipe_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of crafting recipes" ],
+      "item_type" : "recipe",
+      "name" : "Recipe List",
+      "options" : { }
+    },
+    "recipe_output_type" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "What type of object a recipe should produce" ],
+      "name" : "Recipe Output Type",
+      "options" : {
+        "brush" : "A material brush, which the player can drop on a wand to learn",
+        "item" : "A vanilla item, or a wand spell, brush or other magical item",
+        "spell" : "A spell, which the player can drop on a wand to learn",
+        "wand" : "A wand"
       }
     },
     "selector_option" : {
@@ -18460,6 +18792,28 @@
         "0,1,0" : null
       }
     },
+    "villager_profession" : {
+      "class_name" : "org.bukkit.entity.Villager$Profession",
+      "description" : [ "" ],
+      "name" : "Villager Profession",
+      "options" : {
+        "armorer" : null,
+        "butcher" : null,
+        "cartographer" : null,
+        "cleric" : null,
+        "farmer" : null,
+        "fisherman" : null,
+        "fletcher" : null,
+        "leatherworker" : null,
+        "librarian" : null,
+        "mason" : null,
+        "nitwit" : null,
+        "none" : null,
+        "shepherd" : null,
+        "toolsmith" : null,
+        "weaponsmith" : null
+      }
+    },
     "visibility" : {
       "class_name" : "com.elmakers.mine.bukkit.effect.Visibility",
       "description" : [ "Who can see an effect" ],
@@ -18469,6 +18823,12 @@
         "origin" : "Only the origin entity can see the effects",
         "target" : "Only the target entity can see the effects"
       }
+    },
+    "wand" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A wand key, referring to a configured wand" ],
+      "name" : "Wand",
+      "options" : { }
     },
     "wand_action" : {
       "class_name" : "com.elmakers.mine.bukkit.api.wand.WandAction",

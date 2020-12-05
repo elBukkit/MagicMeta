@@ -15,8 +15,15 @@ import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Cat;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fox;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.Parrot;
+import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Villager;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.bukkit.util.Vector;
 import com.elmakers.mine.bukkit.magic.SourceLocation;
 import com.elmakers.mine.bukkit.wand.WandMode;
@@ -235,6 +242,30 @@ public class ParameterStore {
                 break;
             case "firework":
                 parameterType = getParameterType(FireworkEffect.Type.class);
+                break;
+            case "base_potion_type":
+                parameterType = getParameterType(PotionType.class);
+                break;
+            case "horse_color":
+                parameterType = getParameterType(Horse.Color.class);
+                break;
+            case "horse_style":
+                parameterType = getParameterType(Horse.Style.class);
+                break;
+            case "rabbit_type":
+                parameterType = getParameterType(Rabbit.Type.class);
+                break;
+            case "villager_profession":
+                parameterType = getParameterType(Villager.Profession.class);
+                break;
+            case "fox_type":
+                parameterType = getParameterType(Fox.Type.class);
+                break;
+            case "cat_type":
+                parameterType = getParameterType(Cat.Type.class);
+                break;
+            case "parrot_variant":
+                parameterType = getParameterType(Parrot.Variant.class);
                 break;
             case "effect":
                 parameterType = getParameterType(Effect.class);
