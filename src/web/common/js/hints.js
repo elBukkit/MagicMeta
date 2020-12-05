@@ -537,6 +537,8 @@ function Hints(fileType) {
     this.checkMatch = function(value, description, currentInput, classType, valueType, inherited, additional, isDefault, startsWith, contains) {
         let trimmedDescription = trimTags(description);
         let match = value + trimmedDescription;
+        match = match.toLowerCase();
+        currentInput = currentInput.toLowerCase();
         if (match.indexOf(currentInput) !== -1) {
             let hint = this.convertHint(value, description, this.metadata, classType, valueType, inherited, additional, isDefault);
             if (match.startsWith(currentInput)) {
