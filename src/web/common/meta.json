@@ -16841,6 +16841,13 @@
       "options" : { },
       "value_type" : "int"
     },
+    "material_properties" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of item or block materials", "Included in this list can be pre-defined material lists from materials.yml", "Several builtin material sets are defined in the default configs and are used in default spells for things like which blocks spell can target through ('transparent') or which block are considered 'solid'" ],
+      "item_type" : "material",
+      "name" : "Material List",
+      "options" : {}
+    },
     "message_type" : {
       "class_name" : "com.elmakers.mine.bukkit.action.builtin.MessageAction$MessageType",
       "description" : [ "A target UI area to send a message" ],

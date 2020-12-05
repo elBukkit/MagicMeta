@@ -893,9 +893,6 @@ function Hints(fileType) {
         // Walk down the tree to figure out types of everything in the path
         let parent = hierarchy[0];
         this.setContextType(parent, this.getBasePropertyType());
-        if (this.metadata['types'].hasOwnProperty(parent.type)) {
-            parent.type = this.metadata['types'][parent.type];
-        }
         for (let i = 1; i < hierarchy.length; i++) {
             parent = hierarchy[i - 1];
             let current = hierarchy[i];
@@ -932,17 +929,6 @@ function Hints(fileType) {
             let propertyType = this.getPropertyType(parent, key);
             if (propertyType) {
                 this.setContextType(current, propertyType, parent);
-                if (current.type.class_name == 'java.util.Map') {
-                    current.isMap = true;
-                }
-                if (current.type.class_name == 'org.bukkit.configuration.ConfigurationSection') {
-                    current.isObject = true;
-                }
-                if (current.type.class_name == 'java.util.List') {
-                    current.isList = true;
-                } else if (current.type.hasOwnProperty("alternate_class_name") && current.type.alternate_class_name == 'java.util.List') {
-                    current.isAlternateList = true;
-                }
             } else {
                 break;
             }
@@ -973,6 +959,9 @@ function Hints(fileType) {
         if (parent) {
             context.parent = parent;
         }
+        if (type == null) {
+            return;
+        }
         context.type = type;
         context.inherited = null;
         context.properties = this.getProperties(type);
@@ -1000,6 +989,19 @@ function Hints(fileType) {
             context.display += context.classed_class;
         } else if (context.display == '') {
             context.display = '...';
+        }
+
+        // Set some flags based on type
+        if (context.type.class_name == 'java.util.Map') {
+            context.isMap = true;
+        }
+        if (context.type.class_name == 'org.bukkit.configuration.ConfigurationSection') {
+            context.isObject = true;
+        }
+        if (context.type.class_name == 'java.util.List') {
+            context.isList = true;
+        } else if (context.type.hasOwnProperty("alternate_class_name") && context.type.alternate_class_name == 'java.util.List') {
+            context.isAlternateList = true;
         }
     };
 
