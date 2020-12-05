@@ -193,19 +193,18 @@ public class MagicMeta {
                     spellAction.setCategory(getCategory("compound").getKey());
                     CompoundAction testCompound = (CompoundAction)testAction;
                     for (String handler : testCompound.getAllHandlerKeys()) {
-                        System.out.println("  Adding action handler: " + handler);
-                        String handlerKey = handler;
-                        if (!handler.equals("actions")) {
-                            handlerKey += "_actions";
+                        // Actions is handled as part of Compound inheritance
+                        if (handler.equals("actions")) continue;
+                        String handlerKey = handler + "_actions";
 
-                            // This is kind of hacky and will probably bite me later
-                            Parameter parameter = parameterStore.getParameter(handler);
-                            if (parameter != null && parameter.getType().equals("string")) {
-                                parameterStore.removeParameter(handler);
-                            }
+                        // This is kind of hacky and will probably bite me later
+                        Parameter parameter = parameterStore.getParameter(handler);
+                        if (parameter != null && parameter.getType().equals("string")) {
+                            parameterStore.removeParameter(handler);
                         }
                         Parameter handlerParameter = parameterStore.getParameter(handlerKey);
                         if (handlerParameter == null) {
+                            System.out.println("  Adding action handler: " + handler);
                             ParameterType type = parameterStore.getParameterType("action_list", java.util.List.class);
                             handlerParameter = new Parameter(handlerKey, handler, type);
                             parameterStore.addParameter(handlerKey, handlerParameter);
