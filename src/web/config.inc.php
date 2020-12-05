@@ -8,6 +8,7 @@ $magicRootFolder = dirname(__FILE__) . '/../main/resources';
 // The webserver will need write access to $sandboxServer/plugins/Magic/data/updated.yml
 // and read access to $sandboxServer/plugins/Magic/data/registered.yml
 $sandboxServer = '/home/minecraft/servers/sandbox';
+
 // And set the URL to your sandbox server here to direct players to log in
 $sandboxServerURL = '';
 
