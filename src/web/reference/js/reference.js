@@ -380,6 +380,8 @@ function initialize() {
         makePropertySelector($("#wandParameterList"), "wand_properties", $('#wandParameterDetails'));
         makePropertySelector($("#mobParameterList"), "mob_properties", $('#mobParameterDetails'));
         makePropertySelector($("#effectParameterList"), "effect_properties", $('#effectParameterDetails'));
+        makePropertySelector($("#classParameterList"), "class_properties", $('#classParameterDetails'));
+        makePropertySelector($("#modifierParameterList"), "modifier_properties", $('#modifierParameterDetails'));
 
         makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_properties');
         makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');

@@ -31,6 +31,8 @@ require_once('common/user.inc.php');
             <li><a href="#effects">Effects</a></li>
             <li><a href="#effectlib">EffectLib</a></li>
             <li><a href="#wands">Wands</a></li>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#modifiers">Modifiers</a></li>
             <li><a href="#mobs">Mobs</a></li>
             <?php include "common/userinfo.inc.php" ?>
         </ul>
@@ -173,6 +175,40 @@ require_once('common/user.inc.php');
                 be spawned in-game using the <span class="code">/mgive</span> command.
                 <br/><br/>
                 Select a wand property for details.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="classes" class="flextab">
+        <div class="flexContainer">
+            <div class="scrollingTab">
+                <ol id="classParameterList">
+                </ol>
+            </div>
+            <div class="details" id="classParameterDetails">
+                <div>
+                Classes in Magic are a way to associate a group of properties with a player. A player can have
+                    multiple classes. Wands can be assigned to classes, which means they can cast spells
+                    that a player has learned, rather than the spells being attached to a wand item.
+                <br/><br/>
+                Select a class property for details.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modifiers" class="flextab">
+        <div class="flexContainer">
+            <div class="scrollingTab">
+                <ol id="modifierParameterList">
+                </ol>
+            </div>
+            <div class="details" id="modifierParameterDetails">
+                <div>
+                Modifiers in Magic are like a temporary (or not) add-on class. They can be applied to a player from
+                    a wand or a spell using the Modifier action. Modifiers can change player attributes, add temporary
+                    passive effects or do anything else a class could do.
+                <br/><br/>
+                Select a modifier property for details.
                 </div>
             </div>
         </div>
