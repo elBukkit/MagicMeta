@@ -5073,14 +5073,6 @@
       "name" : "Amount",
       "type" : "double"
     },
-    "heal_amount" : {
-      "category" : "mob",
-      "description" : [ "The amount of health to heal. One heart is equal to 2 health" ],
-      "field" : "amount",
-      "importance" : 150,
-      "name" : "Amount",
-      "type" : "double"
-    },
     "amplifier" : {
       "category" : "",
       "description" : [ "" ],
@@ -8365,6 +8357,14 @@
       "importance" : 0,
       "name" : "Headshot Effects",
       "type" : "string"
+    },
+    "heal_amount" : {
+      "category" : "mob",
+      "description" : [ "The amount of health to heal. One heart is equal to 2 health" ],
+      "field" : "amount",
+      "importance" : 150,
+      "name" : "Amount",
+      "type" : "double"
     },
     "heal_max_distance" : {
       "category" : "",
@@ -16594,9 +16594,9 @@
     "options_list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
+      "item_type" : "selector_option",
       "name" : "List",
-      "options" : { },
-      "item_type" : "selector_option"
+      "options" : { }
     },
     "particle" : {
       "class_name" : "org.bukkit.Particle",
