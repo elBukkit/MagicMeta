@@ -10,7 +10,7 @@ if (!isset($_REQUEST['key'])) {
     die(json_encode(array('success' => false, 'message' => 'Missing key parameter')));
 }
 
-$key = $_REQUEST['key'];
+$key = basename($_REQUEST['key']);
 if (strpos($key, 'survival.') === 0) {
     $key = substr($key, 9);
     $defaultsFolder = "$magicRootFolder/examples/survival/spells/";

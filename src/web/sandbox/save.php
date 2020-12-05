@@ -26,7 +26,7 @@ if (count($spells) != 1) {
     die(json_encode(array('success' => false, 'message' => 'Currently only one spell per file is supported')));
 }
 
-$key = array_keys($spells)[0];
+$key = basename(array_keys($spells)[0]);
 $spellFile = "$sandboxServer/plugins/Magic/spells/$key.yml";
 if (file_exists($spellFile)) {
     $existing = file_get_contents($spellFile);

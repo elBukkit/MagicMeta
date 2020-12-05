@@ -25,7 +25,7 @@ function randomString($length) {
 // Session file management
 function getSessionFilename($session) {
     global $sessionFolder;
-    return $sessionFolder . '/' . $session . '.session';
+    return $sessionFolder . '/' . basename($session) . '.session';
 }
 function createNewSession() {
     $sessionFile = '';
