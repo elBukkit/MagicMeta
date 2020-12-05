@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.Nonnull;
 
+import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
 
 import com.elmakers.mine.bukkit.action.BaseSpellAction;
 import com.elmakers.mine.bukkit.action.CastContext;
 import com.elmakers.mine.bukkit.action.CompoundAction;
+import com.elmakers.mine.bukkit.action.builtin.SelectorAction;
 import com.elmakers.mine.bukkit.api.action.SpellAction;
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
@@ -353,6 +355,20 @@ public class MagicMeta {
         data.addMobParameters(mobParameters);
     }
 
+    private void generateSelectorOptionMeta() {
+        System.out.println("Scanning Selector");
+        InterrogatingConfiguration selectorConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        SelectorAction selector = new SelectorAction();
+        ActionSpell spell = new ActionSpell();
+        spell.initialize(controller);
+        spell.setMage(mage);
+        CastContext context = new CastContext(spell);
+        selector.prepare(context, new MemoryConfiguration());
+        selector.getSelectorOption(selectorConfiguration);
+        ParameterList optionParameters = selectorConfiguration.getParameters();
+        data.addOptionParameters(optionParameters);
+    }
+
     private void generateMeta() {
         if (data == null) {
             data = new MetaData();
@@ -365,6 +381,7 @@ public class MagicMeta {
         generateClassMeta();
         generateModifierMeta();
         generateMobMeta();
+        generateSelectorOptionMeta();
     }
 
     private Category getCategory(String key) {

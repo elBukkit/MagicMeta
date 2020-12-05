@@ -85,6 +85,10 @@ public class MetaData {
         parameterStore.mergeType("mob_properties", parameters);
     }
 
+    public void addOptionParameters(ParameterList parameters) {
+        parameterStore.mergeType("selector_option", parameters);
+    }
+
     public void addActionParameters(ParameterList parameters) {
         parameterStore.mergeType("action_parameters", parameters);
     }
