@@ -112,10 +112,10 @@ function Hints(fileType) {
 
     this.newlineAndIndent = function(cm) {
         this.initialize(cm);
-        if (this.metadata == null) return;
+        if (this.metadata == null) return CodeMirror.Pass;
         if (cm.getOption("disableInput")) return CodeMirror.Pass;
         let current = this.context;
-        if (current.isComment || current.isEmpty) return;
+        if (current.isComment || current.isEmpty) return CodeMirror.Pass;
         let parent = this.parent;
         let parentIsList = this.isList(parent);
         let currentIsList = this.isList(current);
