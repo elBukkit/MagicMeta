@@ -89,6 +89,10 @@ public class MetaData {
         parameterStore.mergeType("selector_option", parameters);
     }
 
+    public void addRecipeParameters(ParameterList parameters) {
+        parameterStore.mergeType("crafting_properties", parameters);
+    }
+
     public void addActionParameters(ParameterList parameters) {
         parameterStore.mergeType("action_parameters", parameters);
     }

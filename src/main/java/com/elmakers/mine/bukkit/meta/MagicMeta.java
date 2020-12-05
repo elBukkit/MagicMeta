@@ -27,6 +27,7 @@ import com.elmakers.mine.bukkit.magic.Mage;
 import com.elmakers.mine.bukkit.magic.MageClass;
 import com.elmakers.mine.bukkit.magic.MageModifier;
 import com.elmakers.mine.bukkit.magic.MagicController;
+import com.elmakers.mine.bukkit.magic.MagicRecipe;
 import com.elmakers.mine.bukkit.spell.ActionSpell;
 import com.elmakers.mine.bukkit.spell.BaseSpell;
 import com.elmakers.mine.bukkit.spell.BlockSpell;
@@ -369,6 +370,15 @@ public class MagicMeta {
         data.addOptionParameters(optionParameters);
     }
 
+    private void generateRecipeMeta() {
+        System.out.println("Scanning MagicRecipe");
+        InterrogatingConfiguration recipeConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        MagicRecipe recipe = new MagicRecipe("recipe", controller);
+        recipe.load(recipeConfiguration);
+        ParameterList recipeParameters = recipeConfiguration.getParameters();
+        data.addRecipeParameters(recipeParameters);
+    }
+
     private void generateMeta() {
         if (data == null) {
             data = new MetaData();
@@ -382,6 +392,7 @@ public class MagicMeta {
         generateModifierMeta();
         generateMobMeta();
         generateSelectorOptionMeta();
+        generateRecipeMeta();
     }
 
     private Category getCategory(String key) {
