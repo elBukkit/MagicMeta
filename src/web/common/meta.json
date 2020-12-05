@@ -1847,7 +1847,7 @@
         "importance" : 90,
         "name" : "Heal",
         "parameters" : {
-          "amount" : "20",
+          "heal_amount" : "20",
           "heal_max_distance" : "0",
           "percentage" : "0"
         },
@@ -5070,6 +5070,14 @@
       "description" : [ "The amount of an item" ],
       "field" : "amount",
       "importance" : 0,
+      "name" : "Amount",
+      "type" : "double"
+    },
+    "heal_amount" : {
+      "category" : "mob",
+      "description" : [ "The amount of health to heal. One heart is equal to 2 health" ],
+      "field" : "amount",
+      "importance" : 150,
       "name" : "Amount",
       "type" : "double"
     },
@@ -12659,7 +12667,7 @@
       "category" : "targeting",
       "description" : [ "How this spell should perform its targeting", "This only affects the initial targeting, not any projectiles that are launched" ],
       "field" : "target",
-      "importance" : 100,
+      "importance" : 200,
       "name" : "Targeting Mode",
       "type" : "target_type"
     },
@@ -13380,7 +13388,7 @@
       "category" : "mob",
       "description" : [ "The type of entity to spawn" ],
       "field" : "type",
-      "importance" : 100,
+      "importance" : 200,
       "name" : "Type",
       "type" : "entity_type"
     },
@@ -13415,7 +13423,7 @@
       "field" : "undo",
       "importance" : 100,
       "name" : "Undo",
-      "type" : "integer"
+      "type" : "milliseconds"
     },
     "undo_oldest" : {
       "category" : "",
@@ -14834,6 +14842,7 @@
         "particle" : null,
         "particle_count" : "1",
         "particle_data" : "0",
+        "particle_offset" : "0.3",
         "particle_offset_x" : "0.3",
         "particle_offset_y" : "0.3",
         "particle_offset_z" : "0.3",
@@ -14880,7 +14889,9 @@
         "projectile" : "Effects to to attach to a projectile before launching it",
         "reflect" : "Performed when a projectile is reflected\nSpells can be reflected by certain spells, blocks, or items",
         "step" : "Performed once per tick on a projectile\nThis is similar to tick effects, but only happens once per tick, regardless of the particle's velocity",
-        "tick" : "Performed every tick while a projectile is in flight\nThis is often used to make a projectile visible as it flies.\nThe effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!\nOnly works with projectile actions"
+        "tick" : "Performed every tick while a projectile is in flight\nThis is often used to make a projectile visible as it flies.\nThe effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!\nOnly works with projectile actions",
+        "undo" : "Perfomed on a block that was changed when the changes revert",
+        "undo_entity" : "Performed on an entity that was spawned and gets despawned due to undo"
       }
     },
     "effect_type" : {
@@ -14920,6 +14931,7 @@
         "offset" : null,
         "particle_count" : "1",
         "particle_data" : "0.0",
+        "particle_offset" : "0",
         "particle_offset_x" : "0",
         "particle_offset_y" : "0",
         "particle_offset_z" : "0",
