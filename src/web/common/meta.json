@@ -3784,7 +3784,7 @@
           "particles" : "150",
           "particles_per_iteration" : "10",
           "size" : "1",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "x_factor" : "1",
           "x_offset" : "0",
           "x_rotation" : "0",
@@ -3809,7 +3809,7 @@
           "iterations" : "200",
           "particle" : "flame",
           "particles" : "100",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Arc"
       },
@@ -3835,7 +3835,7 @@
           "radius" : "3",
           "radius_nucleus" : "0.2",
           "rotation" : "0",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Atom"
       },
@@ -3862,7 +3862,7 @@
           "sound_interval" : "5",
           "sound_pitch" : "1",
           "sound_volume" : "100",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "BigBang"
       },
@@ -3878,7 +3878,7 @@
           "hurt" : "true",
           "iterations" : "25",
           "period" : "4",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Bleed"
       },
@@ -3900,7 +3900,7 @@
           "particles" : "20",
           "period" : "2",
           "radius" : "0.4",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "whole_circle" : "false",
           "x_rotation" : "0",
           "x_subtract" : "0",
@@ -3926,7 +3926,7 @@
           "main_particle" : "drip_water",
           "particle_radius" : "0.59999996",
           "period" : "5",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "y_offset" : "0.8"
         },
         "short_class" : "Cloud"
@@ -3956,7 +3956,7 @@
           "step_x" : "10",
           "step_y" : "10",
           "transparency" : "false",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "ColoredImage"
       },
@@ -3977,7 +3977,7 @@
           "radius_grow" : "0.006",
           "randomize" : "false",
           "rotation" : "0",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Cone"
       },
@@ -3999,7 +3999,7 @@
           "particle" : "flame",
           "particles" : "8",
           "period" : "5",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Cube"
       },
@@ -4017,7 +4017,7 @@
           "particle" : "flame",
           "particles" : "8",
           "period" : "5",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "x_length" : "0.0",
           "y_length" : "0.0",
           "z_length" : "0.0"
@@ -4047,7 +4047,7 @@
           "rotation_y" : "0",
           "rotation_z" : "0",
           "solid" : "false",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Cylinder"
       },
@@ -4071,7 +4071,7 @@
           "sphere_particle" : "flame",
           "sphere_particles" : "50",
           "sphere_radius" : "0.6",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "DiscoBall"
       },
@@ -4097,7 +4097,7 @@
           "particles_helix" : "3",
           "radials" : "0.10471975511965977",
           "radius" : "1.5",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Dna"
       },
@@ -4116,7 +4116,7 @@
           "period" : "10",
           "radius_donut" : "2",
           "radius_tube" : "0.5",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "x_rotation" : "0",
           "y_rotation" : "0",
           "z_rotation" : "0"
@@ -4138,7 +4138,7 @@
           "particles" : "30",
           "period" : "2",
           "steps_per_iteration" : "2",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Dragon"
       },
@@ -4158,7 +4158,7 @@
           "period" : "5",
           "precision" : "100",
           "radius" : "1",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Earth"
       },
@@ -4178,7 +4178,7 @@
           "particle" : "redstone",
           "particles" : "1",
           "particles2" : "0",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "variable" : "t",
           "variable2" : "t2",
           "x2_equation" : null,
@@ -4216,7 +4216,7 @@
         "parameters" : {
           "iterations" : "600",
           "particle" : "flame",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Flame"
       },
@@ -4239,7 +4239,7 @@
           "radius_spout" : "0.1",
           "rotation" : "0.7853981633974483",
           "strands" : "10",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Fountain"
       },
@@ -4304,7 +4304,7 @@
           "radius" : "10",
           "rotation" : "0.7853981633974483",
           "strands" : "8",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Helix"
       },
@@ -4322,7 +4322,7 @@
           "particle" : "flame",
           "particles" : "30",
           "period" : "10",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "y_rotation" : "0.4487989505128276"
         },
         "short_class" : "Hill"
@@ -4338,7 +4338,7 @@
           "iterations" : "25",
           "particle" : "villager_angry",
           "period" : "4",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "y_offset" : "2"
         },
         "short_class" : "Icon"
@@ -4369,7 +4369,7 @@
           "step_x" : "10",
           "step_y" : "10",
           "transparency" : "false",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Image"
       },
@@ -4401,7 +4401,7 @@
           "length" : "0",
           "particle" : "flame",
           "particles" : "100",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "zig_zag_offset" : "0.0,0.1,0",
           "zig_zags" : "10"
         },
@@ -4418,7 +4418,7 @@
           "iterations" : "600",
           "particle" : "heart",
           "period" : "2",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Love"
       },
@@ -4436,7 +4436,7 @@
           "orient" : "true",
           "orient_pitch" : "false",
           "parameters" : "{}",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "variable_a" : "0.0",
           "variable_b" : "0.0",
           "x_equation" : null,
@@ -4457,7 +4457,7 @@
           "particle" : "note",
           "radials_per_step" : "0.39269908169872414",
           "radius" : "0.4",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Music"
       },
@@ -4471,7 +4471,7 @@
         "parameters" : {
           "iterations" : "1",
           "particle" : "villager_angry",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Particle"
       },
@@ -4486,7 +4486,7 @@
           "iterations" : "100",
           "particle" : "redstone",
           "persistent" : "true",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "x_equation" : null,
           "x_scale" : "1",
           "y_equation" : null,
@@ -4510,7 +4510,7 @@
           "particles" : "8",
           "period" : "5",
           "radius" : "0.0",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Pyramid"
       },
@@ -4527,7 +4527,7 @@
           "particles" : "50",
           "radius" : "3",
           "sphere" : "false",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Shield"
       },
@@ -4557,7 +4557,7 @@
           "iterations" : "300",
           "particle" : "smoke_normal",
           "particles" : "20",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Smoke"
       },
@@ -4571,7 +4571,7 @@
         "parameters" : {
           "iterations" : "1",
           "sound" : null,
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Sound"
       },
@@ -4588,7 +4588,7 @@
           "particles" : "50",
           "radius" : "0.6",
           "radius_increase" : "0",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "y_offset" : "0"
         },
         "short_class" : "Sphere"
@@ -4608,7 +4608,7 @@
           "period" : "4",
           "spike_height" : "3.5",
           "spikes_half" : "3",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Star"
       },
@@ -4630,7 +4630,7 @@
           "step_x" : "1",
           "step_y" : "1",
           "text" : "text",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Text"
       },
@@ -4657,7 +4657,7 @@
           "tornado_color" : null,
           "tornado_height" : "5",
           "tornado_particle" : "flame",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "y_offset" : "0.8"
         },
         "short_class" : "Tornado"
@@ -4674,7 +4674,7 @@
           "max_way_points" : "30",
           "particle" : "flame",
           "refresh" : "5",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Trace"
       },
@@ -4689,7 +4689,7 @@
           "asynchronous" : "false",
           "iterations" : "160",
           "step" : "11.25",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Turn"
       },
@@ -4708,7 +4708,7 @@
           "particle" : "flame",
           "radials" : "0.19634954084936207",
           "radius" : "2",
-          "type" : "repeating"
+          "effect_type" : "repeating"
         },
         "short_class" : "Vortex"
       },
@@ -4752,7 +4752,7 @@
           "particles_front" : "10",
           "period" : "5",
           "rows" : "20",
-          "type" : "repeating",
+          "effect_type" : "repeating",
           "velocity-vector" : "0.0,0.0,0",
           "width" : "5"
         },
