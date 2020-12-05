@@ -12,6 +12,15 @@ $spellIcons = array();
 $disabledIcons = array();
 $wandIcons = array();
 
+function makeIcon($texture, $className) {
+    $icon = '';
+    $texture = 'image/' . $texture;
+    if (file_exists($texture)) {
+        $icon = '<img src="common/' . $texture . '" class="' . $className . '"/>';
+    }
+    return $icon;
+}
+
 // Load resource pack textures
 if ($legacyIcons) {
     $spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
@@ -21,8 +30,8 @@ if ($legacyIcons) {
         $durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
         if ($durability == 0) continue;
         $texture = str_replace('item/', '', $spellPredicate['model']);
-        $spellIcons['diamond_axe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
-        $disabledIcons['diamond_hoe:' . $durability] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+        $spellIcons['diamond_axe:' . $durability] = makeIcon($texture . '.png', 'spellIcon') . $texture;
+        $disabledIcons['diamond_hoe:' . $durability] = makeIcon($texture . '.png', 'spellIcon') . $texture;
     }
 } else {
     $modelFolder = $resourcePackFolder . '/default/assets/minecraft/models/item/';
@@ -43,10 +52,11 @@ if ($legacyIcons) {
             if (strpos($texture, 'spells') === FALSE && strpos($texture, 'brushes') === FALSE) {
                 $wandIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $texture;
             } else {
+                $icon = makeIcon($texture . '.png', 'spellIcon');
                 if (strpos($texture, '_disabled') !== FALSE) {
-                    $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+                    $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $icon . $texture;
                 } else {
-                    $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = '<img src="common/image/' . $texture . '.png" class="spellIcon"/>' . $texture;
+                    $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $icon . $texture;
                 }
             }
         }
@@ -54,7 +64,7 @@ if ($legacyIcons) {
 }
 if (isset($meta['types']) && isset($meta['types']['material']) && isset($meta['types']['material']['options'])) {
     foreach ($meta['types']['material']['options'] as $material => $nothing) {
-        $icon =  '<img src="common/image/material/' . $material . '.png" class="spellIcon"/>' . $material;
+        $icon = makeIcon('material/' . $material . '.png', 'spellIcon');
         $meta['types']['material']['options'][$material] = $icon;
         $wandIcons[$material] = $icon;
     }
