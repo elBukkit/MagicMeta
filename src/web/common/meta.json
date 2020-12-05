@@ -3779,12 +3779,12 @@
         "importance" : 90,
         "name" : "Animated Ball",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "500",
           "particle" : "spell_witch",
           "particles" : "150",
           "particles_per_iteration" : "10",
           "size" : "1",
-          "effect_type" : "repeating",
           "x_factor" : "1",
           "x_offset" : "0",
           "x_rotation" : "0",
@@ -3805,11 +3805,11 @@
         "importance" : 70,
         "name" : "Arc",
         "parameters" : {
+          "effect_type" : "repeating",
           "height" : "2",
           "iterations" : "200",
           "particle" : "flame",
-          "particles" : "100",
-          "effect_type" : "repeating"
+          "particles" : "100"
         },
         "short_class" : "Arc"
       },
@@ -3824,6 +3824,7 @@
           "angular_velocity" : "0.039269908169872414",
           "color_nucleus" : null,
           "color_orbital" : null,
+          "effect_type" : "repeating",
           "iterations" : "200",
           "orbitals" : "3",
           "orient" : "false",
@@ -3834,8 +3835,7 @@
           "period" : "2",
           "radius" : "3",
           "radius_nucleus" : "0.2",
-          "rotation" : "0",
-          "effect_type" : "repeating"
+          "rotation" : "0"
         },
         "short_class" : "Atom"
       },
@@ -3851,6 +3851,7 @@
           "color" : "FF0000",
           "color2" : "FFA500]",
           "color3" : "000000",
+          "effect_type" : "repeating",
           "explosions" : "10",
           "fade_color" : "000000",
           "firework_type" : "burst",
@@ -3861,8 +3862,7 @@
           "sound" : "entity_generic_explode",
           "sound_interval" : "5",
           "sound_pitch" : "1",
-          "sound_volume" : "100",
-          "effect_type" : "repeating"
+          "sound_volume" : "100"
         },
         "short_class" : "BigBang"
       },
@@ -3874,11 +3874,11 @@
         "importance" : 0,
         "name" : "Bleed",
         "parameters" : {
+          "effect_type" : "repeating",
           "height" : "1.75",
           "hurt" : "true",
           "iterations" : "25",
-          "period" : "4",
-          "effect_type" : "repeating"
+          "period" : "4"
         },
         "short_class" : "Bleed"
       },
@@ -3893,6 +3893,7 @@
           "angular_velocity_x" : "0.015707963267948967",
           "angular_velocity_y" : "0.018479956785822312",
           "angular_velocity_z" : "0.02026833970057931",
+          "effect_type" : "repeating",
           "enable_rotation" : "true",
           "iterations" : "50",
           "orient" : "false",
@@ -3900,7 +3901,6 @@
           "particles" : "20",
           "period" : "2",
           "radius" : "0.4",
-          "effect_type" : "repeating",
           "whole_circle" : "false",
           "x_rotation" : "0",
           "x_subtract" : "0",
@@ -3922,11 +3922,11 @@
           "cloud_color" : null,
           "cloud_particle" : "cloud",
           "cloud_size" : "0.7",
+          "effect_type" : "repeating",
           "iterations" : "50",
           "main_particle" : "drip_water",
           "particle_radius" : "0.59999996",
           "period" : "5",
-          "effect_type" : "repeating",
           "y_offset" : "0.8"
         },
         "short_class" : "Cloud"
@@ -3942,6 +3942,7 @@
           "angular_velocity_x" : "0.015707963267948967",
           "angular_velocity_y" : "0.018479956785822312",
           "angular_velocity_z" : "0.02026833970057931",
+          "effect_type" : "repeating",
           "enable_rotation" : "true",
           "file_name" : null,
           "frame_delay" : "5",
@@ -3955,8 +3956,7 @@
           "size" : "0.025",
           "step_x" : "10",
           "step_y" : "10",
-          "transparency" : "false",
-          "effect_type" : "repeating"
+          "transparency" : "false"
         },
         "short_class" : "ColoredImage"
       },
@@ -3969,6 +3969,7 @@
         "name" : "Cone",
         "parameters" : {
           "angular_velocity" : "0.19634954084936207",
+          "effect_type" : "repeating",
           "iterations" : "200",
           "length_grow" : "0.05",
           "particle" : "flame",
@@ -3976,8 +3977,7 @@
           "particles_cone" : "180",
           "radius_grow" : "0.006",
           "randomize" : "false",
-          "rotation" : "0",
-          "effect_type" : "repeating"
+          "rotation" : "0"
         },
         "short_class" : "Cone"
       },
@@ -3993,13 +3993,13 @@
           "angular_velocity_y" : "0.018479956785822312",
           "angular_velocity_z" : "0.02026833970057931",
           "edge_length" : "3",
+          "effect_type" : "repeating",
           "enable_rotation" : "true",
           "iterations" : "200",
           "outline_only" : "true",
           "particle" : "flame",
           "particles" : "8",
-          "period" : "5",
-          "effect_type" : "repeating"
+          "period" : "5"
         },
         "short_class" : "Cube"
       },
@@ -4012,12 +4012,12 @@
         "name" : "Cuboid",
         "parameters" : {
           "block_snap" : "false",
+          "effect_type" : "repeating",
           "iterations" : "200",
           "padding" : "0.0",
           "particle" : "flame",
           "particles" : "8",
           "period" : "5",
-          "effect_type" : "repeating",
           "x_length" : "0.0",
           "y_length" : "0.0",
           "z_length" : "0.0"
@@ -4035,6 +4035,7 @@
           "angular_velocity_x" : "0.015707963267948967",
           "angular_velocity_y" : "0.018479956785822312",
           "angular_velocity_z" : "0.02026833970057931",
+          "effect_type" : "repeating",
           "enable_rotation" : "true",
           "height" : "3",
           "iterations" : "200",
@@ -4046,8 +4047,7 @@
           "rotation_x" : "0",
           "rotation_y" : "0",
           "rotation_z" : "0",
-          "solid" : "false",
-          "effect_type" : "repeating"
+          "solid" : "false"
         },
         "short_class" : "Cylinder"
       },
@@ -4060,6 +4060,7 @@
         "name" : "Disco Ball",
         "parameters" : {
           "direction-disco_ball_effect_direction" : "down",
+          "effect_type" : "repeating",
           "iterations" : "500",
           "line_color" : null,
           "line_particle" : "redstone",
@@ -4070,8 +4071,7 @@
           "sphere_color" : null,
           "sphere_particle" : "flame",
           "sphere_particles" : "50",
-          "sphere_radius" : "0.6",
-          "effect_type" : "repeating"
+          "sphere_radius" : "0.6"
         },
         "short_class" : "DiscoBall"
       },
@@ -4087,6 +4087,7 @@
           "color_base1" : null,
           "color_base2" : null,
           "color_helix" : null,
+          "effect_type" : "repeating",
           "grow" : "0.2",
           "iterations" : "500",
           "length" : "15",
@@ -4096,8 +4097,7 @@
           "particles_base" : "15",
           "particles_helix" : "3",
           "radials" : "0.10471975511965977",
-          "radius" : "1.5",
-          "effect_type" : "repeating"
+          "radius" : "1.5"
         },
         "short_class" : "Dna"
       },
@@ -4110,13 +4110,13 @@
         "name" : "Donut",
         "parameters" : {
           "circles" : "36",
+          "effect_type" : "repeating",
           "iterations" : "20",
           "particle" : "flame",
           "particles_circle" : "10",
           "period" : "10",
           "radius_donut" : "2",
           "radius_tube" : "0.5",
-          "effect_type" : "repeating",
           "x_rotation" : "0",
           "y_rotation" : "0",
           "z_rotation" : "0"
@@ -4132,13 +4132,13 @@
         "name" : "Dragon",
         "parameters" : {
           "arcs" : "20",
+          "effect_type" : "repeating",
           "iterations" : "200",
           "length" : "4",
           "particle" : "flame",
           "particles" : "30",
           "period" : "2",
-          "steps_per_iteration" : "2",
-          "effect_type" : "repeating"
+          "steps_per_iteration" : "2"
         },
         "short_class" : "Dragon"
       },
@@ -4150,6 +4150,7 @@
         "importance" : 0,
         "name" : "Earth",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "200",
           "mountain_height" : "0.5",
           "particle1" : "villager_happy",
@@ -4157,8 +4158,7 @@
           "particles" : "500",
           "period" : "5",
           "precision" : "100",
-          "radius" : "1",
-          "effect_type" : "repeating"
+          "radius" : "1"
         },
         "short_class" : "Earth"
       },
@@ -4171,6 +4171,7 @@
         "name" : "Equation",
         "parameters" : {
           "cycle_mini_step" : "true",
+          "effect_type" : "repeating",
           "iterations" : "100",
           "max_steps" : "0",
           "orient" : "true",
@@ -4178,7 +4179,6 @@
           "particle" : "redstone",
           "particles" : "1",
           "particles2" : "0",
-          "effect_type" : "repeating",
           "variable" : "t",
           "variable2" : "t2",
           "x2_equation" : null,
@@ -4214,9 +4214,9 @@
         "importance" : 30,
         "name" : "Flame",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "600",
-          "particle" : "flame",
-          "effect_type" : "repeating"
+          "particle" : "flame"
         },
         "short_class" : "Flame"
       },
@@ -4228,6 +4228,7 @@
         "importance" : 70,
         "name" : "Fountain",
         "parameters" : {
+          "effect_type" : "repeating",
           "height" : "3",
           "height_spout" : "7",
           "iterations" : "100",
@@ -4238,8 +4239,7 @@
           "radius" : "5",
           "radius_spout" : "0.1",
           "rotation" : "0.7853981633974483",
-          "strands" : "10",
-          "effect_type" : "repeating"
+          "strands" : "10"
         },
         "short_class" : "Fountain"
       },
@@ -4297,14 +4297,14 @@
         "name" : "Helix",
         "parameters" : {
           "curve" : "10",
+          "effect_type" : "repeating",
           "iterations" : "8",
           "particle" : "flame",
           "particles" : "80",
           "period" : "10",
           "radius" : "10",
           "rotation" : "0.7853981633974483",
-          "strands" : "8",
-          "effect_type" : "repeating"
+          "strands" : "8"
         },
         "short_class" : "Helix"
       },
@@ -4317,12 +4317,12 @@
         "name" : "Hill",
         "parameters" : {
           "edge_length" : "6.5",
+          "effect_type" : "repeating",
           "height" : "2.5",
           "iterations" : "20",
           "particle" : "flame",
           "particles" : "30",
           "period" : "10",
-          "effect_type" : "repeating",
           "y_rotation" : "0.4487989505128276"
         },
         "short_class" : "Hill"
@@ -4335,10 +4335,10 @@
         "importance" : 100,
         "name" : "Icon",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "25",
           "particle" : "villager_angry",
           "period" : "4",
-          "effect_type" : "repeating",
           "y_offset" : "2"
         },
         "short_class" : "Icon"
@@ -4354,6 +4354,7 @@
           "angular_velocity_x" : "0.015707963267948967",
           "angular_velocity_y" : "0.018479956785822312",
           "angular_velocity_z" : "0.02026833970057931",
+          "effect_type" : "repeating",
           "enable_rotation" : "true",
           "file_name" : null,
           "frame_delay" : "5",
@@ -4368,8 +4369,7 @@
           "size" : "0.025",
           "step_x" : "10",
           "step_y" : "10",
-          "transparency" : "false",
-          "effect_type" : "repeating"
+          "transparency" : "false"
         },
         "short_class" : "Image"
       },
@@ -4396,12 +4396,12 @@
         "importance" : 80,
         "name" : "Line",
         "parameters" : {
+          "effect_type" : "repeating",
           "is_zig_zag" : "false",
           "iterations" : "1",
           "length" : "0",
           "particle" : "flame",
           "particles" : "100",
-          "effect_type" : "repeating",
           "zig_zag_offset" : "0.0,0.1,0",
           "zig_zags" : "10"
         },
@@ -4415,10 +4415,10 @@
         "importance" : 50,
         "name" : "Love",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "600",
           "particle" : "heart",
-          "period" : "2",
-          "effect_type" : "repeating"
+          "period" : "2"
         },
         "short_class" : "Love"
       },
@@ -4431,12 +4431,12 @@
         "name" : "Modified",
         "parameters" : {
           "effect_class" : null,
+          "effect_type" : "repeating",
           "effectlib_effect" : null,
           "iterations" : "100",
           "orient" : "true",
           "orient_pitch" : "false",
           "parameters" : "{}",
-          "effect_type" : "repeating",
           "variable_a" : "0.0",
           "variable_b" : "0.0",
           "x_equation" : null,
@@ -4453,11 +4453,11 @@
         "importance" : 20,
         "name" : "Music",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "400",
           "particle" : "note",
           "radials_per_step" : "0.39269908169872414",
-          "radius" : "0.4",
-          "effect_type" : "repeating"
+          "radius" : "0.4"
         },
         "short_class" : "Music"
       },
@@ -4469,9 +4469,9 @@
         "importance" : 0,
         "name" : "Particle",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "1",
-          "particle" : "villager_angry",
-          "effect_type" : "repeating"
+          "particle" : "villager_angry"
         },
         "short_class" : "Particle"
       },
@@ -4483,10 +4483,10 @@
         "importance" : 0,
         "name" : "Plot",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "100",
           "particle" : "redstone",
           "persistent" : "true",
-          "effect_type" : "repeating",
           "x_equation" : null,
           "x_scale" : "1",
           "y_equation" : null,
@@ -4505,12 +4505,12 @@
         "name" : "Pyramid",
         "parameters" : {
           "block_snap" : "false",
+          "effect_type" : "repeating",
           "iterations" : "200",
           "particle" : "flame",
           "particles" : "8",
           "period" : "5",
-          "radius" : "0.0",
-          "effect_type" : "repeating"
+          "radius" : "0.0"
         },
         "short_class" : "Pyramid"
       },
@@ -4522,12 +4522,12 @@
         "importance" : 100,
         "name" : "Shield",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "500",
           "particle" : "flame",
           "particles" : "50",
           "radius" : "3",
-          "sphere" : "false",
-          "effect_type" : "repeating"
+          "sphere" : "false"
         },
         "short_class" : "Shield"
       },
@@ -4554,10 +4554,10 @@
         "importance" : 50,
         "name" : "Smoke",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "300",
           "particle" : "smoke_normal",
-          "particles" : "20",
-          "effect_type" : "repeating"
+          "particles" : "20"
         },
         "short_class" : "Smoke"
       },
@@ -4569,9 +4569,9 @@
         "importance" : 0,
         "name" : "Sound",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "1",
-          "sound" : null,
-          "effect_type" : "repeating"
+          "sound" : null
         },
         "short_class" : "Sound"
       },
@@ -4583,12 +4583,12 @@
         "importance" : 100,
         "name" : "Sphere",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "500",
           "particle" : "spell_mob",
           "particles" : "50",
           "radius" : "0.6",
           "radius_increase" : "0",
-          "effect_type" : "repeating",
           "y_offset" : "0"
         },
         "short_class" : "Sphere"
@@ -4601,14 +4601,14 @@
         "importance" : 80,
         "name" : "Star",
         "parameters" : {
+          "effect_type" : "repeating",
           "inner_radius" : "0.5",
           "iterations" : "50",
           "particle" : "flame",
           "particles" : "50",
           "period" : "4",
           "spike_height" : "3.5",
-          "spikes_half" : "3",
-          "effect_type" : "repeating"
+          "spikes_half" : "3"
         },
         "short_class" : "Star"
       },
@@ -4620,6 +4620,7 @@
         "importance" : 90,
         "name" : "Text",
         "parameters" : {
+          "effect_type" : "repeating",
           "font" : "Tahoma 16",
           "font_size" : "0.2",
           "invert" : "false",
@@ -4629,8 +4630,7 @@
           "realtime" : "false",
           "step_x" : "1",
           "step_y" : "1",
-          "text" : "text",
-          "effect_type" : "repeating"
+          "text" : "text"
         },
         "short_class" : "Text"
       },
@@ -4649,6 +4649,7 @@
           "cloud_particles" : "100",
           "cloud_size" : "2.5",
           "distance" : "0.375",
+          "effect_type" : "repeating",
           "iterations" : "20",
           "max_tornado_radius" : "5",
           "period" : "5",
@@ -4657,7 +4658,6 @@
           "tornado_color" : null,
           "tornado_height" : "5",
           "tornado_particle" : "flame",
-          "effect_type" : "repeating",
           "y_offset" : "0.8"
         },
         "short_class" : "Tornado"
@@ -4670,11 +4670,11 @@
         "importance" : 100,
         "name" : "Trace",
         "parameters" : {
+          "effect_type" : "repeating",
           "iterations" : "600",
           "max_way_points" : "30",
           "particle" : "flame",
-          "refresh" : "5",
-          "effect_type" : "repeating"
+          "refresh" : "5"
         },
         "short_class" : "Trace"
       },
@@ -4687,9 +4687,9 @@
         "name" : "Turn",
         "parameters" : {
           "asynchronous" : "false",
+          "effect_type" : "repeating",
           "iterations" : "160",
-          "step" : "11.25",
-          "effect_type" : "repeating"
+          "step" : "11.25"
         },
         "short_class" : "Turn"
       },
@@ -4702,13 +4702,13 @@
         "name" : "Vortex",
         "parameters" : {
           "circles" : "3",
+          "effect_type" : "repeating",
           "grow" : "0.05",
           "helixes" : "4",
           "iterations" : "200",
           "particle" : "flame",
           "radials" : "0.19634954084936207",
-          "radius" : "2",
-          "effect_type" : "repeating"
+          "radius" : "2"
         },
         "short_class" : "Vortex"
       },
@@ -4742,6 +4742,7 @@
           "cloud_color" : null,
           "cloud_particle" : "cloud",
           "depth_front" : "1",
+          "effect_type" : "repeating",
           "height" : "2",
           "height_back" : "0.5",
           "iterations" : "50",
@@ -4752,7 +4753,6 @@
           "particles_front" : "10",
           "period" : "5",
           "rows" : "20",
-          "effect_type" : "repeating",
           "velocity-vector" : "0.0,0.0,0",
           "width" : "5"
         },
@@ -4776,6 +4776,14 @@
       "importance" : 0,
       "name" : "Actions",
       "type" : "action_list"
+    },
+    "actions_actions" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "actions",
+      "importance" : 0,
+      "name" : "Actions",
+      "type" : "actions"
     },
     "actions_map" : {
       "category" : "actions",
@@ -9967,6 +9975,14 @@
       "name" : "Options",
       "type" : "options_list"
     },
+    "options_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "options",
+      "importance" : 0,
+      "name" : "Options",
+      "type" : "list"
+    },
     "orbitals" : {
       "category" : "",
       "description" : [ "Number of orbitals around the nucleus" ],
@@ -14394,9 +14410,9 @@
     },
     "action_parameters" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "classed" : "actions",
       "description" : [ "The configuration of one action in a spell", "Actions determine what a spell does", "Each action must have at least a 'class' parameter specifying what type of action to perform" ],
       "name" : "Spell Action",
-      "classed" : "actions",
       "parameters" : {
         "action_class" : null,
         "ignore_result" : "false",
@@ -14405,9 +14421,9 @@
       }
     },
     "action_trigger" : {
-      "name" : "Action Trigger",
       "class_name" : "java.lang.String",
       "description" : [ "An action handler, which will run a list of actions in order" ],
+      "name" : "Action Trigger",
       "options" : {
         "alternate_down" : "Cast when a player is looking mostly downward at the ground",
         "alternate_jumping" : "Cast when a player is jumping",
@@ -14422,6 +14438,12 @@
       "key_type" : "action_trigger",
       "name" : "Action Trigger Map",
       "value_type" : "action_list"
+    },
+    "actions" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "" ],
+      "name" : "Actions",
+      "options" : { }
     },
     "attribute" : {
       "class_name" : "java.lang.String",
@@ -14842,6 +14864,25 @@
         "visibility" : null
       }
     },
+    "effect_trigger" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "An effect handler, which will perform a list of effects" ],
+      "name" : "Effects Trigger",
+      "options" : {
+        "blockmiss" : "Performed each tick of a projectile that does not hit a block\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
+        "cast" : "Performed immediately when this spell is cast",
+        "headshot" : "Performed when a projectile spell hits an entity in the head\nOnly works with the CustomProjectile action",
+        "hit" : "Performed when a projectile spell hits a block or entity target\nThis is often used to attach effects to the entity hit by a spell",
+        "hit_block" : "Performed when a projectile spell hits a block (but not an entity)\nIf this effect list plays, so will the 'hit' effect list.",
+        "hit_entity" : "Performed when a projectile spell hits an entity\nIf this effect list plays, so will the 'hit' effect list.",
+        "miss" : "Performed when a projectile misses completely, expiring in mid-air",
+        "prehit" : "Performed just before a projectile hits its target\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
+        "projectile" : "Effects to to attach to a projectile before launching it",
+        "reflect" : "Performed when a projectile is reflected\nSpells can be reflected by certain spells, blocks, or items",
+        "step" : "Performed once per tick on a projectile\nThis is similar to tick effects, but only happens once per tick, regardless of the particle's velocity",
+        "tick" : "Performed every tick while a projectile is in flight\nThis is often used to make a projectile visible as it flies.\nThe effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!\nOnly works with projectile actions"
+      }
+    },
     "effect_type" : {
       "class_name" : "de.slikey.effectlib.EffectType",
       "description" : [ "The type of effect" ],
@@ -14860,9 +14901,9 @@
     },
     "effectlib_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "classed" : "effectlib_effects",
       "description" : [ "An EffectLib effect, which will be started when this effect plays" ],
       "name" : "Effectlib Properties",
-      "classed" : "effectlib_effects",
       "parameters" : {
         "asynchronous" : "true",
         "auto_orient" : "false",
@@ -14902,35 +14943,16 @@
     "effects_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A a list of effects to perform in order" ],
-      "name" : "Effect List",
       "item_type" : "effect_properties",
+      "name" : "Effect List",
       "options" : { }
     },
     "effects_trigger_map" : {
       "class_name" : "java.util.Map",
       "description" : [ "An event trigger map, with lists of effects defined for triggered events such as 'cast'" ],
-      "name" : "Effects Trigger Map",
       "key_type" : "effect_trigger",
+      "name" : "Effects Trigger Map",
       "value_type" : "effects_list"
-    },
-    "effect_trigger" : {
-      "name" : "Effects Trigger",
-      "class_name" : "java.lang.String",
-      "description" : [ "An effect handler, which will perform a list of effects" ],
-      "options" : {
-        "cast" : "Performed immediately when this spell is cast",
-        "tick" : "Performed every tick while a projectile is in flight\nThis is often used to make a projectile visible as it flies.\nThe effect will be played every 'tick_size' blocks, which defaults to 0.5 blocks. This means for fast-moving projectiles this effect may get played many times per server tick, so use complex effects here sparingly!\nOnly works with projectile actions",
-        "hit" : "Performed when a projectile spell hits a block or entity target\nThis is often used to attach effects to the entity hit by a spell",
-        "hit_entity" : "Performed when a projectile spell hits an entity\nIf this effect list plays, so will the 'hit' effect list.",
-        "hit_block" : "Performed when a projectile spell hits a block (but not an entity)\nIf this effect list plays, so will the 'hit' effect list.",
-        "blockmiss" : "Performed each tick of a projectile that does not hit a block\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
-        "prehit" : "Performed just before a projectile hits its target\nThese effects are mostly used to debug projectile movement and not generally used in a real spell.",
-        "step" : "Performed once per tick on a projectile\nThis is similar to tick effects, but only happens once per tick, regardless of the particle's velocity",
-        "reflect" : "Performed when a projectile is reflected\nSpells can be reflected by certain spells, blocks, or items",
-        "miss" : "Performed when a projectile misses completely, expiring in mid-air",
-        "headshot" : "Performed when a projectile spell hits an entity in the head\nOnly works with the CustomProjectile action",
-        "projectile" : "Effects to to attach to a projectile before launching it"
-      }
     },
     "enchantment" : {
       "class_name" : "org.bukkit.enchantments.Enchantment",
@@ -15240,19 +15262,6 @@
       "description" : [ "" ],
       "name" : "List",
       "options" : { }
-    },
-    "options_list" : {
-      "class_name" : "java.util.List",
-      "description" : [ "" ],
-      "name" : "List",
-      "value_type" : "selector_option",
-      "options" : { }
-    },
-    "selector_option" : {
-      "class_name" : "org.bukkit.configuration.ConfigurationSection",
-      "description" : [ "An option in a Selector that will be shown as an icon in the GUI" ],
-      "name" : "Selector Option",
-      "parameters" : { }
     },
     "lock_type" : {
       "class_name" : "java.lang.String",
@@ -16570,6 +16579,13 @@
         "template" : null
       }
     },
+    "options_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "" ],
+      "name" : "List",
+      "options" : { },
+      "value_type" : "selector_option"
+    },
     "particle" : {
       "class_name" : "org.bukkit.Particle",
       "description" : [ "A particle type. Use the 'fx' spell to easily see particles in-game.", "/cast fx particle crit", "/cast fx particle <tab>" ],
@@ -16782,6 +16798,12 @@
         "weakness" : null,
         "wither" : null
       }
+    },
+    "selector_option" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "An option in a Selector that will be shown as an icon in the GUI" ],
+      "name" : "Selector Option",
+      "parameters" : { }
     },
     "sound" : {
       "class_name" : "org.bukkit.Sound",
