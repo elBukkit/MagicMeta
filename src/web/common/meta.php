@@ -185,5 +185,9 @@ function generateMeta() {
     $meta['types']['action_class']['options'] = getClassedOptions($meta, 'actions');
     $meta['types']['effectlib_class']['options'] = getClassedOptions($meta, 'effectlib_effects');
 
+    // Merge entity properties into the SpawnEntity action
+    $entityData = $meta['types']['mob_properties']['parameters'];
+    $meta['classed']['actions']['spawn_entity']['parameters'] = array_merge($meta['classed']['actions']['spawn_entity']['parameters'], $entityData);
+
     return json_encode($meta);
 }
