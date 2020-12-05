@@ -1,21 +1,22 @@
 <?php
 require_once('../config.inc.php');
 require_once('common/user.inc.php');
+$version = 3;
 ?>
 <html>
 <head>
     <title><?= $title ?> Reference</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="common/css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
-    <link rel="stylesheet" href="common/css/common.css" />
-    <link rel="stylesheet" href="common/css/loading.css" />
-    <link rel="stylesheet" href="common/css/user.css" />
-    <link rel="stylesheet" href="css/reference.css"/>
+    <link rel="stylesheet" href="common/css/common.css?v=<?=$version?>" />
+    <link rel="stylesheet" href="common/css/loading.css?v=<?=$version?>" />
+    <link rel="stylesheet" href="common/css/user.css?v=<?=$version?>" />
+    <link rel="stylesheet" href="css/reference.css?v=<?=$version?>"/>
     <script src="common/js/jquery-1.10.2.min.js"></script>
     <script src="common/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="common/js/loading.js"></script>
-    <script src="common/js/user.js"></script>
-    <script src="js/reference.js"></script>
+    <script src="common/js/loading.js?v=<?=$version?>"></script>
+    <script src="common/js/user.js?v=<?=$version?>"></script>
+    <script src="js/reference.js?v=<?=$version?>"></script>
     <?php if ($analytics) echo $analytics; ?>
     <script type="text/javascript">
         var user = <?= json_encode(getUser()) ?>;
