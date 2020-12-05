@@ -95,11 +95,18 @@ $user = getUser();
         <span id="referenceButtonContainer">
             <button type="button" id="referenceButton" title="Open the reference guide in a new window">Reference</button>
         </span>
+        <span id="themeControls">
+            <span id="darkMode">Dark Mode</span>
+        </span>
         <?php include "common/userinfo.inc.php" ?>
     </div>
 
     <div id="codeEditor">
         <textarea id="editor"></textarea>
+    </div>
+
+    <div id="footer">
+        <span id="navigation"></span>
     </div>
 </div>
 

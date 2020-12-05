@@ -1,5 +1,6 @@
 $(document).ready(initialize);
 var editor = null;
+var preferences = {};
 
 function initialize() {
     $("#loadButton").button().click(function() { editor.load(); });
@@ -20,6 +21,10 @@ function initialize() {
         editor.startNew(this.value);
       }
     });
+    $('#darkMode').button({
+        text: false,
+        icon: "ui-icon-lightbulb"
+    }).click(toggleTheme);
 
     var loadSpell = null;
     var currentHash = window.location.hash;
@@ -40,6 +45,11 @@ function initialize() {
         editor.startNew("Basic");
     }
 
+    let preferencesData = $.cookie('preferences');
+    if (preferencesData) {
+        loadPreferences(preferencesData);
+    }
+
     $.ajax( {
         type: "GET",
         url: "common/meta.php?context",
@@ -50,6 +60,28 @@ function initialize() {
 
     if (user.id == '') {
         editor.startTutorial();
+    }
+}
+
+function selectTheme(theme) {
+    if (preferences.hasOwnProperty('theme') && preferences.theme != theme) {
+        $('body').removeClass(preferences.theme);
+    }
+    preferences.theme = theme;
+    $('body').addClass(preferences.theme);
+    editor.setTheme(theme);
+    savePreferences();
+}
+
+function savePreferences() {
+    $.cookie("preferences", JSON.stringify(preferences));
+}
+
+function toggleTheme() {
+    if (preferences.hasOwnProperty('theme') && preferences.theme == 'darcula') {
+        selectTheme('default');
+    } else {
+        selectTheme('darcula');
     }
 }
 
