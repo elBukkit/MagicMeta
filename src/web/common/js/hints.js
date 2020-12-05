@@ -757,6 +757,13 @@ function Hints(fileType) {
             }
         }
 
+        if (!valueType && parent.inherited && parent.inherited.hasOwnProperty(fieldName)) {
+            let propertyKey = parent.inherited[fieldName];
+            if (this.metadata.properties.hasOwnProperty(propertyKey)) {
+                valueType = this.metadata.properties[propertyKey].type;
+            }
+        }
+
         // Add in parameter values from actions (or other things, maybe, in the future, but probably not)
         if (!valueType && parent.hasOwnProperty('populatedProperties') && parent.populatedProperties.hasOwnProperty(fieldName)) {
             let propertyKey = parent.populatedProperties[fieldName];
