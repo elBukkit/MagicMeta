@@ -53,7 +53,9 @@ function Hints(fileType) {
         // First determine if this is a list item that we need to fix up
         this.initialize(cm);
         if (this.metadata == null) return;
-        if (this.context != null && this.context.value == '' && !this.context.isListItem && this.parent != null) {
+        // There is a hacky check here for "additional" picks, which at this point always means choosing a key
+        // value of a parent's map, when we are in a maybe-list.
+        if (this.context != null && this.context.value == '' && !this.context.isListItem && this.parent != null && !completion.additional) {
             let isInList = false;
             if (this.parent.isList) {
                 isInList = true;
@@ -284,6 +286,8 @@ function Hints(fileType) {
             let classType = 'properties';
             let values = parent.properties;
             let inherited = parent.inherited;
+            let additional = null;
+            let additionalClassType = null;
 
             // Add in parameters from actions (or other things, maybe, in the future, but probably not)
             if (parent.hasOwnProperty('populatedProperties')) {
@@ -312,6 +316,24 @@ function Hints(fileType) {
                         values = valueType.options;
                     }
                 }
+
+                // This is a special check for a list being at the same indent as its key, in which
+                // case we have another option, adding more keys from the parent of the list
+                if (this.context.indent == this.parent.indent && this.parent.parent != null) {
+                    // This really only happens with action handlers, so this is not as generic as it could be
+                    if (this.parent.parent.isMap) {
+                        let keyType = parent.parent.type.key_type;
+                        if (this.metadata.types.hasOwnProperty(keyType)) {
+                            keyType = this.metadata.types[keyType];
+                            if (keyType.hasOwnProperty('parameters')) {
+                                additional = this.getProperties(keyType);
+                            } else {
+                                additionalClassType = '';
+                                additional = keyType.options;
+                            }
+                        }
+                    }
+                }
             }
 
             // Filter out duplicate list and map suggestions
@@ -320,9 +342,11 @@ function Hints(fileType) {
             if (inherited != null) {
                 inherited = filterMap(inherited, siblings);
             }
-
+            if (additional != null) {
+                additional = filterMap(additional, siblings);
+            }
             // Filter and sort list, adding suggestions based on class type
-            suggestions = this.getSortedKeys(values, inherited, null, currentToken.word, this.metadata, classType, null);
+            suggestions = this.getSortedKeys(values, inherited, additional, null, currentToken.word, this.metadata, classType, additionalClassType, null);
         }
 
         // If we didn't find any suggestions, just return
@@ -443,10 +467,10 @@ function Hints(fileType) {
 
         let startsWith = [];
         let contains = [];
-        let foundDefault = true;this.matchProperties(values, defaultValue, currentInput, 'properties', valueType, false, startsWith, contains);
+        let foundDefault = true;this.matchProperties(values, defaultValue, currentInput, 'properties', valueType, false, false, startsWith, contains);
 
         if (defaultValue != null && !foundDefault) {
-            this.checkMatch(defaultValue, '', currentInput, 'properties', valueType, false, true, startsWith, contains);
+            this.checkMatch(defaultValue, '', currentInput, 'properties', valueType, false, false, true, startsWith, contains);
         }
         this.sortProperties(startsWith);
         this.sortProperties(contains);
@@ -484,11 +508,11 @@ function Hints(fileType) {
         properties.sort(sortProperties);
     };
 
-    this.checkMatch = function(value, description, currentInput, classType, valueType, inherited, isDefault, startsWith, contains) {
+    this.checkMatch = function(value, description, currentInput, classType, valueType, inherited, additional, isDefault, startsWith, contains) {
         let trimmedDescription = trimTags(description);
         let match = value + trimmedDescription;
         if (match.indexOf(currentInput) !== -1) {
-            let hint = this.convertHint(value, description, this.metadata, classType, valueType, inherited, isDefault);
+            let hint = this.convertHint(value, description, this.metadata, classType, valueType, inherited, additional, isDefault);
             if (match.startsWith(currentInput)) {
                 startsWith.push(hint);
             } else {
@@ -498,23 +522,27 @@ function Hints(fileType) {
     };
 
     // Returns true if the default value was found
-    this.matchProperties = function(values, defaultValue, currentInput, classType, valueType, inherited, startsWith, contains) {
+    this.matchProperties = function(values, defaultValue, currentInput, classType, valueType, inherited, additional, startsWith, contains) {
         let foundDefault = false;
         for (let kw in values) {
             let isDefault = defaultValue == kw;
             let description = values[kw];
             if (isDefault) foundDefault = true;
-            this.checkMatch(kw, description, currentInput, classType, valueType, inherited, isDefault, startsWith, contains);
+            this.checkMatch(kw, description, currentInput, classType, valueType, inherited, additional, isDefault, startsWith, contains);
         }
         return foundDefault;
     };
 
-    this.getSortedKeys = function(values, inheritedValues, defaultValue, currentInput, metadata, classType, valueType) {
+    this.getSortedKeys = function(values, inheritedValues, additionalValues, defaultValue, currentInput, metadata, classType, additionalClassType, valueType) {
         let startsWith = [];
         let contains = [];
-        this.matchProperties(values, defaultValue, currentInput, classType, valueType, false, startsWith, contains);
+        additionalClassType = additionalClassType == null ? classType : additionalClassType;
+        this.matchProperties(values, defaultValue, currentInput, classType, valueType, false, false, startsWith, contains);
         if (inheritedValues != null) {
-            this.matchProperties(inheritedValues, defaultValue, currentInput, classType, valueType, true, startsWith, contains);
+            this.matchProperties(inheritedValues, defaultValue, currentInput, classType, valueType, true, false, startsWith, contains);
+        }
+        if (additionalValues != null) {
+            this.matchProperties(additionalValues, defaultValue, currentInput, additionalClassType, valueType, false, true, startsWith, contains);
         }
         this.sortProperties(startsWith);
         this.sortProperties(contains);
@@ -543,7 +571,7 @@ function Hints(fileType) {
         $(element).append($('<td>').append(description));
     };
 
-    this.convertHint = function(text, value, metadata, classType, valueType, inherited, defaultValue) {
+    this.convertHint = function(text, value, metadata, classType, valueType, inherited, additional, defaultValue) {
         let description = null;
         let importance = 0;
         if (classType && metadata && value && metadata[classType].hasOwnProperty(value)) {
@@ -564,6 +592,7 @@ function Hints(fileType) {
             render: this.renderHint,
             importance: importance,
             inherited: inherited,
+            additional: additional,
             isDefault: defaultValue
         };
         return hint;
@@ -638,6 +667,15 @@ function Hints(fileType) {
             currentLine = next.lineNumber;
             current = next;
         }
+
+        // Yet another special case here, if we're adding a new item at the same level as the parent indent,
+        // and this is an object and the parent is a list, then we may consider siblings as object keys
+        // or as items in the parent list.
+        if (context.parent != null && context.parent.indent == context.indent && context.parent.isList && context.isObject) {
+            siblings = $.extend(siblings, this.getSiblings(context.parent));
+            siblings[context.parent.token] = '';
+        }
+
         return siblings;
     };
 
