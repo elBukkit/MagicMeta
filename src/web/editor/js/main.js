@@ -64,10 +64,12 @@ function initialize() {
         if (_session.hasOwnProperty('player') && _session.player != null) {
             let user = _session.player;
             let skinUrl = user.skinUrl;
-            skinUrl = skinUrl.replace('http://', '//');
+            if (skinUrl) {
+                skinUrl = skinUrl.replace('http://', '//');
+                $('#userSkin').css('background-image', 'url("' + skinUrl + '")');
+                $('#userOverlay').css('background-image', 'url("' + skinUrl + '")');
+            }
             $('#userName').text(user.name);
-            $('#userSkin').css('background-image', 'url("' + skinUrl + '")');
-            $('#userOverlay').css('background-image', 'url("' + skinUrl + '")');
         }
     } else {
         editor.startNew("Basic");
