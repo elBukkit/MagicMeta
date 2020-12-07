@@ -75,6 +75,7 @@
         "importance" : 0,
         "name" : "Add Spell",
         "parameters" : {
+          "add_to" : "wand",
           "auto_upgrade" : "true",
           "path" : null,
           "path_end" : null,
@@ -1742,6 +1743,7 @@
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
           "silent" : "false",
+          "spawn_actions" : null,
           "speed" : "0.1",
           "start" : "0",
           "tick_actions" : null,
@@ -2644,6 +2646,7 @@
           "set_target" : "false",
           "size" : "1",
           "source_location" : "",
+          "spawn_actions" : null,
           "speed" : "0.6000000238418579",
           "spread" : "12",
           "start" : "0",
@@ -3410,6 +3413,7 @@
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
           "size" : "6",
+          "spawn_actions" : null,
           "tick_actions" : null,
           "tnt_velocity" : "1",
           "track_projectile" : "true"
@@ -3498,6 +3502,7 @@
           "reorient" : "false",
           "set_target" : "false",
           "source_location" : "",
+          "spawn_actions" : null,
           "speed" : "0.6000000238418579",
           "speed_max" : "0.6000000238418579",
           "speed_min" : "0.6000000238418579",
@@ -3530,6 +3535,7 @@
           "reorient" : "false",
           "set_target" : "false",
           "source_location" : "",
+          "spawn_actions" : null,
           "speed" : "1",
           "speed_max" : "1",
           "speed_min" : "1",
@@ -4859,6 +4865,14 @@
       "importance" : 0,
       "name" : "Add Sell Shop",
       "type" : "boolean"
+    },
+    "add_to" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "add_to",
+      "importance" : 0,
+      "name" : "Add To",
+      "type" : "string"
     },
     "additive" : {
       "category" : "",
@@ -11042,6 +11056,14 @@
       "name" : "Progress Levels",
       "type" : "map"
     },
+    "projectile" : {
+      "category" : "",
+      "description" : [ "What type of projectile to launch" ],
+      "field" : "projectile",
+      "importance" : 150,
+      "name" : "Projectile",
+      "type" : "projectile_class"
+    },
     "projectile_effects" : {
       "category" : "",
       "description" : [ "An effect key, specifying effects to use to attach to the projectile" ],
@@ -13915,6 +13937,14 @@
       "importance" : 0,
       "name" : "Upgrade Requires Casts",
       "type" : "boolean"
+    },
+    "use_active_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_active_name",
+      "importance" : 0,
+      "name" : "Use Active Name",
+      "type" : "string"
     },
     "use_block_location" : {
       "category" : "",
@@ -16833,7 +16863,7 @@
       "description" : [ "A list of item or block materials", "Included in this list can be pre-defined material lists from materials.yml", "Several builtin material sets are defined in the default configs and are used in default spells for things like which blocks spell can target through ('transparent') or which block are considered 'solid'" ],
       "item_type" : "material",
       "name" : "Material List",
-      "options" : {}
+      "options" : { }
     },
     "message_type" : {
       "class_name" : "com.elmakers.mine.bukkit.action.builtin.MessageAction$MessageType",
@@ -18973,6 +19003,7 @@
         "unmoveable" : "false",
         "unstashable" : "false",
         "upgrade" : "false",
+        "use_active_name" : null,
         "use_mode" : null,
         "uses" : null,
         "wand_power" : "0",
@@ -19000,6 +19031,28 @@
         "359" : null,
         "45" : null,
         "90" : null
+      }
+    },
+    "projectile_class" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "An NMS class that extends EntityProjectile" ],
+      "name" : "Weather",
+      "options" : {
+        "Egg" : "Chicken egg, as if thrown",
+        "EnderPearl" : "Ender pearl, as if thrown",
+        "Potion" : "Thrown (splash) potion",
+        "Snowball" : "Snowball",
+        "ThrownExpBottle" : "Experience bottle",
+        "TippedArrow" : "Regular arrow",
+        "Fireworks" : "Fireworks, as if launched",
+        "FishingBook" : "Fishing hook",
+        "LlamaSpit" : "Llama Spit",
+        "ShulkerBullet" : "Shulker bullet",
+        "DragonFireball" : "Ender dragon fireball",
+        "LargeFireball" : "Ghast fireball",
+        "SmallFireball" : "Blaze fireball",
+        "WitherSkull" : "Wither skull, as if launched by a Wither",
+        "ThrownTrident" : "Trident, as if thrown"
       }
     }
   }
