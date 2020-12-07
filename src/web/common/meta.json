@@ -1738,7 +1738,6 @@
           "launch" : "false",
           "lifetime" : "10000",
           "power" : "1",
-          "projectile_actions" : null,
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
@@ -2639,7 +2638,6 @@
           "orient" : "true",
           "pickup" : "disallowed",
           "projectile" : "TippedArrow",
-          "projectile_actions" : null,
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "reorient" : "false",
@@ -3408,7 +3406,6 @@
           "fuse" : "80",
           "hit_effects" : "hit",
           "lifetime" : "10000",
-          "projectile_actions" : null,
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "set_target" : "false",
@@ -3496,7 +3493,6 @@
           "lifetime" : "10000",
           "max_damage" : "0",
           "orient" : "true",
-          "projectile_actions" : null,
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "reorient" : "false",
@@ -3529,7 +3525,6 @@
           "item" : null,
           "lifetime" : "10000",
           "orient" : "true",
-          "projectile_actions" : null,
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "reorient" : "false",
@@ -11047,14 +11042,6 @@
       "name" : "Progress Levels",
       "type" : "map"
     },
-    "projectile_actions" : {
-      "category" : "",
-      "description" : [ "Actions performed at the start of a projectile's launch" ],
-      "field" : "projectile",
-      "importance" : 0,
-      "name" : "Projectile Actions",
-      "type" : "action_list"
-    },
     "projectile_effects" : {
       "category" : "",
       "description" : [ "An effect key, specifying effects to use to attach to the projectile" ],
@@ -12553,7 +12540,7 @@
     },
     "spawn_actions" : {
       "category" : "",
-      "description" : [ "Actions performed immediately after spawning the entity" ],
+      "description" : [ "Actions performed immediately after spawning the entity or projectile" ],
       "field" : "spawn",
       "importance" : 0,
       "name" : "Spawn Actions",
