@@ -36,6 +36,7 @@ import com.elmakers.mine.bukkit.spell.BrushSpell;
 import com.elmakers.mine.bukkit.spell.TargetingSpell;
 import com.elmakers.mine.bukkit.spell.UndoableSpell;
 import com.elmakers.mine.bukkit.wand.WandProperties;
+import com.elmakers.mine.bukkit.world.MagicWorld;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.CaseFormat;
 
@@ -385,6 +386,15 @@ public class MagicMeta {
         data.addRecipeParameters(recipeParameters);
     }
 
+    private void generateWorldMeta() {
+        System.out.println("Scanning MagicWorld");
+        InterrogatingConfiguration worldConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        MagicWorld world = new MagicWorld(controller);
+        world.load("world", worldConfiguration);
+        ParameterList recipeParameters = worldConfiguration.getParameters();
+        data.addWorldParameters(recipeParameters);
+    }
+
     private void generateMeta() {
         if (data == null) {
             data = new MetaData();
@@ -399,6 +409,7 @@ public class MagicMeta {
         generateMobMeta();
         generateSelectorOptionMeta();
         generateRecipeMeta();
+        generateWorldMeta();
     }
 
     private Category getCategory(String key) {

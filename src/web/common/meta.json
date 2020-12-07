@@ -2630,6 +2630,7 @@
         "importance" : 100,
         "name" : "Projectile",
         "parameters" : {
+          "arrow_damage" : "0.0",
           "break_blocks" : "false",
           "color" : null,
           "count" : "1",
@@ -4834,6 +4835,22 @@
       "name" : "Active Spell",
       "type" : "spell"
     },
+    "active_spells_exclusive" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "active_spells_exclusive",
+      "importance" : 0,
+      "name" : "Active Spells Exclusive",
+      "type" : "list"
+    },
+    "active_spells_restricted" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "active_spells_restricted",
+      "importance" : 0,
+      "name" : "Active Spells Restricted",
+      "type" : "list"
+    },
     "add_effects" : {
       "category" : "",
       "description" : [ "A map of potion effects to add to the target" ],
@@ -5130,6 +5147,14 @@
       "name" : "Angular Velocity Z",
       "type" : "double"
     },
+    "appearance" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "appearance",
+      "importance" : 0,
+      "name" : "Appearance",
+      "type" : "world_environment"
+    },
     "apply_lore_to_item" : {
       "category" : "",
       "description" : [ "If set, the lore of the option will also be applied to the item obtained" ],
@@ -5306,6 +5331,14 @@
       "name" : "Arms",
       "type" : "boolean"
     },
+    "arrow_damage" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "arrow_damage",
+      "importance" : 0,
+      "name" : "Arrow Damage",
+      "type" : "double"
+    },
     "as_percentages" : {
       "category" : "",
       "description" : [ "Specify health in terms of percentage of max, rather than an absolute value" ],
@@ -5424,6 +5457,14 @@
       "field" : "auto_upgrade",
       "importance" : 0,
       "name" : "Auto Upgrade",
+      "type" : "boolean"
+    },
+    "autoload" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "autoload",
+      "importance" : 0,
+      "name" : "Autoload",
       "type" : "boolean"
     },
     "axis" : {
@@ -6198,6 +6239,14 @@
       "name" : "Chestplate Item",
       "type" : "material"
     },
+    "chunk_generate" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "chunk_generate",
+      "importance" : 0,
+      "name" : "Chunk Generate",
+      "type" : "map"
+    },
     "circle_height" : {
       "category" : "",
       "description" : [ "" ],
@@ -6558,6 +6607,14 @@
       "importance" : 30,
       "name" : "Cooldown Reduction",
       "type" : "percentage_level"
+    },
+    "copy" : {
+      "category" : "",
+      "description" : [ "The name of another world to copy from when creating this world" ],
+      "field" : "copy",
+      "importance" : 0,
+      "name" : "Copy",
+      "type" : "string"
     },
     "cost" : {
       "category" : "",
@@ -7839,6 +7896,14 @@
       "name" : "Entity Hit Count",
       "type" : "integer"
     },
+    "entity_spawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "entity_spawn",
+      "importance" : 0,
+      "name" : "Entity Spawn",
+      "type" : "map"
+    },
     "entity_types" : {
       "category" : "",
       "description" : [ "" ],
@@ -7886,6 +7951,14 @@
       "importance" : 0,
       "name" : "Entity Weight",
       "type" : "integer"
+    },
+    "environment" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "environment",
+      "importance" : 0,
+      "name" : "Environment",
+      "type" : "world_environment"
     },
     "equation" : {
       "category" : "",
@@ -12040,6 +12113,14 @@
       "name" : "Second Trusted",
       "type" : "string"
     },
+    "seed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "seed",
+      "importance" : 0,
+      "name" : "Seed",
+      "type" : "long"
+    },
     "selected" : {
       "category" : "",
       "description" : [ "A message to show to the player after selecting an option" ],
@@ -14393,6 +14474,14 @@
       "importance" : 0,
       "name" : "World Border Restricted",
       "type" : "boolean"
+    },
+    "world_type" : {
+      "category" : "",
+      "description" : [ "The type of world generator to base this world on" ],
+      "field" : "type",
+      "importance" : 0,
+      "name" : "World Type",
+      "type" : "world_type"
     },
     "worlds" : {
       "category" : "",
@@ -18624,6 +18713,8 @@
       "parameters" : {
         "actions_map" : null,
         "active_costs" : null,
+        "active_spells_exclusive" : null,
+        "active_spells_restricted" : null,
         "alias" : "",
         "brush_effects" : "true",
         "brush_selection" : "false",
@@ -19040,6 +19131,42 @@
         "clear" : "Clear rain or snow",
         "cycle" : "Cycle from storming to clear",
         "storm" : "Start raining or snowing"
+      }
+    },
+    "world_environment" : {
+      "class_name" : "org.bukkit.World$Environment",
+      "description" : [ "What kind of world this will be" ],
+      "name" : "World Environment",
+      "options" : {
+        "nether" : null,
+        "normal" : null,
+        "the_end" : null
+      }
+    },
+    "world_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "World Properties",
+      "parameters" : {
+        "appearance" : null,
+        "autoload" : "false",
+        "chunk_generate" : null,
+        "copy" : "",
+        "entity_spawn" : null,
+        "environment" : null,
+        "seed" : "-7344952961634999273",
+        "world_type" : null
+      }
+    },
+    "world_type" : {
+      "class_name" : "org.bukkit.WorldType",
+      "description" : [ "" ],
+      "name" : "World Type",
+      "options" : {
+        "amplified" : null,
+        "flat" : null,
+        "large_biomes" : null,
+        "normal" : null
       }
     },
     "yaw" : {

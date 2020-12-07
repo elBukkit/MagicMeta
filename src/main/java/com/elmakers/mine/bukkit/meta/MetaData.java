@@ -93,6 +93,10 @@ public class MetaData {
         parameterStore.mergeType("crafting_properties", parameters);
     }
 
+    public void addWorldParameters(ParameterList parameters) {
+        parameterStore.mergeType("world_properties", parameters);
+    }
+
     public void addActionParameters(ParameterList parameters) {
         parameterStore.mergeType("action_parameters", parameters);
     }

@@ -12,6 +12,8 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.World;
+import org.bukkit.WorldType;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
@@ -263,6 +265,13 @@ public class ParameterStore {
                 break;
             case "cat_type":
                 parameterType = getParameterType(Cat.Type.class);
+                break;
+            case "appearance":
+            case "environment":
+                parameterType = getParameterType(World.Environment.class);
+                break;
+            case "world_type":
+                parameterType = getParameterType(WorldType.class);
                 break;
             case "parrot_variant":
                 parameterType = getParameterType(Parrot.Variant.class);
