@@ -960,6 +960,7 @@ function Hints(fileType) {
             context.parent = parent;
         }
         if (type == null) {
+            context.properties = {};
             return;
         }
         context.type = type;
