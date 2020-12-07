@@ -17314,6 +17314,28 @@
         "weakness" : null
       }
     },
+    "projectile_class" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "An NMS class that extends EntityProjectile" ],
+      "name" : "Projectile Class",
+      "options" : {
+        "DragonFireball" : "Ender dragon fireball",
+        "Egg" : "Chicken egg, as if thrown",
+        "EnderPearl" : "Ender pearl, as if thrown",
+        "Fireworks" : "Fireworks, as if launched",
+        "FishingBook" : "Fishing hook",
+        "LargeFireball" : "Ghast fireball",
+        "LlamaSpit" : "Llama Spit",
+        "Potion" : "Thrown (splash) potion",
+        "ShulkerBullet" : "Shulker bullet",
+        "SmallFireball" : "Blaze fireball",
+        "Snowball" : "Snowball",
+        "ThrownExpBottle" : "Experience bottle",
+        "ThrownTrident" : "Trident, as if thrown",
+        "TippedArrow" : "Regular arrow",
+        "WitherSkull" : "Wither skull, as if launched by a Wither"
+      }
+    },
     "rabbit_type" : {
       "class_name" : "org.bukkit.entity.Rabbit$Type",
       "description" : [ "" ],
@@ -19031,28 +19053,6 @@
         "359" : null,
         "45" : null,
         "90" : null
-      }
-    },
-    "projectile_class" : {
-      "class_name" : "java.lang.String",
-      "description" : [ "An NMS class that extends EntityProjectile" ],
-      "name" : "Weather",
-      "options" : {
-        "Egg" : "Chicken egg, as if thrown",
-        "EnderPearl" : "Ender pearl, as if thrown",
-        "Potion" : "Thrown (splash) potion",
-        "Snowball" : "Snowball",
-        "ThrownExpBottle" : "Experience bottle",
-        "TippedArrow" : "Regular arrow",
-        "Fireworks" : "Fireworks, as if launched",
-        "FishingBook" : "Fishing hook",
-        "LlamaSpit" : "Llama Spit",
-        "ShulkerBullet" : "Shulker bullet",
-        "DragonFireball" : "Ender dragon fireball",
-        "LargeFireball" : "Ghast fireball",
-        "SmallFireball" : "Blaze fireball",
-        "WitherSkull" : "Wither skull, as if launched by a Wither",
-        "ThrownTrident" : "Trident, as if thrown"
       }
     }
   }
