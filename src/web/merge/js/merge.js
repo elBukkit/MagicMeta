@@ -40,16 +40,16 @@ function readRPFile(fileInput, number) {
     });
 }
 
-function loadRP2File(rp1File, rp2File, result, relativePath) {
+function loadRP2File(rp1File, rp2File, result, relativePath, fileName) {
     rp2File.async('string').then(function success(content) {
         rp2File.content = content;
-        mergeFiles(rp1File, rp2File, result, relativePath);
+        mergeFiles(rp1File, rp2File, result, relativePath, fileName);
     }, function error(e) {
         log("Error reading file from RP2: " + rp2File.name);
     });
 }
 
-function mergeFiles(rp1File, rp2File, result, relativePath) {
+function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
     _merging--
 
     let rp1Parsed = null;
@@ -66,6 +66,19 @@ function mergeFiles(rp1File, rp2File, result, relativePath) {
         log("Error reading file from RP1: " + rp2File.name);
         return;
     }
+
+    if (fileName == 'sounds.json') {
+        for (let key in rp2Parsed) {
+            if (rp2Parsed.hasOwnProperty(key) && !rp1Parsed.hasOwnProperty(key)) {
+                rp1Parsed[key] = rp2Parsed[key];
+            }
+        }
+        let resultFile = JSON.stringify(rp1Parsed, null, 2);
+        result.file(relativePath, resultFile);
+        checkFinish(result);
+        return;
+    }
+
     if (rp2Parsed.hasOwnProperty('overrides')) {
         if (rp1Parsed.hasOwnProperty('overrides')) {
             let overrides1 = rp1Parsed['overrides'];
@@ -159,7 +172,7 @@ function mergeRPs(rp1, rp2) {
                     _merging++;
                     rp1File.async('string').then(function success(content) {
                         rp1File.content = content;
-                        loadRP2File(rp1File, rp2File, result, relativePath);
+                        loadRP2File(rp1File, rp2File, result, relativePath, rp1File.name);
                     }, function error(e) {
                         log("Error reading file from RP1: " + rp1File.name);
                     });
