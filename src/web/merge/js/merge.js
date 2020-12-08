@@ -67,7 +67,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
         return;
     }
 
-    if (fileName == 'sounds.json') {
+    if (fileName == 'assets/minecraft/sounds.json') {
         for (let key in rp2Parsed) {
             if (rp2Parsed.hasOwnProperty(key) && !rp1Parsed.hasOwnProperty(key)) {
                 rp1Parsed[key] = rp2Parsed[key];
