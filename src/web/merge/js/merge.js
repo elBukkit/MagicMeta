@@ -10,7 +10,7 @@ function initialize() {
 }
 
 function log(message) {
-    _log.append($('<div>').text(message));
+    _log.append($('<div>').html(message));
 }
 
 function readRP1() {
@@ -200,17 +200,22 @@ function mergeRPs(rp1, rp2) {
 
 function checkFinish(result) {
     if (_merging == 0) {
-        log("");
-        log("Finished! You should get a download prompt shortly. Shortly-ish. It might take a while, actually.");
+        log("&nbsp;");
+        log("Finished merging! You should get a download prompt shortly. Shortly-ish. It might take a while, actually.");
         result.generateAsync({type:"blob",
             compression: "DEFLATE",
             compressionOptions: {
                 level: 9
-            }})
+            }},
+            updateCallback)
         .then(function(content) {
             saveAs(content, "merged.zip");
         });
     }
+}
+
+function updateCallback(metadata) {
+    document.getElementById('progressBar').style.width = (metadata.percent * 2) + 'px';
 }
 
 $(document).ready(initialize);
