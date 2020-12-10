@@ -85,7 +85,9 @@ function filterMap(map, toRemove) {
 }
 
 function depluralize(s) {
-    if (s.endsWith('s')) {
+    if (s.endsWith('es')) {
+        s = s.substr(0, s.length - 2);
+    } else if (s.endsWith('s')) {
         s = s.substr(0, s.length - 1);
     }
     return s;
