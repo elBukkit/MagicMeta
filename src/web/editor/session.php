@@ -36,7 +36,7 @@ function createNewSession() {
             return null;
         }
 
-        $session = randomString(6);
+        $session = randomString(8);
         $sessionFile = getSessionFilename($session);
     }
     return $session;
