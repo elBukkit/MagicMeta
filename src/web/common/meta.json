@@ -19130,7 +19130,8 @@
       "options" : {
         "clear" : "Clear rain or snow",
         "cycle" : "Cycle from storming to clear",
-        "storm" : "Start raining or snowing"
+        "storm" : "Start raining with thunder, or snowing",
+        "rain" : "Start raining or snowing"
       }
     },
     "world_environment" : {
