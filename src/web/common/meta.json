@@ -783,9 +783,11 @@
           "allow_brush" : "false",
           "allowed" : null,
           "direction" : null,
+          "direction_count" : "1",
           "fail_actions" : null,
           "invert" : "false",
           "set_target" : "false",
+          "source_location" : "eyes",
           "use_target" : "true"
         },
         "short_class" : "CheckBlock"
@@ -1223,6 +1225,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -1365,6 +1368,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -1636,6 +1640,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "equation" : null,
           "orient" : "false",
           "orient_pitch" : "false",
@@ -1655,6 +1660,26 @@
           "z_size" : "2.0"
         },
         "short_class" : "EquationVolume"
+      },
+      "equip" : {
+        "category" : "",
+        "class_name" : "EquipAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Equip",
+        "parameters" : {
+          "armor_slot" : "3",
+          "enchantments" : null,
+          "item" : null,
+          "material" : null,
+          "return_on_finish" : "false",
+          "slot" : null,
+          "temporary" : "true",
+          "unbreakable" : "true",
+          "use_item" : "false"
+        },
+        "short_class" : "Equip"
       },
       "explosion" : {
         "category" : "construction",
@@ -2415,6 +2440,7 @@
           "passenger" : "false",
           "pitch_controllable" : "true",
           "pitch_offset" : "0",
+          "replacement_item" : null,
           "rider_untargetable" : "false",
           "riding_effects" : null,
           "sound" : null,
@@ -2501,6 +2527,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -2894,6 +2921,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -3314,6 +3342,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -3705,6 +3734,7 @@
           "center_x" : "true",
           "center_y" : "true",
           "center_z" : "true",
+          "check_chunk" : "true",
           "orient" : "false",
           "orient_pitch" : "false",
           "orient_pitch_snap" : "0",
@@ -3754,6 +3784,8 @@
           "item" : null,
           "material" : null,
           "return_on_finish" : "false",
+          "slot" : null,
+          "temporary" : "true",
           "unbreakable" : "true",
           "use_item" : "false"
         },
@@ -6712,6 +6744,14 @@
       "name" : "Count",
       "type" : "integer"
     },
+    "craftable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "craftable",
+      "importance" : 0,
+      "name" : "Craftable",
+      "type" : "string"
+    },
     "crafting_materials" : {
       "category" : "",
       "description" : [ "A map of materials to use as ingredients", "Pick a unique character for each material, these characters are used in row_1, row_2 and row_3 to define the recipe shape" ],
@@ -7200,6 +7240,14 @@
       "name" : "Direction",
       "type" : "disco_ball_effect_direction"
     },
+    "direction_count" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "direction_count",
+      "importance" : 0,
+      "name" : "Direction Count",
+      "type" : "integer"
+    },
     "direction_disco_ball_effect_direction" : {
       "category" : "",
       "description" : [ "" ],
@@ -7271,6 +7319,14 @@
       "importance" : 0,
       "name" : "Discover",
       "type" : "list"
+    },
+    "discover_recipes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "discover_recipes",
+      "importance" : 0,
+      "name" : "Discover Recipes",
+      "type" : "string"
     },
     "disguise" : {
       "category" : "",
@@ -11665,6 +11721,14 @@
       "name" : "Replace",
       "type" : "boolean"
     },
+    "replacement_item" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replacement_item",
+      "importance" : 0,
+      "name" : "Replacement Item",
+      "type" : "string"
+    },
     "replacements" : {
       "category" : "",
       "description" : [ "" ],
@@ -11865,6 +11929,14 @@
       "name" : "Reset Time On Path Change",
       "type" : "boolean"
     },
+    "resource_pack" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "resource_pack",
+      "importance" : 0,
+      "name" : "Resource Pack",
+      "type" : "string"
+    },
     "result" : {
       "category" : "",
       "description" : [ "The SpellResult to return" ],
@@ -12056,6 +12128,14 @@
       "importance" : 0,
       "name" : "Rows",
       "type" : "integer"
+    },
+    "saddle" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "saddle",
+      "importance" : 0,
+      "name" : "Saddle",
+      "type" : "string"
     },
     "safe" : {
       "category" : "",
@@ -12993,6 +13073,14 @@
       "name" : "Switch Class",
       "type" : "string"
     },
+    "synchronize_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "synchronize_time",
+      "importance" : 0,
+      "name" : "Synchronize Time",
+      "type" : "boolean"
+    },
     "t2world" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -13520,6 +13608,14 @@
       "importance" : 0,
       "name" : "Time",
       "type" : "string"
+    },
+    "time_offset" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "time_offset",
+      "importance" : 0,
+      "name" : "Time Offset",
+      "type" : "long"
     },
     "timeout" : {
       "category" : "",
@@ -14146,6 +14242,14 @@
       "importance" : 0,
       "name" : "Use Xp",
       "type" : "boolean"
+    },
+    "useable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "useable",
+      "importance" : 0,
+      "name" : "Useable",
+      "type" : "string"
     },
     "uses" : {
       "category" : "",
@@ -15019,7 +15123,11 @@
         "consume_reduction" : null,
         "cooldown_reduction" : null,
         "cost_reduction" : null,
+        "craftable" : null,
+        "discover_recipes" : null,
         "earn_multiplier" : null,
+        "entity_attributes" : null,
+        "health_scale" : null,
         "hotbar_count" : null,
         "icon" : null,
         "ignored_by_mobs" : null,
@@ -15040,7 +15148,9 @@
         "spell_levels" : null,
         "spells" : null,
         "tags" : null,
-        "template" : null
+        "template" : null,
+        "triggers" : null,
+        "useable" : null
       }
     },
     "color" : {
@@ -15102,6 +15212,7 @@
         "discover" : null,
         "group" : "",
         "ignore_damage" : "false",
+        "locked" : "false",
         "output" : null,
         "output_type" : "item",
         "row_1" : "",
@@ -16993,6 +17104,7 @@
         "ai" : "true",
         "amount" : "1",
         "angry" : "false",
+        "armor" : null,
         "arms" : "false",
         "baby" : "false",
         "base_potion_type" : null,
@@ -17077,6 +17189,7 @@
         "radius_on_use" : "0.0",
         "radius_per_tick" : "0.0",
         "reapplication_delay" : "0",
+        "saddle" : null,
         "second_trusted" : null,
         "show_name" : "false",
         "silent" : "false",
@@ -17122,8 +17235,11 @@
         "consume_reduction" : null,
         "cooldown_reduction" : null,
         "cost_reduction" : null,
+        "craftable" : null,
         "duration" : null,
         "earn_multiplier" : null,
+        "entity_attributes" : null,
+        "health_scale" : null,
         "hotbar_count" : null,
         "icon" : null,
         "ignored_by_mobs" : null,
@@ -17145,7 +17261,9 @@
         "spell_levels" : null,
         "spells" : null,
         "tags" : null,
-        "template" : null
+        "template" : null,
+        "triggers" : null,
+        "useable" : null
       }
     },
     "options_list" : {
@@ -19130,8 +19248,8 @@
       "options" : {
         "clear" : "Clear rain or snow",
         "cycle" : "Cycle from storming to clear",
-        "storm" : "Start raining with thunder, or snowing",
-        "rain" : "Start raining or snowing"
+        "rain" : "Start raining or snowing",
+        "storm" : "Start raining with thunder, or snowing"
       }
     },
     "world_environment" : {
@@ -19155,7 +19273,10 @@
         "copy" : "",
         "entity_spawn" : null,
         "environment" : null,
+        "resource_pack" : null,
         "seed" : "-7344952961634999273",
+        "synchronize_time" : "true",
+        "time_offset" : "0",
         "world_type" : null
       }
     },
