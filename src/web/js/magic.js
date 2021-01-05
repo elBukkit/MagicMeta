@@ -456,7 +456,11 @@ function getRecipeDetails(key)
 			scrollingContainer.append(createCraftingTable(recipe));
 
 			if (recipe.hasOwnProperty('enabled') && !recipe.enabled) {
-				scrollingContainer.append($('<div class="disabled">').text("Recipe is disabled by default. Enable it in crafting.yml"))
+				scrollingContainer.append($('<div class="disabled">').text("Recipe is disabled by default. Enable with"));
+				scrollingContainer.append($('<div class="command">').text("/mconfig enable recipe " + key));
+			} else {
+				scrollingContainer.append($('<div class="disabled">').text("Disable recipe with"));
+				scrollingContainer.append($('<div class="command">').text("/mconfig disable recipe " + key));
 			}
 		}
 		
@@ -550,7 +554,11 @@ function getWandItemDetails(key, wand, recipe)
         scrollingContainer.append(createCraftingTable(recipe));
 
 		if (recipe.hasOwnProperty('enabled') && !recipe.enabled) {
-			scrollingContainer.append($('<div class="disabled">').text("Recipe is disabled by default. Enable it in crafting.yml"))
+			scrollingContainer.append($('<div class="disabled">').text("Recipe is disabled by default. Enable with"));
+			scrollingContainer.append($('<div class="command">').text("/mconfig enable recipe " + key));
+		} else {
+			scrollingContainer.append($('<div class="disabled">').text("Disable recipe with"));
+			scrollingContainer.append($('<div class="command">').text("/mconfig disable recipe " + key));
 		}
     }
 
@@ -656,7 +664,9 @@ function getWandItemDetails(key, wand, recipe)
 	}
 	
 	detailsDiv.append(scrollingContainer);
-	detailsDiv.append(admin);
+	if (!recipe) {
+		detailsDiv.append(admin);
+	}
 	return detailsDiv;
 }
  
