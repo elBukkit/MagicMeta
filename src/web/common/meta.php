@@ -2,7 +2,7 @@
 require_once('../config.inc.php');
 header('Content-Type: application/json');
 
-$legacyIcons = true;
+$legacyIcons = false;
 if (isset($_REQUEST['legacyIcons'])) {
     $legacyIcons = $_REQUEST['legacyIcons'] === 'true';
 }
