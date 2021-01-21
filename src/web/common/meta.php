@@ -171,7 +171,7 @@ function generateMeta() {
 
     $colorHints = array();
     foreach ($colorMap as $name => $color) {
-        $colorHints['"' . $color . '"'] = '<span class="colorSwatch" style="background-color: #' . $color . '">&nbsp;</span>' . $name;
+        $colorHints['"#' . $color . '"'] = '<span class="colorSwatch" style="background-color: #' . $color . '">&nbsp;</span>' . $name;
     }
     $meta['types']['color']['options'] = $colorHints;
 
