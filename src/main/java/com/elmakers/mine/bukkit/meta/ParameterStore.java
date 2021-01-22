@@ -16,6 +16,9 @@ import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.EntityType;
@@ -299,6 +302,15 @@ public class ParameterStore {
             case "target_offset":
             case "velocity_offset":
                 parameterType = getParameterType(Vector.class);
+                break;
+            case "bar_style":
+                parameterType = getParameterType(BarStyle.class);
+                break;
+            case "bar_color":
+                parameterType = getParameterType(BarColor.class);
+                break;
+            case "bar_flags":
+                parameterType = getListType("bar_flag_list", getParameterType(BarFlag.class));
                 break;
             default:
                 parameterType = getParameterType(defaultClass);
