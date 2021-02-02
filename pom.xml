@@ -46,7 +46,7 @@
         <dependency>
             <groupId>com.elmakers.mine.bukkit.plugins</groupId>
             <artifactId>Magic</artifactId>
-            <version>8.3-SNAPSHOT</version>
+            <version>8.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

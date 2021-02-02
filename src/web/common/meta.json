@@ -175,11 +175,15 @@
         "parameters" : {
           "aggro" : "true",
           "ai" : "true",
+          "allow_replacement" : "true",
           "amount" : "1",
           "baby" : "false",
           "base_potion_type" : null,
           "boots" : null,
+          "boss_bar" : null,
+          "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_interact" : "false",
           "cast" : null,
           "cast_requires_item" : null,
           "cast_requires_target" : "true",
@@ -238,12 +242,15 @@
           "potion_effects" : null,
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "protected" : "false",
           "protection" : null,
           "radius" : "5",
           "radius_on_use" : "0",
           "radius_per_tick" : "0",
           "reapplication_delay" : "0",
           "reason" : null,
+          "remove_mounts" : null,
+          "remove_when_far_away" : "false",
           "repeat_random" : "true",
           "set_source" : "false",
           "set_target" : "false",
@@ -293,10 +300,13 @@
           "body_transform" : null,
           "boots" : null,
           "boots_item" : null,
+          "boss_bar" : null,
+          "boss_bar_map" : null,
           "break_blocks" : "true",
           "breakable_size" : "1",
           "bypass_backfire" : "false",
           "can_pickup_items" : "false",
+          "cancel_interact" : "false",
           "cast" : null,
           "cast_interval" : "0",
           "cast_requires_item" : null,
@@ -398,6 +408,7 @@
           "projectile_effects_use_target" : "false",
           "projectile_follow_player" : "false",
           "projectile_potion_effects" : null,
+          "protected" : "false",
           "protection" : null,
           "range" : "0",
           "range_padding" : "1",
@@ -407,6 +418,8 @@
           "reflect_target_caster" : "true",
           "reflect_track_range" : "0",
           "reflect_track_target" : "false",
+          "remove_mounts" : null,
+          "remove_when_far_away" : "false",
           "reorient" : "false",
           "reset_time_on_path_change" : "false",
           "return_offset" : null,
@@ -531,6 +544,27 @@
         },
         "short_class" : "Book"
       },
+      "boss_bar" : {
+        "category" : "",
+        "class_name" : "BossBarAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Boss Bar",
+        "parameters" : {
+          "bar_color" : null,
+          "bar_flags" : null,
+          "bar_interval" : "10000",
+          "bar_interval_randomization" : "1000",
+          "bar_progress" : "0.0",
+          "bar_radius" : "32.0",
+          "bar_style" : null,
+          "bar_title" : "$spell",
+          "show_target" : "false",
+          "update_title" : "false"
+        },
+        "short_class" : "BossBar"
+      },
       "break_block" : {
         "category" : "construction",
         "class_name" : "BreakBlockAction",
@@ -593,7 +627,11 @@
         "examples" : [ "fire" ],
         "importance" : 50,
         "name" : "Burn",
-        "parameters" : { },
+        "parameters" : {
+          "all_fire" : "all_fire",
+          "fire_type" : "fire",
+          "melt_ice" : "true"
+        },
         "short_class" : "Burn"
       },
       "cancel" : {
@@ -782,10 +820,14 @@
         "parameters" : {
           "allow_brush" : "false",
           "allowed" : null,
+          "biomes" : null,
+          "biomes_list" : null,
+          "check_permission" : "true",
           "direction" : null,
           "direction_count" : "1",
           "fail_actions" : null,
           "invert" : "false",
+          "not_biomes" : null,
           "set_target" : "false",
           "source_location" : "eyes",
           "use_target" : "true"
@@ -977,6 +1019,7 @@
         "parameters" : {
           "command" : null,
           "console" : "false",
+          "equation" : "0.0",
           "escape_sequence" : "",
           "local_echo" : "true",
           "modal" : "false",
@@ -1075,6 +1118,23 @@
           "speed" : "0"
         },
         "short_class" : "CreateField"
+      },
+      "create_n_p_c" : {
+        "category" : "",
+        "class_name" : "CreateNPCAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Create NPC",
+        "parameters" : {
+          "key_book_contents" : null,
+          "key_item" : null,
+          "key_overrides" : null,
+          "name" : "npc",
+          "npc_parameters" : null,
+          "npc_template" : null
+        },
+        "short_class" : "CreateNPC"
       },
       "create_plot" : {
         "category" : "construction",
@@ -1253,6 +1313,8 @@
         "importance" : 100,
         "name" : "Damage",
         "parameters" : {
+          "critical_damage_multiplier" : "0.0",
+          "critical_probability" : "0.0",
           "damage" : "1",
           "damage_max_distance" : "0",
           "damage_min_distance" : "0.0",
@@ -2154,7 +2216,10 @@
           "attributes" : null,
           "baby" : "false",
           "boots" : null,
+          "boss_bar" : null,
+          "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_interact" : "false",
           "cast" : null,
           "cast_interval" : "0",
           "cast_requires_item" : null,
@@ -2207,8 +2272,11 @@
           "potion_effects" : null,
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "protected" : "false",
           "protection" : null,
           "reason" : null,
+          "remove_mounts" : null,
+          "remove_when_far_away" : "false",
           "show_name" : "false",
           "silent" : "false",
           "sitting" : "false",
@@ -2290,6 +2358,22 @@
           "max_health" : "0"
         },
         "short_class" : "ModifyMaxHealth"
+      },
+      "modify_n_p_c" : {
+        "category" : "",
+        "class_name" : "ModifyNPCAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Modify NPC",
+        "parameters" : {
+          "name" : null,
+          "name_from_wand" : "false",
+          "npc_id" : null,
+          "npc_parameters" : null,
+          "npc_template" : null
+        },
+        "short_class" : "ModifyNPC"
       },
       "modify_parameters" : {
         "category" : "compound",
@@ -2602,6 +2686,7 @@
         "parameters" : {
           "cross_world" : "true",
           "ignore_key" : null,
+          "name_template" : "@p",
           "title_key" : "title"
         },
         "short_class" : "PlayerSelect"
@@ -2964,6 +3049,7 @@
           "cast_for_tags" : null,
           "cast_spell" : null,
           "cast_spell_parameters" : null,
+          "chest_location" : null,
           "command" : null,
           "commands" : null,
           "confirm" : "false",
@@ -2994,12 +3080,14 @@
           "limit" : "0",
           "lock_class" : null,
           "options" : null,
+          "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
           "requirements" : null,
           "scale" : "1",
           "selected" : null,
           "selected_free" : null,
+          "show_free" : "true",
           "show_unavailable" : "false",
           "sp" : "0",
           "switch_class" : null,
@@ -3057,6 +3145,7 @@
           "cast_for_tags" : null,
           "cast_spell" : null,
           "cast_spell_parameters" : null,
+          "chest_location" : null,
           "command" : null,
           "commands" : null,
           "confirm" : "false",
@@ -3086,6 +3175,7 @@
           "limit" : "0",
           "lock_class" : null,
           "options" : null,
+          "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
           "requirements" : null,
@@ -3129,6 +3219,8 @@
         "importance" : 0,
         "name" : "Shrink Entity",
         "parameters" : {
+          "critical_damage_multiplier" : "0.0",
+          "critical_probability" : "0.0",
           "damage" : "1",
           "damage_max_distance" : "0",
           "damage_min_distance" : "0.0",
@@ -3194,11 +3286,15 @@
         "parameters" : {
           "aggro" : "true",
           "ai" : "true",
+          "allow_replacement" : "true",
           "amount" : "1",
           "angry" : "false",
           "baby" : "false",
           "boots" : null,
+          "boss_bar" : null,
+          "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_interact" : "false",
           "cast" : null,
           "cast_requires_item" : null,
           "cast_requires_target" : "true",
@@ -3254,8 +3350,11 @@
           "potion_effects" : null,
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "protected" : "false",
           "protection" : null,
           "reason" : null,
+          "remove_mounts" : null,
+          "remove_when_far_away" : "false",
           "repeat_random" : "true",
           "set_source" : "false",
           "set_target" : "false",
@@ -3510,6 +3609,18 @@
         },
         "short_class" : "Teleport"
       },
+      "teleport_n_p_c" : {
+        "category" : "",
+        "class_name" : "TeleportNPCAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Teleport NPC",
+        "parameters" : {
+          "npc_id" : null
+        },
+        "short_class" : "TeleportNPC"
+      },
       "throw_block" : {
         "category" : "compound",
         "class_name" : "ThrowBlockAction",
@@ -3672,6 +3783,16 @@
           "undo_to" : "0"
         },
         "short_class" : "Undo"
+      },
+      "update_parameters" : {
+        "category" : "compound",
+        "class_name" : "UpdateParametersAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Update Parameters",
+        "parameters" : { },
+        "short_class" : "UpdateParameters"
       },
       "upgrade_path" : {
         "category" : "player",
@@ -4987,6 +5108,14 @@
       "name" : "Alias",
       "type" : "string"
     },
+    "all_fire" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "all_fire",
+      "importance" : 0,
+      "name" : "All Fire",
+      "type" : "string"
+    },
     "allow_attribute_reduction" : {
       "category" : "",
       "description" : [ "" ],
@@ -5073,6 +5202,14 @@
       "field" : "allow_passthrough",
       "importance" : 0,
       "name" : "Allow Passthrough",
+      "type" : "boolean"
+    },
+    "allow_replacement" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_replacement",
+      "importance" : 0,
+      "name" : "Allow Replacement",
       "type" : "boolean"
     },
     "allow_sea_lantern" : {
@@ -5523,6 +5660,70 @@
       "name" : "Backfire Chance",
       "type" : "percentage"
     },
+    "bar_color" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_color",
+      "importance" : 0,
+      "name" : "Bar Color",
+      "type" : "bar_color"
+    },
+    "bar_flags" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_flags",
+      "importance" : 0,
+      "name" : "Bar Flags",
+      "type" : "bar_flag_list"
+    },
+    "bar_interval" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_interval",
+      "importance" : 0,
+      "name" : "Bar Interval",
+      "type" : "long"
+    },
+    "bar_interval_randomization" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_interval_randomization",
+      "importance" : 0,
+      "name" : "Bar Interval Randomization",
+      "type" : "integer"
+    },
+    "bar_progress" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_progress",
+      "importance" : 0,
+      "name" : "Bar Progress",
+      "type" : "double"
+    },
+    "bar_radius" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_radius",
+      "importance" : 0,
+      "name" : "Bar Radius",
+      "type" : "double"
+    },
+    "bar_style" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_style",
+      "importance" : 0,
+      "name" : "Bar Style",
+      "type" : "bar_style"
+    },
+    "bar_title" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bar_title",
+      "importance" : 0,
+      "name" : "Bar Title",
+      "type" : "string"
+    },
     "base_interval" : {
       "category" : "",
       "description" : [ "" ],
@@ -5596,12 +5797,28 @@
       "name" : "Biomes",
       "type" : "map"
     },
+    "biomes_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "biomes",
+      "importance" : 0,
+      "name" : "Biomes",
+      "type" : "list"
+    },
     "biomes_map" : {
       "category" : "",
       "description" : [ "" ],
       "field" : "biomes",
       "importance" : 0,
       "name" : "Biomes",
+      "type" : "map"
+    },
+    "block_break" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_break",
+      "importance" : 0,
+      "name" : "Block Break",
       "type" : "map"
     },
     "block_chance" : {
@@ -5643,6 +5860,14 @@
       "importance" : 0,
       "name" : "Block Mage Cooldown",
       "type" : "integer"
+    },
+    "block_place" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_place",
+      "importance" : 0,
+      "name" : "Block Place",
+      "type" : "map"
     },
     "block_reflect_chance" : {
       "category" : "wand",
@@ -5707,6 +5932,22 @@
       "importance" : 0,
       "name" : "Boots Item",
       "type" : "material"
+    },
+    "boss_bar" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "boss_bar",
+      "importance" : 0,
+      "name" : "Boss Bar",
+      "type" : "boolean"
+    },
+    "boss_bar_map" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "boss_bar",
+      "importance" : 0,
+      "name" : "Boss Bar",
+      "type" : "map"
     },
     "bound" : {
       "category" : "wand",
@@ -5966,6 +6207,14 @@
       "name" : "Cancel Effects Delay",
       "type" : "string"
     },
+    "cancel_interact" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_interact",
+      "importance" : 0,
+      "name" : "Cancel Interact",
+      "type" : "boolean"
+    },
     "cancel_on_cast_other" : {
       "category" : "base",
       "description" : [ "This spell will be cancelled if the caster casts another spell while this one is in progress" ],
@@ -6012,6 +6261,14 @@
       "field" : "cancel_on_no_wand",
       "importance" : 0,
       "name" : "Cancel On No Wand",
+      "type" : "boolean"
+    },
+    "cancel_spells_on_save" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_spells_on_save",
+      "importance" : 0,
+      "name" : "Cancel Spells On Save",
       "type" : "boolean"
     },
     "cancellable" : {
@@ -6239,6 +6496,14 @@
       "name" : "Check Indestructible",
       "type" : "boolean"
     },
+    "check_permission" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "check_permission",
+      "importance" : 0,
+      "name" : "Check Permission",
+      "type" : "boolean"
+    },
     "check_protection" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -6254,6 +6519,14 @@
       "importance" : 0,
       "name" : "Checkered",
       "type" : "boolean"
+    },
+    "chest_location" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "chest_location",
+      "importance" : 0,
+      "name" : "Chest Location",
+      "type" : "string"
     },
     "chestplate" : {
       "category" : "",
@@ -6895,6 +7168,22 @@
       "importance" : -1,
       "name" : "Creator Id",
       "type" : "string"
+    },
+    "critical_damage_multiplier" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "critical_damage_multiplier",
+      "importance" : 0,
+      "name" : "Critical Damage Multiplier",
+      "type" : "double"
+    },
+    "critical_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "critical_probability",
+      "importance" : 0,
+      "name" : "Critical Probability",
+      "type" : "double"
     },
     "cross_world" : {
       "category" : "",
@@ -7864,6 +8153,14 @@
       "name" : "Enable Rotation",
       "type" : "boolean"
     },
+    "enable_vanilla_sounds" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "enable_vanilla_sounds",
+      "importance" : 0,
+      "name" : "Enable Vanilla Sounds",
+      "type" : "boolean"
+    },
     "enabled" : {
       "category" : "base",
       "description" : [ "This can be used to enable a spell that was disabled via config.yml, or to disable specific default" ],
@@ -8279,6 +8576,14 @@
       "importance" : 0,
       "name" : "Fire",
       "type" : "boolean"
+    },
+    "fire_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "fire_type",
+      "importance" : 0,
+      "name" : "Fire Type",
+      "type" : "string"
     },
     "firework" : {
       "category" : "",
@@ -9153,6 +9458,14 @@
       "name" : "Interact Spell Target",
       "type" : "string"
     },
+    "interactible" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "interactible",
+      "importance" : 0,
+      "name" : "Interactible",
+      "type" : "string"
+    },
     "interval" : {
       "category" : "",
       "description" : [ "How often to update the projectile location" ],
@@ -9337,6 +9650,14 @@
       "name" : "Keep Velocity",
       "type" : "boolean"
     },
+    "key_book_contents" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "key_book_contents",
+      "importance" : 0,
+      "name" : "Key Book Contents",
+      "type" : "string"
+    },
     "key_description" : {
       "category" : "",
       "description" : [ "" ],
@@ -9353,6 +9674,14 @@
       "name" : "Key Icon",
       "type" : "string"
     },
+    "key_item" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "key_item",
+      "importance" : 0,
+      "name" : "Key Item",
+      "type" : "string"
+    },
     "key_name" : {
       "category" : "",
       "description" : [ "" ],
@@ -9360,6 +9689,14 @@
       "importance" : 0,
       "name" : "Key Name",
       "type" : "string"
+    },
+    "key_overrides" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "key_overrides",
+      "importance" : 0,
+      "name" : "Key Overrides",
+      "type" : "map"
     },
     "knockback_resistance" : {
       "category" : "",
@@ -9937,6 +10274,14 @@
       "name" : "Max Way Points",
       "type" : "integer"
     },
+    "melt_ice" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "melt_ice",
+      "importance" : 0,
+      "name" : "Melt Ice",
+      "type" : "boolean"
+    },
     "message" : {
       "category" : "",
       "description" : [ "The message to send the target.", "The following variables can be used in this message: ", "<ul><li>@spell : The name of the spell</li><li>@p : The name of the caster. Can also use @pn</li><li>@pd : The display name (nick) of the caster</li><li>@uuid : The UUID of the caster</li><li>@world, @x, @y, @z : The location of the caster</li><li>@t : The name of the target. Can also use @tn</li><li>@td : The display name (nick) of the target</li><li>@tuuid : The UUID of the target</li><li>@tworld, @tx, @ty, @tz : The location of the target</li></ul>" ],
@@ -10217,6 +10562,22 @@
       "name" : "Name",
       "type" : "string"
     },
+    "name_from_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "name_from_wand",
+      "importance" : 0,
+      "name" : "Name From Wand",
+      "type" : "boolean"
+    },
+    "name_template" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "name_template",
+      "importance" : 0,
+      "name" : "Name Template",
+      "type" : "string"
+    },
     "no_target" : {
       "category" : "",
       "description" : [ "" ],
@@ -10233,6 +10594,14 @@
       "name" : "Not Attachable",
       "type" : "string"
     },
+    "not_biomes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "not_biomes",
+      "importance" : 0,
+      "name" : "Not Biomes",
+      "type" : "list"
+    },
     "npc" : {
       "category" : "",
       "description" : [ "" ],
@@ -10240,6 +10609,30 @@
       "importance" : 0,
       "name" : "Npc",
       "type" : "boolean"
+    },
+    "npc_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "npc_id",
+      "importance" : 0,
+      "name" : "Npc Id",
+      "type" : "string"
+    },
+    "npc_parameters" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "npc_parameters",
+      "importance" : 0,
+      "name" : "Npc Parameters",
+      "type" : "map"
+    },
+    "npc_template" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "npc_template",
+      "importance" : 0,
+      "name" : "Npc Template",
+      "type" : "string"
     },
     "npc_weight" : {
       "category" : "targeting",
@@ -10511,6 +10904,14 @@
       "field" : "owner",
       "importance" : 0,
       "name" : "Owner",
+      "type" : "string"
+    },
+    "owner_uuid" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "owner_uuid",
+      "importance" : 0,
+      "name" : "Owner Uuid",
       "type" : "string"
     },
     "padding" : {
@@ -11657,6 +12058,22 @@
       "name" : "Remove Modifiers",
       "type" : "list"
     },
+    "remove_mounts" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_mounts",
+      "importance" : 0,
+      "name" : "Remove Mounts",
+      "type" : "list"
+    },
+    "remove_when_far_away" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_when_far_away",
+      "importance" : 0,
+      "name" : "Remove When Far Away",
+      "type" : "boolean"
+    },
     "removes_spells" : {
       "category" : "base",
       "description" : [ "" ],
@@ -12335,6 +12752,14 @@
       "field" : "show_required_spells",
       "importance" : 0,
       "name" : "Show Required Spells",
+      "type" : "boolean"
+    },
+    "show_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_target",
+      "importance" : 0,
+      "name" : "Show Target",
       "type" : "boolean"
     },
     "show_tornado" : {
@@ -13337,6 +13762,14 @@
       "name" : "Target Other Blocks",
       "type" : "boolean"
     },
+    "target_pet" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "target_pet",
+      "importance" : 0,
+      "name" : "Target Pet",
+      "type" : "boolean"
+    },
     "target_pitch_offset" : {
       "category" : "",
       "description" : [ "" ],
@@ -14035,6 +14468,14 @@
       "name" : "Unstashable",
       "type" : "double"
     },
+    "unswappable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "unswappable",
+      "importance" : 0,
+      "name" : "Unswappable",
+      "type" : "string"
+    },
     "update" : {
       "category" : "",
       "description" : [ "" ],
@@ -14065,6 +14506,14 @@
       "field" : "update_locations",
       "importance" : 70,
       "name" : "Update Locations",
+      "type" : "boolean"
+    },
+    "update_title" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "update_title",
+      "importance" : 0,
+      "name" : "Update Title",
       "type" : "boolean"
     },
     "upgrade" : {
@@ -14972,6 +15421,49 @@
       "name" : "Attributes",
       "value_type" : "integer"
     },
+    "bar_color" : {
+      "class_name" : "org.bukkit.boss.BarColor",
+      "description" : [ "" ],
+      "name" : "Bar Color",
+      "options" : {
+        "blue" : null,
+        "green" : null,
+        "pink" : null,
+        "purple" : null,
+        "red" : null,
+        "white" : null,
+        "yellow" : null
+      }
+    },
+    "bar_flag" : {
+      "class_name" : "org.bukkit.boss.BarFlag",
+      "description" : [ "" ],
+      "name" : "Bar Flag",
+      "options" : {
+        "create_fog" : null,
+        "darken_sky" : null,
+        "play_boss_music" : null
+      }
+    },
+    "bar_flag_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "" ],
+      "item_type" : "bar_flag",
+      "name" : "Bar Flag List",
+      "options" : { }
+    },
+    "bar_style" : {
+      "class_name" : "org.bukkit.boss.BarStyle",
+      "description" : [ "" ],
+      "name" : "Bar Style",
+      "options" : {
+        "segmented_10" : null,
+        "segmented_12" : null,
+        "segmented_20" : null,
+        "segmented_6" : null,
+        "solid" : null
+      }
+    },
     "base_image_effect_plane" : {
       "class_name" : "de.slikey.effectlib.util.BaseImageEffect$Plane",
       "description" : [ "The plane along which to draw an image" ],
@@ -15371,6 +15863,7 @@
         "effect" : null,
         "effect_class" : null,
         "effectlib" : null,
+        "enable_vanilla_sounds" : "true",
         "entity_effect" : null,
         "firework" : null,
         "firework_flicker" : "false",
@@ -17110,7 +17603,9 @@
         "base_potion_type" : null,
         "baseplate" : "true",
         "boots" : null,
+        "boss_bar" : null,
         "can_pickup_items" : "false",
+        "cancel_interact" : "false",
         "cast" : null,
         "cast_requires_item" : null,
         "cast_requires_target" : "true",
@@ -17183,12 +17678,15 @@
         "potion_effects" : null,
         "prevent_melee" : "false",
         "prevent_projectiles" : "false",
+        "protected" : "false",
         "protection" : null,
         "rabbit_type" : null,
         "radius" : "5.0",
         "radius_on_use" : "0.0",
         "radius_per_tick" : "0.0",
         "reapplication_delay" : "0",
+        "remove_mounts" : null,
+        "remove_when_far_away" : "false",
         "saddle" : null,
         "second_trusted" : null,
         "show_name" : "false",
@@ -17631,6 +18129,7 @@
         "scale" : "1.0",
         "selected" : null,
         "selected_free" : null,
+        "show_free" : "true",
         "show_unavailable" : "false",
         "switch_class" : null,
         "unlock" : null,
@@ -18799,6 +19298,7 @@
         "target_mount" : "false",
         "target_name" : null,
         "target_npc" : "false",
+        "target_pet" : "false",
         "target_potion_effects" : null,
         "target_self" : "false",
         "target_tamed" : "true",
@@ -18834,6 +19334,7 @@
         "active_spells_exclusive" : null,
         "active_spells_restricted" : null,
         "alias" : "",
+        "boss_bar" : null,
         "brush_effects" : "true",
         "brush_selection" : "false",
         "cancel_effects" : "false",
@@ -19153,6 +19654,7 @@
         "consume_spell" : null,
         "cooldown_reduction" : "0",
         "cost_reduction" : "0",
+        "craftable" : null,
         "currency_display" : null,
         "drop" : "none",
         "drop_sneak" : null,
@@ -19184,6 +19686,7 @@
         "ignored_by_mobs" : null,
         "immortal" : "false",
         "indestructible" : "false",
+        "interactible" : null,
         "inventory_rows" : "5",
         "invulnerable" : "false",
         "item_attributes" : null,
@@ -19233,6 +19736,7 @@
         "unique" : "false",
         "unmoveable" : "false",
         "unstashable" : "false",
+        "unswappable" : null,
         "upgrade" : "false",
         "use_active_name" : null,
         "use_mode" : null,
@@ -19269,10 +19773,14 @@
       "parameters" : {
         "appearance" : null,
         "autoload" : "false",
+        "block_break" : null,
+        "block_place" : null,
+        "cancel_spells_on_save" : "true",
         "chunk_generate" : null,
         "copy" : "",
         "entity_spawn" : null,
         "environment" : null,
+        "max_height" : "0",
         "resource_pack" : null,
         "seed" : "-7344952961634999273",
         "synchronize_time" : "true",
