@@ -48,7 +48,7 @@ $pageOverview = <<<EOT
 		For more information, <a href="http://dev.bukkit.org/bukkit-plugins/magic/" target="_new">click here.</a>
 		<br/><br/>
 		While this is just a development server, you are free to log in and play at
-		<span class="minecraftServer">mine.elmakers.com</span>. You may also view our <a href="http://mine.elmakers.com:8080"/>dynmap here</a>, the world is a bit of a mess.
+		<span class="minecraftServer">mine.elmakers.com</span>. You may also view our <a href="http://map.elmakers.com"/>dynmap here</a>, the world is a bit of a mess.
 		<br/><br/>
 		Thanks for looking!
 	</div>
