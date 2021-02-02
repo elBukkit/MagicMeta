@@ -489,6 +489,7 @@ function printIcon($iconUrl, $title) {
 				<li id="booksTab"><a href="#books">Books</a></li>
                 <li><a href="#textures">Textures</a></li>
 				<li><a href="#icons">Icons</a></li>
+				<li><a href="#examples">Examples</a></li>
 			</ul>
 			<div id="overview">
 			  <div class="scrollingTab">
@@ -778,6 +779,21 @@ function printIcon($iconUrl, $title) {
                                 echo '<li class="ui-widget-content"><img src="rp/' . $texturePath . '/assets/minecraft/textures/items/' . $spellIcon['texture'] . '.png"> <span class="iconItem">diamond_axe:' . $spellIcon['durability'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
                             }
                             ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="examples">
+                <div class="scrollingTab">
+                    <div>
+                        <div class="title">
+                            Click below to load up any of the builtin examples.
+                        </div>
+                        <ul>
+                            <li><a href="?example=survival">Survival (survival, The default example)</a></li>
+                            <li><a href="?example=potter">Harry Potter (potter)</a></li>
+                            <li><a href="?example=stars">Star Wars (stars)</a></li>
+                            <li><a href="?example=bending">Avatar Bending (bending)</a></li>
                         </ul>
                     </div>
                 </div>
