@@ -45,7 +45,7 @@ function loadRP2File(rp1File, rp2File, result, relativePath, fileName) {
         rp2File.content = content;
         mergeFiles(rp1File, rp2File, result, relativePath, fileName);
     }, function error(e) {
-        log("Error reading file from RP2: " + rp2File.name);
+        log("Error loading RP2: " + rp2File.name);
     });
 }
 
@@ -63,7 +63,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
     try {
         rp2Parsed = JSON.parse(rp2File.content);
     } catch (error) {
-        log("Error reading file from RP1: " + rp2File.name);
+        log("Error reading file from RP2 " + rp2File.name);
         return;
     }
 
@@ -174,7 +174,7 @@ function mergeRPs(rp1, rp2) {
                         rp1File.content = content;
                         loadRP2File(rp1File, rp2File, result, relativePath, rp1File.name);
                     }, function error(e) {
-                        log("Error reading file from RP1: " + rp1File.name);
+                        log("Error loading RP1: " + rp1File.name);
                     });
                     return;
                 } else {
