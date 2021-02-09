@@ -50,21 +50,26 @@ function loadRP2File(rp1File, rp2File, result, relativePath, fileName) {
 }
 
 function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
-    _merging--
+    _merging--;
 
-    let rp1Parsed = null;
-    try {
-        rp1Parsed = JSON.parse(rp1File.content);
-    } catch (error) {
-        log("Error reading file from RP1: " + rp1File.name);
-        return;
+    // So, apparently, people put empty json files in their resource packs for some reason.
+    let rp1Parsed = {};
+    if (rp1File.content != '') {
+        try {
+            rp1Parsed = JSON.parse(rp1File.content);
+        } catch (error) {
+            log("Error reading file from RP1: " + rp1File.name);
+            return;
+        }
     }
-    let rp2Parsed = null;
-    try {
-        rp2Parsed = JSON.parse(rp2File.content);
-    } catch (error) {
-        log("Error reading file from RP2 " + rp2File.name);
-        return;
+    let rp2Parsed = {};
+    if (rp2File.content != '') {
+        try {
+            rp2Parsed = JSON.parse(rp2File.content);
+        } catch (error) {
+            log("Error reading file from RP2 " + rp2File.name);
+            return;
+        }
     }
 
     if (fileName == 'assets/minecraft/sounds.json') {
