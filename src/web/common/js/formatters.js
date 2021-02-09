@@ -89,6 +89,8 @@ function depluralize(s) {
         s = s.substr(0, s.length - 2);
     } else if (s.endsWith('s')) {
         s = s.substr(0, s.length - 1);
+    } else if (s == 'automata') {
+        s = 'automaton';
     }
     return s;
 }

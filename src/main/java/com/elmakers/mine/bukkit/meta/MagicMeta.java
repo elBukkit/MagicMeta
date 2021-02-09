@@ -21,6 +21,7 @@ import com.elmakers.mine.bukkit.action.CompoundAction;
 import com.elmakers.mine.bukkit.action.builtin.SelectorAction;
 import com.elmakers.mine.bukkit.api.action.SpellAction;
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
+import com.elmakers.mine.bukkit.automata.AutomatonTemplate;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
@@ -395,6 +396,16 @@ public class MagicMeta {
         data.addWorldParameters(recipeParameters);
     }
 
+    private void generateAutomatonMeta() {
+        System.out.println("Scanning AutomatonTemplate");
+        InterrogatingConfiguration configuration = new InterrogatingConfiguration(data.getParameterStore());
+        configuration.createSection("spawn");
+        configuration.createSection("cast");
+        new AutomatonTemplate(controller, "interrogating", configuration);
+        ParameterList recipeParameters = configuration.getParameters();
+        data.addAutomatonParameters(recipeParameters);
+    }
+
     private void generateMeta() {
         if (data == null) {
             data = new MetaData();
@@ -410,6 +421,7 @@ public class MagicMeta {
         generateSelectorOptionMeta();
         generateRecipeMeta();
         generateWorldMeta();
+        generateAutomatonMeta();
     }
 
     private Category getCategory(String key) {

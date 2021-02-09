@@ -97,6 +97,10 @@ public class MetaData {
         parameterStore.mergeType("world_properties", parameters);
     }
 
+    public void addAutomatonParameters(ParameterList parameters) {
+        parameterStore.mergeType("automaton_properties", parameters);
+    }
+
     public void addActionParameters(ParameterList parameters) {
         parameterStore.mergeType("action_parameters", parameters);
     }

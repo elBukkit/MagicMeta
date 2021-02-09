@@ -5384,6 +5384,14 @@
       "name" : "Alternate Spell7",
       "type" : "string"
     },
+    "always_active" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "always_active",
+      "importance" : 0,
+      "name" : "Always Active",
+      "type" : "boolean"
+    },
     "amount" : {
       "category" : "mob",
       "description" : [ "The amount of an item" ],
@@ -7925,6 +7933,14 @@
       "name" : "Drop Sneak",
       "type" : "string"
     },
+    "drop_when_removed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "drop_when_removed",
+      "importance" : 0,
+      "name" : "Drop When Removed",
+      "type" : "string"
+    },
     "drop_xp" : {
       "category" : "mob",
       "description" : [ "Amount of experience a mob should drop on death" ],
@@ -10430,6 +10446,14 @@
       "name" : "Max Steps",
       "type" : "integer"
     },
+    "max_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_time",
+      "importance" : 0,
+      "name" : "Max Time",
+      "type" : "string"
+    },
     "max_tornado_radius" : {
       "category" : "",
       "description" : [ "" ],
@@ -10542,6 +10566,14 @@
       "name" : "Min Health",
       "type" : "double"
     },
+    "min_players" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_players",
+      "importance" : 0,
+      "name" : "Min Players",
+      "type" : "integer"
+    },
     "min_slot" : {
       "category" : "",
       "description" : [ "" ],
@@ -10557,6 +10589,14 @@
       "importance" : 0,
       "name" : "Min Speed",
       "type" : "double"
+    },
+    "min_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_time",
+      "importance" : 0,
+      "name" : "Min Time",
+      "type" : "string"
     },
     "miss_actions" : {
       "category" : "",
@@ -10677,6 +10717,14 @@
       "importance" : 100,
       "name" : "Modify Type",
       "type" : "mage_modify_type"
+    },
+    "moon_phase" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "moon_phase",
+      "importance" : 0,
+      "name" : "Moon Phase",
+      "type" : "string"
     },
     "mount" : {
       "category" : "",
@@ -11646,6 +11694,14 @@
       "name" : "Player Radius",
       "type" : "double"
     },
+    "player_range" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "player_range",
+      "importance" : 0,
+      "name" : "Player Range",
+      "type" : "integer"
+    },
     "player_weight" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -12245,6 +12301,14 @@
       "importance" : 0,
       "name" : "Remove Mounts",
       "type" : "list"
+    },
+    "remove_when_broken" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_when_broken",
+      "importance" : 0,
+      "name" : "Remove When Broken",
+      "type" : "boolean"
     },
     "remove_when_far_away" : {
       "category" : "",
@@ -13325,6 +13389,14 @@
       "importance" : 0,
       "name" : "Sp Multiplier",
       "type" : "double"
+    },
+    "spawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "spawn",
+      "importance" : 0,
+      "name" : "Spawn",
+      "type" : "map"
     },
     "spawn_actions" : {
       "category" : "",
@@ -15616,6 +15688,27 @@
       "key_type" : "attribute",
       "name" : "Attributes",
       "value_type" : "integer"
+    },
+    "automaton_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Automaton Properties",
+      "parameters" : {
+        "always_active" : "false",
+        "cast" : null,
+        "description" : null,
+        "drop_when_removed" : null,
+        "effects" : null,
+        "interval" : "0",
+        "max_time" : null,
+        "min_players" : "0",
+        "min_time" : null,
+        "moon_phase" : null,
+        "name" : null,
+        "player_range" : "64",
+        "remove_when_broken" : "false",
+        "spawn" : null
+      }
     },
     "bar_color" : {
       "class_name" : "org.bukkit.boss.BarColor",
