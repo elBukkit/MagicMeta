@@ -710,6 +710,8 @@
         "importance" : 40,
         "name" : "Change Context",
         "parameters" : {
+          "destructible_materials" : null,
+          "indestructible_materials" : null,
           "orient_pitch" : "true",
           "persist_caster" : "false",
           "persist_target" : "false",
@@ -879,9 +881,12 @@
         "importance" : 0,
         "name" : "Check Inventory",
         "parameters" : {
+          "allowed_enchantments" : null,
+          "blocked_enchantments" : null,
           "fail_actions" : null,
           "invert" : "false",
-          "item" : null
+          "item" : null,
+          "slot" : null
         },
         "short_class" : "CheckInventory"
       },
@@ -1087,6 +1092,19 @@
           "target_above" : "false"
         },
         "short_class" : "Cover"
+      },
+      "create_automaton" : {
+        "category" : "",
+        "class_name" : "CreateAutomatonAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Create Automaton",
+        "parameters" : {
+          "automaton" : null,
+          "automaton_parameters" : null
+        },
+        "short_class" : "CreateAutomaton"
       },
       "create_field" : {
         "category" : "construction",
@@ -2508,6 +2526,7 @@
           "helmet_item" : null,
           "jump_cast" : "",
           "jump_controllable" : "0",
+          "jump_velocity" : "0.0",
           "liftoff_duration" : "0",
           "liftoff_thrust" : "0",
           "max_acceleration" : "0",
@@ -2536,6 +2555,7 @@
           "sound_pitch" : "1",
           "sound_volume" : "1",
           "start_speed" : "0",
+          "steer_controllable" : "0.0",
           "steer_speed" : "0",
           "strafe_controllable" : "0",
           "terminal_velocity" : "0.0",
@@ -2844,6 +2864,7 @@
           "depth_first" : "false",
           "faces" : null,
           "limit" : "0",
+          "maxdepth_actions" : null,
           "priority_faces" : null,
           "priority_faces_list" : null,
           "replace" : "false",
@@ -2863,6 +2884,18 @@
         },
         "short_class" : "RemoveEntity"
       },
+      "remove_n_p_c" : {
+        "category" : "",
+        "class_name" : "RemoveNPCAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Remove NPC",
+        "parameters" : {
+          "npc_id" : null
+        },
+        "short_class" : "RemoveNPC"
+      },
       "remove_spell" : {
         "category" : "",
         "class_name" : "RemoveSpellAction",
@@ -2874,6 +2907,16 @@
           "spell" : null
         },
         "short_class" : "RemoveSpell"
+      },
+      "remove_wand" : {
+        "category" : "",
+        "class_name" : "RemoveWandAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Remove Wand",
+        "parameters" : { },
+        "short_class" : "RemoveWand"
       },
       "repair_item" : {
         "category" : "player",
@@ -2960,6 +3003,7 @@
           "height_check_radius" : "0",
           "jump_cast" : "",
           "jump_controllable" : "0",
+          "jump_velocity" : "0.0",
           "liftoff_duration" : "0",
           "liftoff_thrust" : "0",
           "max_acceleration" : "0",
@@ -2984,6 +3028,7 @@
           "sound_pitch" : "1",
           "sound_volume" : "1",
           "start_speed" : "0",
+          "steer_controllable" : "0.0",
           "steer_speed" : "0",
           "strafe_controllable" : "0",
           "terminal_velocity" : "0.0",
@@ -3051,6 +3096,7 @@
           "cast_spell_parameters" : null,
           "chest_location" : null,
           "command" : null,
+          "command_source" : null,
           "commands" : null,
           "confirm" : "false",
           "confirm_filler" : null,
@@ -3097,7 +3143,8 @@
           "unlock_class" : null,
           "unlock_confirm_title" : null,
           "unlock_confirm_title_key" : "unlock_confirm_title",
-          "unlock_section" : "unlocked"
+          "unlock_section" : "unlocked",
+          "warp" : null
         },
         "short_class" : "Selector"
       },
@@ -3147,6 +3194,7 @@
           "cast_spell_parameters" : null,
           "chest_location" : null,
           "command" : null,
+          "command_source" : null,
           "commands" : null,
           "confirm" : "false",
           "confirm_filler" : null,
@@ -3197,7 +3245,8 @@
           "unlock_class" : null,
           "unlock_confirm_title" : null,
           "unlock_confirm_title_key" : "unlock_confirm_title",
-          "unlock_section" : "unlocked"
+          "unlock_section" : "unlocked",
+          "warp" : null
         },
         "short_class" : "Shop"
       },
@@ -3272,7 +3321,8 @@
         "name" : "Skip",
         "parameters" : {
           "repeat_skip" : "true",
-          "skip" : "1"
+          "skip" : "1",
+          "until" : "0"
         },
         "short_class" : "Skip"
       },
@@ -3875,6 +3925,18 @@
         },
         "short_class" : "Volume"
       },
+      "wand_instructions" : {
+        "category" : "",
+        "class_name" : "WandInstructionsAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Wand Instructions",
+        "parameters" : {
+          "message_target" : "false"
+        },
+        "short_class" : "WandInstructions"
+      },
       "warp" : {
         "category" : "",
         "class_name" : "WarpAction",
@@ -3923,6 +3985,20 @@
           "weather" : ""
         },
         "short_class" : "Weather"
+      },
+      "while" : {
+        "category" : "compound",
+        "class_name" : "WhileAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "While",
+        "parameters" : {
+          "interval" : "0",
+          "requirement" : null,
+          "requirements" : null
+        },
+        "short_class" : "While"
       }
     },
     "effectlib_effects" : {
@@ -5228,6 +5304,14 @@
       "name" : "Allowed",
       "type" : "string"
     },
+    "allowed_enchantments" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allowed_enchantments",
+      "importance" : 0,
+      "name" : "Allowed Enchantments",
+      "type" : "list"
+    },
     "allowed_entities" : {
       "category" : "",
       "description" : [ "" ],
@@ -5259,6 +5343,46 @@
       "importance" : 40,
       "name" : "Alternate Spell 2",
       "type" : "spell"
+    },
+    "alternate_spell3" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "alternate_spell3",
+      "importance" : 0,
+      "name" : "Alternate Spell3",
+      "type" : "string"
+    },
+    "alternate_spell4" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "alternate_spell4",
+      "importance" : 0,
+      "name" : "Alternate Spell4",
+      "type" : "string"
+    },
+    "alternate_spell5" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "alternate_spell5",
+      "importance" : 0,
+      "name" : "Alternate Spell5",
+      "type" : "string"
+    },
+    "alternate_spell6" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "alternate_spell6",
+      "importance" : 0,
+      "name" : "Alternate Spell6",
+      "type" : "string"
+    },
+    "alternate_spell7" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "alternate_spell7",
+      "importance" : 0,
+      "name" : "Alternate Spell7",
+      "type" : "string"
     },
     "amount" : {
       "category" : "mob",
@@ -5636,6 +5760,22 @@
       "name" : "Autoload",
       "type" : "boolean"
     },
+    "automaton" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "automaton",
+      "importance" : 0,
+      "name" : "Automaton",
+      "type" : "string"
+    },
+    "automaton_parameters" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "automaton_parameters",
+      "importance" : 0,
+      "name" : "Automaton Parameters",
+      "type" : "map"
+    },
     "axis" : {
       "category" : "",
       "description" : [ "" ],
@@ -5892,6 +6032,14 @@
       "importance" : 0,
       "name" : "Blocked",
       "type" : "potion_effect_list"
+    },
+    "blocked_enchantments" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "blocked_enchantments",
+      "importance" : 0,
+      "name" : "Blocked Enchantments",
+      "type" : "list"
     },
     "blocked_list" : {
       "category" : "",
@@ -6760,6 +6908,14 @@
       "name" : "Command Block Allowed",
       "type" : "boolean"
     },
+    "command_source" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "command_source",
+      "importance" : 0,
+      "name" : "Command Source",
+      "type" : "string"
+    },
     "commands" : {
       "category" : "",
       "description" : [ "A list of commands to execute", "The following variables can be used in these command:", "<ul><li>@spell : The name of the spell</li><li>@p : The name of the caster. Can also use @pn</li><li>@pd : The display name (nick) of the caster</li><li>@uuid : The UUID of the caster</li><li>@world, @x, @y, @z : The location of the caster</li><li>@t : The name of the target. Can also use @tn</li><li>@td : The display name (nick) of the target</li><li>@tuuid : The UUID of the target</li><li>@tworld, @tx, @ty, @tz : The location of the target</li></ul>" ],
@@ -7464,6 +7620,14 @@
       "importance" : 0,
       "name" : "Destructible Durability",
       "type" : "double"
+    },
+    "destructible_materials" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "destructible_materials",
+      "importance" : 0,
+      "name" : "Destructible Materials",
+      "type" : "string"
     },
     "destructible_override" : {
       "category" : "construction",
@@ -9626,6 +9790,14 @@
       "name" : "Jump Strength",
       "type" : "double"
     },
+    "jump_velocity" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "jump_velocity",
+      "importance" : 0,
+      "name" : "Jump Velocity",
+      "type" : "double"
+    },
     "keep" : {
       "category" : "wand",
       "description" : [ "If set, this wand will not be dropped on death" ],
@@ -10273,6 +10445,14 @@
       "importance" : 0,
       "name" : "Max Way Points",
       "type" : "integer"
+    },
+    "maxdepth_actions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "maxdepth",
+      "importance" : 0,
+      "name" : "Maxdepth",
+      "type" : "action_list"
     },
     "melt_ice" : {
       "category" : "",
@@ -13370,6 +13550,14 @@
       "name" : "Stay",
       "type" : "integer"
     },
+    "steer_controllable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "steer_controllable",
+      "importance" : 0,
+      "name" : "Steer Controllable",
+      "type" : "double"
+    },
     "steer_speed" : {
       "category" : "",
       "description" : [ "" ],
@@ -14475,6 +14663,14 @@
       "importance" : 0,
       "name" : "Unswappable",
       "type" : "string"
+    },
+    "until" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "until",
+      "importance" : 0,
+      "name" : "Until",
+      "type" : "integer"
     },
     "update" : {
       "category" : "",
@@ -18101,6 +18297,7 @@
         "cast_spell" : null,
         "cast_spell_parameters" : null,
         "command" : null,
+        "command_source" : null,
         "commands" : null,
         "confirm" : "false",
         "cost" : null,
@@ -18134,7 +18331,8 @@
         "switch_class" : null,
         "unlock" : null,
         "unlock_class" : null,
-        "unlock_section" : "unlocked"
+        "unlock_section" : "unlocked",
+        "warp" : null
       }
     },
     "sound" : {
@@ -19594,6 +19792,10 @@
         "alt_cast" : "Cast the alternate_spell assigned to the wand",
         "alt_cast2" : "Cast the alternate_spell2 assigned to the wand",
         "alt_cast3" : "Cast the alternate_spell3 assigned to the wand",
+        "alt_cast4" : null,
+        "alt_cast5" : null,
+        "alt_cast6" : null,
+        "alt_cast7" : null,
         "cast" : "Cast the wand's currently active spell",
         "cycle" : "Cycle through spells (cycle mode)",
         "cycle_hotbar" : "Go to the next hotbar (inventory mode)",
@@ -19627,6 +19829,11 @@
         "active_spell" : null,
         "alternate_spell" : null,
         "alternate_spell2" : null,
+        "alternate_spell3" : null,
+        "alternate_spell4" : null,
+        "alternate_spell5" : null,
+        "alternate_spell6" : null,
+        "alternate_spell7" : null,
         "attributes" : null,
         "auto_absorb" : null,
         "block_chance" : "0",
@@ -19742,7 +19949,8 @@
         "use_mode" : null,
         "uses" : null,
         "wand_power" : "0",
-        "worn" : null
+        "worn" : null,
+        "worth" : null
       }
     },
     "weather" : {
