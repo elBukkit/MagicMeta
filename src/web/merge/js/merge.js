@@ -127,7 +127,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
                     let ap = a.predicate;
                     let bp = b.predicate;
                     if (ap.hasOwnProperty('custom_model_data')) {
-                        if (!bp.hasOwnProperty('custom_model_data')) return -1;
+                        if (!bp.hasOwnProperty('custom_model_data')) return 1;
                         return ap.custom_model_data < bp.custom_model_data ? -1 :
                             (ap.custom_model_data > bp.custom_model_data ? 1 : 0);
                     }
