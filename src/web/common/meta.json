@@ -240,6 +240,7 @@
           "particle" : null,
           "persist" : "false",
           "potion_effects" : null,
+          "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
           "protected" : "false",
@@ -266,6 +267,7 @@
           "transformable" : "true",
           "triggers" : null,
           "type" : null,
+          "use_npc_name" : "false",
           "wait_for_death" : "true",
           "wait_time" : "0",
           "weakness" : null,
@@ -402,6 +404,7 @@
           "plan" : null,
           "player_weight" : "4",
           "potion_effects" : null,
+          "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
           "projectile_effects" : "projectile",
@@ -468,6 +471,7 @@
           "use_cast_location" : "false",
           "use_eye_location" : "false",
           "use_hit_location" : "false",
+          "use_npc_name" : "false",
           "use_target_location" : "true",
           "use_wand_location" : "true",
           "variant" : null,
@@ -668,6 +672,7 @@
         "importance" : 20,
         "name" : "Cast",
         "parameters" : {
+          "as_target" : "true",
           "console" : "false",
           "cooldown_free" : "false",
           "cost_free" : "true",
@@ -852,6 +857,7 @@
           "fail_actions" : null,
           "invert" : "false",
           "on_fire" : "false",
+          "on_ground" : "false",
           "only_caster" : "false"
         },
         "short_class" : "CheckEntity"
@@ -1502,6 +1508,7 @@
         "parameters" : {
           "drop_count" : "-1",
           "falling" : "true",
+          "give_to_caster" : "false",
           "tool" : "diamond_pickaxe"
         },
         "short_class" : "Drop"
@@ -2288,6 +2295,7 @@
           "offhand" : null,
           "persist" : "false",
           "potion_effects" : null,
+          "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
           "protected" : "false",
@@ -2307,6 +2315,7 @@
           "triggers" : null,
           "triggers_map" : null,
           "type" : null,
+          "use_npc_name" : "false",
           "weakness" : null,
           "xp" : "0"
         },
@@ -2392,6 +2401,18 @@
           "npc_template" : null
         },
         "short_class" : "ModifyNPC"
+      },
+      "modify_no_damage_ticks" : {
+        "category" : "",
+        "class_name" : "ModifyNoDamageTicksAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Modify No Damage Ticks",
+        "parameters" : {
+          "no_damage_ticks" : "0"
+        },
+        "short_class" : "ModifyNoDamageTicks"
       },
       "modify_parameters" : {
         "category" : "compound",
@@ -3129,6 +3150,7 @@
           "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
+          "requirement" : null,
           "requirements" : null,
           "scale" : "1",
           "selected" : null,
@@ -3226,6 +3248,7 @@
           "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
+          "requirement" : null,
           "requirements" : null,
           "scale" : "1.0",
           "selected" : null,
@@ -3398,6 +3421,7 @@
           "owned" : "true",
           "persist" : "false",
           "potion_effects" : null,
+          "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
           "protected" : "false",
@@ -3421,6 +3445,7 @@
           "transformable" : "true",
           "triggers" : null,
           "type" : null,
+          "use_npc_name" : "false",
           "wait_for_death" : "true",
           "weakness" : null,
           "xp" : "0"
@@ -5646,6 +5671,14 @@
       "field" : "as_percentages",
       "importance" : 0,
       "name" : "As Percentages",
+      "type" : "boolean"
+    },
+    "as_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "as_target",
+      "importance" : 0,
+      "name" : "As Target",
       "type" : "boolean"
     },
     "async" : {
@@ -10806,6 +10839,14 @@
       "name" : "Name Template",
       "type" : "string"
     },
+    "no_damage_ticks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "no_damage_ticks",
+      "importance" : 0,
+      "name" : "No Damage Ticks",
+      "type" : "integer"
+    },
     "no_target" : {
       "category" : "",
       "description" : [ "" ],
@@ -10900,6 +10941,14 @@
       "field" : "on_fire",
       "importance" : 0,
       "name" : "On Fire",
+      "type" : "boolean"
+    },
+    "on_ground" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "on_ground",
+      "importance" : 0,
+      "name" : "On Ground",
       "type" : "boolean"
     },
     "only_caster" : {
@@ -11197,6 +11246,14 @@
       "importance" : 0,
       "name" : "Parrot Variant",
       "type" : "parrot_variant"
+    },
+    "partial" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "partial",
+      "importance" : 0,
+      "name" : "Partial",
+      "type" : "boolean"
     },
     "particle" : {
       "category" : "effects",
@@ -11750,6 +11807,14 @@
       "name" : "Preuse",
       "type" : "string"
     },
+    "prevent_dismount" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "prevent_dismount",
+      "importance" : 0,
+      "name" : "Prevent Dismount",
+      "type" : "boolean"
+    },
     "prevent_melee" : {
       "category" : "",
       "description" : [ "" ],
@@ -12270,6 +12335,14 @@
       "name" : "Relative Target Offset",
       "type" : "vector"
     },
+    "remove" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove",
+      "importance" : 0,
+      "name" : "Remove",
+      "type" : "boolean"
+    },
     "remove_effects" : {
       "category" : "",
       "description" : [ "A list of potion effects to remove from the target" ],
@@ -12519,7 +12592,7 @@
       "type" : "list"
     },
     "requirement" : {
-      "category" : "",
+      "category" : "actions",
       "description" : [ "" ],
       "field" : "requirement",
       "importance" : 0,
@@ -13613,6 +13686,14 @@
       "importance" : 0,
       "name" : "Start Speed",
       "type" : "double"
+    },
+    "starter" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "starter",
+      "importance" : 0,
+      "name" : "Starter",
+      "type" : "boolean"
     },
     "stay" : {
       "category" : "",
@@ -14904,6 +14985,14 @@
       "name" : "Use Mode",
       "type" : "string"
     },
+    "use_npc_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_npc_name",
+      "importance" : 0,
+      "name" : "Use Npc Name",
+      "type" : "boolean"
+    },
     "use_sp" : {
       "category" : "",
       "description" : [ "" ],
@@ -15255,6 +15344,14 @@
       "importance" : 0,
       "name" : "Weather",
       "type" : "weather"
+    },
+    "welcome_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "welcome_wand",
+      "importance" : 0,
+      "name" : "Welcome Wand",
+      "type" : "boolean"
     },
     "whole_circle" : {
       "category" : "",
@@ -16673,6 +16770,22 @@
         "100" : null
       }
     },
+    "kit_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Kit Properties",
+      "parameters" : {
+        "cooldown" : "0",
+        "items" : null,
+        "keep" : "false",
+        "partial" : "false",
+        "remove" : "false",
+        "requirement" : null,
+        "requirements" : null,
+        "starter" : "false",
+        "welcome_wand" : "false"
+      }
+    },
     "list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
@@ -17965,6 +18078,7 @@
         "persist" : "false",
         "phase" : null,
         "potion_effects" : null,
+        "prevent_dismount" : "false",
         "prevent_melee" : "false",
         "prevent_projectiles" : "false",
         "protected" : "false",
@@ -17992,6 +18106,7 @@
         "triggers" : null,
         "trusted" : null,
         "type" : null,
+        "use_npc_name" : "false",
         "villager_profession" : null,
         "wait_time" : "0",
         "weakness" : null,
@@ -18415,6 +18530,7 @@
         "lock_class" : null,
         "placeholder_icon" : null,
         "put_in_hand" : "true",
+        "requirement" : null,
         "requirements" : null,
         "scale" : "1.0",
         "selected" : null,
@@ -19672,6 +19788,7 @@
         "require_break" : "false",
         "require_build" : "false",
         "require_health_percentage" : "0",
+        "requirement" : null,
         "requirements" : null,
         "show_brush" : "false",
         "show_undoable" : "true",

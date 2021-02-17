@@ -25,6 +25,7 @@ import com.elmakers.mine.bukkit.automata.AutomatonTemplate;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
+import com.elmakers.mine.bukkit.kit.MagicKit;
 import com.elmakers.mine.bukkit.magic.Mage;
 import com.elmakers.mine.bukkit.magic.MageClass;
 import com.elmakers.mine.bukkit.magic.MageModifier;
@@ -396,6 +397,14 @@ public class MagicMeta {
         data.addWorldParameters(recipeParameters);
     }
 
+    private void generateKitMeta() {
+        System.out.println("Scanning MagicKit");
+        InterrogatingConfiguration kitConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        MagicKit kit = new MagicKit(controller, "test", kitConfiguration);
+        ParameterList recipeParameters = kitConfiguration.getParameters();
+        data.addKitParameters(recipeParameters);
+    }
+
     private void generateAutomatonMeta() {
         System.out.println("Scanning AutomatonTemplate");
         InterrogatingConfiguration configuration = new InterrogatingConfiguration(data.getParameterStore());
@@ -422,6 +431,7 @@ public class MagicMeta {
         generateRecipeMeta();
         generateWorldMeta();
         generateAutomatonMeta();
+        generateKitMeta();
     }
 
     private Category getCategory(String key) {
