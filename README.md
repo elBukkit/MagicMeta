@@ -58,3 +58,18 @@ To be able to serve up images from the RP, you need to link it in your webroot, 
 
 ```
 ln -s /home/minecraft/packs/Magic/ /var/www/html/pack
+```
+
+There are also some symlinks in the repository in common/image, make sure they got deployed correctly.
+
+## Editor Setup
+
+The editor requires .htaccess file support on your server to process session URLs.
+
+You can enable this in Apache with a config like this:
+
+```
+<Directory /var/www/html/editor/>
+   AllowOverride all
+</Directory>
+```
