@@ -138,7 +138,7 @@ try {
     }
 	
 	// Load resource pack textures
-	$spellJson = json_decode(file_get_contents('rp/default/assets/minecraft/models/item/diamond_axe.json'), true);
+	$spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
 	$spellJson = $spellJson['overrides'];
 	$spellIcons = array();
 	$diamondUses = 1562;
@@ -413,7 +413,7 @@ if (file_exists($infoBookRootConfig)) {
 }
 
 $textures = array();
-$textureConfig = $magicRootFolder . '/../../resource-pack/common/source/image_map.yml';
+$textureConfig = $resourcePackFolder . '/common/source/image_map.yml';
 if (file_exists($textureConfig)) {
     $textures = array_values(yaml_parse_file($textureConfig));
 }
@@ -598,10 +598,10 @@ function printIcon($iconUrl, $title) {
 					foreach ($spells as $key => $spell) {
                         $name = isset($spell['name']) ? $spell['name'] : "($key)";
 						
-						$iconFile = 'survival/assets/minecraft/textures/items/spells/' . $key . '.png';
+						$iconFile = 'survival/assets/minecraft/textures/item/spells/' . $key . '.png';
 						if (file_exists($resourcePackFolder . $iconFile))
 						{
-							$icon = printIcon('rp/' . $iconFile, $name);
+							$icon = printIcon('pack/' . $iconFile, $name);
 						}
                         else if (isset($spell['icon_url']))
                         {
@@ -776,7 +776,8 @@ function printIcon($iconUrl, $title) {
                             foreach ($spellIcons as $spellIcon) {
 								if ($spellIcon['durability'] == 0) continue;
                                 $icon = printIcon($texture, $texture);
-                                echo '<li class="ui-widget-content"><img src="rp/' . $texturePath . '/assets/minecraft/textures/items/' . $spellIcon['texture'] . '.png"> <span class="iconItem">diamond_axe:' . $spellIcon['durability'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
+                                if (strpos($spellIcon['texture'], 'spell') === FALSE) continue;
+                                echo '<li class="ui-widget-content"><img src="pack/' . $texturePath . '/assets/minecraft/textures/item/' . $spellIcon['texture'] . '.png"> <span class="iconItem">diamond_axe:' . $spellIcon['durability'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
                             }
                             ?>
                         </ul>

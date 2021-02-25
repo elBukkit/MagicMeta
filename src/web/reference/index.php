@@ -15,12 +15,8 @@ $version = 3;
     <script src="common/js/jquery-1.10.2.min.js"></script>
     <script src="common/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="common/js/loading.js?v=<?=$version?>"></script>
-    <script src="common/js/user.js?v=<?=$version?>"></script>
     <script src="js/reference.js?v=<?=$version?>"></script>
     <?php if ($analytics) echo $analytics; ?>
-    <script type="text/javascript">
-        var user = <?= json_encode(getUser()) ?>;
-    </script>
 </head>
 <body>
 <div id="tabs" style="display:none">
@@ -36,7 +32,6 @@ $version = 3;
             <li><a href="#modifiers">Modifiers</a></li>
             <li><a href="#mobs">Mobs</a></li>
             <li><a href="#crafting">Crafting</a></li>
-            <?php include "common/userinfo.inc.php" ?>
         </ul>
     </div>
     <div id="spellProperties" class="flextab">
@@ -263,7 +258,6 @@ $version = 3;
     </div>
 </div>
 
-<?php include 'common/register.inc.php' ?>
 
 <!-- Loading Indicator -->
 <div class="modal"></div>

@@ -1,0 +1,1 @@
+Copy Magic's resource pack here!
