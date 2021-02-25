@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.inc.php');
+require_once('../config.inc.php');
 
 function convertColorCodes($line) {
     $chatColors  = array(
