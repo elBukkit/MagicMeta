@@ -355,6 +355,29 @@ function getBookDetails(key)
 	return detailsDiv;
 }
 
+function getMobDetails(key)
+{
+	if (!(key in mobs)) {
+		return $('<span/>').text("Sorry, something went wrong!");
+	}
+	var mob = mobs[key];
+	var detailsDiv = $('<div/>');
+	var mobName = key;
+	if (mob.hasOwnProperty('name')) {
+		mobName = mob.name;
+	}
+	mobName = convertColorCodes(mobName);
+	var title = $('<div class="mobTitleBanner"/>').html(mobName);
+	var scrollingContainer = $('<div class="mobContainer"/>');
+	scrollingContainer.append("No mob info yet.. maybe eventually?");
+	var admin = $('<div class="adminuse"/>').text("Admin use: /mmob spawn " + key);
+	detailsDiv.append(title);
+	detailsDiv.append(scrollingContainer);
+	detailsDiv.append(admin);
+
+	return detailsDiv;
+}
+
 function decodeColors(line)
 {
     var lineStyle = "";
@@ -722,6 +745,14 @@ $(document).ready(function() {
 			var key = selected.prop('id').substr(5);
 			$('#upgradeDetails').empty();
 			$('#upgradeDetails').append(getWandUpgradeDetails(key));
+		}
+    });
+    $("#mobList").selectable({
+		selected: function(event, ui) {
+			var selected = jQuery(".ui-selected", this);
+			var key = selected.prop('id').substr(4);
+			$('#mobDetails').empty();
+			$('#mobDetails').append(getMobDetails(key));
 		}
     });
 

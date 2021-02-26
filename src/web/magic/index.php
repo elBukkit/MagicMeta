@@ -125,6 +125,7 @@ try {
 	$wands = parseConfigFile('wands', !$skipDefaultWands, $disableDefaultWands);
 	$crafting = parseConfigFile('crafting', !$skipDefaultCrafting);
 	$enchantingConfig = parseConfigFile('paths', !$skipDefaultPaths);
+	$mobConfig = parseConfigFile('mobs', true);
 	$messages = parseConfigFile('messages', true);
 
     $language = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : '';
@@ -219,6 +220,33 @@ foreach ($allSpells as $key => $spell) {
 }
 
 ksort($spells);
+
+$mobs = array();
+foreach ($mobConfig as $key => $mob) {
+	if (isset($mob['hidden']) && $mob['hidden']) {
+		continue;
+	}
+
+    // This is kind of a hack, but we don't load in the actual defaults
+    if (isset($mob['inherit']) && $mob['inherit'] == 'base_npc') {
+        continue;
+    }
+	if (isset($mob['inherit']) && isset($mobConfig[$mob['inherit']])) {
+	    $inherit = $mobConfig[$mob['inherit']];
+	    if (isset($inherit['hidden']) && $inherit['hidden']) {
+		    continue;
+        }
+	}
+    $mob['key'] = $key;
+    if (!isset($mob['name'])) {
+        $mob['name'] = isset($messages['mobs'][$key]['name']) ? $messages['mobs'][$key]['name'] : $key;
+    }
+    if (!isset($mob['description'])) {
+        $mob['description'] = isset($messages['mobs'][$key]['description']) ? $messages['mobs'][$key]['description'] : '';
+    }
+    $mobs[$key] = $mob;
+}
+ksort($mobs);
 
 // Filter and link enchanting paths
 $enchanting = array();
@@ -467,6 +495,7 @@ function printIcon($iconUrl, $title) {
 			var cloneMaterial = '<?= $cloneMaterial ?>';
 			var replicateMaterial = '<?= $replicateMaterial ?>';
 			var books = <?= json_encode($books); ?>;
+			var mobs = <?= json_encode($mobs); ?>;
 			var worthItems = <?= json_encode($worthItems); ?>;
 			var worthBase = <?= $worthBase ?>;
 			var maxXpRegeneration = <?= $maxXpRegeneration ?>;
@@ -486,6 +515,7 @@ function printIcon($iconUrl, $title) {
 				<li><a href="#enchanting">Paths</a></li>
 				<li><a href="#wands">Wands and Items</a></li>
 				<li><a href="#upgrades">Upgrades</a></li>
+				<li><a href="#mobs">Mobs</a></li>
 				<li id="booksTab"><a href="#books">Books</a></li>
                 <li><a href="#textures">Textures</a></li>
 				<li><a href="#icons">Icons</a></li>
@@ -748,6 +778,30 @@ function printIcon($iconUrl, $title) {
                 Select an item for details.
               </div>
             </div>
+			<div id="mobs">
+			  <div class="scrollingTab">
+			  	<div class="navigation">
+				<ol id="mobList">
+				<?php
+					foreach ($mobs as $key => $mob)
+                    {
+						$nameSpan = $mob['name'];
+						$nameSpan = convertColorCodes($nameSpan);
+						if (isset($mob['enabled']) && !$mob['enabled']) {
+							$nameSpan = '<span class="disabled">' . $nameSpan . '</span>';
+						} else if (isset($mob['hidden']) && !$mob['hidden']) {
+							$nameSpan = '<span class="hidden">' . $nameSpan . '</span>';
+						}
+						echo '<li class="ui-widget-content" id="mob-' . $key . '"><span class="mobTitle">' . $nameSpan . '</span></li>';
+					}
+				?>
+				</ol>
+			  </div>
+			  </div>
+			  <div class="details" id="mobDetails">
+			  	Select a mob for details.
+			  </div>
+			</div>
 			<div id="books">
 			  <div class="scrollingTab">
 				<div class="navigation">
