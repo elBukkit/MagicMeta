@@ -183,6 +183,7 @@
           "boss_bar" : null,
           "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_explosion" : "false",
           "cancel_interact" : "false",
           "cast" : null,
           "cast_requires_item" : null,
@@ -221,6 +222,7 @@
           "interact_spell_source" : "player",
           "interact_spell_target" : "mob",
           "interval_requires_target" : "true",
+          "invisible" : "false",
           "invulnerable" : "false",
           "leggings" : null,
           "lifetime" : "0",
@@ -268,6 +270,7 @@
           "triggers" : null,
           "type" : null,
           "use_npc_name" : "false",
+          "use_wand_name" : "false",
           "wait_for_death" : "true",
           "wait_time" : "0",
           "weakness" : null,
@@ -308,6 +311,7 @@
           "breakable_size" : "1",
           "bypass_backfire" : "false",
           "can_pickup_items" : "false",
+          "cancel_explosion" : "false",
           "cancel_interact" : "false",
           "cast" : null,
           "cast_interval" : "0",
@@ -896,6 +900,20 @@
         },
         "short_class" : "CheckInventory"
       },
+      "check_lore" : {
+        "category" : "compound",
+        "class_name" : "CheckLoreAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Check Lore",
+        "parameters" : {
+          "fail_actions" : null,
+          "invert" : "false",
+          "pattern" : null
+        },
+        "short_class" : "CheckLore"
+      },
       "check_mana" : {
         "category" : "compound",
         "class_name" : "CheckManaAction",
@@ -1019,6 +1037,22 @@
         "name" : "Clear Inventory",
         "parameters" : { },
         "short_class" : "ClearInventory"
+      },
+      "color_item" : {
+        "category" : "",
+        "class_name" : "ColorItemAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Color Item",
+        "parameters" : {
+          "color" : null,
+          "color_wand" : "false",
+          "slot" : null,
+          "slots" : null,
+          "slots_list" : null
+        },
+        "short_class" : "ColorItem"
       },
       "command" : {
         "category" : "control",
@@ -1817,6 +1851,7 @@
         "parameters" : {
           "exhaustion" : "true",
           "feed" : "20",
+          "food_level" : "0",
           "saturation" : "20"
         },
         "short_class" : "Feed"
@@ -1926,6 +1961,18 @@
           "stack_size" : "0"
         },
         "short_class" : "GiveItem"
+      },
+      "give_kit" : {
+        "category" : "",
+        "class_name" : "GiveKitAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Give Kit",
+        "parameters" : {
+          "kit" : null
+        },
+        "short_class" : "GiveKit"
       },
       "glide" : {
         "category" : "entity",
@@ -2244,6 +2291,7 @@
           "boss_bar" : null,
           "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_explosion" : "false",
           "cancel_interact" : "false",
           "cast" : null,
           "cast_interval" : "0",
@@ -2281,6 +2329,7 @@
           "interact_spell_target" : "mob",
           "interval" : "0",
           "interval_requires_target" : "true",
+          "invisible" : "false",
           "invulnerable" : "false",
           "item" : null,
           "leggings" : null,
@@ -3367,6 +3416,7 @@
           "boss_bar" : null,
           "boss_bar_map" : null,
           "can_pickup_items" : "false",
+          "cancel_explosion" : "false",
           "cancel_interact" : "false",
           "cast" : null,
           "cast_requires_item" : null,
@@ -3403,6 +3453,7 @@
           "interact_spell_source" : "player",
           "interact_spell_target" : "mob",
           "interval_requires_target" : "true",
+          "invisible" : "false",
           "invulnerable" : "false",
           "leggings" : null,
           "lifetime" : "0",
@@ -3446,6 +3497,7 @@
           "triggers" : null,
           "type" : null,
           "use_npc_name" : "false",
+          "use_wand_name" : "false",
           "wait_for_death" : "true",
           "weakness" : null,
           "xp" : "0"
@@ -6396,6 +6448,14 @@
       "name" : "Cancel Effects Delay",
       "type" : "string"
     },
+    "cancel_explosion" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_explosion",
+      "importance" : 0,
+      "name" : "Cancel Explosion",
+      "type" : "boolean"
+    },
     "cancel_interact" : {
       "category" : "",
       "description" : [ "" ],
@@ -6924,6 +6984,14 @@
       "importance" : 0,
       "name" : "Color Override",
       "type" : "string"
+    },
+    "color_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "color_wand",
+      "importance" : 0,
+      "name" : "Color Wand",
+      "type" : "boolean"
     },
     "columns" : {
       "category" : "effects",
@@ -8878,6 +8946,14 @@
       "name" : "Size",
       "type" : "integer"
     },
+    "food_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "food_level",
+      "importance" : 0,
+      "name" : "Food Level",
+      "type" : "integer"
+    },
     "force" : {
       "category" : "wand",
       "description" : [ "For upgrade items, this will force all properties in the upgrade template to apply to the target wand, even if they are a downgrade" ],
@@ -9021,6 +9097,14 @@
       "importance" : 0,
       "name" : "Glide Restricted",
       "type" : "boolean"
+    },
+    "glow" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "glow",
+      "importance" : 0,
+      "name" : "Glow",
+      "type" : "string"
     },
     "glowstone_torch" : {
       "category" : "",
@@ -9918,6 +10002,14 @@
       "importance" : 0,
       "name" : "Key Overrides",
       "type" : "map"
+    },
+    "kit" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "kit",
+      "importance" : 0,
+      "name" : "Kit",
+      "type" : "string"
     },
     "knockback_resistance" : {
       "category" : "",
@@ -11567,6 +11659,14 @@
       "name" : "Path Exact",
       "type" : "string"
     },
+    "pattern" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "pattern",
+      "importance" : 0,
+      "name" : "Pattern",
+      "type" : "string"
+    },
     "percentage" : {
       "category" : "",
       "description" : [ "" ],
@@ -13175,6 +13275,14 @@
       "name" : "Slots",
       "type" : "string"
     },
+    "slots_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "slots",
+      "importance" : 0,
+      "name" : "Slots",
+      "type" : "list"
+    },
     "slotted" : {
       "category" : "",
       "description" : [ "" ],
@@ -13526,6 +13634,14 @@
       "importance" : 0,
       "name" : "Class",
       "type" : "spell_class"
+    },
+    "spell_glow" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "spell_glow",
+      "importance" : 0,
+      "name" : "Spell Glow",
+      "type" : "string"
     },
     "spell_inventory" : {
       "category" : "",
@@ -15039,6 +15155,14 @@
       "field" : "use_wand_location",
       "importance" : -1,
       "name" : "Use Wand Location",
+      "type" : "boolean"
+    },
+    "use_wand_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_wand_name",
+      "importance" : 0,
+      "name" : "Use Wand Name",
       "type" : "boolean"
     },
     "use_xp" : {
@@ -18007,6 +18131,7 @@
         "boots" : null,
         "boss_bar" : null,
         "can_pickup_items" : "false",
+        "cancel_explosion" : "false",
         "cancel_interact" : "false",
         "cast" : null,
         "cast_requires_item" : null,
@@ -18078,6 +18203,7 @@
         "persist" : "false",
         "phase" : null,
         "potion_effects" : null,
+        "powered" : "false",
         "prevent_dismount" : "false",
         "prevent_melee" : "false",
         "prevent_projectiles" : "false",
@@ -20092,6 +20218,7 @@
         "enchantments" : null,
         "entity_attributes" : null,
         "force" : "false",
+        "glow" : null,
         "has_uses" : "false",
         "heroes" : "false",
         "hide_flags" : null,
@@ -20140,6 +20267,7 @@
         "slots" : null,
         "slotted" : null,
         "sp_multiplier" : "0",
+        "spell_glow" : null,
         "spell_inventory" : null,
         "spell_levels" : null,
         "spells" : null,
