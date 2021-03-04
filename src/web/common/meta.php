@@ -102,13 +102,13 @@ function generateMeta() {
                 $itemName = basename($filename, '.json');
 
                 if (strpos($texture, 'spells') === FALSE && strpos($texture, 'brushes') === FALSE) {
-                    $wandIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $texture;
+                    $wandIcons[$itemName . '{' . $customData . '}'] = $texture;
                 } else {
                     $icon = makeIcon($texture . '.png', 'spellIcon');
                     if (strpos($texture, '_disabled') !== FALSE) {
-                        $disabledIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $icon . $texture;
+                        $disabledIcons[$itemName . '{' . $customData . '}'] = $icon . $texture;
                     } else {
-                        $spellIcons[$itemName . '{CustomModelData:' . $customData . '}'] = $icon . $texture;
+                        $spellIcons[$itemName . '{' . $customData . '}'] = $icon . $texture;
                     }
                 }
             }
