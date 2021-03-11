@@ -239,6 +239,7 @@
           "offhand" : null,
           "on_block" : "true",
           "owned" : "true",
+          "parameterize_name" : "true",
           "particle" : null,
           "persist" : "false",
           "potion_effects" : null,
@@ -3195,6 +3196,7 @@
           "items" : null,
           "limit" : "0",
           "lock_class" : null,
+          "lock_classes" : null,
           "options" : null,
           "owner_uuid" : null,
           "placeholder_icon" : null,
@@ -3293,6 +3295,7 @@
           "items" : null,
           "limit" : "0",
           "lock_class" : null,
+          "lock_classes" : null,
           "options" : null,
           "owner_uuid" : null,
           "placeholder_icon" : null,
@@ -3470,6 +3473,7 @@
           "offhand" : null,
           "on_block" : "true",
           "owned" : "true",
+          "parameterize_name" : "true",
           "persist" : "false",
           "potion_effects" : null,
           "prevent_dismount" : "false",
@@ -9843,6 +9847,14 @@
       "name" : "Item",
       "type" : "material"
     },
+    "item_attribute_slot" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_attribute_slot",
+      "importance" : 0,
+      "name" : "Item Attribute Slot",
+      "type" : "equipment_slot"
+    },
     "item_attributes" : {
       "category" : "wand",
       "description" : [ "Vanilla attributes to apply to this wand item" ],
@@ -10258,6 +10270,14 @@
       "importance" : 0,
       "name" : "Lock Class",
       "type" : "string"
+    },
+    "lock_classes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lock_classes",
+      "importance" : 0,
+      "name" : "Lock Classes",
+      "type" : "list"
     },
     "lock_type" : {
       "category" : "construction",
@@ -11314,6 +11334,14 @@
       "importance" : 0,
       "name" : "Pages",
       "type" : "map"
+    },
+    "parameterize_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "parameterize_name",
+      "importance" : 0,
+      "name" : "Parameterize Name",
+      "type" : "boolean"
     },
     "parameters" : {
       "category" : "base",
@@ -16753,6 +16781,19 @@
       "name" : "Entity Type List",
       "options" : { }
     },
+    "equipment_slot" : {
+      "class_name" : "org.bukkit.inventory.EquipmentSlot",
+      "description" : [ "" ],
+      "name" : "Equipment Slot",
+      "options" : {
+        "chest" : null,
+        "feet" : null,
+        "hand" : null,
+        "head" : null,
+        "legs" : null,
+        "off_hand" : null
+      }
+    },
     "faces_list" : {
       "class_name" : "java.util.List",
       "description" : [ "A list of block faces" ],
@@ -18654,6 +18695,7 @@
         "items" : null,
         "limit" : "0",
         "lock_class" : null,
+        "lock_classes" : null,
         "placeholder_icon" : null,
         "put_in_hand" : "true",
         "requirement" : null,
@@ -20233,6 +20275,7 @@
         "interactible" : null,
         "inventory_rows" : "5",
         "invulnerable" : "false",
+        "item_attribute_slot" : null,
         "item_attributes" : null,
         "keep" : "false",
         "left_click" : "none",

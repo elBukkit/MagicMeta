@@ -27,6 +27,7 @@ import org.bukkit.entity.Horse;
 import org.bukkit.entity.Parrot;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Vector;
@@ -228,6 +229,9 @@ public class ParameterStore {
             case "icon_inactive":
             case "icon_disabled":
                 parameterType = getParameterType("icon", String.class);
+                break;
+            case "item_attribute_slot":
+                parameterType = getParameterType(EquipmentSlot.class);
                 break;
             case "active_brush":
             case "material":
