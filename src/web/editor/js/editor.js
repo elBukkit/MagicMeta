@@ -136,10 +136,11 @@ Editor.prototype.startNamed = function(template, name) {
         return;
     }
     let lines = config.split("\n");
+    let addAttribution = _fileType != 'messages' && _fileType != 'config' && _fileType != 'materials';
     for (let i = 0; i < lines.length; i++) {
         if (lines[i].length > 0 && lines[i][0] != '#') {
             lines[i] = name + ":";
-            if (_session && _session.hasOwnProperty("player") && lines.length > i && !lines[i + 1].trim().startsWith("creator")) {
+            if (addAttribution && _session && _session.hasOwnProperty("player") && lines.length > i && !lines[i + 1].trim().startsWith("creator")) {
                 let indent = 4;
                 if (lines.length > i + 1) {
                     let nextLine = lines[i + 1];

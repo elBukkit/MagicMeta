@@ -1,6 +1,6 @@
 <?php
 require_once('../config.inc.php');
-$version = 4;
+$version = 5;
 
 $session = null;
 $sessionId = null;
