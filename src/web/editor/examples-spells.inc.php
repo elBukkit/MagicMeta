@@ -236,4 +236,31 @@ myspell:
     undo_speed: 20
     cooldown: 2000
 </textarea>
+<textarea id="templateShop" class="template" data-label="Item Shop">shop:
+    name: Shop
+    description: Put on an npc using /mnpc cast shop
+    icon: gold_ingot
+    # This prevents the spell showing up as a castable spell
+    hidden: true
+    # This makes a base shop for players to buy things from
+    inherit: buyshop
+    parameters:
+        # Set this to false if you do not want a confirmation screen
+        confirm: true
+        # Set this to false if you want the shop to stay open after a purchase
+        # Useful for quickly buying lots of inexpensive items
+        auto_close: true
+        # Here is the list of items to sell
+        # These can be wands, spells or items
+        # Spells will sell for SP
+        # Items and wands will sell for Vault currency, or if you have no economy, emeralds
+        # To set the price of an item:
+        # /mitem give bread
+        # /mitem save break 100 (while holding the breakd)
+        # To set the price of a wand:
+        # /mconfig configure wand yourwand worth 1000
+        items:
+        - minister
+        - bread
+</textarea>
 </div>
