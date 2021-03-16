@@ -1,5 +1,6 @@
 <?php
 require_once('../config.inc.php');
+require_once('meta.inc.php');
 header('Content-Type: application/json');
 
 $legacyIcons = false;
