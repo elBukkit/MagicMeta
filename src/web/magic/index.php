@@ -1,6 +1,7 @@
 <?php
 
 require_once('../config.inc.php');
+require_once('common/meta.inc.php');
 
 function convertColorCodes($line) {
     $chatColors  = array(
@@ -137,19 +138,37 @@ try {
         $localization = yaml_parse_file($localizationFile);
         $messages = array_replace_recursive($messages, $localization);
     }
-	
-	// Load resource pack textures
-	$spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
-	$spellJson = $spellJson['overrides'];
-	$spellIcons = array();
-	$diamondUses = 1562;
-	foreach ($spellJson as $spellPredicate) {
-		$durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
-		$texture = str_replace('item/', '', $spellPredicate['model']);
-		array_push($spellIcons,
-			array('texture' => $texture, 'durability' => $durability)
-		);
-	}
+
+    // load meta textures
+    $spellIcons = array();
+    $metadata = getMetadata(false);
+    $metadata = $metadata ? json_decode($metadata, true) : null;
+    if ($metadata) {
+        $iconOptions = $metadata['types']['spell_icon']['options'];
+        foreach ($iconOptions as $itemKey => $description) {
+            // Kind hacky, if description format ever changes this could break
+            $texture = explode('/', $description);
+            if (count($texture) < 3) continue;
+            if (strpos($texture[count($texture) - 2], "spells") === -1) continue;
+            $texture = 'spells/' . $texture[count($texture) - 1];
+            array_push($spellIcons,
+                array('texture' => $texture, 'item' => $itemKey)
+            );
+            asort($spellIcons);
+        }
+    } else {
+        // Load resource pack textures
+        $spellJson = json_decode(file_get_contents($resourcePackFolder . '/default/assets/minecraft/models/item/diamond_axe.json'), true);
+        $spellJson = $spellJson['overrides'];
+        $diamondUses = 1562;
+        foreach ($spellJson as $spellPredicate) {
+            $durability = round($spellPredicate['predicate']['damage'] * $diamondUses);
+            $texture = str_replace('item/', '', $spellPredicate['model']);
+            array_push($spellIcons,
+                array('texture' => $texture, 'item' => 'diamond_axe:' . $durability)
+            );
+        }
+    }
 	
 } catch (Exception $ex) {
 	die($ex->getMessage());
@@ -823,15 +842,14 @@ function printIcon($iconUrl, $title) {
                 <div class="scrollingTab">
                     <div>
                         <div class="title">
-                            There are <?= count($spellIcons) ?> spell icons available in the Magic RP, each is a variant of the diamond axe item.
+                            There are <?= count($spellIcons) ?> spell icons available in the Magic RP, each with a representative vanilla item chosen to represent a specific spell:
                         </div>
                         <ul id="iconList">
                             <?php
                             foreach ($spellIcons as $spellIcon) {
-								if ($spellIcon['durability'] == 0) continue;
-                                $icon = printIcon($texture, $texture);
-                                if (strpos($spellIcon['texture'], 'spell') === FALSE) continue;
-                                echo '<li class="ui-widget-content"><img src="pack/' . $texturePath . '/assets/minecraft/textures/item/' . $spellIcon['texture'] . '.png"> <span class="iconItem">diamond_axe:' . $spellIcon['durability'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
+                                if ($spellIcon['item']) {
+                                    echo '<li class="ui-widget-content"><img src="pack/' . $texturePath . '/assets/minecraft/textures/item/' . $spellIcon['texture'] . '.png"> <span class="iconItem">' . $spellIcon['item'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
+                                }
                             }
                             ?>
                         </ul>
