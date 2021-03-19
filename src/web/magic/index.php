@@ -848,7 +848,7 @@ function printIcon($iconUrl, $title) {
                             <?php
                             foreach ($spellIcons as $spellIcon) {
                                 if ($spellIcon['item']) {
-                                    echo '<li class="ui-widget-content"><img src="pack/' . $texturePath . '/assets/minecraft/textures/item/' . $spellIcon['texture'] . '.png"> <span class="iconItem">' . $spellIcon['item'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
+                                    echo '<li class="ui-widget-content"><img class="icon" src="pack/' . $texturePath . '/assets/minecraft/textures/item/' . $spellIcon['texture'] . '.png"> <span class="iconItem">' . $spellIcon['item'] . '</span><span class="iconName">(' . $spellIcon['texture'] . ')</span></li>';
                                 }
                             }
                             ?>

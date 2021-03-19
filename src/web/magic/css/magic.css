@@ -324,3 +324,9 @@
     right: 24px;
     overflow: auto;
 }
+
+img.icon
+{
+    width: 64px;
+    height: 64px;
+}
