@@ -195,7 +195,7 @@
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "direction" : null,
-          "disguise-map" : null,
+          "disguise_map" : null,
           "disguise_target" : null,
           "docile" : "false",
           "drop_xp" : "0",
@@ -1533,7 +1533,7 @@
         "importance" : 0,
         "name" : "Disguise",
         "parameters" : {
-          "disguise-map" : null
+          "disguise_map" : null
         },
         "short_class" : "Disguise"
       },
@@ -3456,7 +3456,7 @@
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "direction" : null,
-          "disguise-map" : null,
+          "disguise_map" : null,
           "disguise_target" : null,
           "docile" : "false",
           "drop_xp" : "0",
@@ -8035,21 +8035,13 @@
       "name" : "Disguise",
       "type" : "string"
     },
-    "disguise-map" : {
-      "category" : "",
-      "description" : [ "" ],
-      "field" : "disguise",
-      "importance" : 0,
-      "name" : "Disguise",
-      "type" : "map"
-    },
     "disguise_map" : {
       "category" : "",
       "description" : [ "" ],
       "field" : "disguise",
       "importance" : 0,
       "name" : "Disguise",
-      "type" : "map"
+      "type" : "disguise_map"
     },
     "disguise_restricted" : {
       "category" : "base",
@@ -16622,6 +16614,46 @@
         "up" : null
       }
     },
+    "disguise_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "Configuration for a LibsDisguise disguise" ],
+      "key_type" : "string",
+      "name" : "Disguise Configuration",
+      "options" : {
+        "type" : "The type of disguise, normally a mob type or 'player'",
+        "name" : "For player disguises the player to use",
+        "skin" : "For player disguises, to override the player skin",
+        "hide_name" : "For player disguises, to hide the player nameplate",
+        "marker" : "For armor stands",
+        "baseplate" : "For armor stands",
+        "arms" : "For armor stands",
+        "small" : "For armor stands",
+        "material" : "For dropped items",
+        "data" : "For dropped items",
+        "professions" : "For villagers",
+        "baby" : "For baby mobs",
+        "custom_name" : "Give the mob a custom name",
+        "custom_name_visible" : "Show the mob's custom name",
+        "helmet" : "Equip an item",
+        "chestplate" : "Equip an item",
+        "leggings" : "Equip an item",
+        "boots" : "Equip an item",
+        "mainhand" : "Equip an item",
+        "offhand" : "Equip an item",
+        "invisible" : "",
+        "burning" : "",
+        "glowing" : "",
+        "flying" : "",
+        "sneaking" : "",
+        "animations" : "",
+        "sprinting" : "",
+        "swimming" : "",
+        "right_clicking" : "",
+        "powered" : "For creepers",
+        "ignited" : "For creepers"
+      },
+      "value_type" : "boolean"
+    },
     "double" : {
       "class_name" : "java.lang.Double",
       "description" : [ "A large numeric floating-point number" ],
@@ -18517,7 +18549,7 @@
         "dialog_interval" : "2000",
         "dialog_range" : "3.0",
         "disabled_slots" : "0",
-        "disguise-map" : null,
+        "disguise_map" : null,
         "docile" : "false",
         "domestication" : "0",
         "drop_items" : "false",
