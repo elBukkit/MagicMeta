@@ -50,9 +50,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>de.slikey</groupId>
+            <groupId>com.elmakers.mine.bukkit</groupId>
             <artifactId>EffectLib</artifactId>
-            <version>6.5-SNAPSHOT</version>
+            <version>9.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

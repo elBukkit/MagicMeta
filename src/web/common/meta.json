@@ -241,6 +241,7 @@
           "owned" : "true",
           "parameterize_name" : "true",
           "particle" : null,
+          "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
           "prevent_dismount" : "false",
@@ -266,6 +267,7 @@
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
+          "targeting" : null,
           "track_radius" : "128",
           "transformable" : "true",
           "triggers" : null,
@@ -403,6 +405,7 @@
           "otx" : null,
           "oty" : null,
           "otz" : null,
+          "permissions" : null,
           "persist" : "false",
           "pitch_max" : "-90",
           "pitch_min" : "90",
@@ -457,6 +460,7 @@
           "target_min_offset" : "0",
           "target_self" : "false",
           "target_self_timeout" : "0",
+          "targeting" : null,
           "teleport" : "true",
           "tick_actions" : null,
           "tick_effects" : "tick",
@@ -626,7 +630,9 @@
         "examples" : [ "brushelect" ],
         "importance" : 0,
         "name" : "Brush Select",
-        "parameters" : { },
+        "parameters" : {
+          "allow_absorbing" : "true"
+        },
         "short_class" : "BrushSelect"
       },
       "burn" : {
@@ -1074,6 +1080,16 @@
           "variables" : null
         },
         "short_class" : "Command"
+      },
+      "commit" : {
+        "category" : "",
+        "class_name" : "CommitAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Commit",
+        "parameters" : { },
+        "short_class" : "Commit"
       },
       "cone_of_effect" : {
         "category" : "compound",
@@ -1795,6 +1811,7 @@
           "enchantments" : null,
           "item" : null,
           "material" : null,
+          "replace_item" : "false",
           "return_on_finish" : "false",
           "slot" : null,
           "temporary" : "true",
@@ -2343,6 +2360,7 @@
           "name" : null,
           "npc" : "false",
           "offhand" : null,
+          "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
           "prevent_dismount" : "false",
@@ -2360,6 +2378,7 @@
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
+          "targeting" : null,
           "track_radius" : "128.0",
           "transformable" : "true",
           "triggers" : null,
@@ -3150,6 +3169,7 @@
         "importance" : 70,
         "name" : "Selector",
         "parameters" : {
+          "add_options" : null,
           "allow_attribute_reduction" : "false",
           "allow_dropped_items" : "true",
           "apply_lore_to_item" : "false",
@@ -3194,6 +3214,7 @@
           "icon_disabled" : null,
           "item" : null,
           "items" : null,
+          "kit" : null,
           "limit" : "0",
           "lock_class" : null,
           "lock_classes" : null,
@@ -3201,6 +3222,7 @@
           "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
+          "remove_lore" : "false",
           "requirement" : null,
           "requirements" : null,
           "scale" : "1",
@@ -3249,6 +3271,7 @@
         "importance" : 0,
         "name" : "Shop",
         "parameters" : {
+          "add_options" : null,
           "add_sell_shop" : "false",
           "allow_attribute_reduction" : "false",
           "allow_dropped_items" : "true",
@@ -3293,6 +3316,7 @@
           "icon_disabled" : null,
           "item" : null,
           "items" : null,
+          "kit" : null,
           "limit" : "0",
           "lock_class" : null,
           "lock_classes" : null,
@@ -3300,6 +3324,7 @@
           "owner_uuid" : null,
           "placeholder_icon" : null,
           "put_in_hand" : "false",
+          "remove_lore" : "false",
           "requirement" : null,
           "requirements" : null,
           "scale" : "1.0",
@@ -3474,6 +3499,7 @@
           "on_block" : "true",
           "owned" : "true",
           "parameterize_name" : "true",
+          "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
           "prevent_dismount" : "false",
@@ -3496,6 +3522,7 @@
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
+          "targeting" : null,
           "track_radius" : "128",
           "transformable" : "true",
           "triggers" : null,
@@ -4047,6 +4074,7 @@
           "enchantments" : null,
           "item" : null,
           "material" : null,
+          "replace_item" : "false",
           "return_on_finish" : "false",
           "slot" : null,
           "temporary" : "true",
@@ -4208,11 +4236,13 @@
           "effect_type" : "repeating",
           "enable_rotation" : "true",
           "iterations" : "50",
+          "max_angle" : "6.283185307179586",
           "orient" : "false",
           "particle" : "villager_happy",
           "particles" : "20",
           "period" : "2",
           "radius" : "0.4",
+          "reset_circle" : "false",
           "whole_circle" : "false",
           "x_rotation" : "0",
           "x_subtract" : "0",
@@ -4233,10 +4263,14 @@
         "parameters" : {
           "cloud_color" : null,
           "cloud_particle" : "cloud",
+          "cloud_particles" : "50",
           "cloud_size" : "0.7",
+          "cloud_speed" : "0.0",
           "effect_type" : "repeating",
+          "increase_height" : "true",
           "iterations" : "50",
           "main_particle" : "drip_water",
+          "main_particles" : "15",
           "particle_radius" : "0.59999996",
           "period" : "5",
           "y_offset" : "0.8"
@@ -4308,6 +4342,7 @@
           "effect_type" : "repeating",
           "enable_rotation" : "true",
           "iterations" : "200",
+          "orient" : "false",
           "outline_only" : "true",
           "particle" : "flame",
           "particles" : "8",
@@ -4462,15 +4497,23 @@
         "importance" : 0,
         "name" : "Earth",
         "parameters" : {
+          "color_land" : null,
+          "color_ocean" : null,
           "effect_type" : "repeating",
           "iterations" : "200",
           "mountain_height" : "0.5",
           "particle1" : "villager_happy",
           "particle2" : "drip_water",
+          "particle_land" : "villager_happy",
+          "particle_ocean" : "drip_water",
           "particles" : "500",
+          "particles_land" : "3",
+          "particles_ocean" : "1",
           "period" : "5",
           "precision" : "100",
-          "radius" : "1"
+          "radius" : "1",
+          "speed_land" : "0.0",
+          "speed_ocean" : "0.0"
         },
         "short_class" : "Earth"
       },
@@ -4528,7 +4571,8 @@
         "parameters" : {
           "effect_type" : "repeating",
           "iterations" : "600",
-          "particle" : "flame"
+          "particle" : "flame",
+          "particles" : "10"
         },
         "short_class" : "Flame"
       },
@@ -4587,7 +4631,7 @@
         "importance" : 70,
         "name" : "Heart",
         "parameters" : {
-          "compilaction" : "2",
+          "compilation" : "2.0",
           "compress_y_factor_total" : "2",
           "factor_inner_spike" : "0.8",
           "particle" : "crit_magic",
@@ -4714,7 +4758,10 @@
           "length" : "0",
           "particle" : "flame",
           "particles" : "100",
+          "sub_effect_at_end" : null,
+          "sub_effect_at_end_cached" : null,
           "zig_zag_offset" : "0.0,0.1,0",
+          "zig_zag_relative_offset" : "0.0,0.0,0.0",
           "zig_zags" : "10"
         },
         "short_class" : "Line"
@@ -4839,6 +4886,7 @@
           "particle" : "flame",
           "particles" : "50",
           "radius" : "3",
+          "reverse" : "false",
           "sphere" : "false"
         },
         "short_class" : "Shield"
@@ -4898,12 +4946,32 @@
           "effect_type" : "repeating",
           "iterations" : "500",
           "particle" : "spell_mob",
+          "particle_increase" : "0",
           "particles" : "50",
           "radius" : "0.6",
           "radius_increase" : "0",
           "y_offset" : "0"
         },
         "short_class" : "Sphere"
+      },
+      "square" : {
+        "category" : "",
+        "class_name" : "SquareEffect",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Square",
+        "parameters" : {
+          "iterations" : "500",
+          "particle" : "spell_mob",
+          "particle_increase" : "0",
+          "particles" : "50",
+          "radius" : "0.6",
+          "radius_increase" : "0.0",
+          "type" : "repeating",
+          "y_offset" : "0.0"
+        },
+        "short_class" : "Square"
       },
       "star" : {
         "category" : "",
@@ -4960,6 +5028,7 @@
           "cloud_particle" : "cloud",
           "cloud_particles" : "100",
           "cloud_size" : "2.5",
+          "cloud_speed" : "0.0",
           "distance" : "0.375",
           "effect_type" : "repeating",
           "iterations" : "20",
@@ -5185,6 +5254,14 @@
       "name" : "Add Modifiers",
       "type" : "map"
     },
+    "add_options" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "add_options",
+      "importance" : 0,
+      "name" : "Add Options",
+      "type" : "map"
+    },
     "add_sell_shop" : {
       "category" : "",
       "description" : [ "" ],
@@ -5272,6 +5349,14 @@
       "importance" : 0,
       "name" : "All Fire",
       "type" : "string"
+    },
+    "allow_absorbing" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_absorbing",
+      "importance" : 0,
+      "name" : "Allow Absorbing",
+      "type" : "boolean"
     },
     "allow_attribute_reduction" : {
       "category" : "",
@@ -6917,6 +7002,14 @@
       "name" : "Cloud Size",
       "type" : "float"
     },
+    "cloud_speed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cloud_speed",
+      "importance" : 0,
+      "name" : "Cloud Speed",
+      "type" : "float"
+    },
     "color" : {
       "category" : "effects",
       "description" : [ "Can be used to color particles and firework effects" ],
@@ -6965,12 +7058,36 @@
       "name" : "Color Helix",
       "type" : "color"
     },
+    "color_land" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "color_land",
+      "importance" : 0,
+      "name" : "Color Land",
+      "type" : "color"
+    },
+    "color_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "color_list",
+      "importance" : 0,
+      "name" : "Color List",
+      "type" : "list"
+    },
     "color_nucleus" : {
       "category" : "effects",
       "description" : [ "The color used for the particles in the nucleus of the effect" ],
       "field" : "color_nucleus",
       "importance" : 0,
       "name" : "Color Nucleus",
+      "type" : "color"
+    },
+    "color_ocean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "color_ocean",
+      "importance" : 0,
+      "name" : "Color Ocean",
       "type" : "color"
     },
     "color_orbital" : {
@@ -6996,6 +7113,14 @@
       "importance" : 0,
       "name" : "Color Wand",
       "type" : "boolean"
+    },
+    "colors" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "colors",
+      "importance" : 0,
+      "name" : "Colors",
+      "type" : "string"
     },
     "columns" : {
       "category" : "effects",
@@ -7051,6 +7176,14 @@
       "field" : "compilaction",
       "importance" : 0,
       "name" : "Compilaction",
+      "type" : "float"
+    },
+    "compilation" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "compilation",
+      "importance" : 0,
+      "name" : "Compilation",
       "type" : "float"
     },
     "compress_y_factor_total" : {
@@ -9639,6 +9772,14 @@
       "name" : "Immortal",
       "type" : "double"
     },
+    "increase_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "increase_height",
+      "importance" : 0,
+      "name" : "Increase Height",
+      "type" : "boolean"
+    },
     "increment_data" : {
       "category" : "constructor",
       "description" : [ "Increment the data value of blocks while iterating", "This can be used with water or lava to taper the blocks off, lowering their height each iteration" ],
@@ -10143,6 +10284,14 @@
       "name" : "Level Description",
       "type" : "string"
     },
+    "level_spells" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "level_spells",
+      "importance" : 0,
+      "name" : "Level Spells",
+      "type" : "string"
+    },
     "levels" : {
       "category" : "",
       "description" : [ "" ],
@@ -10182,6 +10331,22 @@
       "importance" : 0,
       "name" : "Limit",
       "type" : "integer"
+    },
+    "limit_brushes_to_path" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "limit_brushes_to_path",
+      "importance" : 0,
+      "name" : "Limit Brushes To Path",
+      "type" : "string"
+    },
+    "limit_spells_to_path" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "limit_spells_to_path",
+      "importance" : 0,
+      "name" : "Limit Spells To Path",
+      "type" : "string"
     },
     "line_color" : {
       "category" : "",
@@ -10351,6 +10516,14 @@
       "name" : "Main Particle",
       "type" : "particle"
     },
+    "main_particles" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "main_particles",
+      "importance" : 0,
+      "name" : "Main Particles",
+      "type" : "integer"
+    },
     "mana" : {
       "category" : "wand",
       "description" : [ "The amount of mana this wand currently has", "Can be used in a configuration to make a wand start out with mana, rather than waiting to regenerate" ],
@@ -10470,6 +10643,14 @@
       "importance" : 0,
       "name" : "Max Altitude",
       "type" : "integer"
+    },
+    "max_angle" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_angle",
+      "importance" : 0,
+      "name" : "Max Angle",
+      "type" : "double"
     },
     "max_ascend" : {
       "category" : "",
@@ -10710,6 +10891,14 @@
       "importance" : 0,
       "name" : "Min Health",
       "type" : "double"
+    },
+    "min_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_height",
+      "importance" : 0,
+      "name" : "Min Height",
+      "type" : "integer"
     },
     "min_players" : {
       "category" : "",
@@ -11439,12 +11628,36 @@
       "name" : "Particle Helix",
       "type" : "particle"
     },
+    "particle_increase" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particle_increase",
+      "importance" : 0,
+      "name" : "Particle Increase",
+      "type" : "integer"
+    },
+    "particle_land" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particle_land",
+      "importance" : 0,
+      "name" : "Particle Land",
+      "type" : "particle"
+    },
     "particle_nucleus" : {
       "category" : "effects",
       "description" : [ "The particle to use in the nucleus of this effect" ],
       "field" : "particle_nucleus",
       "importance" : 0,
       "name" : "Particle Nucleus",
+      "type" : "particle"
+    },
+    "particle_ocean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particle_ocean",
+      "importance" : 0,
+      "name" : "Particle Ocean",
       "type" : "particle"
     },
     "particle_offset_x" : {
@@ -11583,12 +11796,28 @@
       "name" : "Particles Helix",
       "type" : "integer"
     },
+    "particles_land" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particles_land",
+      "importance" : 0,
+      "name" : "Particles Land",
+      "type" : "integer"
+    },
     "particles_nucleus" : {
       "category" : "effects",
       "description" : [ "Number of particles to be spawned in the nucleus per iteration" ],
       "field" : "particles_nucleus",
       "importance" : 0,
       "name" : "Particles Nucleus",
+      "type" : "integer"
+    },
+    "particles_ocean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particles_ocean",
+      "importance" : 0,
+      "name" : "Particles Ocean",
       "type" : "integer"
     },
     "particles_orbital" : {
@@ -11718,6 +11947,14 @@
       "importance" : 0,
       "name" : "Permission",
       "type" : "string"
+    },
+    "permissions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "permissions",
+      "importance" : 0,
+      "name" : "Permissions",
+      "type" : "list"
     },
     "persist" : {
       "category" : "",
@@ -12479,6 +12716,14 @@
       "name" : "Remove Effects",
       "type" : "potion_effect_list"
     },
+    "remove_lore" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_lore",
+      "importance" : 0,
+      "name" : "Remove Lore",
+      "type" : "boolean"
+    },
     "remove_modifiers" : {
       "category" : "",
       "description" : [ "" ],
@@ -12581,6 +12826,14 @@
       "field" : "replace",
       "importance" : 0,
       "name" : "Replace",
+      "type" : "boolean"
+    },
+    "replace_item" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replace_item",
+      "importance" : 0,
+      "name" : "Replace Item",
       "type" : "boolean"
     },
     "replacement_item" : {
@@ -12773,6 +13026,14 @@
       "field" : "requires_target",
       "importance" : 0,
       "name" : "Requires Target",
+      "type" : "boolean"
+    },
+    "reset_circle" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "reset_circle",
+      "importance" : 0,
+      "name" : "Reset Circle",
       "type" : "boolean"
     },
     "reset_mana_on_activate" : {
@@ -13631,6 +13892,14 @@
       "name" : "Speed",
       "type" : "double"
     },
+    "speed_land" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "speed_land",
+      "importance" : 0,
+      "name" : "Speed Land",
+      "type" : "float"
+    },
     "speed_max" : {
       "category" : "",
       "description" : [ "" ],
@@ -13646,6 +13915,14 @@
       "importance" : 0,
       "name" : "Speed Min",
       "type" : "double"
+    },
+    "speed_ocean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "speed_ocean",
+      "importance" : 0,
+      "name" : "Speed Ocean",
+      "type" : "float"
     },
     "spell" : {
       "category" : "",
@@ -13926,6 +14203,30 @@
       "importance" : 0,
       "name" : "Strength",
       "type" : "damage_type_map"
+    },
+    "sub_effect" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sub_effect",
+      "importance" : 0,
+      "name" : "Sub Effect",
+      "type" : "configuration_section"
+    },
+    "sub_effect_at_end" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sub_effect_at_end",
+      "importance" : 0,
+      "name" : "Sub Effect At End",
+      "type" : "configuration_section"
+    },
+    "sub_effect_at_end_cached" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sub_effect_at_end_cached",
+      "importance" : 0,
+      "name" : "Sub Effect At End Cached",
+      "type" : "configuration_section"
     },
     "sub_message" : {
       "category" : "",
@@ -14422,6 +14723,14 @@
       "importance" : 0,
       "name" : "Targetable",
       "type" : "string"
+    },
+    "targeting" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "targeting",
+      "importance" : 0,
+      "name" : "Targeting",
+      "type" : "map"
     },
     "teleport" : {
       "category" : "",
@@ -15857,6 +16166,14 @@
       "name" : "Zig Zag Offset",
       "type" : "vector"
     },
+    "zig_zag_relative_offset" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "zig_zag_relative_offset",
+      "importance" : 0,
+      "name" : "Zig Zag Relative Offset",
+      "type" : "vector"
+    },
     "zig_zags" : {
       "category" : "effects",
       "description" : [ "Number of zig zags in the line" ],
@@ -16208,6 +16525,12 @@
         "stop_on_success" : "false"
       }
     },
+    "configuration_section" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Configuration Section",
+      "options" : { }
+    },
     "cost_map" : {
       "class_name" : "java.util.Map",
       "description" : [ "A map of costs" ],
@@ -16492,6 +16815,8 @@
         "asynchronous" : "true",
         "auto_orient" : "false",
         "color" : null,
+        "color_list" : null,
+        "colors" : null,
         "delay_ticks" : "0",
         "disappear_with_origin_entity" : "false",
         "disappear_with_target_entity" : "false",
@@ -16515,6 +16840,7 @@
         "pitch_offset" : "0",
         "probability" : "1.0",
         "relative_offset" : null,
+        "sub_effect" : null,
         "target_offset" : null,
         "target_players" : null,
         "type" : null,
@@ -16941,14 +17267,19 @@
       "name" : "Kit Properties",
       "parameters" : {
         "cooldown" : "0",
+        "description" : "",
+        "icon" : null,
+        "icon_disabled" : null,
         "items" : null,
         "keep" : "false",
+        "name" : "",
         "partial" : "false",
         "remove" : "false",
         "requirement" : null,
         "requirements" : null,
         "starter" : "false",
-        "welcome_wand" : "false"
+        "welcome_wand" : "false",
+        "worth" : "0.0"
       }
     },
     "list" : {
@@ -18241,6 +18572,7 @@
         "owner" : null,
         "parrot_variant" : null,
         "particle" : null,
+        "permissions" : null,
         "persist" : "false",
         "phase" : null,
         "potion_effects" : null,
@@ -18268,6 +18600,7 @@
         "strength" : null,
         "tags" : null,
         "tamed" : "false",
+        "targeting" : null,
         "track_radius" : "128",
         "transformable" : "true",
         "triggers" : null,
@@ -18693,11 +19026,13 @@
         "icon_disabled" : null,
         "item" : null,
         "items" : null,
+        "kit" : null,
         "limit" : "0",
         "lock_class" : null,
         "lock_classes" : null,
         "placeholder_icon" : null,
         "put_in_hand" : "true",
+        "remove_lore" : "false",
         "requirement" : null,
         "requirements" : null,
         "scale" : "1.0",
@@ -20280,6 +20615,9 @@
         "keep" : "false",
         "left_click" : "none",
         "left_click_sneak" : null,
+        "level_spells" : null,
+        "limit_brushes_to_path" : null,
+        "limit_spells_to_path" : null,
         "locked" : "false",
         "mana" : "0",
         "mana_max" : "0",
@@ -20370,6 +20708,7 @@
         "entity_spawn" : null,
         "environment" : null,
         "max_height" : "0",
+        "min_height" : "0",
         "resource_pack" : null,
         "seed" : "-7344952961634999273",
         "synchronize_time" : "true",
