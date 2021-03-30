@@ -329,6 +329,9 @@ function Hints(fileType) {
                     } else {
                         classType = '';
                         values = keyType.options;
+                        if (values == null || values.length == 0) {
+                            values = parent.type.options;
+                        }
                     }
                 }
             } else if (parent.isList) {
