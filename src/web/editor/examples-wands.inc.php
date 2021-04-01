@@ -19,7 +19,34 @@ mywand:
   mana: 100
   # The wand regenerates this amount of mana every second
   mana_regeneration: 10
+  # Give the wand some spells to cast
+  spells:
+  - missile
+  - blink
+  - fling
+  - blast
+</textarea>
+    <textarea id="templateBasic" class="template" data-label="Path Wand"># This is the key name of this wand
+# It must be unique across the server, and is used in commands such as /wand and /mgive to refer to this wand.
+mywand:
+  # Name and description may be added here and will appear in lore for this wand.
+  name: My New Wand
+  description: Basic Wand for Basic Wizard
+  # Inherit from the base_wand template to get basic wand functionality
+  # Such as spell inventory and key bindings
+  # Other options include: basic_wand, base_bound, base_magic
+  inherit: base_wand
+  # Choose an icon, this is the item the wand will appear as
+  icon: stick{CustomModelData:18001}
+  # Give the wand some mana for casting
+  mana_max: 100
+  mana: 100
+  # The wand regenerates this amount of mana every second
+  mana_regeneration: 10
   # Allow this wand to progress along a path
+  # The wand will track path and spell progress itself, if the player loses
+  # the wand item their progress is lost.
+  # Make a class wand instead if this is not what you want!
   path: beginner
   # Give the wand some spells to cast
   spells:
@@ -60,8 +87,6 @@ classwand:
   mana: 100
   # The wand regenerates this amount of mana every second
   mana_regeneration: 10
-  # Allow this wand to progress along a path
-  path: battle
   spells:
   - arrow
   - missile
@@ -74,8 +99,6 @@ classwand:
   # and fires spells when loosing an arrow
   template: magic_bow
   icon: bow{CustomModelData:18001}
-  # Allow this wand to progress along a path
-  path: archer
   spells:
   - arrow_regular
   - arrow_bomb
