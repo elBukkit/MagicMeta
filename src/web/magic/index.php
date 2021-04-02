@@ -864,6 +864,7 @@ function printIcon($iconUrl, $title) {
                         </div>
                         <ul>
                             <li><a href="?example=survival">Survival (survival, The default example)</a></li>
+                            <li><a href="?example=engineering">Engineering (engineering)</a></li>
                             <li><a href="?example=potter">Harry Potter (potter)</a></li>
                             <li><a href="?example=stars">Star Wars (stars)</a></li>
                             <li><a href="?example=bending">Avatar Bending (bending)</a></li>
