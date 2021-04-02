@@ -13546,7 +13546,7 @@
       "field" : "slot",
       "importance" : 0,
       "name" : "Slot",
-      "type" : "string"
+      "type" : "inventory_slot"
     },
     "slots" : {
       "category" : "",
@@ -13562,7 +13562,7 @@
       "field" : "slots",
       "importance" : 0,
       "name" : "Slots",
-      "type" : "list"
+      "type" : "inventory_slot_list"
     },
     "slotted" : {
       "category" : "",
@@ -16188,6 +16188,26 @@
       "item_type" : "action_parameters",
       "name" : "Action List",
       "options" : { }
+    },
+    "inventory_slot_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A a list of inventory slots" ],
+      "item_type" : "inventory_slot",
+      "name" : "Inventory Slot List",
+      "options" : { }
+    },
+    "inventory_slot" : {
+      "class_name" : "com.elmakers.mine.bukkit.item.InventorySlot",
+      "description" : [ "A specific inventory slot" ],
+      "name" : "Inventory Slot",
+      "options" : {
+        "helmet" : null,
+        "chestplate" : null,
+        "leggings" : null,
+        "boots" : null,
+        "offhand" : null,
+        "mainhand" : null
+      }
     },
     "action_parameters" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
