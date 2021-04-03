@@ -254,6 +254,7 @@
           "radius_per_tick" : "0",
           "reapplication_delay" : "0",
           "reason" : null,
+          "register_by_name" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -429,6 +430,7 @@
           "reflect_target_caster" : "true",
           "reflect_track_range" : "0",
           "reflect_track_target" : "false",
+          "register_by_name" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "reorient" : "false",
@@ -503,9 +505,11 @@
         "name" : "Ascend",
         "parameters" : {
           "keep_velocity" : "false",
+          "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
+          "teleport_vehicle" : "true",
           "vertical_range" : "8"
         },
         "short_class" : "Ascend"
@@ -769,6 +773,8 @@
           "target_snap" : "0",
           "target_use_movement_direction" : "false",
           "target_yaw_offset" : "0",
+          "use_parent_source_entity" : "false",
+          "use_parent_target_entity" : "false",
           "use_target_mage" : "false"
         },
         "short_class" : "ChangeContext"
@@ -805,11 +811,13 @@
         "parameters" : {
           "keep_velocity" : "false",
           "load" : "true",
+          "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
           "scale" : "1.0",
           "target_world" : null,
+          "teleport_vehicle" : "true",
           "vertical_range" : "8",
           "worlds" : null
         },
@@ -1403,6 +1411,7 @@
           "magic_damage" : "true",
           "magic_entity_damage" : "true",
           "min_damage" : "0.0",
+          "no_damage_ticks" : "0",
           "percentage" : "0",
           "player_damage" : "1"
         },
@@ -1455,9 +1464,11 @@
         "name" : "Descend",
         "parameters" : {
           "keep_velocity" : "false",
+          "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
+          "teleport_vehicle" : "true",
           "vertical_range" : "8"
         },
         "short_class" : "Descend"
@@ -2369,6 +2380,7 @@
           "protected" : "false",
           "protection" : null,
           "reason" : null,
+          "register_by_name" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "show_name" : "false",
@@ -2927,11 +2939,13 @@
           "keep_velocity" : "false",
           "marker_count" : "1",
           "marker_key" : "recall_marker",
+          "prevent_fall" : "true",
           "protection_duration" : "0",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
           "teleport" : "true",
+          "teleport_vehicle" : "true",
           "title_key" : "title",
           "unlock_key" : "recall_warps",
           "vertical_range" : "8",
@@ -3053,9 +3067,29 @@
         "parameters" : {
           "close_fov" : "0.5",
           "close_range" : "1",
+          "distance_weight" : "1.0",
+          "entity_weight" : "3",
           "fov" : "0.3",
+          "fov_weight" : "4.0",
           "hitbox" : "false",
-          "range" : "32"
+          "hitbox_block_size" : "0.0",
+          "hitbox_size" : "0.0",
+          "ignore_blocks" : "false",
+          "npc_weight" : "-1",
+          "otdx" : null,
+          "otdy" : null,
+          "otdz" : null,
+          "otworld" : null,
+          "otx" : null,
+          "oty" : null,
+          "otz" : null,
+          "player_weight" : "4",
+          "range" : "32",
+          "range_padding" : "1.0",
+          "target" : null,
+          "target_breakable_depth" : "2",
+          "target_min_offset" : "0",
+          "tmo" : "0"
         },
         "short_class" : "Retarget"
       },
@@ -3384,6 +3418,7 @@
           "magic_damage" : "true",
           "magic_entity_damage" : "true",
           "min_damage" : "0.0",
+          "no_damage_ticks" : "0",
           "percentage" : "0",
           "player_damage" : "1",
           "skeletons" : "true"
@@ -3508,6 +3543,7 @@
           "protected" : "false",
           "protection" : null,
           "reason" : null,
+          "register_by_name" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -3759,9 +3795,11 @@
           "keep_velocity" : "false",
           "ledge_range" : "2",
           "passthrough_range" : "4",
+          "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
+          "teleport_vehicle" : "true",
           "use_target_location" : "false",
           "vertical_range" : "8"
         },
@@ -4054,9 +4092,11 @@
         "name" : "Warp",
         "parameters" : {
           "keep_velocity" : "false",
+          "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
           "safe" : "true",
+          "teleport_vehicle" : "true",
           "vertical_range" : "8",
           "warp" : null
         },
@@ -12172,6 +12212,14 @@
       "name" : "Prevent Dismount",
       "type" : "boolean"
     },
+    "prevent_fall" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "prevent_fall",
+      "importance" : 0,
+      "name" : "Prevent Fall",
+      "type" : "boolean"
+    },
     "prevent_melee" : {
       "category" : "",
       "description" : [ "" ],
@@ -12666,6 +12714,14 @@
       "field" : "refund_on_no_target",
       "importance" : 0,
       "name" : "Refund On No Target",
+      "type" : "boolean"
+    },
+    "register_by_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "register_by_name",
+      "importance" : 0,
+      "name" : "Register By Name",
       "type" : "boolean"
     },
     "relative_offset" : {
@@ -14732,6 +14788,14 @@
       "name" : "Teleport",
       "type" : "boolean"
     },
+    "teleport_vehicle" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "teleport_vehicle",
+      "importance" : 0,
+      "name" : "Teleport Vehicle",
+      "type" : "boolean"
+    },
     "template" : {
       "category" : "wand",
       "description" : [ "Used internally in item data to say which template a wand was created from", "Do not set this in configurations" ],
@@ -15436,6 +15500,22 @@
       "field" : "use_npc_name",
       "importance" : 0,
       "name" : "Use Npc Name",
+      "type" : "boolean"
+    },
+    "use_parent_source_entity" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_parent_source_entity",
+      "importance" : 0,
+      "name" : "Use Parent Source Entity",
+      "type" : "boolean"
+    },
+    "use_parent_target_entity" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_parent_target_entity",
+      "importance" : 0,
+      "name" : "Use Parent Target Entity",
       "type" : "boolean"
     },
     "use_sp" : {
@@ -16189,26 +16269,6 @@
       "name" : "Action List",
       "options" : { }
     },
-    "inventory_slot_list" : {
-      "class_name" : "java.util.List",
-      "description" : [ "A a list of inventory slots" ],
-      "item_type" : "inventory_slot",
-      "name" : "Inventory Slot List",
-      "options" : { }
-    },
-    "inventory_slot" : {
-      "class_name" : "com.elmakers.mine.bukkit.item.InventorySlot",
-      "description" : [ "A specific inventory slot" ],
-      "name" : "Inventory Slot",
-      "options" : {
-        "helmet" : null,
-        "chestplate" : null,
-        "leggings" : null,
-        "boots" : null,
-        "offhand" : null,
-        "mainhand" : null
-      }
-    },
     "action_parameters" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "classed" : "actions",
@@ -16640,37 +16700,37 @@
       "key_type" : "string",
       "name" : "Disguise Configuration",
       "options" : {
-        "type" : "The type of disguise, normally a mob type or 'player'",
-        "name" : "For player disguises the player to use",
-        "skin" : "For player disguises, to override the player skin",
-        "hide_name" : "For player disguises, to hide the player nameplate",
-        "marker" : "For armor stands",
-        "baseplate" : "For armor stands",
+        "animations" : "",
         "arms" : "For armor stands",
-        "small" : "For armor stands",
-        "material" : "For dropped items",
-        "data" : "For dropped items",
-        "professions" : "For villagers",
         "baby" : "For baby mobs",
+        "baseplate" : "For armor stands",
+        "boots" : "Equip an item",
+        "burning" : "",
+        "chestplate" : "Equip an item",
         "custom_name" : "Give the mob a custom name",
         "custom_name_visible" : "Show the mob's custom name",
-        "helmet" : "Equip an item",
-        "chestplate" : "Equip an item",
-        "leggings" : "Equip an item",
-        "boots" : "Equip an item",
-        "mainhand" : "Equip an item",
-        "offhand" : "Equip an item",
-        "invisible" : "",
-        "burning" : "",
-        "glowing" : "",
+        "data" : "For dropped items",
         "flying" : "",
+        "glowing" : "",
+        "helmet" : "Equip an item",
+        "hide_name" : "For player disguises, to hide the player nameplate",
+        "ignited" : "For creepers",
+        "invisible" : "",
+        "leggings" : "Equip an item",
+        "mainhand" : "Equip an item",
+        "marker" : "For armor stands",
+        "material" : "For dropped items",
+        "name" : "For player disguises the player to use",
+        "offhand" : "Equip an item",
+        "powered" : "For creepers",
+        "professions" : "For villagers",
+        "right_clicking" : "",
+        "skin" : "For player disguises, to override the player skin",
+        "small" : "For armor stands",
         "sneaking" : "",
-        "animations" : "",
         "sprinting" : "",
         "swimming" : "",
-        "right_clicking" : "",
-        "powered" : "For creepers",
-        "ignited" : "For creepers"
+        "type" : "The type of disguise, normally a mob type or 'player'"
       },
       "value_type" : "boolean"
     },
@@ -17312,6 +17372,31 @@
         "1" : null,
         "100" : null
       }
+    },
+    "inventory_slot" : {
+      "class_name" : "com.elmakers.mine.bukkit.item.InventorySlot",
+      "description" : [ "A specific inventory slot" ],
+      "name" : "Inventory Slot",
+      "options" : {
+        "boots" : null,
+        "chestplate" : null,
+        "free" : null,
+        "helmet" : null,
+        "inventory" : null,
+        "leggings" : null,
+        "main_hand" : null,
+        "mainhand" : null,
+        "off_hand" : null,
+        "offhand" : null,
+        "right_arm" : null
+      }
+    },
+    "inventory_slot_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A a list of inventory slots" ],
+      "item_type" : "inventory_slot",
+      "name" : "Inventory Slot List",
+      "options" : { }
     },
     "kit_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
@@ -18639,6 +18724,7 @@
         "radius_on_use" : "0.0",
         "radius_per_tick" : "0.0",
         "reapplication_delay" : "0",
+        "register_by_name" : "false",
         "remove_mounts" : null,
         "remove_when_far_away" : "false",
         "saddle" : null,
