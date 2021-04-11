@@ -1,7 +1,7 @@
 <?php ?>
 
 <div id="defaultTemplates" style="display: none">
-    <textarea id="templateBlank" class="template" data-label="Blank Class"></textarea>
+    <textarea id="templateBlank" class="template" data-label="Blank Automaton"></textarea>
     <textarea id="templateBasic" class="template" data-label="Mob Spawner"># This is the key name of this automaton
 # It must be unique across the server, and is used in configs to refer to this automaton
 #
@@ -35,7 +35,7 @@ myspawner:
       mega_spider: 30
 
 </textarea>
-    <textarea id="templateFound" class="template" data-label="Found"># This is the key name of this automaton
+    <textarea id="templateFountain" class="template" data-label="Fountain"># This is the key name of this automaton
 # It must be unique across the server, and is used in configs to refer to this automaton
 #
 # An automaton assigns some behavior to a specific block in the world.
