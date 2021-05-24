@@ -17,9 +17,9 @@ function getMetadata($legacyIcons)
     flock($lockFile, LOCK_EX);
     try {
         if (filesize($cacheFile) > 0) {
-            $dataCreated = filemtime('meta.json');
+            $dataCreated = filemtime(dirname(__FILE__) . '/meta.json');
             $cacheCreated = filemtime($cacheFile);
-            $codeChanged = filemtime('meta.php');
+            $codeChanged = filemtime(dirname(__FILE__) . '/meta.php');
             if ($cacheCreated >= $codeChanged && $cacheCreated >= $dataCreated) {
                 return file_get_contents($cacheFile);
             }
