@@ -15,6 +15,8 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 
 public class DummyPlugin implements Plugin {
+    private final static Logger LOGGER = Logger.getLogger(DummyPlugin.class.getName());
+
     @Override
     public File getDataFolder() {
         return null;
@@ -102,7 +104,7 @@ public class DummyPlugin implements Plugin {
 
     @Override
     public Logger getLogger() {
-        return null;
+        return LOGGER;
     }
 
     @Override
