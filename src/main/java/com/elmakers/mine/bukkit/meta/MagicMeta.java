@@ -31,12 +31,14 @@ import com.elmakers.mine.bukkit.magic.MageClass;
 import com.elmakers.mine.bukkit.magic.MageModifier;
 import com.elmakers.mine.bukkit.magic.MagicController;
 import com.elmakers.mine.bukkit.magic.MagicRecipe;
+import com.elmakers.mine.bukkit.meta.platform.Platform;
 import com.elmakers.mine.bukkit.spell.ActionSpell;
 import com.elmakers.mine.bukkit.spell.BaseSpell;
 import com.elmakers.mine.bukkit.spell.BlockSpell;
 import com.elmakers.mine.bukkit.spell.BrushSpell;
 import com.elmakers.mine.bukkit.spell.TargetingSpell;
 import com.elmakers.mine.bukkit.spell.UndoableSpell;
+import com.elmakers.mine.bukkit.utility.CompatibilityLib;
 import com.elmakers.mine.bukkit.wand.WandProperties;
 import com.elmakers.mine.bukkit.world.MagicWorld;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -61,6 +63,9 @@ public class MagicMeta {
             System.out.println("Usage: MagicMeta <meta.json>");
             return;
         }
+        DummyPlugin plugin = new DummyPlugin();
+        Platform platform = new Platform(plugin, plugin.getLogger());
+        CompatibilityLib.initialize(platform);
 
         String fileName = args[0];
         boolean regenerate = (args.length > 1 && args[1].equals("--regenerate"));
