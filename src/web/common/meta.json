@@ -190,6 +190,7 @@
           "cast_requires_target" : "true",
           "chestplate" : null,
           "color" : null,
+          "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
           "dialog_interval" : "2000",
@@ -217,6 +218,7 @@
           "interact_commands" : null,
           "interact_costs" : null,
           "interact_permission" : null,
+          "interact_requires_owner" : "false",
           "interact_spell" : null,
           "interact_spell_parameters" : null,
           "interact_spell_source" : "player",
@@ -232,6 +234,7 @@
           "mob_attributes" : null,
           "mob_cast_interval" : "0",
           "mob_interval" : "0",
+          "model" : null,
           "modifiers" : null,
           "mount" : null,
           "name" : null,
@@ -247,6 +250,7 @@
           "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "prevent_teleport" : "false",
           "protected" : "false",
           "protection" : null,
           "radius" : "5",
@@ -326,6 +330,7 @@
           "close_fov" : "0.5",
           "close_range" : "0",
           "color" : null,
+          "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
           "dialog_interval" : "2000",
@@ -366,6 +371,7 @@
           "interact_commands" : null,
           "interact_costs" : null,
           "interact_permission" : null,
+          "interact_requires_owner" : "false",
           "interact_spell" : null,
           "interact_spell_parameters" : null,
           "interact_spell_source" : "player",
@@ -388,6 +394,7 @@
           "min_entity_range" : "0",
           "miss_actions" : null,
           "miss_effects" : "miss",
+          "model" : null,
           "modifiers" : null,
           "mount" : null,
           "mount_wand" : "false",
@@ -416,6 +423,7 @@
           "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "prevent_teleport" : "false",
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "projectile_follow_player" : "false",
@@ -555,9 +563,11 @@
         "name" : "Book",
         "parameters" : {
           "author" : "mage",
+          "book_item" : null,
           "give_book" : "false",
           "pages" : null,
-          "title" : ""
+          "title" : "",
+          "virtual_book" : "true"
         },
         "short_class" : "Book"
       },
@@ -774,7 +784,9 @@
           "target_use_movement_direction" : "false",
           "target_yaw_offset" : "0",
           "use_parent_source_entity" : "false",
+          "use_parent_source_location" : "false",
           "use_parent_target_entity" : "false",
+          "use_parent_target_location" : "false",
           "use_target_mage" : "false"
         },
         "short_class" : "ChangeContext"
@@ -2263,6 +2275,22 @@
         },
         "short_class" : "Modifier"
       },
+      "modify_attribute" : {
+        "category" : "",
+        "class_name" : "ModifyAttributeAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Modify Attribute",
+        "parameters" : {
+          "attribute" : null,
+          "bypass_undo" : "false",
+          "modify_target" : "player",
+          "value" : "0.0",
+          "value_double" : "0.0"
+        },
+        "short_class" : "ModifyAttribute"
+      },
       "modify_block" : {
         "category" : "construction",
         "class_name" : "ModifyBlockAction",
@@ -2328,6 +2356,7 @@
           "cast_requires_target" : "true",
           "chestplate" : null,
           "color" : null,
+          "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
           "dialog_interval" : "2000",
@@ -2352,6 +2381,7 @@
           "interact_commands" : null,
           "interact_costs" : null,
           "interact_permission" : null,
+          "interact_requires_owner" : "false",
           "interact_spell" : null,
           "interact_spell_parameters" : null,
           "interact_spell_source" : "player",
@@ -2366,9 +2396,11 @@
           "loot" : "false",
           "mage" : null,
           "max_health" : "1.0",
+          "model" : null,
           "modifiers" : null,
           "mount" : null,
           "name" : null,
+          "no_drops" : "false",
           "npc" : "false",
           "offhand" : null,
           "permissions" : null,
@@ -2377,6 +2409,7 @@
           "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "prevent_teleport" : "false",
           "protected" : "false",
           "protection" : null,
           "reason" : null,
@@ -2674,6 +2707,7 @@
         "importance" : 0,
         "name" : "Move Block",
         "parameters" : {
+          "clear_target" : "true",
           "offset" : null,
           "set_target" : "false"
         },
@@ -2945,6 +2979,7 @@
           "require_exit" : "true",
           "safe" : "true",
           "teleport" : "true",
+          "teleport_target" : "false",
           "teleport_vehicle" : "true",
           "title_key" : "title",
           "unlock_key" : "recall_warps",
@@ -3322,6 +3357,7 @@
           "cast_for_tags" : null,
           "cast_spell" : null,
           "cast_spell_parameters" : null,
+          "check_max_spells" : "false",
           "chest_location" : null,
           "command" : null,
           "command_source" : null,
@@ -3486,6 +3522,7 @@
           "cast_requires_target" : "true",
           "chestplate" : null,
           "color" : null,
+          "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
           "dialog_interval" : "2000",
@@ -3511,6 +3548,7 @@
           "interact_commands" : null,
           "interact_costs" : null,
           "interact_permission" : null,
+          "interact_requires_owner" : "false",
           "interact_spell" : null,
           "interact_spell_parameters" : null,
           "interact_spell_source" : "player",
@@ -3526,6 +3564,7 @@
           "mob_attributes" : null,
           "mob_cast_interval" : "0",
           "mob_interval" : "0",
+          "model" : null,
           "modifiers" : null,
           "mount" : null,
           "name" : null,
@@ -3540,6 +3579,7 @@
           "prevent_dismount" : "false",
           "prevent_melee" : "false",
           "prevent_projectiles" : "false",
+          "prevent_teleport" : "false",
           "protected" : "false",
           "protection" : null,
           "reason" : null,
@@ -3767,6 +3807,7 @@
         "name" : "Take Item",
         "parameters" : {
           "display_name" : null,
+          "full_stack" : "true",
           "give_to_caster" : "true",
           "item" : ""
         },
@@ -5430,6 +5471,14 @@
       "name" : "Allow Caster",
       "type" : "boolean"
     },
+    "allow_container_copy" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_container_copy",
+      "importance" : 0,
+      "name" : "Allow Container Copy",
+      "type" : "string"
+    },
     "allow_cross_world" : {
       "category" : "",
       "description" : [ "" ],
@@ -5845,6 +5894,14 @@
       "importance" : 0,
       "name" : "Arrow Damage",
       "type" : "double"
+    },
+    "art" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "art",
+      "importance" : 0,
+      "name" : "Art",
+      "type" : "string"
     },
     "as_percentages" : {
       "category" : "",
@@ -6279,6 +6336,14 @@
       "name" : "Body Transform",
       "type" : "string"
     },
+    "book_item" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "book_item",
+      "importance" : 0,
+      "name" : "Book Item",
+      "type" : "string"
+    },
     "boostable" : {
       "category" : "wand",
       "description" : [ "Set to false to make this wand ignore mana boosts from magic armor" ],
@@ -6326,6 +6391,14 @@
       "importance" : 100,
       "name" : "Bound",
       "type" : "boolean"
+    },
+    "bound_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bound_name",
+      "importance" : 0,
+      "name" : "Bound Name",
+      "type" : "string"
     },
     "bp" : {
       "alias" : "bypass_pvp",
@@ -6609,6 +6682,14 @@
       "name" : "Cancel On Damage",
       "type" : "double"
     },
+    "cancel_on_damage_boolean" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "cancel_on_damage",
+      "importance" : 0,
+      "name" : "Cancel On Damage",
+      "type" : "boolean"
+    },
     "cancel_on_deactivate" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -6872,6 +6953,14 @@
       "field" : "check_indestructible",
       "importance" : 0,
       "name" : "Check Indestructible",
+      "type" : "boolean"
+    },
+    "check_max_spells" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "check_max_spells",
+      "importance" : 0,
+      "name" : "Check Max Spells",
       "type" : "boolean"
     },
     "check_permission" : {
@@ -7169,6 +7258,14 @@
       "importance" : 0,
       "name" : "Columns",
       "type" : "integer"
+    },
+    "combustible" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "combustible",
+      "importance" : 0,
+      "name" : "Combustible",
+      "type" : "boolean"
     },
     "command" : {
       "category" : "",
@@ -8867,6 +8964,14 @@
       "name" : "Faces",
       "type" : "faces_list"
     },
+    "facing" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "facing",
+      "importance" : 0,
+      "name" : "Facing",
+      "type" : "string"
+    },
     "factor_inner_spike" : {
       "category" : "",
       "description" : [ "Defines the size of the that inner sting  \\/" ],
@@ -9217,6 +9322,14 @@
       "field" : "full_health",
       "importance" : 0,
       "name" : "Full Health",
+      "type" : "boolean"
+    },
+    "full_stack" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "full_stack",
+      "importance" : 0,
+      "name" : "Full Stack",
       "type" : "boolean"
     },
     "fuse" : {
@@ -9899,6 +10012,14 @@
       "importance" : 0,
       "name" : "Interact Permission",
       "type" : "string"
+    },
+    "interact_requires_owner" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "interact_requires_owner",
+      "importance" : 0,
+      "name" : "Interact Requires Owner",
+      "type" : "boolean"
     },
     "interact_spell" : {
       "category" : "entity",
@@ -10796,6 +10917,14 @@
       "name" : "Max Speed",
       "type" : "double"
     },
+    "max_spells" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_spells",
+      "importance" : 0,
+      "name" : "Max Spells",
+      "type" : "string"
+    },
     "max_steps" : {
       "category" : "",
       "description" : [ "" ],
@@ -11028,6 +11157,14 @@
       "name" : "Mode",
       "type" : "wand_mode"
     },
+    "model" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "model",
+      "importance" : 0,
+      "name" : "Model",
+      "type" : "map"
+    },
     "modifiable" : {
       "category" : "construction",
       "description" : [ "What blocks this spell can modify" ],
@@ -11179,6 +11316,14 @@
       "importance" : 0,
       "name" : "No Damage Ticks",
       "type" : "integer"
+    },
+    "no_drops" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "no_drops",
+      "importance" : 0,
+      "name" : "No Drops",
+      "type" : "boolean"
     },
     "no_target" : {
       "category" : "",
@@ -12242,6 +12387,14 @@
       "field" : "prevent_projectiles",
       "importance" : 0,
       "name" : "Prevent Projectiles",
+      "type" : "boolean"
+    },
+    "prevent_teleport" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "prevent_teleport",
+      "importance" : 0,
+      "name" : "Prevent Teleport",
       "type" : "boolean"
     },
     "price" : {
@@ -14596,6 +14749,14 @@
       "name" : "Target Other Blocks",
       "type" : "boolean"
     },
+    "target_permission" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "target_permission",
+      "importance" : 0,
+      "name" : "Target Permission",
+      "type" : "string"
+    },
     "target_pet" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -14650,6 +14811,14 @@
       "field" : "target_self",
       "importance" : 100,
       "name" : "Target Self",
+      "type" : "boolean"
+    },
+    "target_self_requires_pvp" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "target_self_requires_pvp",
+      "importance" : 0,
+      "name" : "Target Self Requires Pvp",
       "type" : "boolean"
     },
     "target_self_timeout" : {
@@ -14786,6 +14955,14 @@
       "field" : "teleport",
       "importance" : 0,
       "name" : "Teleport",
+      "type" : "boolean"
+    },
+    "teleport_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "teleport_target",
+      "importance" : 0,
+      "name" : "Teleport Target",
       "type" : "boolean"
     },
     "teleport_vehicle" : {
@@ -15510,12 +15687,28 @@
       "name" : "Use Parent Source Entity",
       "type" : "boolean"
     },
+    "use_parent_source_location" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_parent_source_location",
+      "importance" : 0,
+      "name" : "Use Parent Source Location",
+      "type" : "boolean"
+    },
     "use_parent_target_entity" : {
       "category" : "",
       "description" : [ "" ],
       "field" : "use_parent_target_entity",
       "importance" : 0,
       "name" : "Use Parent Target Entity",
+      "type" : "boolean"
+    },
+    "use_parent_target_location" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_parent_target_location",
+      "importance" : 0,
+      "name" : "Use Parent Target Location",
       "type" : "boolean"
     },
     "use_sp" : {
@@ -15613,6 +15806,14 @@
       "importance" : 0,
       "name" : "Value",
       "type" : "string"
+    },
+    "value_double" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "value",
+      "importance" : 0,
+      "name" : "Value",
+      "type" : "double"
     },
     "vanish" : {
       "category" : "",
@@ -15757,6 +15958,14 @@
       "importance" : 0,
       "name" : "Villager Profession",
       "type" : "villager_profession"
+    },
+    "virtual_book" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "virtual_book",
+      "importance" : 0,
+      "name" : "Virtual Book",
+      "type" : "boolean"
     },
     "visibility" : {
       "category" : "",
@@ -16535,6 +16744,7 @@
       "description" : [ "" ],
       "name" : "Class Properties",
       "parameters" : {
+        "allow_container_copy" : null,
         "attributes" : null,
         "brush_inventory" : null,
         "brushes" : null,
@@ -16556,6 +16766,7 @@
         "mana_per_damage" : null,
         "mana_regeneration" : null,
         "mana_regeneration_boost" : null,
+        "max_spells" : null,
         "overrides" : null,
         "path" : null,
         "potion_effects" : null,
@@ -18634,6 +18845,7 @@
         "angry" : "false",
         "armor" : null,
         "arms" : "false",
+        "art" : null,
         "baby" : "false",
         "base_potion_type" : null,
         "baseplate" : "true",
@@ -18648,6 +18860,7 @@
         "cat_type" : null,
         "chestplate" : null,
         "color" : null,
+        "combustible" : "true",
         "crouching" : "false",
         "default_drops" : "true",
         "dialog" : null,
@@ -18664,6 +18877,7 @@
         "duration" : "2000",
         "duration_on_use" : "0",
         "entity_attributes" : null,
+        "facing" : null,
         "fox_type" : null,
         "gravity" : "true",
         "gravity_boolean" : "true",
@@ -18680,6 +18894,7 @@
         "interact_commands" : null,
         "interact_costs" : null,
         "interact_permission" : null,
+        "interact_requires_owner" : "false",
         "interact_spell" : null,
         "interact_spell_parameters" : null,
         "interact_spell_source" : "player",
@@ -18702,6 +18917,7 @@
         "mob_cast_interval" : "0",
         "mob_interval" : "0",
         "mob_name" : null,
+        "model" : null,
         "modifiers" : null,
         "mount" : null,
         "npc" : "false",
@@ -18717,6 +18933,7 @@
         "prevent_dismount" : "false",
         "prevent_melee" : "false",
         "prevent_projectiles" : "false",
+        "prevent_teleport" : "false",
         "protected" : "false",
         "protection" : null,
         "rabbit_type" : null,
@@ -18727,6 +18944,7 @@
         "register_by_name" : "false",
         "remove_mounts" : null,
         "remove_when_far_away" : "false",
+        "rotation" : null,
         "saddle" : null,
         "second_trusted" : null,
         "show_name" : "false",
@@ -18769,6 +18987,7 @@
       "description" : [ "" ],
       "name" : "Modifier Properties",
       "parameters" : {
+        "allow_container_copy" : null,
         "attributes" : null,
         "brush_inventory" : null,
         "brushes" : null,
@@ -18790,6 +19009,7 @@
         "mana_per_damage" : null,
         "mana_regeneration" : null,
         "mana_regeneration_boost" : null,
+        "max_spells" : null,
         "overrides" : null,
         "path" : null,
         "potion_effects" : null,
@@ -20346,9 +20566,11 @@
         "target_mount" : "false",
         "target_name" : null,
         "target_npc" : "false",
+        "target_permission" : null,
         "target_pet" : "false",
         "target_potion_effects" : null,
         "target_self" : "false",
+        "target_self_requires_pvp" : "false",
         "target_tamed" : "true",
         "target_type" : null,
         "target_types" : null,
@@ -20678,6 +20900,7 @@
         "active_brush" : null,
         "active_effects" : null,
         "active_spell" : null,
+        "allow_container_copy" : null,
         "alternate_spell" : null,
         "alternate_spell2" : null,
         "alternate_spell3" : null,
@@ -20694,6 +20917,7 @@
         "block_reflect_chance" : "0",
         "boostable" : "true",
         "bound" : "false",
+        "bound_name" : null,
         "brush_inventory" : null,
         "brush_mode" : "none",
         "brushes" : null,
@@ -20764,6 +20988,7 @@
         "mana_regeneration" : "0",
         "mana_regeneration_boost" : "0",
         "max_enchant_count" : "0",
+        "max_spells" : null,
         "mode" : "none",
         "modifiers" : null,
         "overrides" : null,
