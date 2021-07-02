@@ -74,4 +74,21 @@ torchrecipe:
   row_3: ""
 
 </textarea>
+
+    <textarea id="templateFurnace" class="template" data-label="Furnace Recipe">
+furnacerecipe:
+  # This is a smelting (furnace) recipe
+  # Note that these only work in Magic 9.2 and Spigot 1.14 or higher
+  type: furnace
+  # Will show in players' knowledge books
+  auto_discover: true
+  # Produces leather
+  output: leather
+  # Requires zombie flesh
+  ingredient: rotten_flesh
+  # How long it takes to cook
+  cooking_time: 30 seconds
+  # How much experience is earned per item smelted
+  experience: 5
+</textarea>
 </div>
