@@ -108,6 +108,10 @@ function generateMeta() {
         }
     }
     if (isset($meta['types']) && isset($meta['types']['material']) && isset($meta['types']['material']['options'])) {
+        if (isset($meta['types']) && isset($meta['types']['item']) && isset($meta['types']['item']['options'])) {
+            $meta['types']['item']['options'] = array_merge($meta['types']['item']['options'], $meta['types']['material']['options']);
+        }
+
         foreach ($meta['types']['material']['options'] as $material => $nothing) {
             $icon = makeIcon('material/' . $material . '.png', 'spellIcon');
             $meta['types']['material']['options'][$material] = $icon;

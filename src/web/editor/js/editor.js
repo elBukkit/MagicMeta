@@ -217,7 +217,6 @@ Editor.prototype.setMetadata = function(meta) {
     // Import custom lists from session
     if (_session) {
         if (_session.hasOwnProperty('spells')) {
-            meta.types.attribute.options = _session.attributes.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.entity_type.options = $.extend(meta.types.entity_type.options, _session.mobs.reduce((a,b)=> (a[b]=null,a),{}));
             meta.types.material.options = $.extend(meta.types.material.options, _session.items.reduce((a,b)=> (a[b]=null,a),{}));
             meta.types.material_list.options = $.extend(meta.types.material_list.options, _session.materials.reduce((a,b)=> (a[b]=null,a),{}));
@@ -225,11 +224,22 @@ Editor.prototype.setMetadata = function(meta) {
             meta.types.path.options = _session.paths.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.spell.options = _session.spells.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.modifier.options = _session.modifiers.reduce((a,b)=> (a[b]=null,a),{});
-            meta.types.wand.options = _session.wands.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.recipe.options = _session.crafting.reduce((a,b)=> (a[b]=null,a),{});
+        }
+        if (_session.hasOwnProperty('attributes')) {
+            meta.types.attribute.options = _session.attributes.reduce((a,b)=> (a[b]=null,a),{});
         }
         if (_session.hasOwnProperty('currencies')) {
             meta.types.cost_type.options = $.extend(_session.currencies.reduce((a,b)=> (a[b]=null,a),{}), meta.types.cost_type.options);
+        }
+
+        if (_session.hasOwnProperty('wands')) {
+            meta.types.wand.options = _session.wands.reduce((a,b)=> (a[b]=null,a),{});
+            meta.types.item.options = $.extend(meta.types.item.options, _session.wands.reduce((a,b)=> (a[b]=null,a),{}));
+        }
+
+        if (_session.hasOwnProperty('items')) {
+            meta.types.item.options = $.extend(meta.types.item.options, _session.items.reduce((a,b)=> (a[b]=null,a),{}));
         }
     }
 

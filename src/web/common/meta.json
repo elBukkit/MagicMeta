@@ -7438,6 +7438,14 @@
       "name" : "Controllable",
       "type" : "boolean"
     },
+    "cooking_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cooking_time",
+      "importance" : 0,
+      "name" : "Cooking Time",
+      "type" : "integer"
+    },
     "cool" : {
       "alias" : "cooldown",
       "category" : "base",
@@ -9992,6 +10000,14 @@
       "name" : "Indestructible",
       "type" : "material_list"
     },
+    "ingredient" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ingredient",
+      "importance" : 0,
+      "name" : "Ingredient",
+      "type" : "item"
+    },
     "inherit" : {
       "category" : "base",
       "description" : [ "Can be used to inherit from another template" ],
@@ -10182,7 +10198,7 @@
       "field" : "item",
       "importance" : 0,
       "name" : "Item",
-      "type" : "material"
+      "type" : "item"
     },
     "item_attribute_slot" : {
       "category" : "",
@@ -11662,7 +11678,7 @@
       "field" : "output",
       "importance" : 500,
       "name" : "Output",
-      "type" : "wand"
+      "type" : "item"
     },
     "output_type" : {
       "category" : "",
@@ -15882,6 +15898,14 @@
       "name" : "Value",
       "type" : "double"
     },
+    "vanilla" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "vanilla",
+      "importance" : 0,
+      "name" : "Vanilla",
+      "type" : "string"
+    },
     "vanish" : {
       "category" : "",
       "description" : [ "" ],
@@ -16922,11 +16946,14 @@
       "name" : "Crafting Properties",
       "parameters" : {
         "auto_discover" : "false",
+        "cooking_time" : "0",
         "crafting_materials" : null,
         "disable_default" : "false",
         "discover" : null,
+        "experience" : "0.0",
         "group" : "",
         "ignore_damage" : "false",
+        "ingredient" : null,
         "locked" : "false",
         "output" : null,
         "output_type" : "item",
@@ -16934,7 +16961,8 @@
         "row_1" : "",
         "row_2" : "",
         "row_3" : "",
-        "substitute" : null
+        "substitute" : null,
+        "vanilla" : null
       }
     },
     "damage_type" : {
@@ -17774,6 +17802,15 @@
       "description" : [ "" ],
       "name" : "Map",
       "options" : { }
+    },
+    "item" : {
+      "class_name": "java.lang.String",
+      "description": [
+        "An item or block material, wand, spell or other magic item"
+      ],
+      "name": "Item",
+      "options": {
+      }
     },
     "material" : {
       "class_name" : "org.bukkit.Material",
