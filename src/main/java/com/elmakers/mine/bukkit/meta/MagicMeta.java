@@ -23,6 +23,7 @@ import com.elmakers.mine.bukkit.api.action.SpellAction;
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
 import com.elmakers.mine.bukkit.automata.AutomatonTemplate;
 import com.elmakers.mine.bukkit.crafting.MagicRecipe;
+import com.elmakers.mine.bukkit.crafting.MagicShapedRecipe;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
@@ -385,10 +386,12 @@ public class MagicMeta {
     }
 
     private void generateRecipeMeta() {
-        System.out.println("Scanning MagicRecipe");
+        System.out.println("Scanning MagicshapedRecipe");
         InterrogatingConfiguration recipeConfiguration = new InterrogatingConfiguration(data.getParameterStore());
-        MagicRecipe recipe = new MagicRecipe("recipe", controller);
-        recipe.load(recipeConfiguration);
+        recipeConfiguration.set("type", "shaped");
+        MagicRecipe.loadRecipe(controller, "recipe", recipeConfiguration);
+        recipeConfiguration.set("type", "furnace");
+        MagicRecipe.loadRecipe(controller, "recipe", recipeConfiguration);
         ParameterList recipeParameters = recipeConfiguration.getParameters();
         data.addRecipeParameters(recipeParameters);
     }
