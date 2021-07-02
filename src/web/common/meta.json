@@ -6243,14 +6243,6 @@
       "name" : "Biomes",
       "type" : "map"
     },
-    "recipe_type" : {
-      "category" : "",
-      "description" : [ "The type of crafting recipe" ],
-      "field" : "type",
-      "importance" : 0,
-      "name" : "Recipe Type",
-      "type" : "recipe_type"
-    },
     "biomes_list" : {
       "category" : "",
       "description" : [ "" ],
@@ -12808,6 +12800,14 @@
       "name" : "Reason",
       "type" : "string"
     },
+    "recipe_type" : {
+      "category" : "",
+      "description" : [ "The type of crafting recipe" ],
+      "field" : "type",
+      "importance" : 0,
+      "name" : "Recipe Type",
+      "type" : "recipe_type"
+    },
     "records" : {
       "category" : "",
       "description" : [ "" ],
@@ -16582,6 +16582,15 @@
       "name" : "Actions",
       "options" : { }
     },
+    "animation_type" : {
+      "class_name" : "com.elmakers.mine.bukkit.action.builtin.EntityAnimationAction$AnimationType",
+      "description" : [ "What kind of animation to display" ],
+      "name" : "Animation Type",
+      "options" : {
+        "swing_main_hand" : null,
+        "swing_off_hand" : null
+      }
+    },
     "attribute" : {
       "class_name" : "java.lang.String",
       "description" : [ "A custom Magic attribute" ],
@@ -16921,11 +16930,11 @@
         "locked" : "false",
         "output" : null,
         "output_type" : "item",
+        "recipe_type" : "shaped",
         "row_1" : "",
         "row_2" : "",
         "row_3" : "",
-        "substitute" : null,
-        "recipe_type" : "shaped"
+        "substitute" : null
       }
     },
     "damage_type" : {
@@ -19588,6 +19597,15 @@
         "wand" : "A wand"
       }
     },
+    "recipe_type" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "What kind of recipe this is" ],
+      "name" : "Recipe Type",
+      "options" : {
+        "furnace" : "A furnace smelting recipe",
+        "shaped" : "A shaped workbench recipe"
+      }
+    },
     "selector_option" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "An option in a Selector that will be shown as an icon in the GUI" ],
@@ -21505,28 +21523,6 @@
         "nether" : null,
         "normal" : null,
         "the_end" : null
-      }
-    },
-    "animation_type" : {
-      "class_name": "com.elmakers.mine.bukkit.action.builtin.EntityAnimationAction$AnimationType",
-      "description": [
-        "What kind of animation to display"
-      ],
-      "name": "Animation Type",
-      "options": {
-        "swing_main_hand": null,
-        "swing_off_hand": null
-      }
-    },
-    "recipe_type" : {
-      "class_name": "java.lang.String",
-      "description": [
-        "What kind of recipe this is"
-      ],
-      "name": "Recipe Type",
-      "options": {
-        "shaped": "A shaped workbench recipe",
-        "furnace": "A furnace smelting recipe"
       }
     },
     "world_properties" : {
