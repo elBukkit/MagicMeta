@@ -207,6 +207,7 @@
           "dy_offset" : "0",
           "entity_attributes" : null,
           "entity_types-map" : null,
+          "equip_on_respawn" : "true",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -347,6 +348,7 @@
           "entity_attributes" : null,
           "entity_hit_count" : "1",
           "entity_weight" : "3",
+          "equip_on_respawn" : "true",
           "fov" : "0.3",
           "fov_weight" : "4",
           "gravity" : "0",
@@ -617,6 +619,7 @@
           "physics" : "false",
           "physics_blocks" : "false",
           "reflect_chance" : "0",
+          "replace_same" : "false",
           "speed" : "0"
         },
         "short_class" : "BreakBlock"
@@ -1210,6 +1213,7 @@
           "physics" : "false",
           "physics_blocks" : "false",
           "reflect_chance" : "0",
+          "replace_same" : "false",
           "speed" : "0"
         },
         "short_class" : "CreateField"
@@ -1639,6 +1643,18 @@
           "use_xp" : "false"
         },
         "short_class" : "EnchantWand"
+      },
+      "entity_animation" : {
+        "category" : "",
+        "class_name" : "EntityAnimationAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Entity Animation",
+        "parameters" : {
+          "animation" : "swing_main_hand"
+        },
+        "short_class" : "EntityAnimation"
       },
       "entity_projectile" : {
         "category" : "compound",
@@ -2314,6 +2330,7 @@
           "physics" : "false",
           "physics_blocks" : "false",
           "reflect_chance" : "0",
+          "replace_same" : "false",
           "speed" : "0"
         },
         "short_class" : "ModifyBlock"
@@ -2371,6 +2388,7 @@
           "drops_require_player_killer" : "false",
           "dy_offset" : "0.0",
           "entity_attributes" : null,
+          "equip_on_respawn" : "true",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -3537,6 +3555,7 @@
           "dy_offset" : "0",
           "entity_attributes" : null,
           "entity_types-map" : null,
+          "equip_on_respawn" : "true",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -5703,6 +5722,14 @@
       "name" : "Angular Velocity Z",
       "type" : "double"
     },
+    "animation" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "animation",
+      "importance" : 0,
+      "name" : "Animation",
+      "type" : "animation_type"
+    },
     "appearance" : {
       "category" : "",
       "description" : [ "" ],
@@ -6215,6 +6242,14 @@
       "importance" : 0,
       "name" : "Biomes",
       "type" : "map"
+    },
+    "recipe_type" : {
+      "category" : "",
+      "description" : [ "The type of crafting recipe" ],
+      "field" : "type",
+      "importance" : 0,
+      "name" : "Recipe Type",
+      "type" : "recipe_type"
     },
     "biomes_list" : {
       "category" : "",
@@ -8692,6 +8727,14 @@
       "name" : "Elemental Damage",
       "type" : "double"
     },
+    "enable_custom_sounds" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "enable_custom_sounds",
+      "importance" : 0,
+      "name" : "Enable Custom Sounds",
+      "type" : "boolean"
+    },
     "enable_rotation" : {
       "category" : "",
       "description" : [ "" ],
@@ -8867,6 +8910,14 @@
       "importance" : 0,
       "name" : "Equation",
       "type" : "double"
+    },
+    "equip_on_respawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "equip_on_respawn",
+      "importance" : 0,
+      "name" : "Equip On Respawn",
+      "type" : "boolean"
     },
     "escape_sequence" : {
       "category" : "",
@@ -13037,6 +13088,14 @@
       "name" : "Replace Item",
       "type" : "boolean"
     },
+    "replace_same" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replace_same",
+      "importance" : 0,
+      "name" : "Replace Same",
+      "type" : "boolean"
+    },
     "replacement_item" : {
       "category" : "",
       "description" : [ "" ],
@@ -15118,6 +15177,14 @@
       "name" : "Tnt Velocity",
       "type" : "double"
     },
+    "to_color" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "to_color",
+      "importance" : 0,
+      "name" : "To Color",
+      "type" : "string"
+    },
     "toggle" : {
       "category" : "base",
       "description" : [ "Set this to allow a spell to be toggled on and off with subsequent casts.", "Spells can either simply cancel when toggled off, or immediately perform their undo behaviors" ],
@@ -16857,7 +16924,8 @@
         "row_1" : "",
         "row_2" : "",
         "row_3" : "",
-        "substitute" : null
+        "substitute" : null,
+        "recipe_type" : "shaped"
       }
     },
     "damage_type" : {
@@ -17050,6 +17118,7 @@
         "effect" : null,
         "effect_class" : null,
         "effectlib" : null,
+        "enable_custom_sounds" : "true",
         "enable_vanilla_sounds" : "true",
         "entity_effect" : null,
         "firework" : null,
@@ -17086,6 +17155,7 @@
         "source_location" : "",
         "target_location" : "",
         "target_offset" : null,
+        "to_color" : null,
         "use_block_location" : "false",
         "use_cast_location" : "false",
         "use_eye_location" : "false",
@@ -19036,6 +19106,7 @@
         "duration" : "2000",
         "duration_on_use" : "0",
         "entity_attributes" : null,
+        "equip_on_respawn" : "true",
         "facing" : null,
         "fox_type" : null,
         "gravity" : "true",
@@ -21056,7 +21127,11 @@
         "alternate" : "An alt-cast was performed",
         "alternate_down" : "The player was looking straight down which caused an alt-cast",
         "alternate_jumping" : "The player was jumping which caused an alt-cast",
+        "alternate_jumping_down" : null,
+        "alternate_jumping_up" : null,
         "alternate_sneak" : "The player was sneaking which caused an alt-cast",
+        "alternate_sneak_down" : null,
+        "alternate_sneak_up" : null,
         "alternate_up" : "The player was looking straight up which caused an alt-cast",
         "backfire" : "The spell backfired, targeting the caster",
         "blocked" : "The spell was blocked",
@@ -21430,6 +21505,28 @@
         "nether" : null,
         "normal" : null,
         "the_end" : null
+      }
+    },
+    "animation_type" : {
+      "class_name": "com.elmakers.mine.bukkit.action.builtin.EntityAnimationAction$AnimationType",
+      "description": [
+        "What kind of animation to display"
+      ],
+      "name": "Animation Type",
+      "options": {
+        "swing_main_hand": null,
+        "swing_off_hand": null
+      }
+    },
+    "recipe_type" : {
+      "class_name": "java.lang.String",
+      "description": [
+        "What kind of recipe this is"
+      ],
+      "name": "Recipe Type",
+      "options": {
+        "shaped": "A shaped workbench recipe",
+        "furnace": "A furnace smelting recipe"
       }
     },
     "world_properties" : {
