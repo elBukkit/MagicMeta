@@ -79,6 +79,8 @@ torchrecipe:
 furnacerecipe:
   # This is a smelting (furnace) recipe
   # Note that these only work in Magic 9.2 and Spigot 1.14 or higher
+  # This could also be smoking, campfire or blasting
+  # The parameters of these types are interchangeable
   type: furnace
   # Will show in players' knowledge books
   auto_discover: true
