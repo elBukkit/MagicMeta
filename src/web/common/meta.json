@@ -19640,7 +19640,11 @@
       "name" : "Recipe Type",
       "options" : {
         "furnace" : "A furnace smelting recipe",
-        "shaped" : "A shaped workbench recipe"
+        "shaped" : "A shaped workbench recipe",
+        "blasting" : "A blast furnace recipe",
+        "campfire" : "A campfire recipe",
+        "smoking" : "A smoker recipe",
+        "stonecutting" : "A stonecutter recipe"
       }
     },
     "selector_option" : {

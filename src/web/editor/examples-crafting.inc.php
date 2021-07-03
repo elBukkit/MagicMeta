@@ -93,4 +93,16 @@ furnacerecipe:
   # How much experience is earned per item smelted
   experience: 5
 </textarea>
+
+    <textarea id="templateStonecutting" class="template" data-label="Stonecutting Recipe">
+stonecuttingrecipe:
+  # This is a stonecuttong recipe
+  type: stonecutting
+  # Will show in players' knowledge books
+  auto_discover: true
+  # Produces brown mushrooms
+  output: brown_mushroom
+  # Requires mushroom stems
+  ingredient: mushroom_stem
+</textarea>
 </div>
