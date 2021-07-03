@@ -10008,6 +10008,14 @@
       "name" : "Ingredient",
       "type" : "item"
     },
+    "addition" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "addition",
+      "importance" : 0,
+      "name" : "Additional Item",
+      "type" : "item"
+    },
     "inherit" : {
       "category" : "base",
       "description" : [ "Can be used to inherit from another template" ],
@@ -16945,6 +16953,7 @@
       "description" : [ "" ],
       "name" : "Crafting Properties",
       "parameters" : {
+        "addition" : null,
         "auto_discover" : "false",
         "cooking_time" : "0",
         "crafting_materials" : null,
@@ -19644,7 +19653,8 @@
         "blasting" : "A blast furnace recipe",
         "campfire" : "A campfire recipe",
         "smoking" : "A smoker recipe",
-        "stonecutting" : "A stonecutter recipe"
+        "stonecutting" : "A stonecutter recipe",
+        "smithing" : "A smithing table recipe"
       }
     },
     "selector_option" : {

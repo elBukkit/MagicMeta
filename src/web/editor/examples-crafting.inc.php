@@ -105,4 +105,16 @@ stonecuttingrecipe:
   # Requires mushroom stems
   ingredient: mushroom_stem
 </textarea>
+
+    <textarea id="templateSmithing" class="template" data-label="Smithing Recipe">
+smithingRecipe:
+  # This is a smithing table recipe
+  type: smithing
+  # Produces a diamond chestplate
+  output: diamond_chestplate
+  # Requires an iron chestplate
+  ingredient: iron_chestplate
+  # And a diamond
+  addition: diamond
+</textarea>
 </div>
