@@ -155,9 +155,9 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
         } else {
             rp1Parsed['overrides'] = rp2Parsed['overrides'];
         }
-        let resultFile = JSON.stringify(rp1Parsed, null, 2);
-        result.file(relativePath, resultFile);
     }
+    let resultFile = JSON.stringify(rp1Parsed, null, 2);
+    result.file(relativePath, resultFile);
 
     checkFinish(result);
 }
