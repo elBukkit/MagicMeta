@@ -845,4 +845,9 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     public void setAdult(Zombie zombie) {
         zombie.setAdult();
     }
+
+    @Override
+    public BlockFace getSignFacing(Block sign) {
+        return null;
+    }
 }

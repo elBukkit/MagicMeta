@@ -5378,6 +5378,14 @@
       "name" : "Add To",
       "type" : "string"
     },
+    "addition" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "addition",
+      "importance" : 0,
+      "name" : "Additional Item",
+      "type" : "item"
+    },
     "additive" : {
       "category" : "",
       "description" : [ "" ],
@@ -5913,6 +5921,14 @@
       "importance" : 0,
       "name" : "Arms",
       "type" : "boolean"
+    },
+    "arrival_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "arrival_time",
+      "importance" : 0,
+      "name" : "Arrival Time",
+      "type" : "integer"
     },
     "arrow_damage" : {
       "category" : "",
@@ -6949,6 +6965,14 @@
       "importance" : 0,
       "name" : "Center Z",
       "type" : "boolean"
+    },
+    "charges" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "charges",
+      "importance" : 0,
+      "name" : "Charges",
+      "type" : "integer"
     },
     "check" : {
       "category" : "",
@@ -10008,14 +10032,6 @@
       "name" : "Ingredient",
       "type" : "item"
     },
-    "addition" : {
-      "category" : "",
-      "description" : [ "" ],
-      "field" : "addition",
-      "importance" : 0,
-      "name" : "Additional Item",
-      "type" : "item"
-    },
     "inherit" : {
       "category" : "base",
       "description" : [ "Can be used to inherit from another template" ],
@@ -10239,6 +10255,14 @@
       "importance" : 0,
       "name" : "Item Count",
       "type" : "integer"
+    },
+    "item_flags" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_flags",
+      "importance" : 0,
+      "name" : "Item Flags",
+      "type" : "string"
     },
     "item_speed" : {
       "category" : "",
@@ -15209,6 +15233,22 @@
       "name" : "To Color",
       "type" : "string"
     },
+    "to_color_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "to_color_list",
+      "importance" : 0,
+      "name" : "To Color List",
+      "type" : "list"
+    },
+    "to_colors" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "to_colors",
+      "importance" : 0,
+      "name" : "To Colors",
+      "type" : "string"
+    },
     "toggle" : {
       "category" : "base",
       "description" : [ "Set this to allow a spell to be toggled on and off with subsequent casts.", "Spells can either simply cancel when toggled off, or immediately perform their undo behaviors" ],
@@ -17254,6 +17294,7 @@
       "description" : [ "An EffectLib effect, which will be started when this effect plays" ],
       "name" : "Effectlib Properties",
       "parameters" : {
+        "arrival_time" : "0",
         "asynchronous" : "true",
         "auto_orient" : "false",
         "color" : null,
@@ -17285,6 +17326,9 @@
         "sub_effect" : null,
         "target_offset" : null,
         "target_players" : null,
+        "to_color" : null,
+        "to_color_list" : null,
+        "to_colors" : null,
         "type" : null,
         "update_directions" : "true",
         "update_locations" : "true",
@@ -17733,6 +17777,12 @@
       "name" : "Inventory Slot List",
       "options" : { }
     },
+    "item" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "An item or block material, wand, spell or other magic item" ],
+      "name" : "Item",
+      "options" : { }
+    },
     "kit_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
@@ -17811,15 +17861,6 @@
       "description" : [ "" ],
       "name" : "Map",
       "options" : { }
-    },
-    "item" : {
-      "class_name": "java.lang.String",
-      "description": [
-        "An item or block material, wand, spell or other magic item"
-      ],
-      "name": "Item",
-      "options": {
-      }
     },
     "material" : {
       "class_name" : "org.bukkit.Material",
@@ -19648,13 +19689,13 @@
       "description" : [ "What kind of recipe this is" ],
       "name" : "Recipe Type",
       "options" : {
-        "furnace" : "A furnace smelting recipe",
-        "shaped" : "A shaped workbench recipe",
         "blasting" : "A blast furnace recipe",
         "campfire" : "A campfire recipe",
+        "furnace" : "A furnace smelting recipe",
+        "shaped" : "A shaped workbench recipe",
+        "smithing" : "A smithing table recipe",
         "smoking" : "A smoker recipe",
-        "stonecutting" : "A stonecutter recipe",
-        "smithing" : "A smithing table recipe"
+        "stonecutting" : "A stonecutter recipe"
       }
     },
     "selector_option" : {
@@ -21004,6 +21045,7 @@
         "cancel_on_no_permission" : "false",
         "cancel_on_no_wand" : "false",
         "cd" : "true",
+        "charges" : "0",
         "check_destructible" : "true",
         "check_indestructible" : "true",
         "check_protection" : "false",
@@ -21493,6 +21535,7 @@
         "invulnerable" : "false",
         "item_attribute_slot" : null,
         "item_attributes" : null,
+        "item_flags" : null,
         "keep" : "false",
         "left_click" : "none",
         "left_click_sneak" : null,
