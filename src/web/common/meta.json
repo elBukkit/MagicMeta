@@ -5498,6 +5498,14 @@
       "name" : "Allow Caster",
       "type" : "boolean"
     },
+    "allow_consuming" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_consuming",
+      "importance" : 0,
+      "name" : "Allow Consuming",
+      "type" : "boolean"
+    },
     "allow_container_copy" : {
       "category" : "",
       "description" : [ "" ],
@@ -5538,6 +5546,14 @@
       "name" : "Allow Glowstone",
       "type" : "boolean"
     },
+    "allow_interrupt" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_interrupt",
+      "importance" : 0,
+      "name" : "Allow Interrupt",
+      "type" : "boolean"
+    },
     "allow_locked" : {
       "category" : "",
       "description" : [ "" ],
@@ -5554,12 +5570,28 @@
       "name" : "Allow Max Range",
       "type" : "boolean"
     },
+    "allow_melee" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_melee",
+      "importance" : 0,
+      "name" : "Allow Melee",
+      "type" : "boolean"
+    },
     "allow_passthrough" : {
       "category" : "",
       "description" : [ "" ],
       "field" : "allow_passthrough",
       "importance" : 0,
       "name" : "Allow Passthrough",
+      "type" : "boolean"
+    },
+    "allow_projectiles" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_projectiles",
+      "importance" : 0,
+      "name" : "Allow Projectiles",
       "type" : "boolean"
     },
     "allow_replacement" : {
@@ -5737,6 +5769,14 @@
       "importance" : 0,
       "name" : "Animation",
       "type" : "animation_type"
+    },
+    "announcer_range" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "announcer_range",
+      "importance" : 0,
+      "name" : "Announcer Range",
+      "type" : "integer"
     },
     "appearance" : {
       "category" : "",
@@ -6410,6 +6450,22 @@
       "importance" : 0,
       "name" : "Boots Item",
       "type" : "material"
+    },
+    "border_max" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "border_max",
+      "importance" : 0,
+      "name" : "Border Max",
+      "type" : "integer"
+    },
+    "border_min" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "border_min",
+      "importance" : 0,
+      "name" : "Border Min",
+      "type" : "integer"
     },
     "boss_bar" : {
       "category" : "actions",
@@ -7615,6 +7671,22 @@
       "name" : "Count",
       "type" : "integer"
     },
+    "countdown" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "countdown",
+      "importance" : 0,
+      "name" : "Countdown",
+      "type" : "integer"
+    },
+    "countdown_max" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "countdown_max",
+      "importance" : 0,
+      "name" : "Countdown Max",
+      "type" : "integer"
+    },
     "craftable" : {
       "category" : "",
       "description" : [ "" ],
@@ -8319,6 +8391,30 @@
       "name" : "Drag",
       "type" : "double"
     },
+    "draw_money" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "draw_money",
+      "importance" : 0,
+      "name" : "Draw Money",
+      "type" : "integer"
+    },
+    "draw_sp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "draw_sp",
+      "importance" : 0,
+      "name" : "Draw Sp",
+      "type" : "integer"
+    },
+    "draw_xp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "draw_xp",
+      "importance" : 0,
+      "name" : "Draw Xp",
+      "type" : "integer"
+    },
     "drop" : {
       "category" : "",
       "description" : [ "Which action the wand should perform when the player uses the drop (Q by default) key" ],
@@ -8982,6 +9078,14 @@
       "importance" : 0,
       "name" : "Exhaustion",
       "type" : "boolean"
+    },
+    "exit" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "exit",
+      "importance" : 0,
+      "name" : "Exit",
+      "type" : "string"
     },
     "expected_lifespan" : {
       "category" : "",
@@ -10272,6 +10376,14 @@
       "name" : "Item Speed",
       "type" : "double"
     },
+    "item_wear" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_wear",
+      "importance" : 0,
+      "name" : "Item Wear",
+      "type" : "boolean"
+    },
     "items" : {
       "category" : "",
       "description" : [ "The items to display" ],
@@ -10342,6 +10454,22 @@
       "field" : "keep_in_inventory",
       "importance" : 0,
       "name" : "Keep In Inventory",
+      "type" : "boolean"
+    },
+    "keep_inventory" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "keep_inventory",
+      "importance" : 0,
+      "name" : "Keep Inventory",
+      "type" : "boolean"
+    },
+    "keep_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "keep_level",
+      "importance" : 0,
+      "name" : "Keep Level",
       "type" : "boolean"
     },
     "keep_velocity" : {
@@ -10423,6 +10551,62 @@
       "importance" : 0,
       "name" : "Launch",
       "type" : "boolean"
+    },
+    "leaderboard" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard",
+      "importance" : 0,
+      "name" : "Leaderboard",
+      "type" : "map"
+    },
+    "leaderboard_games_required" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_games_required",
+      "importance" : 0,
+      "name" : "Leaderboard Games Required",
+      "type" : "integer"
+    },
+    "leaderboard_record_size" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_record_size",
+      "importance" : 0,
+      "name" : "Leaderboard Record Size",
+      "type" : "integer"
+    },
+    "leaderboard_sign_facing" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_sign_facing",
+      "importance" : 0,
+      "name" : "Leaderboard Sign Facing",
+      "type" : "string"
+    },
+    "leaderboard_sign_location" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_sign_location",
+      "importance" : 0,
+      "name" : "Leaderboard Sign Location",
+      "type" : "string"
+    },
+    "leaderboard_sign_type" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_sign_type",
+      "importance" : 0,
+      "name" : "Leaderboard Sign Type",
+      "type" : "string"
+    },
+    "leaderboard_size" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leaderboard_size",
+      "importance" : 0,
+      "name" : "Leaderboard Size",
+      "type" : "integer"
     },
     "ledge_range" : {
       "category" : "",
@@ -10648,6 +10832,14 @@
       "name" : "Load",
       "type" : "boolean"
     },
+    "lobby" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lobby",
+      "importance" : 0,
+      "name" : "Lobby",
+      "type" : "string"
+    },
     "local_echo" : {
       "category" : "",
       "description" : [ "" ],
@@ -10711,6 +10903,38 @@
       "importance" : 0,
       "name" : "Loot",
       "type" : "boolean"
+    },
+    "lose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lose",
+      "importance" : 0,
+      "name" : "Lose",
+      "type" : "string"
+    },
+    "lose_money" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lose_money",
+      "importance" : 0,
+      "name" : "Lose Money",
+      "type" : "integer"
+    },
+    "lose_sp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lose_sp",
+      "importance" : 0,
+      "name" : "Lose Sp",
+      "type" : "integer"
+    },
+    "lose_xp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lose_xp",
+      "importance" : 0,
+      "name" : "Lose Xp",
+      "type" : "integer"
     },
     "loud" : {
       "category" : "base",
@@ -10992,6 +11216,14 @@
       "name" : "Max Magnitude",
       "type" : "double"
     },
+    "max_players" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_players",
+      "importance" : 0,
+      "name" : "Max Players",
+      "type" : "integer"
+    },
     "max_slot" : {
       "category" : "",
       "description" : [ "" ],
@@ -11022,6 +11254,14 @@
       "field" : "max_steps",
       "importance" : 0,
       "name" : "Max Steps",
+      "type" : "integer"
+    },
+    "max_teleport_distance" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_teleport_distance",
+      "importance" : 0,
+      "name" : "Max Teleport Distance",
       "type" : "integer"
     },
     "max_time" : {
@@ -11055,6 +11295,14 @@
       "importance" : 0,
       "name" : "Maxdepth",
       "type" : "action_list"
+    },
+    "maxplayers" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "maxplayers",
+      "importance" : 0,
+      "name" : "Maxplayers",
+      "type" : "integer"
     },
     "melt_ice" : {
       "category" : "",
@@ -11183,6 +11431,14 @@
       "importance" : 0,
       "name" : "Min Time",
       "type" : "string"
+    },
+    "minplayers" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "minplayers",
+      "importance" : 0,
+      "name" : "Minplayers",
+      "type" : "integer"
     },
     "miss_actions" : {
       "category" : "",
@@ -11534,6 +11790,14 @@
       "field" : "op",
       "importance" : 0,
       "name" : "Op",
+      "type" : "boolean"
+    },
+    "op_check" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "op_check",
+      "importance" : 0,
+      "name" : "Op Check",
       "type" : "boolean"
     },
     "options" : {
@@ -12400,6 +12664,30 @@
       "name" : "Player Weight",
       "type" : "integer"
     },
+    "portal_damage" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_damage",
+      "importance" : 0,
+      "name" : "Portal Damage",
+      "type" : "integer"
+    },
+    "portal_death_message" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_death_message",
+      "importance" : 0,
+      "name" : "Portal Death Message",
+      "type" : "string"
+    },
+    "portal_enter_damage" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_enter_damage",
+      "importance" : 0,
+      "name" : "Portal Enter Damage",
+      "type" : "integer"
+    },
     "potion_effects" : {
       "category" : "mob",
       "description" : [ "A map of potion effects to apply to this entity" ],
@@ -12791,6 +13079,22 @@
       "importance" : 0,
       "name" : "Randomize",
       "type" : "boolean"
+    },
+    "randomize.spawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "randomize.spawn",
+      "importance" : 0,
+      "name" : "Randomize.spawn",
+      "type" : "string"
+    },
+    "randomize_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "randomize",
+      "importance" : 0,
+      "name" : "Randomize",
+      "type" : "map"
     },
     "randomized_messages" : {
       "category" : "",
@@ -13271,6 +13575,14 @@
       "importance" : 0,
       "name" : "Required",
       "type" : "potion_effect_list"
+    },
+    "required_kills" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "required_kills",
+      "importance" : 0,
+      "name" : "Required Kills",
+      "type" : "integer"
     },
     "required_list" : {
       "category" : "",
@@ -14192,6 +14504,14 @@
       "name" : "Spawn Reason",
       "type" : "string"
     },
+    "spawns" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "spawns",
+      "importance" : 0,
+      "name" : "Spawns",
+      "type" : "list"
+    },
     "speed" : {
       "category" : "",
       "description" : [ "" ],
@@ -14392,6 +14712,14 @@
       "name" : "Stack Size",
       "type" : "integer"
     },
+    "stages" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "stages",
+      "importance" : 0,
+      "name" : "Stages",
+      "type" : "list"
+    },
     "start" : {
       "category" : "",
       "description" : [ "" ],
@@ -14407,6 +14735,14 @@
       "importance" : 0,
       "name" : "Start At Target",
       "type" : "boolean"
+    },
+    "start_commands" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "start_commands",
+      "importance" : 0,
+      "name" : "Start Commands",
+      "type" : "string"
     },
     "start_speed" : {
       "category" : "",
@@ -14558,6 +14894,22 @@
       "field" : "substitute",
       "importance" : 0,
       "name" : "Substitute",
+      "type" : "string"
+    },
+    "sudden_death" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sudden_death",
+      "importance" : 0,
+      "name" : "Sudden Death",
+      "type" : "integer"
+    },
+    "sudden_death_effect" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sudden_death_effect",
+      "importance" : 0,
+      "name" : "Sudden Death Effect",
       "type" : "string"
     },
     "swap" : {
@@ -16266,6 +16618,38 @@
       "name" : "Wildcard",
       "type" : "boolean"
     },
+    "win" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "win",
+      "importance" : 0,
+      "name" : "Win",
+      "type" : "string"
+    },
+    "win_money" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "win_money",
+      "importance" : 0,
+      "name" : "Win Money",
+      "type" : "integer"
+    },
+    "win_sp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "win_sp",
+      "importance" : 0,
+      "name" : "Win Sp",
+      "type" : "integer"
+    },
+    "win_xp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "win_xp",
+      "importance" : 0,
+      "name" : "Win Xp",
+      "type" : "integer"
+    },
     "world_border_restricted" : {
       "category" : "base",
       "description" : [ "" ],
@@ -16661,6 +17045,67 @@
       "options" : {
         "swing_main_hand" : null,
         "swing_off_hand" : null
+      }
+    },
+    "arena_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Arena Properties",
+      "parameters" : {
+        "allow_consuming" : "true",
+        "allow_interrupt" : "false",
+        "allow_melee" : "true",
+        "allow_projectiles" : "true",
+        "announcer_range" : "64",
+        "border_max" : "0",
+        "border_min" : "0",
+        "center" : null,
+        "countdown" : "10",
+        "countdown_max" : "30",
+        "description" : null,
+        "draw_money" : "0",
+        "draw_sp" : "0",
+        "draw_xp" : "0",
+        "duration" : "0",
+        "exit" : null,
+        "item_wear" : "true",
+        "keep_inventory" : "false",
+        "keep_level" : "false",
+        "leaderboard" : null,
+        "leaderboard_games_required" : "5",
+        "leaderboard_record_size" : "30",
+        "leaderboard_sign_facing" : null,
+        "leaderboard_sign_location" : null,
+        "leaderboard_sign_type" : "birch_wall_sign",
+        "leaderboard_size" : "5",
+        "lobby" : null,
+        "lose" : null,
+        "lose_money" : "0",
+        "lose_sp" : "0",
+        "lose_xp" : "0",
+        "max_players" : "2",
+        "max_teleport_distance" : "64",
+        "maxplayers" : "2",
+        "min_players" : "2",
+        "minplayers" : "2",
+        "name" : null,
+        "op_check" : "true",
+        "portal_damage" : "0",
+        "portal_death_message" : null,
+        "portal_enter_damage" : "0",
+        "randomize" : null,
+        "randomize.spawn" : null,
+        "required_kills" : "1",
+        "spawns" : null,
+        "stages" : null,
+        "start_commands" : null,
+        "sudden_death" : "0",
+        "sudden_death_effect" : null,
+        "type" : null,
+        "win" : null,
+        "win_money" : "0",
+        "win_sp" : "0",
+        "win_xp" : "0"
       }
     },
     "attribute" : {

@@ -21,6 +21,8 @@ import com.elmakers.mine.bukkit.action.CompoundAction;
 import com.elmakers.mine.bukkit.action.builtin.SelectorAction;
 import com.elmakers.mine.bukkit.api.action.SpellAction;
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
+import com.elmakers.mine.bukkit.arena.Arena;
+import com.elmakers.mine.bukkit.arena.ArenaController;
 import com.elmakers.mine.bukkit.automata.AutomatonTemplate;
 import com.elmakers.mine.bukkit.crafting.MagicRecipe;
 import com.elmakers.mine.bukkit.crafting.MagicShapedRecipe;
@@ -405,6 +407,16 @@ public class MagicMeta {
         data.addWorldParameters(recipeParameters);
     }
 
+    private void generateArenaMeta() {
+        System.out.println("Scanning Arena");
+        InterrogatingConfiguration arenaConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        ArenaController arenas = new ArenaController(controller);
+        Arena arena = new Arena("arena", arenas);
+        arena.load(arenaConfiguration);
+        ParameterList arenaParameters = arenaConfiguration.getParameters();
+        data.addArenaParameters(arenaParameters);
+    }
+
     private void generateKitMeta() {
         System.out.println("Scanning MagicKit");
         InterrogatingConfiguration kitConfiguration = new InterrogatingConfiguration(data.getParameterStore());
@@ -440,6 +452,7 @@ public class MagicMeta {
         generateWorldMeta();
         generateAutomatonMeta();
         generateKitMeta();
+        generateArenaMeta();
     }
 
     private Category getCategory(String key) {

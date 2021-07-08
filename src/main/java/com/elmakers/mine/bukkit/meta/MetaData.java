@@ -97,6 +97,10 @@ public class MetaData {
         parameterStore.mergeType("world_properties", parameters);
     }
 
+    public void addArenaParameters(ParameterList parameters) {
+        parameterStore.mergeType("arena_properties", parameters);
+    }
+
     public void addKitParameters(ParameterList parameters) {
         parameterStore.mergeType("kit_properties", parameters);
     }
