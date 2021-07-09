@@ -23,9 +23,9 @@ import com.elmakers.mine.bukkit.api.action.SpellAction;
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
 import com.elmakers.mine.bukkit.arena.Arena;
 import com.elmakers.mine.bukkit.arena.ArenaController;
+import com.elmakers.mine.bukkit.arena.ArenaTemplate;
 import com.elmakers.mine.bukkit.automata.AutomatonTemplate;
 import com.elmakers.mine.bukkit.crafting.MagicRecipe;
-import com.elmakers.mine.bukkit.crafting.MagicShapedRecipe;
 import com.elmakers.mine.bukkit.effect.EffectPlayer;
 import com.elmakers.mine.bukkit.effect.builtin.EffectSingle;
 import com.elmakers.mine.bukkit.entity.EntityData;
@@ -411,8 +411,9 @@ public class MagicMeta {
         System.out.println("Scanning Arena");
         InterrogatingConfiguration arenaConfiguration = new InterrogatingConfiguration(data.getParameterStore());
         ArenaController arenas = new ArenaController(controller);
-        Arena arena = new Arena("arena", arenas);
-        arena.load(arenaConfiguration);
+        ArenaTemplate template = new ArenaTemplate("arena", arenaConfiguration);
+        Arena arena = new Arena("arena", template, arenas);
+        arena.loadProperties();
         ParameterList arenaParameters = arenaConfiguration.getParameters();
         data.addArenaParameters(arenaParameters);
     }
