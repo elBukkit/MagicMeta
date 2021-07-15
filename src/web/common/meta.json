@@ -158,6 +158,7 @@
         "importance" : 100,
         "name" : "Area Of Effect",
         "parameters" : {
+          "ignore_modified" : "false",
           "radius" : "8",
           "target_count" : "-1",
           "target_source" : "true",
@@ -1412,6 +1413,7 @@
         "importance" : 100,
         "name" : "Damage",
         "parameters" : {
+          "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
           "critical_probability" : "0.0",
           "damage" : "1",
@@ -2347,6 +2349,20 @@
           "target_air" : "false"
         },
         "short_class" : "ModifyBreakable"
+      },
+      "modify_currency" : {
+        "category" : "",
+        "class_name" : "ModifyCurrencyAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Modify Currency",
+        "parameters" : {
+          "currency" : "currency",
+          "value" : "0.0",
+          "value_double" : "0.0"
+        },
+        "short_class" : "ModifyCurrency"
       },
       "modify_entity" : {
         "category" : "",
@@ -3456,6 +3472,7 @@
         "importance" : 0,
         "name" : "Shrink Entity",
         "parameters" : {
+          "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
           "critical_probability" : "0.0",
           "damage" : "1",
@@ -4086,6 +4103,7 @@
           "damaged" : "true",
           "direction" : null,
           "exemption_duration" : "0",
+          "invert_distance" : "false",
           "item_speed" : "1",
           "living_entity_speed" : "1",
           "max_altitude" : "64",
@@ -5242,6 +5260,14 @@
     }
   },
   "properties" : {
+    "action_bar" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "action_bar",
+      "importance" : 0,
+      "name" : "Action Bar",
+      "type" : "string"
+    },
     "action_class" : {
       "category" : "base",
       "description" : [ "The class this action uses", "This determines the type of action that will be performed" ],
@@ -6803,6 +6829,14 @@
       "field" : "cancel_on_death",
       "importance" : 0,
       "name" : "Cancel On Death",
+      "type" : "boolean"
+    },
+    "cancel_on_kill_target" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_on_kill_target",
+      "importance" : 0,
+      "name" : "Cancel On Kill Target",
       "type" : "boolean"
     },
     "cancel_on_no_permission" : {
@@ -10040,6 +10074,14 @@
       "name" : "Ignore Key",
       "type" : "string"
     },
+    "ignore_modified" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignore_modified",
+      "importance" : 0,
+      "name" : "Ignore Modified",
+      "type" : "boolean"
+    },
     "ignore_potion_effects" : {
       "category" : "actions",
       "description" : [ "" ],
@@ -10600,6 +10642,14 @@
       "name" : "Leaderboard Size",
       "type" : "integer"
     },
+    "leave_game_mode" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leave_game_mode",
+      "importance" : 0,
+      "name" : "Leave Game Mode",
+      "type" : "string"
+    },
     "ledge_range" : {
       "category" : "",
       "description" : [ "" ],
@@ -10702,6 +10752,14 @@
       "field" : "level_description",
       "importance" : 0,
       "name" : "Level Description",
+      "type" : "string"
+    },
+    "level_display" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "level_display",
+      "importance" : 0,
+      "name" : "Level Display",
       "type" : "string"
     },
     "level_spells" : {
@@ -16762,6 +16820,14 @@
       "name" : "XP",
       "type" : "integer"
     },
+    "xp_display" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "xp_display",
+      "importance" : 0,
+      "name" : "Xp Display",
+      "type" : "string"
+    },
     "y2_equation" : {
       "category" : "",
       "description" : [ "The equation used to calculate the y location of the inner effect" ],
@@ -21874,6 +21940,7 @@
       "description" : [ "" ],
       "name" : "Wand Properties",
       "parameters" : {
+        "action_bar" : null,
         "active_brush" : null,
         "active_effects" : null,
         "active_spell" : null,
@@ -21893,6 +21960,7 @@
         "block_mage_cooldown" : "0",
         "block_reflect_chance" : "0",
         "boostable" : "true",
+        "boss_bar" : null,
         "bound" : "false",
         "bound_name" : null,
         "brush_inventory" : null,
@@ -21955,6 +22023,7 @@
         "keep" : "false",
         "left_click" : "none",
         "left_click_sneak" : null,
+        "level_display" : null,
         "level_spells" : null,
         "limit_brushes_to_path" : null,
         "limit_spells_to_path" : null,
@@ -22010,7 +22079,8 @@
         "uses" : null,
         "wand_power" : "0",
         "worn" : null,
-        "worth" : null
+        "worth" : null,
+        "xp_display" : null
       }
     },
     "weather" : {
@@ -22049,6 +22119,8 @@
         "copy" : "",
         "entity_spawn" : null,
         "environment" : null,
+        "game_mode" : null,
+        "leave_game_mode" : null,
         "max_height" : "0",
         "min_height" : "0",
         "resource_pack" : null,
