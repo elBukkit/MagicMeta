@@ -30,7 +30,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemorySection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -489,7 +488,7 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    public boolean setPickupStatus(Arrow arrow, String pickupStatus) {
+    public boolean setPickupStatus(Projectile projectile, String pickupStatus) {
         return false;
     }
 
