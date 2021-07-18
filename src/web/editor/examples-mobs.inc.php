@@ -78,7 +78,7 @@ mymob:
     <textarea id="templateNPC" class="template" data-label="NPC">mynpc:
   name: Spell Master
   # This sets up a mob that won't move or make sound
-  template: base_npc
+  inherit: base_npc
   # This spell will be cast when a player right-clicks on this mob
   interact_spell: spellshop
   # The NPC will talk to nearby players
