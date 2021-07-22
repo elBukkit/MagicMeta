@@ -105,8 +105,8 @@ public class MetaData {
         parameterStore.mergeType("kit_properties", parameters);
     }
 
-    public void addAutomatonParameters(ParameterList parameters) {
-        parameterStore.mergeType("automaton_properties", parameters);
+    public void addBlockParameters(ParameterList parameters) {
+        parameterStore.mergeType("block_properties", parameters);
     }
 
     public void addActionParameters(ParameterList parameters) {
