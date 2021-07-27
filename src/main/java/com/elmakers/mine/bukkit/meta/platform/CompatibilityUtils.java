@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Art;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -17,7 +16,6 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Rotation;
 import org.bukkit.Server;
 import org.bukkit.Sound;
@@ -795,24 +793,8 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public Enchantment getEnchantmentByKey(String key) {
-        // Really wish there was a fromString that took a string default namespace
-        String namespace = NamespacedKey.MINECRAFT;
-        if (key.contains(":")) {
-            String[] pieces = StringUtils.split(key, ":", 2);
-            namespace = pieces[0];
-            key = pieces[1];
-        }
-        // API says plugins aren't supposed to use this, but i have no idea how to deal
-        // with custom enchants otherwise
-        NamespacedKey namespacedKey = new NamespacedKey(namespace, key);
-        Enchantment enchantment = Enchantment.getByKey(namespacedKey);
-        if (enchantment == null) {
-            // Convert legacy enchantments
-            enchantment = Enchantment.getByName(key.toUpperCase());
-        }
-        return enchantment;
+        return null;
     }
 
     @Override
