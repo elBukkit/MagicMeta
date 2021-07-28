@@ -17166,10 +17166,10 @@
       "name" : "Attributes",
       "value_type" : "integer"
     },
-    "automaton_properties" : {
+    "block_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
-      "name" : "Automaton Properties",
+      "name" : "Block Properties",
       "parameters" : {
         "always_active" : "false",
         "cast" : null,

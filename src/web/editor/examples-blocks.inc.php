@@ -1,18 +1,18 @@
 <?php ?>
 
 <div id="defaultTemplates" style="display: none">
-    <textarea id="templateBlank" class="template" data-label="Blank Automaton"></textarea>
-    <textarea id="templateBasic" class="template" data-label="Mob Spawner"># This is the key name of this automaton
-# It must be unique across the server, and is used in configs to refer to this automaton
+    <textarea id="templateBlank" class="template" data-label="Blank Magic Block"></textarea>
+    <textarea id="templateBasic" class="template" data-label="Mob Spawner"># This is the key name of this magic block
+# It must be unique across the server, and is used in configs to refer to this magic block
 #
-# An automaton assigns some behavior to a specific block in the world.
+# An magic block assigns some behavior to a specific block in the world.
 # This can be used to make mob spawners, visual or sound effects,
 # or cast spells at players.
 #
 myspawner:
   name: Magic Mob Spawner
   description: A simple mob spawner, can be customized via the "spawn.mobs" parameter, among others.
-  # How often this automaton wakes up and checks for a spawn
+  # How often this magic block wakes up and checks for a spawn
   interval: 5000
   # Define how this spawner spawns mobs
   spawn:
@@ -35,10 +35,10 @@ myspawner:
       mega_spider: 30
 
 </textarea>
-    <textarea id="templateFountain" class="template" data-label="Fountain"># This is the key name of this automaton
-# It must be unique across the server, and is used in configs to refer to this automaton
+    <textarea id="templateFountain" class="template" data-label="Fountain"># This is the key name of this magic block
+# It must be unique across the server, and is used in configs to refer to this magic block
 #
-# An automaton assigns some behavior to a specific block in the world.
+# A magic block assigns some behavior to a specific block in the world.
 # This can be used to make mob spawners, visual or sound effects,
 # or cast spells at players.
 #
