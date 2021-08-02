@@ -62,8 +62,12 @@ if ($action == 'new') {
     if (!isset($body['type'])) {
         returnError('Missing type parameter');
     }
+    $fileType = $body['type'];
+
     if (!isset($body['key']) || !$body['key']) {
-        $body['key'] = 'new_changeme';
+        if ($fileType != 'messages' && $fileType != 'config') {
+            $body['key'] = 'new_changeme';
+        }
     }
 
     // Create new session
