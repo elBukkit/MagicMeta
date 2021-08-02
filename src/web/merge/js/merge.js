@@ -112,7 +112,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
                             overrides1.push(override2);
                         }
                     } else if (predicate2.hasOwnProperty('damage')) {
-                        if (customModelData1.hasOwnProperty(predicate2['damage'])) {
+                        if (damage1.hasOwnProperty(predicate2['damage'])) {
                             log("File has same damage predicate in both files, second RP will be skipped: " + rp1File.name + ":" + predicate2['damage']);
                         } else {
                             overrides1.push(override2);
