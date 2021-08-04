@@ -124,32 +124,63 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
             overrides1.sort(function(a, b) {
                 if (a.hasOwnProperty('predicate')) {
                     if (!b.hasOwnProperty(('predicate'))) return -1;
+
                     let ap = a.predicate;
                     let bp = b.predicate;
+
+                    // We need to first separate CMD from non-CMD/damage
+                    // Non-CMD always needs to come first
+                    // But after that we need to group by bow pull or shield blocking first.
+
                     if (ap.hasOwnProperty('custom_model_data')) {
                         if (!bp.hasOwnProperty('custom_model_data')) return 1;
-                        return ap.custom_model_data < bp.custom_model_data ? -1 :
-                            (ap.custom_model_data > bp.custom_model_data ? 1 : 0);
-                    }
+                    } else if (bp.hasOwnProperty('custom_model_data')) return -1;
+
                     if (ap.hasOwnProperty('damaged')) {
                         if (!bp.hasOwnProperty('damaged')) return -1;
-                        return ap.damaged < bp.damaged ? -1 :
-                            (ap.damaged > bp.damaged ? 1 : 0);
-                    }
-                    if (bp.hasOwnProperty('damaged')) {
-                        return 1;
-                    }
+                    } else if (bp.hasOwnProperty('damaged')) return 1;
+
                     if (ap.hasOwnProperty('damage')) {
                         if (!bp.hasOwnProperty('damage')) return -1;
-                        return ap.damage < bp.damage ? -1 :
-                            (ap.damage > bp.damage ? 1 : 0);
+                    } else if (bp.hasOwnProperty('damage')) return 1;
+
+                    // Bow and shield predicates need to come first
+
+                    if (ap.hasOwnProperty('pulling')) {
+                        if (!bp.hasOwnProperty('pulling')) return 1;
+                        if (ap.pulling < bp.pulling) return -1;
+                        if (ap.pulling > bp.pulling) return 1;
+                    } else if (!bp.hasOwnProperty('pulling')) return -1;
+
+                    if (ap.hasOwnProperty('pull')) {
+                        if (!bp.hasOwnProperty('pull')) return 1;
+                        if (ap.pull < bp.pull) return -1;
+                        if (ap.pull > bp.pull) return 1;
+                    } else if (!bp.hasOwnProperty('pull')) return -1;
+
+                    if (ap.hasOwnProperty('blocking')) {
+                        if (!bp.hasOwnProperty('blocking')) return 1;
+                        if (ap.blocking < bp.blocking) return -1;
+                        if (ap.blocking > bp.blocking) return 1;
+                    } else if (!bp.hasOwnProperty('blocking')) return -1;
+
+
+                    // Now sort by CMD or damage if present
+                    // At this point if one RP has these properties, the other one should
+                    // as well, or else we would've exited above.
+                    if (ap.hasOwnProperty('custom_model_data')) {
+                        if (ap.custom_model_data < bp.custom_model_data) return -1;
+                        if (ap.custom_model_data > bp.custom_model_data) return 1;
                     }
-                    if (bp.hasOwnProperty('damage') || bp.hasOwnProperty('custom_model_data')) {
-                        return 1;
+                    if (ap.hasOwnProperty('damaged')) {
+                        if (ap.damaged < bp.damaged) return -1;
+                        if (ap.damaged > bp.damaged) return 1;
                     }
-                    return 0;
-                }
-                if (b.hasOwnProperty('predicate')) return 1;
+                    if (ap.hasOwnProperty('damage')) {
+                        if (ap.damage < bp.damage) return -1;
+                        if (ap.damage > bp.damage) return 1;
+                    }
+                } else if (b.hasOwnProperty('predicate')) return 1;
                 return 0;
             });
         } else {
