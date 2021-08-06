@@ -49,4 +49,15 @@ myfountain:
   effects: fountain
 
 </textarea>
+    <textarea id="templateSpell" class="template" data-label="Spell Block"># This is the key name of this magic block
+# It must be unique across the server, and is used in configs to refer to this magic block
+#
+# A magic block assigns some behavior to a specific block in the world. In this case it will cast a spell on an interval.
+#
+spellblock:
+    name: Spellcaster
+    interval: 5000
+    cast:
+        spells: flare pdx 0 pdz 0 pdy 1 quiet true
+</textarea>
 </div>
