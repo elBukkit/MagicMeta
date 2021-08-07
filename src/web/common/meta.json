@@ -93,7 +93,9 @@
         "importance" : 0,
         "name" : "Aggro",
         "parameters" : {
-          "clear_target" : "false"
+          "clear_target" : "false",
+          "set_pathfinder" : "true",
+          "speed_modifier" : "1.0"
         },
         "short_class" : "Aggro"
       },
@@ -178,6 +180,7 @@
           "ai" : "true",
           "allow_replacement" : "true",
           "amount" : "1",
+          "aware" : "false",
           "baby" : "false",
           "base_potion_type" : null,
           "boots" : null,
@@ -194,6 +197,7 @@
           "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
+          "dialog_face_player" : "true",
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "direction" : null,
@@ -228,6 +232,7 @@
           "interval_requires_target" : "true",
           "invisible" : "false",
           "invulnerable" : "false",
+          "leash_range" : "0",
           "leggings" : null,
           "lifetime" : "0",
           "loot" : "false",
@@ -239,6 +244,7 @@
           "model" : null,
           "modifiers" : null,
           "mount" : null,
+          "mythic_mob" : null,
           "name" : null,
           "npc" : "false",
           "offhand" : null,
@@ -271,6 +277,7 @@
           "sitting" : "false",
           "spawn_actions" : null,
           "speed" : "0",
+          "static" : "false",
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
@@ -309,9 +316,11 @@
           "arms" : "false",
           "attach_duration" : "0",
           "attributes" : null,
+          "aware" : "false",
           "baby" : "false",
           "baseplate" : "true",
           "block_hit_count" : "1",
+          "body_pose" : null,
           "body_transform" : null,
           "boots" : null,
           "boots_item" : null,
@@ -335,6 +344,7 @@
           "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
+          "dialog_face_player" : "true",
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "disabled_slots" : "0",
@@ -353,6 +363,7 @@
           "fov" : "0.3",
           "fov_weight" : "4",
           "gravity" : "0",
+          "head_pose" : null,
           "head_transform" : null,
           "headshot_actions" : null,
           "headshot_effects" : "headshot",
@@ -384,7 +395,10 @@
           "invisible" : "false",
           "invulnerable" : "false",
           "item" : null,
+          "leash_range" : "0",
+          "left_arm_pose" : null,
           "left_arm_transform" : null,
+          "left_leg_pose" : null,
           "left_leg_transform" : null,
           "leggings" : null,
           "leggings_item" : null,
@@ -401,6 +415,7 @@
           "modifiers" : null,
           "mount" : null,
           "mount_wand" : "false",
+          "mythic_mob" : null,
           "name" : null,
           "no_target" : "true",
           "npc" : "false",
@@ -451,7 +466,9 @@
           "return_to_caster" : "false",
           "reverse" : "false",
           "right_arm_item" : null,
+          "right_arm_pose" : null,
           "right_arm_transform" : null,
+          "right_leg_pose" : null,
           "right_leg_transform" : null,
           "show_name" : "false",
           "silent" : "false",
@@ -464,6 +481,7 @@
           "spread_movement" : "0",
           "spread_movement_max" : "0",
           "start" : "0",
+          "static" : "false",
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
@@ -516,6 +534,7 @@
         "name" : "Ascend",
         "parameters" : {
           "keep_velocity" : "false",
+          "maintain_direction" : "false",
           "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
@@ -605,6 +624,7 @@
         "parameters" : {
           "auto_block_state" : "false",
           "break_durability" : "1",
+          "break_material" : null,
           "breakable" : "0",
           "check_chunk" : "false",
           "commit" : "false",
@@ -827,6 +847,7 @@
         "parameters" : {
           "keep_velocity" : "false",
           "load" : "true",
+          "maintain_direction" : "false",
           "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
@@ -862,14 +883,17 @@
         "parameters" : {
           "allow_brush" : "false",
           "allowed" : null,
+          "biome_actions" : null,
           "biomes" : null,
           "biomes_list" : null,
+          "block_actions" : null,
           "check_permission" : "true",
           "direction" : null,
           "direction_count" : "1",
           "fail_actions" : null,
           "invert" : "false",
           "not_biomes" : null,
+          "not_brush" : "false",
           "set_target" : "false",
           "source_location" : "eyes",
           "use_target" : "true"
@@ -1170,7 +1194,8 @@
         "importance" : 50,
         "name" : "Cover",
         "parameters" : {
-          "target_above" : "false"
+          "target_above" : "false",
+          "target_highest" : "false"
         },
         "short_class" : "Cover"
       },
@@ -1218,6 +1243,19 @@
           "speed" : "0"
         },
         "short_class" : "CreateField"
+      },
+      "create_magic_block" : {
+        "category" : "",
+        "class_name" : "CreateMagicBlockAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Create Magic Block",
+        "parameters" : {
+          "block_parameters" : null,
+          "template" : null
+        },
+        "short_class" : "CreateMagicBlock"
       },
       "create_n_p_c" : {
         "category" : "",
@@ -1482,6 +1520,7 @@
         "name" : "Descend",
         "parameters" : {
           "keep_velocity" : "false",
+          "maintain_direction" : "false",
           "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
@@ -1794,6 +1833,7 @@
           "orient" : "false",
           "orient_pitch" : "true",
           "reorient" : "false",
+          "use_target_location" : "true",
           "variable" : "t",
           "variable2" : "t",
           "x2_equation" : null,
@@ -1926,6 +1966,21 @@
           "max_level" : "0"
         },
         "short_class" : "FillWand"
+      },
+      "find_magic_blocks" : {
+        "category" : "compound",
+        "class_name" : "FindMagicBlocksAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Find Magic Blocks",
+        "parameters" : {
+          "radius" : "0",
+          "target_all_worlds" : "true",
+          "target_block_mage" : "true",
+          "target_magic_blocks" : null
+        },
+        "short_class" : "FindMagicBlocks"
       },
       "firework" : {
         "category" : "compound",
@@ -2265,6 +2320,7 @@
         "importance" : 10,
         "name" : "Message",
         "parameters" : {
+          "dialog_format" : "",
           "equation" : "0",
           "fade_in" : "-1",
           "fade_out" : "-1",
@@ -2277,6 +2333,28 @@
           "sub_message_key" : null
         },
         "short_class" : "Message"
+      },
+      "model_engine" : {
+        "category" : "",
+        "class_name" : "ModelEngineAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Model Engine",
+        "parameters" : {
+          "custom_id" : null,
+          "ignore_lerp" : "false",
+          "lerp_in" : "0",
+          "lerp_out" : "1",
+          "lerp_speed" : "1.0",
+          "model_action" : "add_state",
+          "model_id" : null,
+          "model_state" : null,
+          "part_id" : null,
+          "sub_model_id" : null,
+          "sub_part_id" : null
+        },
+        "short_class" : "ModelEngine"
       },
       "modifier" : {
         "category" : "",
@@ -2350,6 +2428,18 @@
         },
         "short_class" : "ModifyBreakable"
       },
+      "modify_compass" : {
+        "category" : "",
+        "class_name" : "ModifyCompassAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Modify Compass",
+        "parameters" : {
+          "tracked" : "false"
+        },
+        "short_class" : "ModifyCompass"
+      },
       "modify_currency" : {
         "category" : "",
         "class_name" : "ModifyCurrencyAction",
@@ -2376,6 +2466,7 @@
           "ai" : "true",
           "angry" : "false",
           "attributes" : null,
+          "aware" : "false",
           "baby" : "false",
           "boots" : null,
           "boss_bar" : null,
@@ -2392,6 +2483,7 @@
           "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
+          "dialog_face_player" : "true",
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "direction" : null,
@@ -2425,6 +2517,7 @@
           "invisible" : "false",
           "invulnerable" : "false",
           "item" : null,
+          "leash_range" : "0",
           "leggings" : null,
           "lifetime" : "0",
           "loot" : "false",
@@ -2433,6 +2526,7 @@
           "model" : null,
           "modifiers" : null,
           "mount" : null,
+          "mythic_mob" : null,
           "name" : null,
           "no_drops" : "false",
           "npc" : "false",
@@ -2454,6 +2548,7 @@
           "silent" : "false",
           "sitting" : "false",
           "speed" : "0.0",
+          "static" : "false",
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
@@ -2663,6 +2758,7 @@
           "armor_stand_gravity" : "true",
           "armor_stand_health" : "0.1",
           "armor_stand_invisible" : "true",
+          "armor_stand_invulnerable" : "true",
           "armor_stand_marker" : "true",
           "armor_stand_pitch" : "0",
           "armor_stand_reason" : null,
@@ -2706,6 +2802,7 @@
           "max_speed" : "0",
           "min_speed" : "0",
           "mount_name" : null,
+          "mount_no_drops" : "true",
           "mount_target" : "false",
           "mount_untargetable" : "true",
           "mount_wand" : "false",
@@ -3005,6 +3102,7 @@
           "delay" : "0",
           "friend_key" : "recall_friends",
           "keep_velocity" : "false",
+          "maintain_direction" : "false",
           "marker_count" : "1",
           "marker_key" : "recall_marker",
           "prevent_fall" : "true",
@@ -3126,6 +3224,16 @@
         "parameters" : { },
         "short_class" : "ResetMage"
       },
+      "respawn" : {
+        "category" : "compound",
+        "class_name" : "RespawnAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Respawn",
+        "parameters" : { },
+        "short_class" : "Respawn"
+      },
       "retarget" : {
         "category" : "compound",
         "class_name" : "RetargetAction",
@@ -3206,6 +3314,7 @@
           "max_height_above_ground" : "-1",
           "max_speed" : "0",
           "min_speed" : "0",
+          "mount_no_drops" : "true",
           "mount_untargetable" : "true",
           "passenger" : "false",
           "pitch_controllable" : "true",
@@ -3315,6 +3424,8 @@
           "free" : "false",
           "icon" : null,
           "icon_disabled" : null,
+          "icon_hide_flags" : "63",
+          "icon_unbreakable" : "true",
           "item" : null,
           "items" : null,
           "kit" : null,
@@ -3418,6 +3529,8 @@
           "free" : "false",
           "icon" : null,
           "icon_disabled" : null,
+          "icon_hide_flags" : "63",
+          "icon_unbreakable" : "true",
           "item" : null,
           "items" : null,
           "kit" : null,
@@ -3441,6 +3554,7 @@
           "show_path_spells" : "false",
           "show_required_spells" : "false",
           "show_unavailable" : "false",
+          "show_uncastable" : "true",
           "spells" : null,
           "switch_class" : null,
           "title" : null,
@@ -3545,6 +3659,7 @@
           "allow_replacement" : "true",
           "amount" : "1",
           "angry" : "false",
+          "aware" : "false",
           "baby" : "false",
           "boots" : null,
           "boss_bar" : null,
@@ -3560,6 +3675,7 @@
           "combustible" : "true",
           "default_drops" : "true",
           "dialog" : null,
+          "dialog_face_player" : "true",
           "dialog_interval" : "2000",
           "dialog_range" : "3.0",
           "direction" : null,
@@ -3592,6 +3708,7 @@
           "interval_requires_target" : "true",
           "invisible" : "false",
           "invulnerable" : "false",
+          "leash_range" : "0",
           "leggings" : null,
           "lifetime" : "0",
           "loot" : "false",
@@ -3603,6 +3720,7 @@
           "model" : null,
           "modifiers" : null,
           "mount" : null,
+          "mythic_mob" : null,
           "name" : null,
           "npc" : "false",
           "offhand" : null,
@@ -3631,6 +3749,7 @@
           "spawn_actions" : null,
           "speed" : "0",
           "split" : "true",
+          "static" : "false",
           "strength" : null,
           "tags" : null,
           "tamed" : "false",
@@ -3871,6 +3990,7 @@
           "direct" : "false",
           "keep_velocity" : "false",
           "ledge_range" : "2",
+          "maintain_direction" : "false",
           "passthrough_range" : "4",
           "prevent_fall" : "true",
           "require_build" : "false",
@@ -4170,6 +4290,7 @@
         "name" : "Warp",
         "parameters" : {
           "keep_velocity" : "false",
+          "maintain_direction" : "false",
           "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
@@ -5940,6 +6061,14 @@
       "name" : "Armor Stand Invisible",
       "type" : "boolean"
     },
+    "armor_stand_invulnerable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "armor_stand_invulnerable",
+      "importance" : 0,
+      "name" : "Armor Stand Invulnerable",
+      "type" : "boolean"
+    },
     "armor_stand_marker" : {
       "category" : "",
       "description" : [ "" ],
@@ -6164,6 +6293,14 @@
       "name" : "Automaton Parameters",
       "type" : "map"
     },
+    "aware" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "aware",
+      "importance" : 0,
+      "name" : "Aware",
+      "type" : "boolean"
+    },
     "axis" : {
       "category" : "",
       "description" : [ "" ],
@@ -6301,6 +6438,14 @@
       "name" : "Biome",
       "type" : "biome"
     },
+    "biome_actions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "biome_actions",
+      "importance" : 0,
+      "name" : "Biome Actions",
+      "type" : "map"
+    },
     "biome_replacements" : {
       "category" : "",
       "description" : [ "" ],
@@ -6339,6 +6484,14 @@
       "field" : "biomes",
       "importance" : 0,
       "name" : "Biomes",
+      "type" : "map"
+    },
+    "block_actions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_actions",
+      "importance" : 0,
+      "name" : "Block Actions",
       "type" : "map"
     },
     "block_break" : {
@@ -6389,6 +6542,14 @@
       "name" : "Block Mage Cooldown",
       "type" : "integer"
     },
+    "block_parameters" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_parameters",
+      "importance" : 0,
+      "name" : "Block Parameters",
+      "type" : "map"
+    },
     "block_place" : {
       "category" : "",
       "description" : [ "" ],
@@ -6436,6 +6597,14 @@
       "importance" : 0,
       "name" : "Blocked",
       "type" : "list"
+    },
+    "body_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "body_pose",
+      "importance" : 0,
+      "name" : "Body Pose",
+      "type" : "string"
     },
     "body_transform" : {
       "category" : "",
@@ -6557,6 +6726,14 @@
       "importance" : 0,
       "name" : "Break Durability",
       "type" : "integer"
+    },
+    "break_material" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "break_material",
+      "importance" : 0,
+      "name" : "Break Material",
+      "type" : "string"
     },
     "breakable" : {
       "category" : "",
@@ -6855,6 +7032,14 @@
       "name" : "Cancel On No Wand",
       "type" : "boolean"
     },
+    "cancel_on_world_change" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "cancel_on_world_change",
+      "importance" : 0,
+      "name" : "Cancel On World Change",
+      "type" : "boolean"
+    },
     "cancel_spells_on_save" : {
       "category" : "",
       "description" : [ "" ],
@@ -7055,6 +7240,14 @@
       "importance" : 0,
       "name" : "Center Z",
       "type" : "boolean"
+    },
+    "charge_regeneration" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "charge_regeneration",
+      "importance" : 0,
+      "name" : "Charge Regeneration",
+      "type" : "double"
     },
     "charges" : {
       "category" : "actions",
@@ -7937,6 +8130,14 @@
       "name" : "Curve",
       "type" : "float"
     },
+    "custom_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "custom_id",
+      "importance" : 0,
+      "name" : "Custom Id",
+      "type" : "string"
+    },
     "cycle_colors" : {
       "category" : "",
       "description" : [ "If true, configured color blocks will automatically cycle" ],
@@ -8192,6 +8393,22 @@
       "importance" : 0,
       "name" : "Dialog",
       "type" : "list"
+    },
+    "dialog_face_player" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "dialog_face_player",
+      "importance" : 0,
+      "name" : "Dialog Face Player",
+      "type" : "boolean"
+    },
+    "dialog_format" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "dialog_format",
+      "importance" : 0,
+      "name" : "Dialog Format",
+      "type" : "string"
     },
     "dialog_interval" : {
       "category" : "",
@@ -8937,6 +9154,14 @@
       "name" : "Enchantments",
       "type" : "enchantment_map"
     },
+    "end_commands" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "end_commands",
+      "importance" : 0,
+      "name" : "End Commands",
+      "type" : "string"
+    },
     "end_result" : {
       "category" : "",
       "description" : [ "" ],
@@ -9673,6 +9898,14 @@
       "name" : "Has Uses",
       "type" : "double"
     },
+    "head_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "head_pose",
+      "importance" : 0,
+      "name" : "Head Pose",
+      "type" : "string"
+    },
     "head_transform" : {
       "category" : "",
       "description" : [ "" ],
@@ -9985,6 +10218,14 @@
       "name" : "Disabled Icon Url",
       "type" : "texture"
     },
+    "icon_hide_flags" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "icon_hide_flags",
+      "importance" : 0,
+      "name" : "Icon Hide Flags",
+      "type" : "integer"
+    },
     "icon_inactive" : {
       "category" : "wand",
       "description" : [ "If set, this wand will show a different icon when inactive versus when held, or for wands with a spell inventory, when the inventory is open" ],
@@ -10008,6 +10249,14 @@
       "importance" : 100,
       "name" : "Icon",
       "type" : "spell_icon"
+    },
+    "icon_unbreakable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "icon_unbreakable",
+      "importance" : 0,
+      "name" : "Icon Unbreakable",
+      "type" : "boolean"
     },
     "icon_url" : {
       "category" : "base",
@@ -10074,6 +10323,14 @@
       "name" : "Ignore Key",
       "type" : "string"
     },
+    "ignore_lerp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignore_lerp",
+      "importance" : 0,
+      "name" : "Ignore Lerp",
+      "type" : "boolean"
+    },
     "ignore_modified" : {
       "category" : "",
       "description" : [ "" ],
@@ -10081,6 +10338,14 @@
       "importance" : 0,
       "name" : "Ignore Modified",
       "type" : "boolean"
+    },
+    "ignore_particles" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ignore_particles",
+      "importance" : 0,
+      "name" : "Ignore Particles",
+      "type" : "string"
     },
     "ignore_potion_effects" : {
       "category" : "actions",
@@ -10170,6 +10435,14 @@
       "name" : "Indestructible",
       "type" : "material_list"
     },
+    "infinity_cost_free" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "infinity_cost_free",
+      "importance" : 0,
+      "name" : "Infinity Cost Free",
+      "type" : "string"
+    },
     "ingredient" : {
       "category" : "",
       "description" : [ "" ],
@@ -10209,6 +10482,14 @@
       "importance" : 0,
       "name" : "Intensity",
       "type" : "integer"
+    },
+    "interact" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "interact",
+      "importance" : 0,
+      "name" : "Interact",
+      "type" : "map"
     },
     "interact_command_source" : {
       "category" : "",
@@ -10642,6 +10923,14 @@
       "name" : "Leaderboard Size",
       "type" : "integer"
     },
+    "leash_range" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "leash_range",
+      "importance" : 0,
+      "name" : "Leash Range",
+      "type" : "integer"
+    },
     "leave_game_mode" : {
       "category" : "",
       "description" : [ "" ],
@@ -10657,6 +10946,14 @@
       "importance" : 0,
       "name" : "Ledge Range",
       "type" : "integer"
+    },
+    "left_arm_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "left_arm_pose",
+      "importance" : 0,
+      "name" : "Left Arm Pose",
+      "type" : "string"
     },
     "left_arm_transform" : {
       "category" : "",
@@ -10680,6 +10977,14 @@
       "field" : "left_click_sneak",
       "importance" : 0,
       "name" : "Left Click Sneak",
+      "type" : "string"
+    },
+    "left_leg_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "left_leg_pose",
+      "importance" : 0,
+      "name" : "Left Leg Pose",
       "type" : "string"
     },
     "left_leg_transform" : {
@@ -10738,6 +11043,30 @@
       "name" : "Length Grow",
       "type" : "float"
     },
+    "lerp_in" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lerp_in",
+      "importance" : 0,
+      "name" : "Lerp In",
+      "type" : "integer"
+    },
+    "lerp_out" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lerp_out",
+      "importance" : 0,
+      "name" : "Lerp Out",
+      "type" : "integer"
+    },
+    "lerp_speed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lerp_speed",
+      "importance" : 0,
+      "name" : "Lerp Speed",
+      "type" : "double"
+    },
     "level" : {
       "category" : "",
       "description" : [ "" ],
@@ -10768,6 +11097,14 @@
       "field" : "level_spells",
       "importance" : 0,
       "name" : "Level Spells",
+      "type" : "string"
+    },
+    "level_spells_to_path" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "level_spells_to_path",
+      "importance" : 0,
+      "name" : "Level Spells To Path",
       "type" : "string"
     },
     "levels" : {
@@ -11041,6 +11378,14 @@
       "importance" : 0,
       "name" : "Main Particles",
       "type" : "integer"
+    },
+    "maintain_direction" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "maintain_direction",
+      "importance" : 0,
+      "name" : "Maintain Direction",
+      "type" : "boolean"
     },
     "mana" : {
       "category" : "wand",
@@ -11546,6 +11891,30 @@
       "name" : "Model",
       "type" : "map"
     },
+    "model_action" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "model_action",
+      "importance" : 0,
+      "name" : "Model Action",
+      "type" : "string"
+    },
+    "model_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "model_id",
+      "importance" : 0,
+      "name" : "Model Id",
+      "type" : "string"
+    },
+    "model_state" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "model_state",
+      "importance" : 0,
+      "name" : "Model State",
+      "type" : "string"
+    },
     "modifiable" : {
       "category" : "construction",
       "description" : [ "What blocks this spell can modify" ],
@@ -11626,6 +11995,14 @@
       "name" : "Mount Name",
       "type" : "string"
     },
+    "mount_no_drops" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "mount_no_drops",
+      "importance" : 0,
+      "name" : "Mount No Drops",
+      "type" : "boolean"
+    },
     "mount_target" : {
       "category" : "",
       "description" : [ "" ],
@@ -11665,6 +12042,14 @@
       "importance" : 0,
       "name" : "Multiply",
       "type" : "integer"
+    },
+    "mythic_mob" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "mythic_mob",
+      "importance" : 0,
+      "name" : "Mythic Mob",
+      "type" : "string"
     },
     "name" : {
       "category" : "base",
@@ -11729,6 +12114,14 @@
       "importance" : 0,
       "name" : "Not Biomes",
       "type" : "list"
+    },
+    "not_brush" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "not_brush",
+      "importance" : 0,
+      "name" : "Not Brush",
+      "type" : "boolean"
     },
     "npc" : {
       "category" : "",
@@ -12121,6 +12514,14 @@
       "importance" : 0,
       "name" : "Parrot Variant",
       "type" : "parrot_variant"
+    },
+    "part_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "part_id",
+      "importance" : 0,
+      "name" : "Part Id",
+      "type" : "string"
     },
     "partial" : {
       "category" : "",
@@ -12634,6 +13035,14 @@
       "name" : "Pitch Offset",
       "type" : "pitch"
     },
+    "placeable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "placeable",
+      "importance" : 0,
+      "name" : "Placeable",
+      "type" : "string"
+    },
     "placeholder_icon" : {
       "category" : "",
       "description" : [ "" ],
@@ -12817,6 +13226,14 @@
       "importance" : 0,
       "name" : "Price",
       "type" : "double"
+    },
+    "priority" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "priority",
+      "importance" : 0,
+      "name" : "Priority",
+      "type" : "integer"
     },
     "priority_faces" : {
       "category" : "",
@@ -13794,6 +14211,14 @@
       "name" : "Right Arm Item",
       "type" : "string"
     },
+    "right_arm_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "right_arm_pose",
+      "importance" : 0,
+      "name" : "Right Arm Pose",
+      "type" : "string"
+    },
     "right_arm_transform" : {
       "category" : "",
       "description" : [ "" ],
@@ -13816,6 +14241,14 @@
       "field" : "right_click_sneak",
       "importance" : 0,
       "name" : "Right Click Sneak",
+      "type" : "string"
+    },
+    "right_leg_pose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "right_leg_pose",
+      "importance" : 0,
+      "name" : "Right Leg Pose",
       "type" : "string"
     },
     "right_leg_transform" : {
@@ -14018,6 +14451,14 @@
       "name" : "Server",
       "type" : "string"
     },
+    "set_pathfinder" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "set_pathfinder",
+      "importance" : 0,
+      "name" : "Set Pathfinder",
+      "type" : "boolean"
+    },
     "set_source" : {
       "category" : "",
       "description" : [ "" ],
@@ -14136,6 +14577,14 @@
       "field" : "show_unavailable",
       "importance" : 0,
       "name" : "Show Unavailable",
+      "type" : "boolean"
+    },
+    "show_uncastable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_uncastable",
+      "importance" : 0,
+      "name" : "Show Uncastable",
       "type" : "boolean"
     },
     "show_undoable" : {
@@ -14578,6 +15027,14 @@
       "name" : "Speed Min",
       "type" : "double"
     },
+    "speed_modifier" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "speed_modifier",
+      "importance" : 0,
+      "name" : "Speed Modifier",
+      "type" : "double"
+    },
     "speed_ocean" : {
       "category" : "",
       "description" : [ "" ],
@@ -14794,6 +15251,14 @@
       "name" : "Starter",
       "type" : "boolean"
     },
+    "static" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "static",
+      "importance" : 0,
+      "name" : "Static",
+      "type" : "boolean"
+    },
     "stay" : {
       "category" : "",
       "description" : [ "The amount of time the title will stay visible before transitioning out.", "<em>Applies only when \"message_type\" is set to \"title\"</em>" ],
@@ -14922,6 +15387,22 @@
       "name" : "Sub Message Key",
       "type" : "string"
     },
+    "sub_model_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sub_model_id",
+      "importance" : 0,
+      "name" : "Sub Model Id",
+      "type" : "string"
+    },
+    "sub_part_id" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sub_part_id",
+      "importance" : 0,
+      "name" : "Sub Part Id",
+      "type" : "string"
+    },
     "substitute" : {
       "category" : "",
       "description" : [ "An item to use in place of the vanilla recipe output" ],
@@ -14969,6 +15450,14 @@
       "importance" : 0,
       "name" : "Swap Source And Target",
       "type" : "boolean"
+    },
+    "swappable_slots" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "swappable_slots",
+      "importance" : 0,
+      "name" : "Swappable Slots",
+      "type" : "string"
     },
     "switch_class" : {
       "category" : "",
@@ -15072,6 +15561,14 @@
       "field" : "target_block",
       "importance" : 0,
       "name" : "Target Block",
+      "type" : "boolean"
+    },
+    "target_block_mage" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "target_block_mage",
+      "importance" : 0,
+      "name" : "Target Block Mage",
       "type" : "boolean"
     },
     "target_block_timeout" : {
@@ -15178,6 +15675,14 @@
       "name" : "Target Game Modes",
       "type" : "list"
     },
+    "target_highest" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "target_highest",
+      "importance" : 0,
+      "name" : "Target Highest",
+      "type" : "boolean"
+    },
     "target_invisible" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -15193,6 +15698,14 @@
       "importance" : 70,
       "name" : "Target Location",
       "type" : "source_location_location_type"
+    },
+    "target_magic_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "target_magic_blocks",
+      "importance" : 0,
+      "name" : "Target Magic Blocks",
+      "type" : "list"
     },
     "target_min_offset" : {
       "category" : "targeting",
@@ -15737,6 +16250,14 @@
       "field" : "track_target",
       "importance" : 0,
       "name" : "Track Target",
+      "type" : "boolean"
+    },
+    "tracked" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "tracked",
+      "importance" : 0,
+      "name" : "Tracked",
       "type" : "boolean"
     },
     "trail" : {
@@ -16708,6 +17229,14 @@
       "name" : "Worlds",
       "type" : "map"
     },
+    "worlds_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "worlds",
+      "importance" : 0,
+      "name" : "Worlds",
+      "type" : "list"
+    },
     "worn" : {
       "category" : "",
       "description" : [ "" ],
@@ -17108,6 +17637,7 @@
         "draw_sp" : "0",
         "draw_xp" : "0",
         "duration" : "0",
+        "end_commands" : null,
         "exit" : null,
         "item_wear" : "true",
         "keep_inventory" : "false",
@@ -17165,27 +17695,6 @@
       "key_type" : "attribute",
       "name" : "Attributes",
       "value_type" : "integer"
-    },
-    "block_properties" : {
-      "class_name" : "org.bukkit.configuration.ConfigurationSection",
-      "description" : [ "" ],
-      "name" : "Block Properties",
-      "parameters" : {
-        "always_active" : "false",
-        "cast" : null,
-        "description" : null,
-        "drop_when_removed" : null,
-        "effects" : null,
-        "interval" : "0",
-        "max_time" : null,
-        "min_players" : "0",
-        "min_time" : null,
-        "moon_phase" : null,
-        "name" : null,
-        "player_range" : "64",
-        "remove_when_broken" : "false",
-        "spawn" : null
-      }
     },
     "bar_color" : {
       "class_name" : "org.bukkit.boss.BarColor",
@@ -17334,6 +17843,28 @@
         "wooded_mountains" : null
       }
     },
+    "block_properties" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Block Properties",
+      "parameters" : {
+        "always_active" : "false",
+        "cast" : null,
+        "description" : null,
+        "drop_when_removed" : null,
+        "effects" : null,
+        "interact" : null,
+        "interval" : "0",
+        "max_time" : null,
+        "min_players" : "0",
+        "min_time" : null,
+        "moon_phase" : null,
+        "name" : null,
+        "player_range" : "64",
+        "remove_when_broken" : "false",
+        "spawn" : null
+      }
+    },
     "boolean" : {
       "class_name" : "java.lang.Boolean",
       "description" : [ "A true/false value" ],
@@ -17392,6 +17923,7 @@
         "health_scale" : null,
         "hotbar_count" : null,
         "icon" : null,
+        "ignore_particles" : null,
         "ignored_by_mobs" : null,
         "mana" : null,
         "mana_max" : null,
@@ -18278,11 +18810,13 @@
         "keep" : "false",
         "name" : "",
         "partial" : "false",
+        "priority" : "0",
         "remove" : "false",
         "requirement" : null,
         "requirements" : null,
         "starter" : "false",
         "welcome_wand" : "false",
+        "worlds" : null,
         "worth" : "0.0"
       }
     },
@@ -19618,6 +20152,7 @@
       "options" : {
         "action_bar" : "The action bar",
         "chat" : "Player chat",
+        "mage" : null,
         "title" : "A screen title"
       }
     },
@@ -19653,9 +20188,11 @@
         "armor" : null,
         "arms" : "false",
         "art" : null,
+        "aware" : "false",
         "baby" : "false",
         "base_potion_type" : null,
         "baseplate" : "true",
+        "body_pose" : null,
         "boots" : null,
         "boss_bar" : null,
         "can_pickup_items" : "false",
@@ -19671,6 +20208,7 @@
         "crouching" : "false",
         "default_drops" : "true",
         "dialog" : null,
+        "dialog_face_player" : "true",
         "dialog_interval" : "2000",
         "dialog_range" : "3.0",
         "disabled_slots" : "0",
@@ -19691,6 +20229,7 @@
         "gravity_boolean" : "true",
         "hand_item" : null,
         "has_chest" : "false",
+        "head_pose" : null,
         "health" : "1",
         "helmet" : null,
         "hidden" : "false",
@@ -19712,6 +20251,9 @@
         "invisible" : "false",
         "invulnerable" : "false",
         "jump_strength" : "0.0",
+        "leash_range" : "0",
+        "left_arm_pose" : null,
+        "left_leg_pose" : null,
         "leggings" : null,
         "lifetime" : "0",
         "llama_color" : null,
@@ -19728,6 +20270,7 @@
         "model" : null,
         "modifiers" : null,
         "mount" : null,
+        "mythic_mob" : null,
         "npc" : "false",
         "offhand" : null,
         "owner" : null,
@@ -19752,6 +20295,8 @@
         "register_by_name" : "false",
         "remove_mounts" : null,
         "remove_when_far_away" : "false",
+        "right_arm_pose" : null,
+        "right_leg_pose" : null,
         "rotation" : null,
         "saddle" : null,
         "second_trusted" : null,
@@ -19761,6 +20306,7 @@
         "size" : "1",
         "small" : "false",
         "split" : "true",
+        "static" : "false",
         "strength" : null,
         "tags" : null,
         "tamed" : "false",
@@ -19809,6 +20355,7 @@
         "health_scale" : null,
         "hotbar_count" : null,
         "icon" : null,
+        "ignore_particles" : null,
         "ignored_by_mobs" : null,
         "items" : null,
         "mana" : null,
@@ -20221,6 +20768,8 @@
         "free" : "false",
         "icon" : null,
         "icon_disabled" : null,
+        "icon_hide_flags" : "63",
+        "icon_unbreakable" : "true",
         "item" : null,
         "items" : null,
         "kit" : null,
@@ -21526,7 +22075,9 @@
         "cancel_on_death" : "false",
         "cancel_on_no_permission" : "false",
         "cancel_on_no_wand" : "false",
+        "cancel_on_world_change" : "false",
         "cd" : "true",
+        "charge_regeneration" : "1.0",
         "charges" : "0",
         "check_destructible" : "true",
         "check_indestructible" : "true",
@@ -21738,6 +22289,7 @@
         "entity_required" : "The spell did not cast because it requires an entity target",
         "fail" : "The spell failed, generally due to some internal error",
         "fizzle" : "The spell fizzled, did not cast successfully",
+        "insufficient_charges" : null,
         "insufficient_permission" : "The spell did not cast because the caster did not have permission to do so",
         "insufficient_resources" : "The spell did not cast because the caster did not have the required casting costs",
         "invalid_world" : "The spell did not cast because it was targeting an invalid world",
@@ -21785,6 +22337,7 @@
         "any" : "will target any entity, falling back to the player if no other entity was targeted",
         "any_entity" : "will target any entity, falling back to the player if no other entity was targeted. Does not target blocks at all.",
         "block" : "Only target blocks, ignore entities",
+        "block_broken" : null,
         "damage_target" : null,
         "last_damager" : null,
         "none" : "No target at all, can be used with some actions like Weather and Time",
@@ -21945,6 +22498,7 @@
         "active_effects" : null,
         "active_spell" : null,
         "allow_container_copy" : null,
+        "allowed_enchantments" : null,
         "alternate_spell" : null,
         "alternate_spell2" : null,
         "alternate_spell3" : null,
@@ -22011,9 +22565,11 @@
         "icon" : null,
         "icon_inactive" : null,
         "icon_inactive_delay" : null,
+        "ignore_particles" : null,
         "ignored_by_mobs" : null,
         "immortal" : "false",
         "indestructible" : "false",
+        "infinity_cost_free" : null,
         "interactible" : null,
         "inventory_rows" : "5",
         "invulnerable" : "false",
@@ -22025,6 +22581,7 @@
         "left_click_sneak" : null,
         "level_display" : null,
         "level_spells" : null,
+        "level_spells_to_path" : null,
         "limit_brushes_to_path" : null,
         "limit_spells_to_path" : null,
         "locked" : "false",
@@ -22042,6 +22599,7 @@
         "page_free_space" : null,
         "passive" : "false",
         "path" : null,
+        "placeable" : null,
         "potion_effects" : null,
         "powered" : "false",
         "preuse" : null,
@@ -22065,6 +22623,7 @@
         "stack" : "false",
         "swap" : "none",
         "swap_sneak" : null,
+        "swappable_slots" : null,
         "tags" : null,
         "template" : null,
         "track" : "false",
