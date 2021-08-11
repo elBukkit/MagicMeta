@@ -831,4 +831,9 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     public BlockFace getSignFacing(Block sign) {
         return null;
     }
+
+    @Override
+    public void openSign(Player player, Location signBlock) {
+
+    }
 }

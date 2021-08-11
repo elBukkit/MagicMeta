@@ -6,9 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import org.bukkit.Location;
 import org.bukkit.block.Skull;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -78,10 +76,5 @@ public class InventoryUtils extends InventoryUtilsBase {
     @Override
     public boolean setSkullProfile(ItemMeta itemMeta, Object data) {
         return false;
-    }
-
-    @Override
-    public void openSign(Player player, Location signBlock) {
-
     }
 }
