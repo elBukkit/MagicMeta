@@ -1,5 +1,10 @@
 package com.elmakers.mine.bukkit.meta.platform;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collection;
+import java.util.Set;
+
 import org.bukkit.inventory.ItemStack;
 
 import com.elmakers.mine.bukkit.utility.platform.Platform;
@@ -51,6 +56,11 @@ public class NBTUtils extends NBTUtilsBase {
     }
 
     @Override
+    public Short getMetaShort(Object node, String tag) {
+        return null;
+    }
+
+    @Override
     public Integer getMetaInt(Object node, String tag) {
         return null;
     }
@@ -63,6 +73,16 @@ public class NBTUtils extends NBTUtilsBase {
     @Override
     public Boolean getMetaBoolean(Object node, String tag) {
         return null;
+    }
+
+    @Override
+    public byte[] getByteArray(Object tag, String key) {
+        return new byte[0];
+    }
+
+    @Override
+    public int[] getIntArray(Object tag, String key) {
+        return new int[0];
     }
 
     @Override
@@ -106,6 +126,26 @@ public class NBTUtils extends NBTUtilsBase {
     }
 
     @Override
+    public void setMetaShort(Object node, String tag, short value) {
+
+    }
+
+    @Override
+    public void putIntArray(Object tag, String key, int[] value) {
+
+    }
+
+    @Override
+    public void putByteArray(Object tag, String key, byte[] value) {
+
+    }
+
+    @Override
+    public void putEmptyList(Object tag, String key) {
+
+    }
+
+    @Override
     public void removeMeta(Object node, String tag) {
 
     }
@@ -113,5 +153,30 @@ public class NBTUtils extends NBTUtilsBase {
     @Override
     public void addToList(Object listObject, Object node) {
 
+    }
+
+    @Override
+    public Object readTagFromStream(InputStream input) {
+        return null;
+    }
+
+    @Override
+    public boolean writeTagToStream(Object tag, OutputStream output) {
+        return false;
+    }
+
+    @Override
+    public Set<String> getAllKeys(Object tag) {
+        return null;
+    }
+
+    @Override
+    public Collection<Object> getTagList(Object tag, String key) {
+        return null;
+    }
+
+    @Override
+    public Object newCompoundTag() {
+        return null;
     }
 }
