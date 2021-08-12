@@ -51,6 +51,11 @@ function loadRP2File(rp1File, rp2File, result, relativePath, fileName) {
 
 function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
     _merging--;
+    let filePieces = fileName.split("/");
+    if (filePieces.length == 0 || filePieces[filePieces.length - 1].startsWith(".")) {
+        checkFinish(result);
+        return;
+    }
 
     // So, apparently, people put empty json files in their resource packs for some reason.
     let rp1Parsed = {};
@@ -59,6 +64,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
             rp1Parsed = JSON.parse(rp1File.content);
         } catch (error) {
             log("Error reading file from RP1: " + rp1File.name);
+            checkFinish(result);
             return;
         }
     }
@@ -68,6 +74,7 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
             rp2Parsed = JSON.parse(rp2File.content);
         } catch (error) {
             log("Error reading file from RP2 " + rp2File.name);
+            checkFinish(result);
             return;
         }
     }
@@ -150,20 +157,19 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
                         if (!bp.hasOwnProperty('pulling')) return 1;
                         if (ap.pulling < bp.pulling) return -1;
                         if (ap.pulling > bp.pulling) return 1;
-                    } else if (!bp.hasOwnProperty('pulling')) return -1;
+                    } else if (bp.hasOwnProperty('pulling')) return -1;
 
                     if (ap.hasOwnProperty('pull')) {
                         if (!bp.hasOwnProperty('pull')) return 1;
                         if (ap.pull < bp.pull) return -1;
                         if (ap.pull > bp.pull) return 1;
-                    } else if (!bp.hasOwnProperty('pull')) return -1;
+                    } else if (bp.hasOwnProperty('pull')) return -1;
 
                     if (ap.hasOwnProperty('blocking')) {
                         if (!bp.hasOwnProperty('blocking')) return 1;
                         if (ap.blocking < bp.blocking) return -1;
                         if (ap.blocking > bp.blocking) return 1;
-                    } else if (!bp.hasOwnProperty('blocking')) return -1;
-
+                    } else if (bp.hasOwnProperty('blocking')) return -1;
 
                     // Now sort by CMD or damage if present
                     // At this point if one RP has these properties, the other one should
