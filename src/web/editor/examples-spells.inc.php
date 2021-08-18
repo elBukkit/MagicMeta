@@ -32,6 +32,15 @@ myspell:
     range: 32
     damage: 10
 </textarea>
+    <textarea id="templateHello" class="template" data-label="Hello World">
+helloWorld:
+  actions:
+    cast:
+    - class: Message
+      message: "Hello, World!"
+  parameters:
+    target: self
+</textarea>
     <textarea id="templateProjectile" class="template" data-label="Projectile Spell">myprojectile:
   name: My Projectile
   description: Damage Your Target
