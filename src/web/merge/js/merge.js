@@ -35,7 +35,7 @@ function readRPFile(fileInput, number) {
     .then(function(zip) {
         _resourcePacks[number - 1] = zip;
         if (_resourcePacks[0] != null && _resourcePacks[1] != null) {
-            mergeRPs(_resourcePacks[0], _resourcePacks[1]);
+            mergeRPs();
         }
     });
 }
@@ -199,7 +199,9 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
     checkFinish(result);
 }
 
-function mergeRPs(rp1, rp2) {
+function mergeRPs() {
+    let rp1 = _resourcePacks[0];
+    let rp2 = _resourcePacks[1]
     _log.empty();
     let result = new JSZip();
     let outputFolders = {};
