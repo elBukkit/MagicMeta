@@ -245,6 +245,7 @@
           "modifiers" : null,
           "mount" : null,
           "mythic_mob" : null,
+          "mythic_mob_level" : "0.0",
           "name" : null,
           "npc" : "false",
           "offhand" : null,
@@ -267,6 +268,7 @@
           "reapplication_delay" : "0",
           "reason" : null,
           "register_by_name" : "false",
+          "relentless" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -416,6 +418,7 @@
           "mount" : null,
           "mount_wand" : "false",
           "mythic_mob" : null,
+          "mythic_mob_level" : "0.0",
           "name" : null,
           "no_target" : "true",
           "npc" : "false",
@@ -457,6 +460,7 @@
           "reflect_track_range" : "0",
           "reflect_track_target" : "false",
           "register_by_name" : "false",
+          "relentless" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "reorient" : "false",
@@ -508,6 +512,7 @@
           "unbreakable_items" : "false",
           "update_launch_location" : "false",
           "use_block_location" : "false",
+          "use_brush" : null,
           "use_cast_location" : "false",
           "use_eye_location" : "false",
           "use_hit_location" : "false",
@@ -607,9 +612,15 @@
           "bar_interval_randomization" : "1000",
           "bar_progress" : "0.0",
           "bar_radius" : "32.0",
-          "bar_style" : null,
+          "bar_style" : "",
           "bar_title" : "$spell",
+          "font" : null,
+          "interval" : "10000",
+          "interval_randomization" : "1000",
+          "radius" : "32.0",
           "show_target" : "false",
+          "style" : null,
+          "title" : "$spell",
           "update_title" : "false"
         },
         "short_class" : "BossBar"
@@ -2382,6 +2393,7 @@
           "attribute" : null,
           "bypass_undo" : "false",
           "modify_target" : "player",
+          "original_variable" : "x",
           "value" : "0.0",
           "value_double" : "0.0"
         },
@@ -2527,6 +2539,7 @@
           "modifiers" : null,
           "mount" : null,
           "mythic_mob" : null,
+          "mythic_mob_level" : "0.0",
           "name" : null,
           "no_drops" : "false",
           "npc" : "false",
@@ -2542,6 +2555,7 @@
           "protection" : null,
           "reason" : null,
           "register_by_name" : "false",
+          "relentless" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "show_name" : "false",
@@ -2678,6 +2692,7 @@
           "bypass_undo" : "false",
           "modify" : null,
           "modify_target" : "wand",
+          "original_variable" : "x",
           "upgrade" : "false"
         },
         "short_class" : "ModifyProperties"
@@ -3442,6 +3457,7 @@
           "scale" : "1",
           "selected" : null,
           "selected_free" : null,
+          "sell" : "false",
           "show_free" : "true",
           "show_unavailable" : "false",
           "sp" : "0",
@@ -3452,6 +3468,7 @@
           "unlock_class" : null,
           "unlock_confirm_title" : null,
           "unlock_confirm_title_key" : "unlock_confirm_title",
+          "unlock_earns" : "false",
           "unlock_section" : "unlocked",
           "warp" : null
         },
@@ -3563,6 +3580,7 @@
           "unlock_class" : null,
           "unlock_confirm_title" : null,
           "unlock_confirm_title_key" : "unlock_confirm_title",
+          "unlock_earns" : "false",
           "unlock_section" : "unlocked",
           "warp" : null
         },
@@ -3721,6 +3739,7 @@
           "modifiers" : null,
           "mount" : null,
           "mythic_mob" : null,
+          "mythic_mob_level" : "0.0",
           "name" : null,
           "npc" : "false",
           "offhand" : null,
@@ -3738,6 +3757,7 @@
           "protection" : null,
           "reason" : null,
           "register_by_name" : "false",
+          "relentless" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -9674,6 +9694,14 @@
       "name" : "Force",
       "type" : "boolean"
     },
+    "force_url" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "force_url",
+      "importance" : 0,
+      "name" : "Force Url",
+      "type" : "boolean"
+    },
     "fov" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -9833,6 +9861,22 @@
       "importance" : 0,
       "name" : "Glowstone Torch",
       "type" : "boolean"
+    },
+    "glyph" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "glyph",
+      "importance" : 0,
+      "name" : "Glyph",
+      "type" : "string"
+    },
+    "glyph_hotbar" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "glyph_hotbar",
+      "importance" : 0,
+      "name" : "Glyph Hotbar",
+      "type" : "string"
     },
     "gravity" : {
       "category" : "",
@@ -10242,6 +10286,14 @@
       "name" : "Icon Inactive Delay",
       "type" : "double"
     },
+    "icon_item" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "icon_item",
+      "importance" : 0,
+      "name" : "Icon Item",
+      "type" : "string"
+    },
     "icon_spell" : {
       "category" : "base",
       "description" : [ "An icon that represents a spell", "These can be vanilla items, or custom items from a resource pack" ],
@@ -10475,6 +10527,14 @@
       "name" : "Instant Block Effects",
       "type" : "boolean"
     },
+    "instructions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "instructions",
+      "importance" : 0,
+      "name" : "Instructions",
+      "type" : "string"
+    },
     "intensity" : {
       "category" : "",
       "description" : [ "" ],
@@ -10578,6 +10638,14 @@
       "importance" : 90,
       "name" : "Interval",
       "type" : "long"
+    },
+    "interval_randomization" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "interval_randomization",
+      "importance" : 0,
+      "name" : "Interval Randomization",
+      "type" : "integer"
     },
     "interval_requires_target" : {
       "category" : "",
@@ -10995,6 +11063,22 @@
       "name" : "Left Leg Transform",
       "type" : "string"
     },
+    "legacy_icon" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "legacy_icon",
+      "importance" : 0,
+      "name" : "Legacy Icon",
+      "type" : "string"
+    },
+    "legacy_icon_disabled" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "legacy_icon_disabled",
+      "importance" : 0,
+      "name" : "Legacy Icon Disabled",
+      "type" : "string"
+    },
     "leggings" : {
       "category" : "",
       "description" : [ "" ],
@@ -11290,6 +11374,14 @@
       "importance" : 0,
       "name" : "Loot",
       "type" : "boolean"
+    },
+    "lore_instructions" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lore_instructions",
+      "importance" : 0,
+      "name" : "Lore Instructions",
+      "type" : "string"
     },
     "lose" : {
       "category" : "",
@@ -11739,6 +11831,14 @@
       "name" : "Message Type",
       "type" : "message_type"
     },
+    "messages" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "messages",
+      "importance" : 0,
+      "name" : "Messages",
+      "type" : "map"
+    },
     "min_block_range" : {
       "category" : "",
       "description" : [ "" ],
@@ -12051,6 +12151,14 @@
       "name" : "Mythic Mob",
       "type" : "string"
     },
+    "mythic_mob_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "mythic_mob_level",
+      "importance" : 0,
+      "name" : "Mythic Mob Level",
+      "type" : "double"
+    },
     "name" : {
       "category" : "base",
       "description" : [ "The display name of this wand or spell to show in-game", "Can be added directly on the wand or spell config, but it is often better to put all language in the messages.yml file so it can be easily edited and translated." ],
@@ -12073,6 +12181,22 @@
       "field" : "name_template",
       "importance" : 0,
       "name" : "Name Template",
+      "type" : "string"
+    },
+    "no_bowpull" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "no_bowpull",
+      "importance" : 0,
+      "name" : "No Bowpull",
+      "type" : "string"
+    },
+    "no_bowpull_sneak" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "no_bowpull_sneak",
+      "importance" : 0,
+      "name" : "No Bowpull Sneak",
       "type" : "string"
     },
     "no_damage_ticks" : {
@@ -12322,6 +12446,14 @@
       "importance" : 0,
       "name" : "Origin Offset",
       "type" : "vector"
+    },
+    "original_variable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "original_variable",
+      "importance" : 0,
+      "name" : "Original Variable",
+      "type" : "string"
     },
     "otdx" : {
       "category" : "targeting",
@@ -13755,6 +13887,14 @@
       "name" : "Relative Target Offset",
       "type" : "vector"
     },
+    "relentless" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "relentless",
+      "importance" : 0,
+      "name" : "Relentless",
+      "type" : "boolean"
+    },
     "remove" : {
       "category" : "",
       "description" : [ "" ],
@@ -14427,6 +14567,14 @@
       "name" : "Selected Free",
       "type" : "string"
     },
+    "self_destruct" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "self_destruct",
+      "importance" : 0,
+      "name" : "Self Destruct",
+      "type" : "string"
+    },
     "sell" : {
       "category" : "",
       "description" : [ "True to make this a sell shop, where players earn money by selling items" ],
@@ -14473,6 +14621,14 @@
       "field" : "set_target",
       "importance" : 0,
       "name" : "Set Target",
+      "type" : "boolean"
+    },
+    "sheared" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sheared",
+      "importance" : 0,
+      "name" : "Sheared",
       "type" : "boolean"
     },
     "show_active_icons" : {
@@ -15346,6 +15502,14 @@
       "importance" : 0,
       "name" : "Strength",
       "type" : "damage_type_map"
+    },
+    "style" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "style",
+      "importance" : 0,
+      "name" : "Style",
+      "type" : "string"
     },
     "sub_effect" : {
       "category" : "",
@@ -16493,6 +16657,14 @@
       "name" : "Unlock Confirm Title Key",
       "type" : "string"
     },
+    "unlock_earns" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "unlock_earns",
+      "importance" : 0,
+      "name" : "Unlock Earns",
+      "type" : "boolean"
+    },
     "unlock_key" : {
       "category" : "",
       "description" : [ "" ],
@@ -16645,6 +16817,14 @@
       "name" : "Use Active Name",
       "type" : "string"
     },
+    "use_active_name_when_closed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_active_name_when_closed",
+      "importance" : 0,
+      "name" : "Use Active Name When Closed",
+      "type" : "string"
+    },
     "use_block_location" : {
       "category" : "",
       "description" : [ "" ],
@@ -16652,6 +16832,14 @@
       "importance" : 0,
       "name" : "Use Block Location",
       "type" : "boolean"
+    },
+    "use_brush" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_brush",
+      "importance" : 0,
+      "name" : "Use Brush",
+      "type" : "string"
     },
     "use_brush_size" : {
       "category" : "",
@@ -17658,6 +17846,7 @@
         "min_players" : "2",
         "name" : null,
         "op_check" : "true",
+        "override" : "false",
         "portal_damage" : "0",
         "portal_death_message" : null,
         "portal_enter_damage" : "0",
@@ -20271,6 +20460,7 @@
         "modifiers" : null,
         "mount" : null,
         "mythic_mob" : null,
+        "mythic_mob_level" : "0.0",
         "npc" : "false",
         "offhand" : null,
         "owner" : null,
@@ -20293,6 +20483,7 @@
         "radius_per_tick" : "0.0",
         "reapplication_delay" : "0",
         "register_by_name" : "false",
+        "relentless" : "false",
         "remove_mounts" : null,
         "remove_when_far_away" : "false",
         "right_arm_pose" : null,
@@ -20300,6 +20491,7 @@
         "rotation" : null,
         "saddle" : null,
         "second_trusted" : null,
+        "sheared" : "false",
         "show_name" : "false",
         "silent" : "false",
         "sitting" : "false",
@@ -20784,11 +20976,13 @@
         "scale" : "1.0",
         "selected" : null,
         "selected_free" : null,
+        "sell" : "false",
         "show_free" : "true",
         "show_unavailable" : "false",
         "switch_class" : null,
         "unlock" : null,
         "unlock_class" : null,
+        "unlock_earns" : "false",
         "unlock_section" : "unlocked",
         "warp" : null
       }
@@ -22218,16 +22412,22 @@
         "effects_map" : null,
         "enabled" : "true",
         "extended_description" : "",
+        "force_url" : "false",
         "glide_exclusive" : "false",
         "glide_restricted" : "false",
+        "glyph" : null,
         "hidden" : "false",
         "hide_messages" : null,
         "icon_disabled" : null,
         "icon_disabled_url" : null,
+        "icon_item" : "",
         "icon_spell" : null,
         "icon_url" : null,
         "inherit" : null,
+        "legacy_icon" : null,
+        "legacy_icon_disabled" : null,
         "level_description" : "",
+        "messages" : null,
         "name" : "interrogator",
         "parameters" : null,
         "passive" : "false",
@@ -22465,8 +22665,13 @@
         "alt_cast5" : null,
         "alt_cast6" : null,
         "alt_cast7" : null,
+        "cancel" : null,
         "cast" : "Cast the wand's currently active spell",
         "cycle" : "Cycle through spells (cycle mode)",
+        "cycle_active_hotbar" : null,
+        "cycle_active_hotbar_reverse" : null,
+        "cycle_brush" : null,
+        "cycle_brush_reverse" : null,
         "cycle_hotbar" : "Go to the next hotbar (inventory mode)",
         "cycle_hotbar_reverse" : "Go to the previous hotbar (inventory mode)",
         "cycle_reverse" : "Cycle through spells in reverse order  (cycle mode)",
@@ -22557,6 +22762,7 @@
         "entity_attributes" : null,
         "force" : "false",
         "glow" : null,
+        "glyph_hotbar" : null,
         "has_uses" : "false",
         "heroes" : "false",
         "hide_flags" : null,
@@ -22570,6 +22776,7 @@
         "immortal" : "false",
         "indestructible" : "false",
         "infinity_cost_free" : null,
+        "instructions" : null,
         "interactible" : null,
         "inventory_rows" : "5",
         "invulnerable" : "false",
@@ -22585,6 +22792,7 @@
         "limit_brushes_to_path" : null,
         "limit_spells_to_path" : null,
         "locked" : "false",
+        "lore_instructions" : null,
         "mana" : "0",
         "mana_max" : "0",
         "mana_max_boost" : "0",
@@ -22594,7 +22802,10 @@
         "max_enchant_count" : "0",
         "max_spells" : null,
         "mode" : "none",
+        "modifiable" : null,
         "modifiers" : null,
+        "no_bowpull" : null,
+        "no_bowpull_sneak" : null,
         "overrides" : null,
         "page_free_space" : null,
         "passive" : "false",
@@ -22612,6 +22823,7 @@
         "reset_mana_on_activate" : null,
         "right_click" : "none",
         "right_click_sneak" : null,
+        "self_destruct" : null,
         "slot" : null,
         "slots" : null,
         "slotted" : null,
@@ -22634,6 +22846,7 @@
         "unswappable" : null,
         "upgrade" : "false",
         "use_active_name" : null,
+        "use_active_name_when_closed" : null,
         "use_mode" : null,
         "uses" : null,
         "wand_power" : "0",

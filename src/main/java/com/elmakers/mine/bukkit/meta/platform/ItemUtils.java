@@ -1,6 +1,7 @@
 package com.elmakers.mine.bukkit.meta.platform;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -64,6 +65,11 @@ public class ItemUtils extends ItemUtilsBase {
 
     @Override
     public Object setStringList(Object nbtBase, String tag, Collection<String> values) {
+        return null;
+    }
+
+    @Override
+    public List<String> getStringList(Object o, String s) {
         return null;
     }
 
