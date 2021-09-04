@@ -90,6 +90,7 @@ $texturePath = 'default';
 try {
     global $magicRootFolder;
     global $magicDefaultsFolder;
+    global $resourcePackFolder;
 
     // Using survival configs in place of defaults now!
     $magicDefaultsFolder = "$magicRootFolder/examples/survival";
@@ -448,6 +449,7 @@ $replicateMaterial = isset($general['replicate_item']) ? $general['replicate_ite
 $cloneMaterial = isset($general['clone_item']) ? $general['clone_item'] : 'pumpkin_seeds';
 
 $books = array();
+global $infoBookRootConfig;
 if (file_exists($infoBookRootConfig)) {
 	$booksConfigKeys = array('version-check', 'onlogin', 'protected');
 	$booksConfig = yaml_parse_file($infoBookRootConfig);
@@ -489,8 +491,30 @@ function printMaterial($materialKey, $iconOnly = null) {
 	return '<span class="material">' . $materialName . '</span>';
 }
 
+function prinSpelltIcon($iconUrl, $title) {
+    return $icon = '<span title="' . $title . '" class="materal_icon" style="background-image: url(' . $iconUrl . ')">&nbsp;</span>';
+}
+
 function printIcon($iconUrl, $title) {
     return $icon = '<span title="' . $title . '" class="url_icon materal_icon" style="background-image: url(' . $iconUrl . ')">&nbsp;</span>';
+}
+
+function findAndPrintIcon($name, $iconItem, $iconUrl, $spellKey = null) {
+    $icon = '';
+    if ($spellKey) {
+        global $resourcePackFolder;
+        $iconFile = 'default/assets/magic/textures/icons/spells/' . $spellKey . '.png';
+        if (file_exists($resourcePackFolder . $iconFile)) {
+            $icon = prinSpelltIcon('pack/' . $iconFile, $name);
+        }
+    }
+    if (!$icon && $iconUrl) {
+        $icon = printIcon($iconUrl, $name);
+    }
+    if (!$icon && $iconItem) {
+        $icon = printMaterial($iconItem, true);
+    }
+    return $icon;
 }
 
 ?>
@@ -646,20 +670,7 @@ function printIcon($iconUrl, $title) {
 				<?php 
 					foreach ($spells as $key => $spell) {
                         $name = isset($spell['name']) ? $spell['name'] : "($key)";
-						
-						$iconFile = 'survival/assets/minecraft/textures/item/spells/' . $key . '.png';
-						if (file_exists($resourcePackFolder . $iconFile))
-						{
-							$icon = printIcon('pack/' . $iconFile, $name);
-						}
-                        else if (isset($spell['icon_url']))
-                        {
-                            $icon = printIcon($spell['icon_url'], $name);
-                        }
-                        else
-                        {
-                            $icon = isset($spell['icon']) ? printMaterial($spell['icon'], true) : '';
-                        }
+                        $icon = findAndPrintIcon($name, isset($spell['icon']) ? $spell['icon'] : null, isset($spell['icon_url']) ? $spell['icon_url'] : null, $key);
 						echo '<li class="ui-widget-content" id="spell-' . $key . '">' . $icon . '<span class="spellTitle">' . $name . '</span></li>';
 					}
 				?>
