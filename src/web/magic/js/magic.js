@@ -15,6 +15,14 @@ var _materialMap = {
 	"hard_clay": "terracotta"
 };
 
+function getSpellIcon(iconKey) {
+	var imagePath = 'pack/default/assets/magic/textures/icons/spells';
+	var enclosingSpan = $('<span/>');
+	var icon = $('<span title="' + iconKey + '" class="materal_icon" style="background-image: url(' + imagePath + '/' + iconKey + '.png)">&nbsp;</span>');
+	enclosingSpan.append(icon);
+	return enclosingSpan;
+}
+
 function getMaterial(materialKey, iconOnly)
 {
 	if (_materialMap.hasOwnProperty(materialKey)) {
@@ -104,7 +112,14 @@ function createSpellDetails(spell, showTitle, useMana, costReduction, probabilit
         spellDiv.append(title);
 	}
 
-	if (spell.hasOwnProperty('example_thumbnail')) {
+	if (spell.hasOwnProperty('example_link') && spell.example_link.indexOf('gfycat.com') > 0) {
+		var urlPieces = spell.example_link.split('/');
+		var slug = urlPieces[urlPieces.length - 1];
+		var iframe = $("<iframe src='https://gfycat.com/ifr/" + slug + "' frameborder='0' scrolling='no' width='480px' height='320px' style='position:absolute;top:0;left:0;' allowfullscreen>");
+		var thumbnailDiv = $('<div class="thumbnailContainer"/>');
+		thumbnailDiv.append(iframe);
+		spellDiv.append(thumbnailDiv);
+	} else if (spell.hasOwnProperty('example_thumbnail')) {
 		var thumbnail = "https://thumbs.gfycat.com/VillainousInfantileEmeraldtreeskink-size_restricted.gif";
 		var link = "https://thumbs.gfycat.com/VillainousInfantileEmeraldtreeskink";
 
@@ -153,7 +168,7 @@ function createSpellDetails(spell, showTitle, useMana, costReduction, probabilit
     }
     else
     {
-        icon.append(getMaterial(spell.icon));
+        icon.append(getSpellIcon(spell.icon));
     }
 	detailsDiv.append(icon);
 
