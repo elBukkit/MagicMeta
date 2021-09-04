@@ -495,6 +495,10 @@ function getRecipeDetails(key)
 function createCraftingTable(recipe)
 {
     var craftingContainer = $('<div class="craftingContainer"/>');
+    if (recipe.hasOwnProperty('type')) {
+    	craftingContainer.append($('<div class="craftingType">').text(recipe['type'] + " recipe"));
+	}
+
     var craftingTable = $('<div class="craftingTable"/>');
     craftingContainer.append(craftingTable);
     var craftingOutput = $('<div class="craftingOutput"/>');
@@ -503,13 +507,22 @@ function createCraftingTable(recipe)
     craftingOutput.append(wandIcon);
     craftingContainer.append(craftingOutput);
 
+    if (!recipe.hasOwnProperty('row_1')) return craftingContainer;
+
     var rows = [
         formatRecipeLine(recipe['row_1']),
         formatRecipeLine(recipe['row_2']),
         formatRecipeLine(recipe['row_3'])
     ];
 
-    var materials = recipe['materials'];
+    var materials;
+    if (recipe.hasOwnProperty('materials')) {
+    	materials = recipe.materials;
+	} else if (recipe.hasOwnProperty('ingredients')) {
+    	materials = recipe.ingredients;
+	} else {
+    	return craftingContainer;
+	}
 
     for (var y = 0; y < 3; y++) {
         for (var x = 0; x < 3; x++)
