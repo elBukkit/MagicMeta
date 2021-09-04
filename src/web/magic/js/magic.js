@@ -177,12 +177,20 @@ function createSpellDetails(spell, showTitle, useMana, costReduction, probabilit
 		var spAmount = spell.hasOwnProperty('worth') ? spell['worth'] : 0;
         var path = paths[pathIndex];
         if ('path_spells' in path && path.path_spells != null && path.path_spells.indexOf(key) >= 0) {
-            var availability = $('<div class="spellPathAvailability"/>').text("Available to: " + path.name + " for " + spAmount + " SP");
+        	var pathSpan = $('<span>');
+        	pathSpan.append($('<span>').text('Available to: '));
+        	pathSpan.append(convertColorCodes(path.name));
+			pathSpan.append($('<span>').text(' for ' + spAmount + " SP"));
+            var availability = $('<div class="spellPathAvailability"/>').append(pathSpan);
             detailsDiv.append(availability);
             break;
         }
         if ('required_spells' in path && path.required_spells != null && path.required_spells.indexOf(key) >= 0) {
-            var requirement = $('<div class="spellPathRequirement"/>').text("Required at: " + path.name + " for " + spAmount + " SP");
+			var pathSpan = $('<span>');
+			pathSpan.append($('<span>').text('Required at: '));
+			pathSpan.append(convertColorCodes(path.name));
+			pathSpan.append($('<span>').text(' for ' + spAmount + " SP"));
+            var requirement = $('<div class="spellPathRequirement"/>').append(pathSpan);
             detailsDiv.append(requirement);
             break;
         }
@@ -789,14 +797,14 @@ $(document).ready(function() {
 
 var _chatColors  = {
 	'0': 'black',
-	'1': 'dark_blue',
-	'2': 'dark_green',
-	'3': 'dark_aqua',
-	'4': 'dark_red',
-	'5': 'dark_purple',
+	'1': 'darkblue',
+	'2': 'darkgreen',
+	'3': 'darkcyan',
+	'4': 'darkred',
+	'5': 'darkmagenta',
 	'6': 'gold',
 	'7': 'gray',
-	'8': 'dark_gray',
+	'8': 'darkgray',
 	'9': 'blue',
 	'a': 'green',
 	'b': 'aqua',
