@@ -44,11 +44,11 @@ $howToGetWands = array('You can purchase wands in an Essentials Shop', 'You can 
 $pageOverview = <<<EOT
 	<div style="margin-left: 128px;">
 		Welcome to the development server for the Magic plugin by elMakers!<br/><br/>
-		This is a plugin for the <a href="http://www.bukkit.org" target="_new">Bukkit</a> minecraft server.
-		For more information, <a href="http://dev.bukkit.org/bukkit-plugins/magic/" target="_new">click here.</a>
+		This is a plugin for <a href="http://www.spigotmc.org" target="_new">Spigot</a> and <a href="http://www.papermc.io" target="_new">Paper</a> minecraft servers.
+		For more information, <a href="https://github.com/elBukkit/MagicPlugin/wiki" target="_new">click here.</a>
 		<br/><br/>
 		While this is just a development server, you are free to log in and play at
-		<span class="minecraftServer">mine.elmakers.com</span>. You may also view our <a href="http://map.elmakers.com"/>dynmap here</a>, the world is a bit of a mess.
+		<span class="minecraftServer">demo.elmakers.com</span>. You may also view our <a href="http://map.elmakers.com"/>dynmap here</a>.
 		<br/><br/>
 		Thanks for looking!
 	</div>
