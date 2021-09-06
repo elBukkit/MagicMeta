@@ -123,4 +123,38 @@ classwand:
   # Casts a spell on consuming
   consume_spell: healing
 </textarea>
+    <textarea id="templateArmor" class="template" data-label="Armor">myarmor:
+    icon: chainmail_boots
+    # This is important for armor, it indicates that any attributes and effects
+    # on this wand will only apply when the wand is worn, rather than held
+    passive: true
+    # Players can keep armor on death
+    keep: true
+    # This armor will boos the max mana and regen of the wearer
+    mana_max_boost: 0.1
+    mana_regeneration_boost: 0.05
+    # Wands can not be enchanted by default, this lets it get enchanted just like
+    # vanilla armor
+    enchantable: true
+    # Show all vanilla lore
+    hide_flags: 0
+    # Give a speed boost when worn
+    potion_effects:
+        speed: 0
+    # Protect from magic damage
+    protection:
+      magic: 0.1
+    # Indicate that this is part of an armor set.
+    # These sets are defined in config.yml, use
+    # /editor config wand_sets
+    # They can be configured to apply set bonuses when some
+    # number of set pieces are worn
+    sets: wizard_armor
+    # Override armor and toughness properties, making sure
+    # to only apply these attributes when worn on the feet
+    item_attribute_slot: feet
+    item_attributes:
+        generic_armor: 1
+        generic_armor_toughness: 1
+</textarea>
 </div>
