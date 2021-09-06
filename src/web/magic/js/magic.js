@@ -664,28 +664,30 @@ function getWandItemDetails(key, wand, recipe)
 	}
 		
 	var wandSpells = wand.spells;
-	wandSpells.sort();
-	var spellHeader = $('<div class="wandHeading">Spells (' + wandSpells.length + ')</div>');
-	var spellListContainer = $('<div id="wandSpellList"/>');
-	var spellList = $('<div/>');
-	var usesMana = xpRegeneration > 0 || key == 'random';
-	for (var spellIndex in wandSpells)
-	{
-		var key = wand.spells[spellIndex];
-        key = key.split('|')[0];
-        if (!(key in spells)) continue;
-		var spell = spells[key];
-		var probabilityString = "";
-		if ('spell_probabilities' in wand && key in wand['spell_probabilities']) {
-			probabilityString = wand['spell_probabilities'][key];
+	if (wandSpells.length > 0) {
+		wandSpells.sort();
+		var spellHeader = $('<div class="wandHeading">Spells (' + wandSpells.length + ')</div>');
+		var spellListContainer = $('<div id="wandSpellList"/>');
+		var spellList = $('<div/>');
+		var usesMana = xpRegeneration > 0 || key == 'random';
+		for (var spellIndex in wandSpells)
+		{
+			var key = wand.spells[spellIndex];
+			key = key.split('|')[0];
+			if (!(key in spells)) continue;
+			var spell = spells[key];
+			var probabilityString = "";
+			if ('spell_probabilities' in wand && key in wand['spell_probabilities']) {
+				probabilityString = wand['spell_probabilities'][key];
+			}
+			spellList.append($('<h3/>').text(spell.name));
+			spellList.append($('<div/>').append(getSpellDetails(key, false, usesMana, costReduction, probabilityString)));
 		}
-		spellList.append($('<h3/>').text(spell.name));
-		spellList.append($('<div/>').append(getSpellDetails(key, false, usesMana, costReduction, probabilityString)));
+		spellList.accordion({ heightStyle: 'content'} );
+		spellListContainer.append(spellList);
+		scrollingContainer.append(spellHeader);
+		scrollingContainer.append(spellListContainer);
 	}
-	spellList.accordion({ heightStyle: 'content'} );
-	spellListContainer.append(spellList);
-	scrollingContainer.append(spellHeader);
-	scrollingContainer.append(spellListContainer);
 
     if ('required_spells' in wand && wand.required_spells != null && wand.required_spells.length > 0) {
         var requiredSpells = wand.required_spells;
