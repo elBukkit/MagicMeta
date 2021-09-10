@@ -32,6 +32,7 @@ myrecipe:
   # This defines the recipe output
   output: talisman
   # Make sure we get a wand item from this recipe
+  # This is only needed if there is a spell or other item with the same name
   output_type: wand
 
   # Players learn this recipe on join
