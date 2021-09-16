@@ -1955,7 +1955,7 @@
         "category" : "player",
         "class_name" : "FeedAction",
         "description" : [ "Fill the target's hunger bars" ],
-        "examples" : [ "cure" ],
+        "examples" : [ "cure", "eat_food" ],
         "importance" : 20,
         "name" : "Feed",
         "parameters" : {
