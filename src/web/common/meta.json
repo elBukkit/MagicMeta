@@ -22574,7 +22574,27 @@
         "death" : "When this entity dies",
         "interval" : "At a specific interval, defined by the 'interval' property",
         "launch" : "When this entity launches a projectile",
-        "spawn" : "When this mob spawns"
+        "spawn" : "When this mob spawns",
+        "join" : "When the player joins the server",
+        "damage_dealt" : "When the player deals damage",
+        "kill" : "When the player kills a player or mob",
+        "glide" : "A player starts gliding with an elytra",
+        "stop_glide" : "A player stops gliding with an elytra",
+        "interact" : "A player interacts with an entity or NPC",
+        "left_click" : "A player left-clicks (swings)",
+        "right_click" : "A player right-clicks (interacts with a block or air)",
+        "sneak" : "A player starts sneaking",
+        "stop_sneak" : "A player stops sneaking",
+        "sprint" : "A player starts sprinting",
+        "stop_sprint" : "A player stops sprinting",
+        "land" : "The player lands on the ground after flying or falling",
+        "block" : "The player starts blocking with a shield (has it raised)",
+        "stop_block" : "The player stops blocking with a shield",
+        "respawn" : "The player has respawned after death",
+        "swap" : "The player uses the swap item button",
+        "drop" : "The player uses the drop item button",
+        "consume" : "A player consumes some food or drink",
+        "jump" : "A player jumped"
       }
     },
     "vanilla_attribute" : {
