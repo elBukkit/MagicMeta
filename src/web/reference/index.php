@@ -44,7 +44,7 @@ $version = 3;
                 <div>
                 These are the top-level configuration options for spells.
                 <br/><br/>
-                They cannot be overridded by wands or /cast parameters, and are generally considered immutable properties
+                They cannot be overridden by wands or /cast parameters, and are generally considered immutable properties
                 of a spell.
                 <br/><br/>
                 Some of these properties, such as "icon", are required for a spell to work properly in a wand.
@@ -218,7 +218,7 @@ $version = 3;
             </div>
             <div class="details" id="mobParameterDetails">
                 <div>
-                Magic has a basic custom mob system for creating mobs that can cast spells or have other magical properties.
+                Magic has a custom mob system for creating mobs that can cast spells or have other magical properties.
                 <br/><br/>
                 Mobs can be added to mobs.yml, and spawned in game using <span class="code">/mmob spawn</span>.
                 <br/><br/>
@@ -235,9 +235,7 @@ $version = 3;
             </div>
             <div class="details" id="craftingParameterDetails">
                 <div>
-                Magic has a customizeable crafting system allowing you to create custom recipes for magic and vanilla items.
-                <br/><br/>
-                Currently only workbench recipes are supported.
+                Magic has a customizable crafting system allowing you to create custom recipes for magic and vanilla items.
                 <br/><br/>
                 Select a recipe property for details.
                 </div>
