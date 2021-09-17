@@ -1123,7 +1123,7 @@
       "command" : {
         "category" : "control",
         "class_name" : "CommandAction",
-        "description" : [ "Run one or more commands", "Support the following variables: @spell, @pd (caster display name), @p, @pn (same as @p, caster name), @uuid, @world, @x, @y, @z, @tworld, @tx, @ty, @tz (target location), @td (target display name), @t, @tn (same as @t, target name), @tuuid" ],
+        "description" : [ "Run one or more commands", "Supports the following variables: @spell, @pd (caster display name), @p, @pn (same as @p, caster name), @uuid, @world, @x, @y, @z, @tworld, @tx, @ty, @tz (target location), @td (target display name), @t, @tn (same as @t, target name), @tuuid" ],
         "examples" : [ "gather", "ledger", "mute", "respawn" ],
         "importance" : 70,
         "name" : "Command",
@@ -7623,7 +7623,7 @@
     },
     "command" : {
       "category" : "",
-      "description" : [ "The command to execute", "The following variables can be used in this command:", "<ul><li>@spell : The name of the spell</li><li>@p : The name of the caster. Can also use @pn</li><li>@pd : The display name (nick) of the caster</li><li>@uuid : The UUID of the caster</li><li>@world, @x, @y, @z : The location of the caster</li><li>@t : The name of the target. Can also use @tn</li><li>@td : The display name (nick) of the target</li><li>@tuuid : The UUID of the target</li><li>@tworld, @tx, @ty, @tz : The location of the target</li></ul>" ],
+      "description" : [ "The command to execute", "The following variables can be used in this command:", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn", "<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "command",
       "importance" : 0,
       "name" : "Command",
@@ -7647,7 +7647,7 @@
     },
     "commands" : {
       "category" : "",
-      "description" : [ "A list of commands to execute", "The following variables can be used in these command:", "<ul><li>@spell : The name of the spell</li><li>@p : The name of the caster. Can also use @pn</li><li>@pd : The display name (nick) of the caster</li><li>@uuid : The UUID of the caster</li><li>@world, @x, @y, @z : The location of the caster</li><li>@t : The name of the target. Can also use @tn</li><li>@td : The display name (nick) of the target</li><li>@tuuid : The UUID of the target</li><li>@tworld, @tx, @ty, @tz : The location of the target</li></ul>" ],
+      "description" : [ "A list of commands to execute", "The following variables can be used in these command:", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn","<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "commands",
       "importance" : 0,
       "name" : "Commands",
@@ -11793,7 +11793,7 @@
     },
     "message" : {
       "category" : "",
-      "description" : [ "The message to send the target.", "The following variables can be used in this message: ", "<ul><li>@spell : The name of the spell</li><li>@p : The name of the caster. Can also use @pn</li><li>@pd : The display name (nick) of the caster</li><li>@uuid : The UUID of the caster</li><li>@world, @x, @y, @z : The location of the caster</li><li>@t : The name of the target. Can also use @tn</li><li>@td : The display name (nick) of the target</li><li>@tuuid : The UUID of the target</li><li>@tworld, @tx, @ty, @tz : The location of the target</li></ul>" ],
+      "description" : [ "The message to send the target.", "The following variables can be used in this message: ", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn","<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "message",
       "importance" : 100,
       "name" : "Message",
