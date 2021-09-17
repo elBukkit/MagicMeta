@@ -601,7 +601,7 @@
       "boss_bar" : {
         "category" : "",
         "class_name" : "BossBarAction",
-        "description" : [ "" ],
+        "description" : [ "Create or update a boss bar", "Can be used in an Interval action for animated bars" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Boss Bar",
@@ -727,7 +727,7 @@
       "cast" : {
         "category" : "",
         "class_name" : "CastAction",
-        "description" : [ "Cast a specific spell, optionally providing parameters", "This can be used to make complex combinations of spells, or a spell that randomly casts other spells", "It could also be used as a way to organize commonly-used sets of actions and use them in several different spells." ],
+        "description" : [ "Cast a specific spell, optionally providing parameters", "This can be used to make complex combinations of spells by including one spell in another", "Or it could make a spell that randomly casts other spells", "It could also be used as a way to organize commonly-used sets of actions and use them in several different spells." ],
         "examples" : [ ],
         "importance" : 20,
         "name" : "Cast",
@@ -969,7 +969,7 @@
       "check_lore" : {
         "category" : "compound",
         "class_name" : "CheckLoreAction",
-        "description" : [ "" ],
+        "description" : [ "React to specific lore elements in the wand item's lore" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Check Lore",
@@ -1000,7 +1000,7 @@
       "check_modifiers" : {
         "category" : "compound",
         "class_name" : "CheckModifiersAction",
-        "description" : [ "" ],
+        "description" : [ "React to specific modifiers being applied to the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Check Modifiers",
@@ -1017,7 +1017,7 @@
       "check_potion_effects" : {
         "category" : "compound",
         "class_name" : "CheckPotionEffectsAction",
-        "description" : [ "" ],
+        "description" : [ "React to specific potion effects being applied to the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Check Potion Effects",
@@ -1048,7 +1048,7 @@
       "check_trigger" : {
         "category" : "compound",
         "class_name" : "CheckTriggerAction",
-        "description" : [ "" ],
+        "description" : [ "React to a trigger having happened since the last check", "This can be unsed in an Interval action to wait until some time has passed or a trigger happens" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Check Trigger",
@@ -1062,7 +1062,7 @@
       "check_velocity" : {
         "category" : "compound",
         "class_name" : "CheckVelocityAction",
-        "description" : [ "" ],
+        "description" : [ "React to the velocity of the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Check Velocity",
@@ -1087,7 +1087,7 @@
       "clear_fall_protection" : {
         "category" : "",
         "class_name" : "ClearFallProtectionAction",
-        "description" : [ "" ],
+        "description" : [ "Clear any fall protection set on the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Clear Fall Protection",
@@ -1097,7 +1097,7 @@
       "clear_inventory" : {
         "category" : "",
         "class_name" : "ClearInventoryAction",
-        "description" : [ "" ],
+        "description" : [ "Clear the inventory of the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Clear Inventory",
@@ -1107,7 +1107,7 @@
       "color_item" : {
         "category" : "",
         "class_name" : "ColorItemAction",
-        "description" : [ "" ],
+        "description" : [ "Color a colorable item such as leather armor or horse armor" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Color Item",
@@ -1124,7 +1124,7 @@
         "category" : "control",
         "class_name" : "CommandAction",
         "description" : [ "Run one or more commands", "Supports the following variables: @spell, @pd (caster display name), @p, @pn (same as @p, caster name), @uuid, @world, @x, @y, @z, @tworld, @tx, @ty, @tz (target location), @td (target display name), @t, @tn (same as @t, target name), @tuuid" ],
-        "examples" : [ "gather", "ledger", "mute", "respawn" ],
+        "examples" : [ "ledger", "mute", "respawn" ],
         "importance" : 70,
         "name" : "Command",
         "parameters" : {
@@ -1143,7 +1143,7 @@
       "commit" : {
         "category" : "",
         "class_name" : "CommitAction",
-        "description" : [ "" ],
+        "description" : [ "Clear your undo queue, making all spell changes permanent" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Commit",
@@ -1213,7 +1213,7 @@
       "create_automaton" : {
         "category" : "",
         "class_name" : "CreateAutomatonAction",
-        "description" : [ "" ],
+        "description" : [ "Deprecated action, replaced by CreateMagicBlock" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Create Automaton",
@@ -1258,7 +1258,7 @@
       "create_magic_block" : {
         "category" : "",
         "class_name" : "CreateMagicBlockAction",
-        "description" : [ "" ],
+        "description" : [ "Create a new magic block at the target location" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Create Magic Block",
@@ -1271,7 +1271,7 @@
       "create_n_p_c" : {
         "category" : "",
         "class_name" : "CreateNPCAction",
-        "description" : [ "" ],
+        "description" : [ "Create a new NPC at the target location" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Create NPC",
@@ -1658,7 +1658,7 @@
       "drop_skull" : {
         "category" : "",
         "class_name" : "DropSkullAction",
-        "description" : [ "" ],
+        "description" : [ "Drop the skull of the target entity" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Drop Skull",
@@ -1699,7 +1699,7 @@
       "entity_animation" : {
         "category" : "",
         "class_name" : "EntityAnimationAction",
-        "description" : [ "" ],
+        "description" : [ "Fore the target entity to perform an entity animation, such as arm swing" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Entity Animation",
@@ -1834,7 +1834,7 @@
       "equation" : {
         "category" : "compound",
         "class_name" : "EquationAction",
-        "description" : [ "" ],
+        "description" : [ "Target blocks based on a 3-d equation" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Equation",
@@ -1859,7 +1859,7 @@
       "equation_volume" : {
         "category" : "compound",
         "class_name" : "EquationVolumeAction",
-        "description" : [ "" ],
+        "description" : [ "Target blocks inside of a cuboid, choosing brushes based on an equation" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Equation Volume",
@@ -1894,7 +1894,7 @@
       "equip" : {
         "category" : "",
         "class_name" : "EquipAction",
-        "description" : [ "" ],
+        "description" : [ "Force the target entity to equip specific items" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Equip",
@@ -1929,7 +1929,7 @@
       "fake_block" : {
         "category" : "",
         "class_name" : "FakeBlockAction",
-        "description" : [ "" ],
+        "description" : [ "Send block create packets to all players in range","This creates the illusion of blocks client-side without actually changing the world" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Fake Block",
@@ -1981,7 +1981,7 @@
       "find_magic_blocks" : {
         "category" : "compound",
         "class_name" : "FindMagicBlocksAction",
-        "description" : [ "" ],
+        "description" : [ "Target specific magic blocks in an area" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Find Magic Blocks",
@@ -2090,7 +2090,7 @@
       "give_kit" : {
         "category" : "",
         "class_name" : "GiveKitAction",
-        "description" : [ "" ],
+        "description" : [ "Give the target player a specific kit" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Give Kit",
@@ -2153,7 +2153,7 @@
       "interval" : {
         "category" : "compound",
         "class_name" : "IntervalAction",
-        "description" : [ "" ],
+        "description" : [ "Repeat actions for a specific amount of time","Has a configurable interval, defaulting to every tick" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Interval",
@@ -2348,7 +2348,7 @@
       "model_engine" : {
         "category" : "",
         "class_name" : "ModelEngineAction",
-        "description" : [ "" ],
+        "description" : [ "Apply ModelEngine models, state or color changes to a mob" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Model Engine",
@@ -2370,7 +2370,7 @@
       "modifier" : {
         "category" : "",
         "class_name" : "ModifierAction",
-        "description" : [ "" ],
+        "description" : [ "Add or remove magic modifiers from the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modifier",
@@ -2385,7 +2385,7 @@
       "modify_attribute" : {
         "category" : "",
         "class_name" : "ModifyAttributeAction",
-        "description" : [ "" ],
+        "description" : [ "Modify magic attributes on the target" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify Attribute",
@@ -2443,7 +2443,7 @@
       "modify_compass" : {
         "category" : "",
         "class_name" : "ModifyCompassAction",
-        "description" : [ "" ],
+        "description" : [ "Modify a compass wand, setting the lodestone target location" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify Compass",
@@ -2455,7 +2455,7 @@
       "modify_currency" : {
         "category" : "",
         "class_name" : "ModifyCurrencyAction",
-        "description" : [ "" ],
+        "description" : [ "Add or remove currency to the target player" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify Currency",
@@ -2469,7 +2469,7 @@
       "modify_entity" : {
         "category" : "",
         "class_name" : "ModifyEntityAction",
-        "description" : [ "" ],
+        "description" : [ "Change properties of the target mob" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify Entity",
@@ -2646,7 +2646,7 @@
       "modify_n_p_c" : {
         "category" : "",
         "class_name" : "ModifyNPCAction",
-        "description" : [ "" ],
+        "description" : [ "Modify the target NPC", "This is used by the shop management tool","Requires a specific NPC id and is not currently very usable in general spells" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify NPC",
@@ -2662,7 +2662,7 @@
       "modify_no_damage_ticks" : {
         "category" : "",
         "class_name" : "ModifyNoDamageTicksAction",
-        "description" : [ "" ],
+        "description" : [ "Clear or set the vanilla damage cooldown on the target mob" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify No Damage Ticks",
@@ -3173,7 +3173,7 @@
       "remove_n_p_c" : {
         "category" : "",
         "class_name" : "RemoveNPCAction",
-        "description" : [ "" ],
+        "description" : [ "Remove a specific NPC","Requires an NPC id" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Remove NPC",
@@ -3185,7 +3185,7 @@
       "remove_spell" : {
         "category" : "",
         "class_name" : "RemoveSpellAction",
-        "description" : [ "" ],
+        "description" : [ "Remove (unlearn) a spell from the target player" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Remove Spell",
@@ -3197,7 +3197,7 @@
       "remove_wand" : {
         "category" : "",
         "class_name" : "RemoveWandAction",
-        "description" : [ "" ],
+        "description" : [ "Delete the wand of the target player, is not undoable" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Remove Wand",
@@ -3232,7 +3232,7 @@
       "reset_mage" : {
         "category" : "",
         "class_name" : "ResetMageAction",
-        "description" : [ "" ],
+        "description" : [ "Delete magic player data of the target player" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Reset Mage",
@@ -3242,7 +3242,7 @@
       "respawn" : {
         "category" : "compound",
         "class_name" : "RespawnAction",
-        "description" : [ "" ],
+        "description" : [ "Cause an NPC or mob to respawn after it has died" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Respawn",
@@ -3487,7 +3487,7 @@
       "set_spawn" : {
         "category" : "",
         "class_name" : "SetSpawnAction",
-        "description" : [ "" ],
+        "description" : [ "Set a player's bed spawn locations" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Set Spawn",
@@ -3912,7 +3912,7 @@
       "stop_sound" : {
         "category" : "",
         "class_name" : "StopSoundAction",
-        "description" : [ "" ],
+        "description" : [ "Stop a specific sound from playing","Useful for ambient or long-running sounds such as music discs" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Stop Sound",
@@ -4025,7 +4025,7 @@
       "teleport_n_p_c" : {
         "category" : "",
         "class_name" : "TeleportNPCAction",
-        "description" : [ "" ],
+        "description" : [ "Move an NPC to the target location","Requires an NPC id" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Teleport NPC",
@@ -4165,7 +4165,7 @@
       "trigger" : {
         "category" : "",
         "class_name" : "TriggerAction",
-        "description" : [ "" ],
+        "description" : [ "Send a specific trigger to the target mob or player", "Can be used to direct mob behavior from spells" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Trigger",
@@ -4200,7 +4200,7 @@
       "update_parameters" : {
         "category" : "compound",
         "class_name" : "UpdateParametersAction",
-        "description" : [ "" ],
+        "description" : [ "Cause all actions to re-read their parameters", "Useful for equation-driven parameters that may update in the middle of a spell cast" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Update Parameters",
@@ -4292,7 +4292,7 @@
       "wand_instructions" : {
         "category" : "",
         "class_name" : "WandInstructionsAction",
-        "description" : [ "" ],
+        "description" : [ "Show wand instructions to the target player for the wand they are holding" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Wand Instructions",
@@ -4304,7 +4304,7 @@
       "warp" : {
         "category" : "",
         "class_name" : "WarpAction",
-        "description" : [ "" ],
+        "description" : [ "Teleport the target player to a specific warp location" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Warp",
@@ -4357,7 +4357,7 @@
       "while" : {
         "category" : "compound",
         "class_name" : "WhileAction",
-        "description" : [ "" ],
+        "description" : [ "Repeat a set of actions as long as certain requirements are met" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "While",
@@ -4612,7 +4612,7 @@
       "cuboid" : {
         "category" : "",
         "class_name" : "CuboidEffect",
-        "description" : [ "" ],
+        "description" : [ "Create a wireframe cuboid" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Cuboid",
@@ -5082,7 +5082,7 @@
       "particle" : {
         "category" : "",
         "class_name" : "ParticleEffect",
-        "description" : [ "" ],
+        "description" : [ "Just play a single or repeating particle" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Particle",
@@ -5117,7 +5117,7 @@
       "pyramid" : {
         "category" : "",
         "class_name" : "PyramidEffect",
-        "description" : [ "" ],
+        "description" : [ "Create a pyramid out of particles" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Pyramid",
@@ -5135,7 +5135,7 @@
       "shield" : {
         "category" : "",
         "class_name" : "ShieldEffect",
-        "description" : [ "Creat a dome around the target" ],
+        "description" : [ "Create a dome around the target" ],
         "examples" : [ ],
         "importance" : 100,
         "name" : "Shield",
@@ -5183,7 +5183,7 @@
       "sound" : {
         "category" : "",
         "class_name" : "SoundEffect",
-        "description" : [ "" ],
+        "description" : [ "Play a sound" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Sound",
@@ -5216,7 +5216,7 @@
       "square" : {
         "category" : "",
         "class_name" : "SquareEffect",
-        "description" : [ "" ],
+        "description" : [ "Create a 2-D square out of particles" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Square",
@@ -5403,7 +5403,7 @@
   "properties" : {
     "action_bar" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "What message to display in the action bar" ],
       "field" : "action_bar",
       "importance" : 0,
       "name" : "Action Bar",
@@ -5427,7 +5427,7 @@
     },
     "actions_actions" : {
       "category" : "actions",
-      "description" : [ "" ],
+      "description" : [ "The set of actions to perform" ],
       "field" : "actions",
       "importance" : 0,
       "name" : "Actions",
