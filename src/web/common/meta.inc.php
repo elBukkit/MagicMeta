@@ -1,7 +1,7 @@
 <?php
 require_once('../config.inc.php');
 
-function getMetadata($legacyIcons)
+function getMetadata($legacyIcons, $forceUpdate = false)
 {
     global $sessionFolder;
     $cacheFile = $sessionFolder . '/_meta';
@@ -16,7 +16,7 @@ function getMetadata($legacyIcons)
     }
     flock($lockFile, LOCK_EX);
     try {
-        if (filesize($cacheFile) > 0) {
+        if (filesize($cacheFile) > 0 && !$forceUpdate) {
             $dataCreated = filemtime(dirname(__FILE__) . '/meta.json');
             $cacheCreated = filemtime($cacheFile);
             $codeChanged = filemtime(dirname(__FILE__) . '/meta.php');
@@ -61,7 +61,11 @@ function generateMeta() {
     global $resourcePackFolder;
     global $legacyIcons;
 
-    $meta = json_decode(file_get_contents('meta.json'), true);
+    $metaContents = file_get_contents('meta.json');
+    $pattern = '/<link url=(.*) text=\\\"(.*)\\\">/';
+    $replacement = '<a href=$1 target=\\"_blank\\">$2</a>';
+    $metaContents = preg_replace($pattern, $replacement, $metaContents);
+    $meta = json_decode($metaContents, true);
 
     $spellIcons = array();
     $disabledIcons = array();

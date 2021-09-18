@@ -74,6 +74,7 @@
     padding: 6px;
     max-height: 10em;
     overflow: auto;
+    min-height: 4em;
 }
 
 .descriptionLine {

@@ -8,4 +8,9 @@ if (isset($_REQUEST['legacyIcons'])) {
     $legacyIcons = $_REQUEST['legacyIcons'] === 'true';
 }
 
-echo getMetadata($legacyIcons);
+$forceUpdate = false;
+if (isset($_REQUEST['update'])) {
+    $forceUpdate = $_REQUEST['update'] === 'true';
+}
+
+echo getMetadata($legacyIcons, $forceUpdate);

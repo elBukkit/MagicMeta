@@ -3391,7 +3391,7 @@
       "selector" : {
         "category" : "player",
         "class_name" : "SelectorAction",
-        "description" : [ "Show the caster a customizeable GUI", "This gui can be used to sell items, or cast spells", "This is similar to ItemShop but more customizeable, allowing for requirements for each item, different costs or a mix of items and spells.", "See: <a href=\"https://github.com/elBukkit/MagicPlugin/wiki/Selector\" target=\"_blank\">the Selector wiki section</a> for more info!" ],
+        "description" : [ "Show the caster a customizeable GUI", "This gui can be used to sell items, or cast spells", "This is similar to ItemShop but more customizeable, allowing for requirements for each item, different costs or a mix of items and spells.", "See: <link url=\"https://github.com/elBukkit/MagicPlugin/wiki/Selector\" text=\"the Selector wiki section\"> for more info!" ],
         "examples" : [ "appearanceshop", "colorshop", "effectshop", "progressmenu", "wandbuffs" ],
         "importance" : 70,
         "name" : "Selector",
@@ -3497,7 +3497,7 @@
       "shop" : {
         "category" : "compound",
         "class_name" : "ShopAction",
-        "description" : [ "A flexible shop GUI, based on Selector, for selling items, spells, wand or just about anything else.", "See: <a href=\"https://github.com/elBukkit/MagicPlugin/wiki/Shops\" target=\"_blank\">the Shops wiki section</a> for more info!" ],
+        "description" : [ "A flexible shop GUI, based on Selector, for selling items, spells, wand or just about anything else.", "See: <link url=\"https://github.com/elBukkit/MagicPlugin/wiki/Shops\" text=\"the Shops wiki section\"> for more info!" ],
         "examples" : [ "bank", "bookshop", "itemshop", "magicitemshop", "tweakshop" ],
         "importance" : 0,
         "name" : "Shop",
@@ -3631,7 +3631,7 @@
       "simulate" : {
         "category" : "construction",
         "class_name" : "SimulateAction",
-        "description" : [ "This action is not complete, do not use. It is intended to replace SimulateSpell", "Runs a simulation of <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life\">Conway's game of life</a>", "The simulation can have custom rules, and can be run in 2D or 3D" ],
+        "description" : [ "This action is not complete, do not use. It is intended to replace SimulateSpell", "Runs a simulation of <link url=\"https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life\" text=\"Conway's game of life\">", "The simulation can have custom rules, and can be run in 2D or 3D" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Simulate",
