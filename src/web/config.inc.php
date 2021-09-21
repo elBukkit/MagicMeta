@@ -38,7 +38,7 @@ $title = "Magic";
 $youTubeVideo = '2k3Zy9TFUKw';
 
 // How players get wands, other than view the configured ways in magic.yml (crafting, random chests)
-$howToGetWands = array('You can purchase wands in an Essentials Shop', 'You can find wands on the ground using the dynmap');
+$howToGetWands = array('You can purchase wands in a shop, if your server has shops set up');
 
 // Page overview - this will get put in a Header at the top of the page.
 $pageOverview = <<<EOT

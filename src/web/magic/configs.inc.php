@@ -361,8 +361,8 @@ function loadConfigs($example) {
     $combiningEnabled = isset($general['enable_combining']) ? $general['enable_combining'] : false;
 
     $wandItem = isset($general['wand_item']) ? $general['wand_item'] : '';
-    $craftingEnabled = isset($general['enable_crafting']) ? $general['enable_crafting'] : false;
-    $rightClickCycles = isset($general['right_click_cycles']) ? $general['right_click_cycles'] : false;
+    $craftingEnabled = isset($general['enable_crafting']) ? $general['enable_crafting'] : true;
+    $rightClickCycles = isset($general['right_click_cycles']) ? $general['right_click_cycles'] : true;
 
     $eraseMaterial = isset($general['erase_item']) ? $general['erase_item'] : 'sulphur';
     $copyMaterial = isset($general['copy_item']) ? $general['copy_item'] : 'sugar';

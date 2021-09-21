@@ -188,7 +188,7 @@ $texturePath = $configData['texturePath'];
 				<div>
 				In order to cast spells, you must obtain a wand. Each wand is unique and knows one or more spells. Wands can also be imbued with
 				special properties and materials.<br/><br/>
-				You may find a wand in one of the following ways:
+				You may obtain a wand in one of the following ways:
 				<ul>
 					<?php if ($howToGetWands) {
 						foreach ($howToGetWands as $item) {
@@ -196,7 +196,7 @@ $texturePath = $configData['texturePath'];
 						}
 					}?>
 					<?php if ($craftingEnabled) {
-						echo '<li>Craft a wand (See: Crafting)</li>';
+						echo '<li>You can craft a wand (See: the Crafting tab)</li>';
 					}?>
 				</ul>
 				</div>
@@ -216,8 +216,7 @@ $texturePath = $configData['texturePath'];
 
                 <h2>Wand Spells</h2>
                 <div>
-                    Wands contain one or more spells in their inventory. Wands may generally know any spell, though some wands
-                    may only naturally obtain certain spells via enchanting.
+                    Wands contain one or more spells in their inventory. You can use an enchanting table to learn new spells.
                 </div>
                 <br/>
                 <div>
@@ -230,7 +229,7 @@ $texturePath = $configData['texturePath'];
 					A wand is considered "active" when you are holding it. Any special effects a wand gives are only applied while the wand is active.<br.>
 					<br/><br/>
 					Swing a wand (left-click) to cast its active spell. Some wands may have more than one spell. If a wand has multiple spells, you use the
-					interact (right-click) action to select spells.
+					interact (right-click) action to cycle spells, and the drop (Q) action to open/close the spell inventory
 					<br/><br/>
 
 						For detailed instructions, see this video:<br/><br/>
