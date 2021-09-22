@@ -17,7 +17,15 @@ $properties = $in['properties'];
 foreach ($in['classed'] as $classType => $classes) {
     $mapped = array();
     foreach ($classes as $key => $value) {
-        unset($value['parameters']);
+        $parameters = $value['parameters'];
+        $mappedParameters = array();
+        foreach ($parameters as $parameter => $defaultVAlue) {
+            $property = $properties[$parameter];
+            // Note this is not a literal return
+            $description = implode($property['description'], '\n');
+            $mappedParameters[$property['field']] = $description;
+        }
+        $value['parameters'] = $mappedParameters;
         $mapped[$key] = $value;
     }
     $out[$classType] = $mapped;
