@@ -11,6 +11,7 @@ if (count($argv) < 3) {
 $inFile = $argv[1];
 $outFile = $argv[2];
 
+$out = array();
 $in = json_decode(file_get_contents($inFile), true);
 $properties = $in['properties'];
 foreach ($in['classed'] as $classType => $classes) {
@@ -29,4 +30,4 @@ foreach ($in['classed'] as $classType => $classes) {
     }
     $out[$classType] = $mapped;
 }
-file_put_contents($outFile, json_encode($out));
+file_put_contents($outFile, json_encode($out, JSON_PRETTY_PRINT));
