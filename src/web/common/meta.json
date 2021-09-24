@@ -44,6 +44,14 @@
       "description" : [ "" ],
       "name" : "Targeting"
     },
+    "teleport" : {
+      "description" : [ "" ],
+      "name" : "Teleportation"
+    },
+    "text" : {
+      "description" : [ "Properties dealing with text, chat, lore and other formatting" ],
+      "name" : "Text"
+    },
     "undo" : {
       "description" : [ "" ],
       "name" : "Undo"
@@ -8429,15 +8437,15 @@
     },
     "destructible_durability" : {
       "category" : "construction",
-      "description" : [ "" ],
+      "description" : [ "If set, a spell can only modify this block if it has a vanilla blast resistance below this value" ],
       "field" : "destructible_durability",
       "importance" : 0,
       "name" : "Destructible Durability",
       "type" : "double"
     },
     "destructible_materials" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "construction",
+      "description" : [ "The set of materials sub-actions will be allowed to break" ],
       "field" : "destructible_materials",
       "importance" : 0,
       "name" : "Destructible Materials",
@@ -8445,54 +8453,54 @@
     },
     "destructible_override" : {
       "category" : "construction",
-      "description" : [ "" ],
+      "description" : [ "If set, this spell may have its destructible materials list changed via a WorldGuard region flag" ],
       "field" : "destructible_override",
       "importance" : 0,
       "name" : "Destructible Override",
       "type" : "boolean"
     },
     "dialog" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "npc",
+      "description" : [ "A list of speech lines for an NPC to say to nearby players" ],
       "field" : "dialog",
       "importance" : 0,
       "name" : "Dialog",
       "type" : "list"
     },
     "dialog_face_player" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "npc",
+      "description" : [ "If set, the NPC will face the player they speak to", "Facing is not smooth, direction will only change each time they speak", "IF there are multiple players being spoken to, the NPC will try to look roughly in the center of them" ],
       "field" : "dialog_face_player",
       "importance" : 0,
       "name" : "Dialog Face Player",
       "type" : "boolean"
     },
     "dialog_format" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "npc",
+      "description" : [ "A message key used to look up a template in the messages files", "This template is used to format dialog spoken to players", "You can use some variables in the template:", "<li>$speaker: The name of the NPC", "<li>$line: The line of dialog", "<li>$target: The name of the player being spoken to" ],
       "field" : "dialog_format",
       "importance" : 0,
       "name" : "Dialog Format",
       "type" : "string"
     },
     "dialog_interval" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "npc",
+      "description" : [ "How long to wait before speaking each line of dialog" ],
       "field" : "dialog_interval",
       "importance" : 0,
       "name" : "Dialog Interval",
       "type" : "integer"
     },
     "dialog_range" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "npc",
+      "description" : [ "How close a player must be before the NPC will start speaking to them" ],
       "field" : "dialog_range",
       "importance" : 0,
       "name" : "Dialog Range",
       "type" : "double"
     },
     "digits" : {
-      "category" : "",
+      "category" : "text",
       "description" : [ "The number of digits past the decimal point to include in the numeric output" ],
       "field" : "digits",
       "importance" : 0,
@@ -8500,8 +8508,8 @@
       "type" : "integer"
     },
     "direct" : {
-      "category" : "",
-      "description" : [ "" ],
+      "category" : "teleport",
+      "description" : [ "If set, will teleport directly to the target location without any modification or safety checks" ],
       "field" : "direct",
       "importance" : 0,
       "name" : "Direct",
@@ -8509,7 +8517,7 @@
     },
     "direction" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "The direction to search" ],
       "field" : "direction",
       "importance" : 0,
       "name" : "Direction",
@@ -8517,7 +8525,7 @@
     },
     "direction-disco_ball_effect_direction" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Which direction the effect should play in" ],
       "field" : "direction",
       "importance" : 0,
       "name" : "Direction",
@@ -8525,19 +8533,11 @@
     },
     "direction_count" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "How many blocks to move in the specified direction" ],
       "field" : "direction_count",
       "importance" : 0,
       "name" : "Direction Count",
       "type" : "integer"
-    },
-    "direction_disco_ball_effect_direction" : {
-      "category" : "",
-      "description" : [ "" ],
-      "field" : "direction",
-      "importance" : 0,
-      "name" : "Direction",
-      "type" : "disco_ball_effect_direction"
     },
     "direction_y" : {
       "category" : "",
