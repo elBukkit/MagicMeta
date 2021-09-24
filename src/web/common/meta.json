@@ -213,6 +213,7 @@
           "entity_attributes" : null,
           "entity_types-map" : null,
           "equip_on_respawn" : "true",
+          "face_player" : "false",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -362,6 +363,7 @@
           "entity_hit_count" : "1",
           "entity_weight" : "3",
           "equip_on_respawn" : "true",
+          "face_player" : "false",
           "fov" : "0.3",
           "fov_weight" : "4",
           "gravity" : "0",
@@ -406,6 +408,8 @@
           "leggings_item" : null,
           "lifetime" : "8000",
           "location_offset" : null,
+          "loot" : null,
+          "loot_map" : null,
           "mage" : null,
           "marker" : "false",
           "max_health" : "1",
@@ -479,6 +483,7 @@
           "sitting" : "false",
           "small" : "false",
           "source_location" : "",
+          "spawn_actions" : null,
           "spawn_reason" : null,
           "speed" : "1",
           "spread" : "0",
@@ -1664,7 +1669,8 @@
         "name" : "Drop Skull",
         "parameters" : {
           "allow_blocks" : "true",
-          "allow_entities" : "true"
+          "allow_entities" : "true",
+          "drop_at_source" : "false"
         },
         "short_class" : "DropSkull"
       },
@@ -1783,6 +1789,7 @@
           "return_to_caster" : "false",
           "reverse" : "false",
           "source_location" : "",
+          "spawn_actions" : null,
           "spawn_reason" : null,
           "speed" : "1",
           "spread" : "0",
@@ -1826,6 +1833,7 @@
         "importance" : 0,
         "name" : "Entity Select",
         "parameters" : {
+          "default_icon" : "default",
           "limit" : "64",
           "radius" : "32"
         },
@@ -1929,7 +1937,7 @@
       "fake_block" : {
         "category" : "",
         "class_name" : "FakeBlockAction",
-        "description" : [ "Send block create packets to all players in range","This creates the illusion of blocks client-side without actually changing the world" ],
+        "description" : [ "Send block create packets to all players in range", "This creates the illusion of blocks client-side without actually changing the world" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Fake Block",
@@ -2153,7 +2161,7 @@
       "interval" : {
         "category" : "compound",
         "class_name" : "IntervalAction",
-        "description" : [ "Repeat actions for a specific amount of time","Has a configurable interval, defaulting to every tick" ],
+        "description" : [ "Repeat actions for a specific amount of time", "Has a configurable interval, defaulting to every tick" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Interval",
@@ -2378,7 +2386,8 @@
           "add_modifiers" : null,
           "duration" : "0",
           "duration_multiplier" : "0.0",
-          "remove_modifiers" : null
+          "remove_modifiers" : null,
+          "remove_on_finish" : "false"
         },
         "short_class" : "Modifier"
       },
@@ -2509,6 +2518,7 @@
           "dy_offset" : "0.0",
           "entity_attributes" : null,
           "equip_on_respawn" : "true",
+          "face_player" : "false",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -2646,7 +2656,7 @@
       "modify_n_p_c" : {
         "category" : "",
         "class_name" : "ModifyNPCAction",
-        "description" : [ "Modify the target NPC", "This is used by the shop management tool","Requires a specific NPC id and is not currently very usable in general spells" ],
+        "description" : [ "Modify the target NPC", "This is used by the shop management tool", "Requires a specific NPC id and is not currently very usable in general spells" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Modify NPC",
@@ -3008,7 +3018,8 @@
           "effects_ambient" : "true",
           "effects_particles" : "true",
           "potion_effects" : null,
-          "remove_effects" : null
+          "remove_effects" : null,
+          "remove_on_finish" : "false"
         },
         "short_class" : "PotionEffect"
       },
@@ -3173,7 +3184,7 @@
       "remove_n_p_c" : {
         "category" : "",
         "class_name" : "RemoveNPCAction",
-        "description" : [ "Remove a specific NPC","Requires an NPC id" ],
+        "description" : [ "Remove a specific NPC", "Requires an NPC id" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Remove NPC",
@@ -3707,6 +3718,7 @@
           "entity_attributes" : null,
           "entity_types-map" : null,
           "equip_on_respawn" : "true",
+          "face_player" : "false",
           "force" : "false",
           "gravity" : "true",
           "gravity_boolean" : "true",
@@ -3912,7 +3924,7 @@
       "stop_sound" : {
         "category" : "",
         "class_name" : "StopSoundAction",
-        "description" : [ "Stop a specific sound from playing","Useful for ambient or long-running sounds such as music discs" ],
+        "description" : [ "Stop a specific sound from playing", "Useful for ambient or long-running sounds such as music discs" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Stop Sound",
@@ -4025,7 +4037,7 @@
       "teleport_n_p_c" : {
         "category" : "",
         "class_name" : "TeleportNPCAction",
-        "description" : [ "Move an NPC to the target location","Requires an NPC id" ],
+        "description" : [ "Move an NPC to the target location", "Requires an NPC id" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Teleport NPC",
@@ -5015,6 +5027,7 @@
           "is_zig_zag" : "false",
           "iterations" : "1",
           "length" : "0",
+          "max_length" : "0.0",
           "particle" : "flame",
           "particles" : "100",
           "sub_effect_at_end" : null,
@@ -6129,6 +6142,14 @@
       "name" : "Armor Stand Small",
       "type" : "boolean"
     },
+    "armor_temporary" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "armor_temporary",
+      "importance" : 0,
+      "name" : "Armor Temporary",
+      "type" : "boolean"
+    },
     "arms" : {
       "category" : "",
       "description" : [ "" ],
@@ -6988,6 +7009,22 @@
       "name" : "Cancel Interact",
       "type" : "boolean"
     },
+    "cancel_interact_on_left_click" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_interact_on_left_click",
+      "importance" : 0,
+      "name" : "Cancel Interact On Left Click",
+      "type" : "string"
+    },
+    "cancel_interact_on_right_click" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "cancel_interact_on_right_click",
+      "importance" : 0,
+      "name" : "Cancel Interact On Right Click",
+      "type" : "string"
+    },
     "cancel_on_cast_other" : {
       "category" : "base",
       "description" : [ "This spell will be cancelled if the caster casts another spell while this one is in progress" ],
@@ -7623,7 +7660,7 @@
     },
     "command" : {
       "category" : "",
-      "description" : [ "The command to execute", "The following variables can be used in this command:", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn", "<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
+      "description" : [ "The command to execute", "The following variables can be used in this command:", "<li>@spell : The name of the spell", "<li>@p : The name of the caster. Can also use @pn", "<li>@pd : The display name (nick) of the caster", "<li>@uuid : The UUID of the caster", "<li>@world, @x, @y, @z : The location of the caster", "<li>@t : The name of the target. Can also use @tn", "<li>@td : The display name (nick) of the target", "<li>@tuuid : The UUID of the target", "<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "command",
       "importance" : 0,
       "name" : "Command",
@@ -7647,7 +7684,7 @@
     },
     "commands" : {
       "category" : "",
-      "description" : [ "A list of commands to execute", "The following variables can be used in these command:", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn","<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
+      "description" : [ "A list of commands to execute", "The following variables can be used in these command:", "<li>@spell : The name of the spell", "<li>@p : The name of the caster. Can also use @pn", "<li>@pd : The display name (nick) of the caster", "<li>@uuid : The UUID of the caster", "<li>@world, @x, @y, @z : The location of the caster", "<li>@t : The name of the target. Can also use @tn", "<li>@td : The display name (nick) of the target", "<li>@tuuid : The UUID of the target", "<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "commands",
       "importance" : 0,
       "name" : "Commands",
@@ -8294,6 +8331,14 @@
       "name" : "Default Drops",
       "type" : "boolean"
     },
+    "default_icon" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "default_icon",
+      "importance" : 0,
+      "name" : "Default Icon",
+      "type" : "string"
+    },
     "delay" : {
       "category" : "control",
       "description" : [ "Delay to wait before continuing, in milliseconds" ],
@@ -8693,6 +8738,14 @@
       "importance" : 90,
       "name" : "Drop Key Binding",
       "type" : "wand_action"
+    },
+    "drop_at_source" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "drop_at_source",
+      "importance" : 0,
+      "name" : "Drop At Source",
+      "type" : "boolean"
     },
     "drop_count" : {
       "category" : "",
@@ -9397,6 +9450,14 @@
       "importance" : 0,
       "name" : "Extended Description",
       "type" : "string"
+    },
+    "face_player" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "face_player",
+      "importance" : 0,
+      "name" : "Face Player",
+      "type" : "boolean"
     },
     "faces" : {
       "category" : "",
@@ -10391,6 +10452,14 @@
       "name" : "Ignore Modified",
       "type" : "boolean"
     },
+    "ignore_name" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "ignore_name",
+      "importance" : 0,
+      "name" : "Ignore Name",
+      "type" : "string"
+    },
     "ignore_particles" : {
       "category" : "",
       "description" : [ "" ],
@@ -11375,6 +11444,14 @@
       "name" : "Loot",
       "type" : "boolean"
     },
+    "loot_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "loot",
+      "importance" : 0,
+      "name" : "Loot",
+      "type" : "map"
+    },
     "lore_instructions" : {
       "category" : "",
       "description" : [ "" ],
@@ -11679,6 +11756,14 @@
       "name" : "Max Item Count",
       "type" : "integer"
     },
+    "max_length" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_length",
+      "importance" : 0,
+      "name" : "Max Length",
+      "type" : "double"
+    },
     "max_level" : {
       "category" : "",
       "description" : [ "" ],
@@ -11793,7 +11878,7 @@
     },
     "message" : {
       "category" : "",
-      "description" : [ "The message to send the target.", "The following variables can be used in this message: ", "<li>@spell : The name of the spell","<li>@p : The name of the caster. Can also use @pn","<li>@pd : The display name (nick) of the caster","<li>@uuid : The UUID of the caster","<li>@world, @x, @y, @z : The location of the caster","<li>@t : The name of the target. Can also use @tn","<li>@td : The display name (nick) of the target","<li>@tuuid : The UUID of the target","<li>@tworld, @tx, @ty, @tz : The location of the target" ],
+      "description" : [ "The message to send the target.", "The following variables can be used in this message: ", "<li>@spell : The name of the spell", "<li>@p : The name of the caster. Can also use @pn", "<li>@pd : The display name (nick) of the caster", "<li>@uuid : The UUID of the caster", "<li>@world, @x, @y, @z : The location of the caster", "<li>@t : The name of the target. Can also use @tn", "<li>@td : The display name (nick) of the target", "<li>@tuuid : The UUID of the target", "<li>@tworld, @tx, @ty, @tz : The location of the target" ],
       "field" : "message",
       "importance" : 100,
       "name" : "Message",
@@ -13783,6 +13868,14 @@
       "name" : "Reflect Count",
       "type" : "integer"
     },
+    "reflect_fov" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "reflect_fov",
+      "importance" : 0,
+      "name" : "Reflect Fov",
+      "type" : "string"
+    },
     "reflect_reorient" : {
       "category" : "",
       "description" : [ "" ],
@@ -13942,6 +14035,14 @@
       "importance" : 0,
       "name" : "Remove Mounts",
       "type" : "list"
+    },
+    "remove_on_finish" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_on_finish",
+      "importance" : 0,
+      "name" : "Remove On Finish",
+      "type" : "boolean"
     },
     "remove_when_broken" : {
       "category" : "",
@@ -18099,6 +18200,11 @@
       "parameters" : {
         "allow_container_copy" : null,
         "attributes" : null,
+        "block_chance" : null,
+        "block_cooldown" : null,
+        "block_fov" : null,
+        "block_mage_cooldown" : null,
+        "block_reflect_chance" : null,
         "brush_inventory" : null,
         "brushes" : null,
         "class_items" : null,
@@ -18127,6 +18233,8 @@
         "powered" : null,
         "protected" : null,
         "protection" : null,
+        "reflect_chance" : null,
+        "reflect_fov" : null,
         "reset_mana_on_activate" : null,
         "spell_inventory" : null,
         "spell_levels" : null,
@@ -18428,6 +18536,7 @@
         "particle_offset_z" : "0.3",
         "particle_override" : null,
         "particle_speed" : "0",
+        "probability" : "1.0",
         "radius_override" : null,
         "relative_offset" : null,
         "relative_target_offset" : null,
@@ -20375,6 +20484,7 @@
         "amount" : "1",
         "angry" : "false",
         "armor" : null,
+        "armor_temporary" : "false",
         "arms" : "false",
         "art" : null,
         "aware" : "false",
@@ -20412,6 +20522,7 @@
         "duration_on_use" : "0",
         "entity_attributes" : null,
         "equip_on_respawn" : "true",
+        "face_player" : "false",
         "facing" : null,
         "fox_type" : null,
         "gravity" : "true",
@@ -20447,6 +20558,7 @@
         "lifetime" : "0",
         "llama_color" : null,
         "llama_strength" : "1",
+        "loot" : null,
         "mage" : null,
         "marker" : "false",
         "material" : null,
@@ -20535,6 +20647,11 @@
       "parameters" : {
         "allow_container_copy" : null,
         "attributes" : null,
+        "block_chance" : null,
+        "block_cooldown" : null,
+        "block_fov" : null,
+        "block_mage_cooldown" : null,
+        "block_reflect_chance" : null,
         "brush_inventory" : null,
         "brushes" : null,
         "consume_reduction" : null,
@@ -20563,6 +20680,8 @@
         "powered" : null,
         "protected" : null,
         "protection" : null,
+        "reflect_chance" : null,
+        "reflect_fov" : null,
         "reset_mana_on_activate" : null,
         "spell_inventory" : null,
         "spell_levels" : null,
@@ -22308,6 +22427,7 @@
         "hitbox_size" : "0",
         "id" : null,
         "ignore_blocks" : "false",
+        "ignore_name" : null,
         "ignore_potion_effects" : null,
         "ignore_region_overrides" : "false",
         "ignore_types" : null,
@@ -22451,6 +22571,7 @@
         "toggleable" : "true",
         "triggers" : null,
         "triggers_list" : null,
+        "type" : null,
         "undoable" : "false",
         "upgrade_required_casts" : "0",
         "upgrade_required_path" : null,
@@ -22570,31 +22691,31 @@
       "description" : [ "An event that can trigger mobs to cast spells" ],
       "name" : "Trigger Type",
       "options" : {
+        "block" : "The player starts blocking with a shield (has it raised)",
+        "consume" : "A player consumes some food or drink",
         "damage" : "When this entity takes damage",
-        "death" : "When this entity dies",
-        "interval" : "At a specific interval, defined by the 'interval' property",
-        "launch" : "When this entity launches a projectile",
-        "spawn" : "When this mob spawns",
-        "join" : "When the player joins the server",
         "damage_dealt" : "When the player deals damage",
-        "kill" : "When the player kills a player or mob",
+        "death" : "When this entity dies",
+        "drop" : "The player uses the drop item button",
         "glide" : "A player starts gliding with an elytra",
-        "stop_glide" : "A player stops gliding with an elytra",
         "interact" : "A player interacts with an entity or NPC",
+        "interval" : "At a specific interval, defined by the 'interval' property",
+        "join" : "When the player joins the server",
+        "jump" : "A player jumped",
+        "kill" : "When the player kills a player or mob",
+        "land" : "The player lands on the ground after flying or falling",
+        "launch" : "When this entity launches a projectile",
         "left_click" : "A player left-clicks (swings)",
+        "respawn" : "The player has respawned after death",
         "right_click" : "A player right-clicks (interacts with a block or air)",
         "sneak" : "A player starts sneaking",
-        "stop_sneak" : "A player stops sneaking",
+        "spawn" : "When this mob spawns",
         "sprint" : "A player starts sprinting",
-        "stop_sprint" : "A player stops sprinting",
-        "land" : "The player lands on the ground after flying or falling",
-        "block" : "The player starts blocking with a shield (has it raised)",
         "stop_block" : "The player stops blocking with a shield",
-        "respawn" : "The player has respawned after death",
-        "swap" : "The player uses the swap item button",
-        "drop" : "The player uses the drop item button",
-        "consume" : "A player consumes some food or drink",
-        "jump" : "A player jumped"
+        "stop_glide" : "A player stops gliding with an elytra",
+        "stop_sneak" : "A player stops sneaking",
+        "stop_sprint" : "A player stops sprinting",
+        "swap" : "The player uses the swap item button"
       }
     },
     "vanilla_attribute" : {
@@ -22746,6 +22867,8 @@
         "brush_mode" : "none",
         "brushes" : null,
         "cancel_effects_delay" : null,
+        "cancel_interact_on_left_click" : null,
+        "cancel_interact_on_right_click" : null,
         "cast_interval" : "0",
         "cast_interval_cost_free" : null,
         "cast_location" : null,
@@ -22838,6 +22961,8 @@
         "protection" : null,
         "quick_cast" : null,
         "quiet" : "false",
+        "reflect_chance" : null,
+        "reflect_fov" : null,
         "rename" : "false",
         "rename_description" : "false",
         "reset_mana_on_activate" : null,
