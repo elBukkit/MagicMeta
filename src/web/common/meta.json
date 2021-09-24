@@ -4685,7 +4685,7 @@
         "importance" : 0,
         "name" : "Disco Ball",
         "parameters" : {
-          "direction-disco_ball_effect_direction" : "down",
+          "direction_disco_ball_effect_direction" : "down",
           "effect_type" : "repeating",
           "iterations" : "500",
           "line_color" : null,
@@ -8523,14 +8523,6 @@
       "name" : "Direction",
       "type" : "string"
     },
-    "direction-disco_ball_effect_direction" : {
-      "category" : "",
-      "description" : [ "Which direction the effect should play in" ],
-      "field" : "direction",
-      "importance" : 0,
-      "name" : "Direction",
-      "type" : "disco_ball_effect_direction"
-    },
     "direction_count" : {
       "category" : "",
       "description" : [ "How many blocks to move in the specified direction" ],
@@ -8538,6 +8530,14 @@
       "importance" : 0,
       "name" : "Direction Count",
       "type" : "integer"
+    },
+    "direction_disco_ball_effect_direction" : {
+      "category" : "effects",
+      "description" : [ "Which direction the effect should play in" ],
+      "field" : "direction",
+      "importance" : 0,
+      "name" : "Direction",
+      "type" : "disco_ball_effect_direction"
     },
     "direction_y" : {
       "category" : "",
