@@ -8541,7 +8541,7 @@
     },
     "direction_y" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "An offset to apply to the vertical component of movement" ],
       "field" : "direction_y",
       "importance" : 0,
       "name" : "Direction Y",
@@ -8565,7 +8565,7 @@
     },
     "disabled_slots" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A bitmask of slots to disable, making it so players can not interact with them", "You may need to look up how to use this on the Minecraft wiki" ],
       "field" : "disabled_slots",
       "importance" : 0,
       "name" : "Disabled Slots",
@@ -8605,7 +8605,7 @@
     },
     "discover_recipes" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Recipes that should be discovered by a player when they unlock this class" ],
       "field" : "discover_recipes",
       "importance" : 0,
       "name" : "Discover Recipes",
@@ -8613,7 +8613,7 @@
     },
     "disguise" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A disguise to use", "requires the LibsDisguise plugin" ],
       "field" : "disguise",
       "importance" : 0,
       "name" : "Disguise",
@@ -8621,7 +8621,7 @@
     },
     "disguise_map" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A disguise to use", "requires the LibsDisguise plugin" ],
       "field" : "disguise",
       "importance" : 0,
       "name" : "Disguise",
@@ -8629,7 +8629,7 @@
     },
     "disguise_restricted" : {
       "category" : "base",
-      "description" : [ "" ],
+      "description" : [ "If set, this spell can not be used while the player is disguised" ],
       "field" : "disguise_restricted",
       "importance" : 0,
       "name" : "Disguise Restricted",
@@ -8637,7 +8637,7 @@
     },
     "disguise_target" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "What player to use when disguising", "This will copy the target player's skin" ],
       "field" : "disguise_target",
       "importance" : 0,
       "name" : "Disguise Target",
@@ -8645,7 +8645,7 @@
     },
     "dismount" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "If set, will dismount the target from their vehicle" ],
       "field" : "dismount",
       "importance" : 0,
       "name" : "Dismount",
@@ -8653,7 +8653,7 @@
     },
     "display_cooldown" : {
       "category" : "base",
-      "description" : [ "" ],
+      "description" : [ "A duration to use for displaying cooldown in the lore", "This can be used if the spell does not have a cooldown assigned but emulates it", "Perhaps via the ModifyCooldown action" ],
       "field" : "display_cooldown",
       "importance" : 0,
       "name" : "Display Cooldown",
@@ -8661,7 +8661,7 @@
     },
     "display_name" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A custom display name to use instead of the pre-formatted name" ],
       "field" : "display_name",
       "importance" : 0,
       "name" : "Display Name",
@@ -8669,7 +8669,7 @@
     },
     "distance" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "How far to travel before moving on to the next step" ],
       "field" : "distance",
       "importance" : 0,
       "name" : "Distance",
@@ -8677,7 +8677,7 @@
     },
     "distance_weight" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Tweak how important the distance to the target is when performing targeting" ],
       "field" : "distance_weight",
       "importance" : 0,
       "name" : "Distance Weight",
@@ -8685,7 +8685,7 @@
     },
     "docile" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Make this mob avoid targeting other mobs" ],
       "field" : "docile",
       "importance" : 0,
       "name" : "Docile",
