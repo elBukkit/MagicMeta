@@ -11361,7 +11361,7 @@
     },
     "locked" : {
       "category" : "wand",
-      "description" : [ "If set, this wand can not be modified" ],
+      "description" : [ "If set, this can not be used by a player unless they are allowed", "For wands and items, the player must have a class or modifier with this item in a useable list", "For classes or warps, this must be unlocked before it can be used" ],
       "field" : "locked",
       "importance" : 0,
       "name" : "Locked",
