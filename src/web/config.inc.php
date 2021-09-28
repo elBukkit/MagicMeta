@@ -56,13 +56,13 @@ EOT;
 
 $analytics = <<<EOT
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZNM5M4YHN"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17131761-5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-KZNM5M4YHN');
+  gtag('config', 'UA-17131761-5');
 </script>
 EOT;
 
