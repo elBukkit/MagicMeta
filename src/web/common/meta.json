@@ -8613,7 +8613,7 @@
     },
     "disguise" : {
       "category" : "",
-      "description" : [ "A disguise to use", "requires the LibsDisguise plugin" ],
+      "description" : [ "A disguise to use", "requires the LibsDisguises plugin" ],
       "field" : "disguise",
       "importance" : 0,
       "name" : "Disguise",
@@ -8621,7 +8621,7 @@
     },
     "disguise_map" : {
       "category" : "",
-      "description" : [ "A disguise to use", "requires the LibsDisguise plugin" ],
+      "description" : [ "A disguise to use", "requires the LibsDisguises plugin" ],
       "field" : "disguise",
       "importance" : 0,
       "name" : "Disguise",
@@ -18375,7 +18375,7 @@
     },
     "disguise_map" : {
       "class_name" : "java.util.Map",
-      "description" : [ "Configuration for a LibsDisguise disguise" ],
+      "description" : [ "Configuration for a LibsDisguises disguise" ],
       "key_type" : "string",
       "name" : "Disguise Configuration",
       "options" : {
