@@ -6777,6 +6777,14 @@
       "name" : "Brain",
       "type" : "brain"
     },
+    "brain_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "brain",
+      "importance" : 0,
+      "name" : "Brain",
+      "type" : "map"
+    },
     "braking" : {
       "category" : "",
       "description" : [ "" ],
@@ -19105,7 +19113,27 @@
         "interact" : null,
         "leap_at_target" : null,
         "look_at_player" : null,
-        "panic" : null
+        "melee_attack" : null,
+        "move_back_to_village" : null,
+        "move_through_village" : null,
+        "move_towards_restriction" : null,
+        "move_towards_target" : null,
+        "ocelot_attack" : null,
+        "offer_flower" : null,
+        "open_door" : null,
+        "panic" : null,
+        "random_look_around" : null,
+        "random_stroll" : null,
+        "random_swimming" : null,
+        "restrict_sun" : null,
+        "run_around_like_crazy" : null,
+        "stroll_through_village" : null,
+        "swell" : null,
+        "tempt" : null,
+        "try_find_water" : null,
+        "water_avoiding_random_flying" : null,
+        "water_avoiding_random_stroll" : null,
+        "zombie_attack" : null
       }
     },
     "horse_color" : {
