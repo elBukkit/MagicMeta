@@ -194,6 +194,7 @@
           "boots" : null,
           "boss_bar" : null,
           "boss_bar_map" : null,
+          "brain" : null,
           "can_pickup_items" : "false",
           "cancel_explosion" : "false",
           "cancel_interact" : "false",
@@ -339,6 +340,7 @@
           "boots_item" : null,
           "boss_bar" : null,
           "boss_bar_map" : null,
+          "brain" : null,
           "break_blocks" : "true",
           "breakable_size" : "1",
           "bypass_backfire" : "false",
@@ -2506,6 +2508,7 @@
           "boots" : null,
           "boss_bar" : null,
           "boss_bar_map" : null,
+          "brain" : null,
           "can_pickup_items" : "false",
           "cancel_explosion" : "false",
           "cancel_interact" : "false",
@@ -3712,6 +3715,7 @@
           "boots" : null,
           "boss_bar" : null,
           "boss_bar_map" : null,
+          "brain" : null,
           "can_pickup_items" : "false",
           "cancel_explosion" : "false",
           "cancel_interact" : "false",
@@ -6764,6 +6768,14 @@
       "importance" : 0,
       "name" : "Bp",
       "type" : "boolean"
+    },
+    "brain" : {
+      "category" : "",
+      "description" : [ "Vanilla AI behaviors" ],
+      "field" : "brain",
+      "importance" : 0,
+      "name" : "Brain",
+      "type" : "brain"
     },
     "braking" : {
       "category" : "",
@@ -14033,6 +14045,14 @@
       "name" : "Remove",
       "type" : "boolean"
     },
+    "remove_default_goals" : {
+      "category" : "",
+      "description" : [ "Whether or not to remove default goals from this mob" ],
+      "field" : "remove_default_goals",
+      "importance" : 0,
+      "name" : "Remove Default Goals",
+      "type" : "boolean"
+    },
     "remove_effects" : {
       "category" : "",
       "description" : [ "A list of potion effects to remove from the target" ],
@@ -14040,6 +14060,14 @@
       "importance" : 90,
       "name" : "Remove Effects",
       "type" : "potion_effect_list"
+    },
+    "remove_goals" : {
+      "category" : "",
+      "description" : [ "A list of pathfinder goals to remove from this mob" ],
+      "field" : "remove_goals",
+      "importance" : 0,
+      "name" : "Remove Goals",
+      "type" : "goal_list"
     },
     "remove_lore" : {
       "category" : "",
@@ -18225,6 +18253,16 @@
         "true" : null
       }
     },
+    "brain" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "Modify vanilla AI behaviors" ],
+      "name" : "Brain",
+      "parameters" : {
+        "goals" : null,
+        "remove_default_goals" : "false",
+        "remove_goals" : null
+      }
+    },
     "byte" : {
       "class_name" : "java.lang.Byte",
       "description" : [ "A small number ranging from 0 to 255" ],
@@ -20584,6 +20622,7 @@
         "body_pose" : null,
         "boots" : null,
         "boss_bar" : null,
+        "brain" : null,
         "can_pickup_items" : "false",
         "cancel_explosion" : "false",
         "cancel_interact" : "false",
