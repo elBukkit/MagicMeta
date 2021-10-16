@@ -641,6 +641,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean extendPiston(Block block) {
+        return false;
+    }
+
+    @Override
     public boolean toggleBlockPower(Block block) {
         return false;
     }

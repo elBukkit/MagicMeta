@@ -32,6 +32,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Vector;
 import com.elmakers.mine.bukkit.magic.SourceLocation;
+import com.elmakers.mine.bukkit.mob.GoalType;
 import com.elmakers.mine.bukkit.wand.WandMode;
 import com.google.common.base.CaseFormat;
 
@@ -315,6 +316,9 @@ public class ParameterStore {
                 break;
             case "bar_flags":
                 parameterType = getListType("bar_flag_list", getParameterType(BarFlag.class));
+                break;
+            case "goal":
+                parameterType = getParameterType(GoalType.class);
                 break;
             default:
                 parameterType = getParameterType(defaultClass);

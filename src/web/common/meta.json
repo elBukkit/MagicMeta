@@ -201,6 +201,7 @@
           "cast_requires_item" : null,
           "cast_requires_target" : "true",
           "chestplate" : null,
+          "collidable" : "false",
           "color" : null,
           "combustible" : "true",
           "default_drops" : "true",
@@ -351,6 +352,7 @@
           "chestplate_item" : null,
           "close_fov" : "0.5",
           "close_range" : "0",
+          "collidable" : "false",
           "color" : null,
           "combustible" : "true",
           "default_drops" : "true",
@@ -1477,6 +1479,7 @@
         "parameters" : {
           "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
+          "critical_effects" : "critical",
           "critical_probability" : "0.0",
           "damage" : "1",
           "damage_max_distance" : "0",
@@ -2082,7 +2085,8 @@
           "freeze_fire" : "true",
           "freeze_lava" : "true",
           "freeze_water" : "true",
-          "ice" : null
+          "ice" : null,
+          "snowable" : "snowable"
         },
         "short_class" : "Freeze"
       },
@@ -2508,6 +2512,7 @@
           "cast_requires_item" : null,
           "cast_requires_target" : "true",
           "chestplate" : null,
+          "collidable" : "false",
           "color" : null,
           "combustible" : "true",
           "default_drops" : "true",
@@ -3143,6 +3148,7 @@
           "protection_duration" : "0",
           "require_build" : "false",
           "require_exit" : "true",
+          "require_target_permission" : "true",
           "safe" : "true",
           "teleport" : "true",
           "teleport_target" : "false",
@@ -3586,6 +3592,7 @@
           "sell" : "false",
           "show_extra_spells" : "false",
           "show_free" : "false",
+          "show_missing_requirements" : "false",
           "show_no_permission" : "false",
           "show_path_spells" : "false",
           "show_required_spells" : "false",
@@ -3625,6 +3632,7 @@
         "parameters" : {
           "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
+          "critical_effects" : "critical",
           "critical_probability" : "0.0",
           "damage" : "1",
           "damage_max_distance" : "0",
@@ -3708,6 +3716,7 @@
           "cast_requires_item" : null,
           "cast_requires_target" : "true",
           "chestplate" : null,
+          "collidable" : "false",
           "color" : null,
           "combustible" : "true",
           "default_drops" : "true",
@@ -5613,6 +5622,14 @@
       "importance" : 20,
       "name" : "AI",
       "type" : "boolean"
+    },
+    "ai_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ai",
+      "importance" : 0,
+      "name" : "Ai",
+      "type" : "map"
     },
     "air" : {
       "category" : "",
@@ -7538,6 +7555,14 @@
       "name" : "Cloud Speed",
       "type" : "float"
     },
+    "collidable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "collidable",
+      "importance" : 0,
+      "name" : "Collidable",
+      "type" : "boolean"
+    },
     "color" : {
       "category" : "effects",
       "description" : [ "Can be used to color particles and firework effects" ],
@@ -8138,6 +8163,14 @@
       "importance" : 0,
       "name" : "Critical Damage Multiplier",
       "type" : "double"
+    },
+    "critical_effects" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "critical_effects",
+      "importance" : 0,
+      "name" : "Critical Effects",
+      "type" : "string"
     },
     "critical_probability" : {
       "category" : "",
@@ -14244,6 +14277,14 @@
       "name" : "Require Sapling",
       "type" : "boolean"
     },
+    "require_target_permission" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "require_target_permission",
+      "importance" : 0,
+      "name" : "Require Target Permission",
+      "type" : "boolean"
+    },
     "require_template" : {
       "category" : "",
       "description" : [ "" ],
@@ -14780,6 +14821,14 @@
       "name" : "Show Free",
       "type" : "boolean"
     },
+    "show_missing_requirements" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_missing_requirements",
+      "importance" : 0,
+      "name" : "Show Missing Requirements",
+      "type" : "boolean"
+    },
     "show_name" : {
       "category" : "",
       "description" : [ "" ],
@@ -14947,6 +14996,14 @@
       "importance" : 0,
       "name" : "Small",
       "type" : "boolean"
+    },
+    "snowable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "snowable",
+      "importance" : 0,
+      "name" : "Snowable",
+      "type" : "string"
     },
     "solid" : {
       "category" : "",
@@ -20502,6 +20559,7 @@
         "cast_requires_target" : "true",
         "cat_type" : null,
         "chestplate" : null,
+        "collidable" : "false",
         "color" : null,
         "combustible" : "true",
         "crouching" : "false",
