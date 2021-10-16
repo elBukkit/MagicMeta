@@ -224,6 +224,7 @@
           "equip_on_respawn" : "true",
           "face_player" : "false",
           "force" : "false",
+          "goals" : null,
           "gravity" : "true",
           "gravity_boolean" : "true",
           "hand_item" : null,
@@ -376,6 +377,7 @@
           "face_player" : "false",
           "fov" : "0.3",
           "fov_weight" : "4",
+          "goals" : null,
           "gravity" : "0",
           "head_pose" : null,
           "head_transform" : null,
@@ -2533,6 +2535,7 @@
           "equip_on_respawn" : "true",
           "face_player" : "false",
           "force" : "false",
+          "goals" : null,
           "gravity" : "true",
           "gravity_boolean" : "true",
           "health" : "1.0",
@@ -3737,6 +3740,7 @@
           "equip_on_respawn" : "true",
           "face_player" : "false",
           "force" : "false",
+          "goals" : null,
           "gravity" : "true",
           "gravity_boolean" : "true",
           "hand_item" : null,
@@ -5622,14 +5626,6 @@
       "importance" : 20,
       "name" : "AI",
       "type" : "boolean"
-    },
-    "ai_map" : {
-      "category" : "",
-      "description" : [ "" ],
-      "field" : "ai",
-      "importance" : 0,
-      "name" : "Ai",
-      "type" : "map"
     },
     "air" : {
       "category" : "",
@@ -9971,6 +9967,14 @@
       "importance" : 0,
       "name" : "Glyph Hotbar",
       "type" : "string"
+    },
+    "goals" : {
+      "category" : "",
+      "description" : [ "A list of pathfinder goals for this mob" ],
+      "field" : "goals",
+      "importance" : 0,
+      "name" : "Goals",
+      "type" : "goal_list"
     },
     "gravity" : {
       "category" : "",
@@ -19037,6 +19041,35 @@
         "survival" : null
       }
     },
+    "goal_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "" ],
+      "item_type" : "goal_type",
+      "name" : "Goal List",
+      "options" : { }
+    },
+    "goal_type" : {
+      "class_name" : "com.elmakers.mine.bukkit.mob.GoalType",
+      "description" : [ "" ],
+      "name" : "Goal Type",
+      "options" : {
+        "avoid_entity" : null,
+        "beg" : null,
+        "break_door" : null,
+        "breathe_air" : null,
+        "breed" : null,
+        "eat_block" : null,
+        "flee_sun" : null,
+        "float" : null,
+        "follow_boat" : null,
+        "follow_mob" : null,
+        "golem_random_stroll_in_village" : null,
+        "interact" : null,
+        "leap_at_target" : null,
+        "look_at_player" : null,
+        "panic" : null
+      }
+    },
     "horse_color" : {
       "class_name" : "org.bukkit.entity.Horse$Color",
       "description" : [ "" ],
@@ -20583,6 +20616,7 @@
         "face_player" : "false",
         "facing" : null,
         "fox_type" : null,
+        "goals" : null,
         "gravity" : "true",
         "gravity_boolean" : "true",
         "hand_item" : null,

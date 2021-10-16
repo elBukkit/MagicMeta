@@ -187,6 +187,9 @@ public class ParameterStore {
             case "remove_effects":
                 parameterType = getListType("potion_effect_list", getParameterType(PotionEffectType.class));
                 break;
+            case "goals":
+                parameterType = getListType("goal_list", getParameterType(GoalType.class));
+                break;
             case "potion_effects":
             case "add_effects":
             case "projectile_potion_effects":

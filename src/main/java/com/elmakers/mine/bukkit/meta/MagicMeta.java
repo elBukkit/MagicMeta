@@ -35,6 +35,7 @@ import com.elmakers.mine.bukkit.magic.MageClass;
 import com.elmakers.mine.bukkit.magic.MageModifier;
 import com.elmakers.mine.bukkit.magic.MagicController;
 import com.elmakers.mine.bukkit.meta.platform.Platform;
+import com.elmakers.mine.bukkit.mob.GoalType;
 import com.elmakers.mine.bukkit.spell.ActionSpell;
 import com.elmakers.mine.bukkit.spell.BaseSpell;
 import com.elmakers.mine.bukkit.spell.BlockSpell;
@@ -440,6 +441,7 @@ public class MagicMeta {
         if (data == null) {
             data = new MetaData();
         }
+        data.getParameterStore().getParameterType(GoalType.class);
         generateSpellMeta();
         generateActionMeta();
         generateEffectsMeta();
