@@ -68,12 +68,13 @@ public class MagicMeta {
             return;
         }
         DummyPlugin plugin = new DummyPlugin();
-        Platform platform = new Platform(plugin, plugin.getLogger());
+        MagicController controller = new MagicController(plugin);
+        Platform platform = new Platform(controller);
         CompatibilityLib.initialize(platform);
 
         String fileName = args[0];
         boolean regenerate = (args.length > 1 && args[1].equals("--regenerate"));
-        MagicMeta meta = new MagicMeta();
+        MagicMeta meta = new MagicMeta(controller);
         try {
             File metaFile = new File(fileName);
             if (!regenerate) {
@@ -92,8 +93,8 @@ public class MagicMeta {
         System.out.println("Done.");
     }
 
-    private MagicMeta() {
-        controller = new MagicController();
+    private MagicMeta(MagicController controller) {
+        this.controller = controller;
         mage = new Mage("Interrogator", controller);
     }
 
