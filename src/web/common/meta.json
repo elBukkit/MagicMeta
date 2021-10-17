@@ -1525,6 +1525,8 @@
         "name" : "Debugger",
         "parameters" : {
           "check" : "false",
+          "check_brain" : "false",
+          "force" : "false",
           "level" : "1"
         },
         "short_class" : "Debugger"
@@ -7361,6 +7363,14 @@
       "field" : "check",
       "importance" : 0,
       "name" : "Check",
+      "type" : "boolean"
+    },
+    "check_brain" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "check_brain",
+      "importance" : 0,
+      "name" : "Check Brain",
       "type" : "boolean"
     },
     "check_chunk" : {
@@ -19110,6 +19120,7 @@
         "follow_boat" : null,
         "follow_mob" : null,
         "golem_random_stroll_in_village" : null,
+        "group" : null,
         "idle" : null,
         "interact" : null,
         "leap_at_target" : null,
@@ -19127,11 +19138,13 @@
         "random_look_around" : null,
         "random_stroll" : null,
         "random_swimming" : null,
+        "requirements" : null,
         "restrict_sun" : null,
         "run_around_like_crazy" : null,
         "stroll_through_village" : null,
         "swell" : null,
         "tempt" : null,
+        "trigger" : null,
         "try_find_water" : null,
         "water_avoiding_random_flying" : null,
         "water_avoiding_random_stroll" : null,
