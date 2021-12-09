@@ -10,7 +10,7 @@
     <properties>
         <magic.version>10.2-SNAPSHOT</magic.version>
         <effectlib.version>9.4-SNAPSHOT</effectlib.version>
-        <jackson.version>2.6.5</jackson.version>
+        <jackson.version>2.9.10.8</jackson.version>
         <findbugs.version>1.3.9</findbugs.version>
     </properties>
 
