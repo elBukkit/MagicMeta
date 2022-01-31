@@ -13,7 +13,7 @@ mymob:
   # Give the mob some items
   item: diamond_sword
   chestplate: diamond_chestplate
-  leggings: diamond_lenggings
+  leggings: diamond_leggings
   helmet: diamond_helmet
   boots: diamond_boots
   # Don't allow this mob to transform into another mob type
