@@ -22,7 +22,7 @@ foreach ($in['classed'] as $classType => $classes) {
         foreach ($parameters as $parameter => $defaultVAlue) {
             $property = $properties[$parameter];
             // Note this is not a literal return
-            $description = implode($property['description'], '\n');
+            $description = implode('\n', $property['description']);
             $mappedParameters[$property['field']] = $description;
         }
         $value['parameters'] = $mappedParameters;
