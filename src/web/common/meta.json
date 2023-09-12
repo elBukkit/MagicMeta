@@ -127,6 +127,7 @@
         "importance" : 0,
         "name" : "All Entities",
         "parameters" : {
+          "sort" : "false",
           "target_all_worlds" : "false"
         },
         "short_class" : "AllEntities"
@@ -169,7 +170,9 @@
         "name" : "Area Of Effect",
         "parameters" : {
           "ignore_modified" : "false",
+          "min_radius" : "0.0",
           "radius" : "8",
+          "sort" : "false",
           "target_count" : "-1",
           "target_source" : "true",
           "y_radius" : "8"
@@ -221,6 +224,7 @@
           "duration_on_use" : "0",
           "dy_offset" : "0",
           "entity_attributes" : null,
+          "entity_parameters" : null,
           "entity_types-map" : null,
           "equip_on_respawn" : "true",
           "face_player" : "false",
@@ -300,6 +304,7 @@
           "tags" : null,
           "tamed" : "false",
           "targeting" : null,
+          "temporary" : "false",
           "track_radius" : "128",
           "transformable" : "true",
           "triggers" : null,
@@ -321,8 +326,10 @@
         "importance" : 80,
         "name" : "Armor Stand Projectile",
         "parameters" : {
+          "active_wand" : "false",
           "aggro" : "true",
           "ai" : "true",
+          "allow_replacement" : "true",
           "amount" : "1",
           "apply_velocity" : "true",
           "armor_stand_arms" : "true",
@@ -477,6 +484,7 @@
           "protection" : null,
           "range" : "0",
           "range_padding" : "1",
+          "reactivate_wand" : "false",
           "reflect_count" : "-1",
           "reflect_reorient" : "false",
           "reflect_reset_distance_traveled" : "true",
@@ -484,6 +492,7 @@
           "reflect_track_range" : "0",
           "reflect_track_target" : "false",
           "register_by_name" : "false",
+          "relative_location_offset" : null,
           "relentless" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
@@ -524,6 +533,7 @@
           "target_self_timeout" : "0",
           "targeting" : null,
           "teleport" : "true",
+          "temporary" : "false",
           "tick_actions" : null,
           "tick_effects" : "tick",
           "tick_size" : "0.5",
@@ -545,6 +555,7 @@
           "use_hit_location" : "false",
           "use_npc_name" : "false",
           "use_target_location" : "true",
+          "use_wand" : "false",
           "use_wand_location" : "true",
           "variant" : null,
           "velocity" : "20",
@@ -663,6 +674,7 @@
           "auto_block_state" : "false",
           "break_durability" : "1",
           "break_material" : null,
+          "break_percent" : "0.0",
           "breakable" : "0",
           "check_chunk" : "false",
           "commit" : "false",
@@ -747,7 +759,8 @@
         "importance" : 0,
         "name" : "Capture",
         "parameters" : {
-          "min_health" : "-1"
+          "min_health" : "-1",
+          "remove" : "true"
         },
         "short_class" : "Capture"
       },
@@ -828,6 +841,7 @@
           "source_relative_direction_pitch_offset" : "0",
           "source_relative_direction_yaw_offset" : "0",
           "source_use_movement_direction" : "false",
+          "source_yaw" : null,
           "source_yaw_offset" : "0",
           "swap_source_and_target" : "false",
           "target_attachment" : "false",
@@ -911,6 +925,25 @@
         },
         "short_class" : "Chat"
       },
+      "check_bedrock_form" : {
+        "category" : "compound",
+        "class_name" : "CheckBedrockFormAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Check Bedrock Form",
+        "parameters" : {
+          "button1_key" : "button1",
+          "button2_key" : "button2",
+          "fail_actions" : null,
+          "invert" : "false",
+          "message_key" : "message",
+          "timeout" : "0",
+          "title_key" : "title",
+          "trigger" : ""
+        },
+        "short_class" : "CheckBedrockForm"
+      },
       "check_block" : {
         "category" : "compound",
         "class_name" : "CheckBlockAction",
@@ -934,9 +967,29 @@
           "not_brush" : "false",
           "set_target" : "false",
           "source_location" : "eyes",
+          "timeout" : "0",
           "use_target" : "true"
         },
         "short_class" : "CheckBlock"
+      },
+      "check_chat_click" : {
+        "category" : "compound",
+        "class_name" : "CheckChatClickAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Check Chat Click",
+        "parameters" : {
+          "Hover_message_key" : "hover_message",
+          "click_message_key" : "click_message",
+          "click_template_key" : "click_template",
+          "fail_actions" : null,
+          "invert" : "false",
+          "message_key" : "message",
+          "timeout" : "0",
+          "trigger" : ""
+        },
+        "short_class" : "CheckChatClick"
       },
       "check_entity" : {
         "category" : "compound",
@@ -955,7 +1008,13 @@
           "invert" : "false",
           "on_fire" : "false",
           "on_ground" : "false",
-          "only_caster" : "false"
+          "only_caster" : "false",
+          "owned" : "false",
+          "owner" : "false",
+          "owner_boolean" : "false",
+          "stay" : "false",
+          "stay_boolean" : "false",
+          "timeout" : "0"
         },
         "short_class" : "CheckEntity"
       },
@@ -972,7 +1031,8 @@
           "full_health" : "false",
           "invert" : "false",
           "max_health" : "0.0",
-          "min_health" : "0.0"
+          "min_health" : "0.0",
+          "timeout" : "0"
         },
         "short_class" : "CheckHealth"
       },
@@ -989,7 +1049,11 @@
           "fail_actions" : null,
           "invert" : "false",
           "item" : null,
-          "slot" : null
+          "material_only" : "false",
+          "slot" : null,
+          "target_block" : "false",
+          "target_caster" : "false",
+          "timeout" : "0"
         },
         "short_class" : "CheckInventory"
       },
@@ -1003,7 +1067,8 @@
         "parameters" : {
           "fail_actions" : null,
           "invert" : "false",
-          "pattern" : null
+          "pattern" : null,
+          "timeout" : "0"
         },
         "short_class" : "CheckLore"
       },
@@ -1020,7 +1085,8 @@
           "require_mana" : "0",
           "require_mana_empty" : "false",
           "require_mana_not_full" : "false",
-          "require_mana_percentage" : "0.0"
+          "require_mana_percentage" : "0.0",
+          "timeout" : "0"
         },
         "short_class" : "CheckMana"
       },
@@ -1037,7 +1103,8 @@
           "fail_actions" : null,
           "invert" : "false",
           "required" : null,
-          "required_list" : null
+          "required_list" : null,
+          "timeout" : "0"
         },
         "short_class" : "CheckModifiers"
       },
@@ -1052,7 +1119,8 @@
           "blocked" : null,
           "fail_actions" : null,
           "invert" : "false",
-          "required" : null
+          "required" : null,
+          "timeout" : "0"
         },
         "short_class" : "CheckPotionEffects"
       },
@@ -1068,7 +1136,9 @@
           "invert" : "false",
           "requirement" : null,
           "requirements" : null,
-          "send_message" : "false"
+          "send_message" : "false",
+          "timeout" : "0",
+          "use_target" : "false"
         },
         "short_class" : "CheckRequirements"
       },
@@ -1082,6 +1152,7 @@
         "parameters" : {
           "fail_actions" : null,
           "invert" : "false",
+          "timeout" : "0",
           "trigger" : ""
         },
         "short_class" : "CheckTrigger"
@@ -1097,7 +1168,8 @@
           "fail_actions" : null,
           "invert" : "false",
           "max_speed" : "nan",
-          "min_speed" : "nan"
+          "min_speed" : "nan",
+          "timeout" : "0"
         },
         "short_class" : "CheckVelocity"
       },
@@ -1155,6 +1227,7 @@
         "importance" : 70,
         "name" : "Command",
         "parameters" : {
+          "as_target" : "false",
           "command" : null,
           "console" : "false",
           "equation" : "0.0",
@@ -1174,7 +1247,9 @@
         "examples" : [ ],
         "importance" : 0,
         "name" : "Commit",
-        "parameters" : { },
+        "parameters" : {
+          "commit_all" : "true"
+        },
         "short_class" : "Commit"
       },
       "cone_of_effect" : {
@@ -1206,6 +1281,7 @@
           "player_weight" : "4",
           "range" : "16",
           "range_padding" : "1",
+          "sort" : "false",
           "target" : null,
           "target_breakable_depth" : "2",
           "target_count" : "-1",
@@ -1508,7 +1584,9 @@
           "min_damage" : "0.0",
           "no_damage_ticks" : "0",
           "percentage" : "0",
-          "player_damage" : "1"
+          "player_damage" : "1",
+          "set_last_damaged" : "true",
+          "set_last_damaged_by" : "true"
         },
         "short_class" : "Damage"
       },
@@ -1533,6 +1611,7 @@
         "name" : "Debugger",
         "parameters" : {
           "check" : "false",
+          "check_block" : "false",
           "check_brain" : "false",
           "force" : "false",
           "level" : "1"
@@ -1642,7 +1721,8 @@
         "importance" : 0,
         "name" : "Disguise",
         "parameters" : {
-          "disguise_map" : null
+          "disguise_map" : null,
+          "disguise_target" : null
         },
         "short_class" : "Disguise"
       },
@@ -1747,6 +1827,7 @@
         "importance" : 40,
         "name" : "Entity Projectile",
         "parameters" : {
+          "allow_replacement" : "true",
           "apply_velocity" : "true",
           "attach_duration" : "0",
           "block_hit_count" : "1",
@@ -1807,6 +1888,7 @@
           "reflect_target_caster" : "true",
           "reflect_track_range" : "0",
           "reflect_track_target" : "false",
+          "relative_location_offset" : null,
           "reorient" : "false",
           "reset_time_on_path_change" : "false",
           "return_offset" : null,
@@ -2022,9 +2104,23 @@
           "radius" : "0",
           "target_all_worlds" : "true",
           "target_block_mage" : "true",
+          "target_count" : "-1",
           "target_magic_blocks" : null
         },
         "short_class" : "FindMagicBlocks"
+      },
+      "find_tile_entities" : {
+        "category" : "compound",
+        "class_name" : "FindTileEntitiesAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Find Tile Entities",
+        "parameters" : {
+          "radius" : "0",
+          "target_count" : "-1"
+        },
+        "short_class" : "FindTileEntities"
       },
       "firework" : {
         "category" : "compound",
@@ -2100,9 +2196,23 @@
           "freeze_lava" : "true",
           "freeze_water" : "true",
           "ice" : null,
+          "pile_snow" : "true",
           "snowable" : "snowable"
         },
         "short_class" : "Freeze"
+      },
+      "give_currency" : {
+        "category" : "",
+        "class_name" : "GiveCurrencyAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Give Currency",
+        "parameters" : {
+          "amount" : "0",
+          "currency" : null
+        },
+        "short_class" : "GiveCurrency"
       },
       "give_item" : {
         "category" : "player",
@@ -2583,6 +2693,7 @@
           "no_drops" : "false",
           "npc" : "false",
           "offhand" : null,
+          "own" : "false",
           "ownable" : "false",
           "owner" : null,
           "permissions" : null,
@@ -2610,6 +2721,7 @@
           "tags" : null,
           "tamed" : "false",
           "targeting" : null,
+          "temporary" : "false",
           "track_radius" : "128.0",
           "transformable" : "true",
           "triggers" : null,
@@ -2822,6 +2934,7 @@
           "armor_stand_reason" : null,
           "armor_stand_roll" : "0",
           "armor_stand_small" : "false",
+          "boost_attribute" : null,
           "braking" : "0",
           "controllable" : "false",
           "crash_braking" : "0",
@@ -2839,6 +2952,7 @@
           "crash_velocity" : "0",
           "crash_velocity_y_offset" : "0",
           "direction_y" : "0",
+          "dismount_height" : "0.0",
           "duration" : "0",
           "duration_warning" : "0",
           "exemption_duration" : "0",
@@ -2870,6 +2984,7 @@
           "replacement_item" : null,
           "rider_untargetable" : "false",
           "riding_effects" : null,
+          "sneak_controllable" : "0.0",
           "sound" : null,
           "sound_interval" : "1000",
           "sound_max_pitch" : "1",
@@ -3076,7 +3191,10 @@
         "importance" : 30,
         "name" : "Probability",
         "parameters" : {
-          "probability" : "0.5"
+          "fail_actions" : null,
+          "invert" : "false",
+          "probability" : "0.5",
+          "timeout" : "0"
         },
         "short_class" : "Probability"
       },
@@ -3164,6 +3282,7 @@
           "maintain_direction" : "false",
           "marker_count" : "1",
           "marker_key" : "recall_marker",
+          "marker_maintain_direction" : "false",
           "prevent_fall" : "true",
           "protection_duration" : "0",
           "require_build" : "false",
@@ -3339,6 +3458,7 @@
         "name" : "Ride Entity",
         "parameters" : {
           "air_controllable" : "true",
+          "boost_attribute" : null,
           "braking" : "0",
           "controllable" : "false",
           "crash_braking" : "0",
@@ -3356,6 +3476,7 @@
           "crash_velocity" : "0",
           "crash_velocity_y_offset" : "0",
           "direction_y" : "0",
+          "dismount_height" : "0.0",
           "duration" : "0",
           "duration_warning" : "0",
           "exemption_duration" : "0",
@@ -3381,6 +3502,7 @@
           "pitch_offset" : "0",
           "rider_untargetable" : "false",
           "riding_effects" : null,
+          "sneak_controllable" : "0.0",
           "sound" : null,
           "sound_interval" : "1000",
           "sound_max_pitch" : "1",
@@ -3671,6 +3793,8 @@
           "no_damage_ticks" : "0",
           "percentage" : "0",
           "player_damage" : "1",
+          "set_last_damaged" : "true",
+          "set_last_damaged_by" : "true",
           "skeletons" : "true"
         },
         "short_class" : "ShrinkEntity"
@@ -3754,6 +3878,7 @@
           "drops_require_player_killer" : "false",
           "dy_offset" : "0",
           "entity_attributes" : null,
+          "entity_parameters" : null,
           "entity_types-map" : null,
           "equip_on_respawn" : "true",
           "face_player" : "false",
@@ -3829,6 +3954,7 @@
           "tags" : null,
           "tamed" : "false",
           "targeting" : null,
+          "temporary" : "false",
           "track_radius" : "128",
           "transformable" : "true",
           "triggers" : null,
@@ -4024,7 +4150,10 @@
           "costs" : null,
           "costs_map" : null,
           "fail_actions" : null,
-          "invert" : "false"
+          "invert" : "false",
+          "item" : "",
+          "item_cost" : "false",
+          "timeout" : "0"
         },
         "short_class" : "TakeCosts"
       },
@@ -4039,7 +4168,8 @@
           "display_name" : null,
           "full_stack" : "true",
           "give_to_caster" : "true",
-          "item" : ""
+          "item" : "",
+          "take_wand" : "false"
         },
         "short_class" : "TakeItem"
       },
@@ -4073,7 +4203,9 @@
           "prevent_fall" : "true",
           "require_build" : "false",
           "require_exit" : "true",
+          "round_up" : "0.75",
           "safe" : "true",
+          "same_block" : "false",
           "teleport_vehicle" : "true",
           "use_target_location" : "false",
           "vertical_range" : "8"
@@ -4142,6 +4274,7 @@
           "item" : null,
           "lifetime" : "10000",
           "orient" : "true",
+          "pickup_delay" : "0",
           "projectile_effects" : "projectile",
           "projectile_effects_use_target" : "false",
           "reorient" : "false",
@@ -4408,6 +4541,7 @@
         "importance" : 10,
         "name" : "Weather",
         "parameters" : {
+          "player_weather" : "false",
           "weather" : ""
         },
         "short_class" : "Weather"
@@ -4969,15 +5103,23 @@
         "importance" : 90,
         "name" : "Helix",
         "parameters" : {
+          "angular_velocity_x" : "0.015707963267948967",
+          "angular_velocity_y" : "0.018479956785822312",
+          "angular_velocity_z" : "0.02026833970057931",
           "curve" : "10",
           "effect_type" : "repeating",
+          "enable_rotation" : "false",
           "iterations" : "8",
+          "orient" : "false",
           "particle" : "flame",
           "particles" : "80",
           "period" : "10",
           "radius" : "10",
           "rotation" : "0.7853981633974483",
-          "strands" : "8"
+          "strands" : "8",
+          "x_rotation" : "0.0",
+          "y_rotation" : "0.0",
+          "z_rotation" : "0.0"
         },
         "short_class" : "Helix"
       },
@@ -5447,6 +5589,7 @@
           "iterations" : "50",
           "length_back" : "3",
           "length_front" : "1.5",
+          "main_particle" : "drip_water",
           "particle" : "drip_water",
           "particles_back" : "10",
           "particles_front" : "10",
@@ -5460,6 +5603,14 @@
     }
   },
   "properties" : {
+    "Hover_message_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "Hover_message_key",
+      "importance" : 0,
+      "name" : "Hover Message Key",
+      "type" : "string"
+    },
     "action_bar" : {
       "category" : "",
       "description" : [ "What message to display in the action bar" ],
@@ -5555,6 +5706,14 @@
       "importance" : 0,
       "name" : "Active Spells Restricted",
       "type" : "list"
+    },
+    "active_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "active_wand",
+      "importance" : 0,
+      "name" : "Active Wand",
+      "type" : "boolean"
     },
     "add_effects" : {
       "category" : "",
@@ -5804,6 +5963,22 @@
       "name" : "Allow Melee",
       "type" : "boolean"
     },
+    "allow_offhand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_offhand",
+      "importance" : 0,
+      "name" : "Allow Offhand",
+      "type" : "string"
+    },
+    "allow_overlap" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "allow_overlap",
+      "importance" : 0,
+      "name" : "Allow Overlap",
+      "type" : "boolean"
+    },
     "allow_passthrough" : {
       "category" : "",
       "description" : [ "" ],
@@ -5811,6 +5986,14 @@
       "importance" : 0,
       "name" : "Allow Passthrough",
       "type" : "boolean"
+    },
+    "allow_path_overrides" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_path_overrides",
+      "importance" : 0,
+      "name" : "Allow Path Overrides",
+      "type" : "string"
     },
     "allow_projectiles" : {
       "category" : "",
@@ -6605,6 +6788,22 @@
       "name" : "Block Cooldown",
       "type" : "integer"
     },
+    "block_data" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_data",
+      "importance" : 0,
+      "name" : "Block Data",
+      "type" : "string"
+    },
+    "block_duration" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "block_duration",
+      "importance" : 0,
+      "name" : "Block Duration",
+      "type" : "long"
+    },
     "block_fov" : {
       "category" : "wand",
       "description" : [ "An angle in radians for blocking", "The player must be facing the source of a spell in order to block it" ],
@@ -6707,6 +6906,14 @@
       "field" : "book_item",
       "importance" : 0,
       "name" : "Book Item",
+      "type" : "string"
+    },
+    "boost_attribute" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "boost_attribute",
+      "importance" : 0,
+      "name" : "Boost Attribute",
       "type" : "string"
     },
     "boostable" : {
@@ -6838,6 +7045,14 @@
       "name" : "Break Material",
       "type" : "string"
     },
+    "break_percent" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "break_percent",
+      "importance" : 0,
+      "name" : "Break Percent",
+      "type" : "double"
+    },
     "breakable" : {
       "category" : "",
       "description" : [ "" ],
@@ -6876,6 +7091,14 @@
       "field" : "brush_effects",
       "importance" : 0,
       "name" : "Brush Effects",
+      "type" : "boolean"
+    },
+    "brush_entities" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "brush_entities",
+      "importance" : 0,
+      "name" : "Brush Entities",
       "type" : "boolean"
     },
     "brush_inventory" : {
@@ -6926,6 +7149,22 @@
       "importance" : 0,
       "name" : "Bu",
       "type" : "boolean"
+    },
+    "button1_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "button1_key",
+      "importance" : 0,
+      "name" : "Button1 Key",
+      "type" : "string"
+    },
+    "button2_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "button2_key",
+      "importance" : 0,
+      "name" : "Button2 Key",
+      "type" : "string"
     },
     "bypass" : {
       "category" : "base",
@@ -7384,6 +7623,14 @@
       "name" : "Check",
       "type" : "boolean"
     },
+    "check_block" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "check_block",
+      "importance" : 0,
+      "name" : "Check Block",
+      "type" : "boolean"
+    },
     "check_brain" : {
       "category" : "",
       "description" : [ "" ],
@@ -7543,6 +7790,22 @@
       "importance" : 0,
       "name" : "Clear Target",
       "type" : "boolean"
+    },
+    "click_message_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "click_message_key",
+      "importance" : 0,
+      "name" : "Click Message Key",
+      "type" : "string"
+    },
+    "click_template_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "click_template_key",
+      "importance" : 0,
+      "name" : "Click Template Key",
+      "type" : "string"
     },
     "close_fov" : {
       "category" : "targeting",
@@ -7774,6 +8037,14 @@
       "field" : "commit",
       "importance" : 0,
       "name" : "Commit",
+      "type" : "boolean"
+    },
+    "commit_all" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "commit_all",
+      "importance" : 0,
+      "name" : "Commit All",
       "type" : "boolean"
     },
     "compilaction" : {
@@ -8673,6 +8944,14 @@
       "name" : "Discover",
       "type" : "recipe_list"
     },
+    "discover_by" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "discover_by",
+      "importance" : 0,
+      "name" : "Discover By",
+      "type" : "list"
+    },
     "discover_list" : {
       "category" : "",
       "description" : [ "" ],
@@ -8728,6 +9007,14 @@
       "importance" : 0,
       "name" : "Dismount",
       "type" : "boolean"
+    },
+    "dismount_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "dismount_height",
+      "importance" : 0,
+      "name" : "Dismount Height",
+      "type" : "double"
     },
     "display_cooldown" : {
       "category" : "base",
@@ -9368,6 +9655,14 @@
       "importance" : 0,
       "name" : "Entity Hit Count",
       "type" : "integer"
+    },
+    "entity_parameters" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "entity_parameters",
+      "importance" : 0,
+      "name" : "Entity Parameters",
+      "type" : "map"
     },
     "entity_spawn" : {
       "category" : "",
@@ -10898,6 +11193,14 @@
       "name" : "Item Attributes",
       "type" : "attribute_map"
     },
+    "item_cost" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_cost",
+      "importance" : 0,
+      "name" : "Item Cost",
+      "type" : "boolean"
+    },
     "item_count" : {
       "category" : "",
       "description" : [ "" ],
@@ -11538,6 +11841,14 @@
       "name" : "Loot",
       "type" : "map"
     },
+    "lore" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "lore",
+      "importance" : 0,
+      "name" : "Lore",
+      "type" : "list"
+    },
     "lore_instructions" : {
       "category" : "",
       "description" : [ "" ],
@@ -11714,6 +12025,14 @@
       "name" : "Marker Key",
       "type" : "string"
     },
+    "marker_maintain_direction" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "marker_maintain_direction",
+      "importance" : 0,
+      "name" : "Marker Maintain Direction",
+      "type" : "boolean"
+    },
     "material" : {
       "category" : "",
       "description" : [ "The material to use" ],
@@ -11729,6 +12048,14 @@
       "importance" : 30,
       "name" : "Material Data",
       "type" : "byte"
+    },
+    "material_only" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "material_only",
+      "importance" : 0,
+      "name" : "Material Only",
+      "type" : "boolean"
     },
     "materials" : {
       "category" : "",
@@ -12065,6 +12392,14 @@
       "importance" : 0,
       "name" : "Min Players",
       "type" : "integer"
+    },
+    "min_radius" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_radius",
+      "importance" : 0,
+      "name" : "Min Radius",
+      "type" : "double"
     },
     "min_slot" : {
       "category" : "",
@@ -12762,6 +13097,14 @@
       "name" : "Owner",
       "type" : "string"
     },
+    "owner_boolean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "owner",
+      "importance" : 0,
+      "name" : "Owner",
+      "type" : "boolean"
+    },
     "owner_uuid" : {
       "category" : "",
       "description" : [ "" ],
@@ -13314,6 +13657,22 @@
       "name" : "Pickup",
       "type" : "pickup_status"
     },
+    "pickup_delay" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "pickup_delay",
+      "importance" : 0,
+      "name" : "Pickup Delay",
+      "type" : "integer"
+    },
+    "pile_snow" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "pile_snow",
+      "importance" : 0,
+      "name" : "Pile Snow",
+      "type" : "boolean"
+    },
     "pitch" : {
       "category" : "",
       "description" : [ "Specify the pitch of the source direction" ],
@@ -13418,6 +13777,14 @@
       "name" : "Player Range",
       "type" : "integer"
     },
+    "player_weather" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "player_weather",
+      "importance" : 0,
+      "name" : "Player Weather",
+      "type" : "boolean"
+    },
     "player_weight" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -13449,6 +13816,22 @@
       "importance" : 0,
       "name" : "Portal Enter Damage",
       "type" : "integer"
+    },
+    "portal_spell" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_spell",
+      "importance" : 0,
+      "name" : "Portal Spell",
+      "type" : "string"
+    },
+    "portal_warp" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_warp",
+      "importance" : 0,
+      "name" : "Portal Warp",
+      "type" : "string"
     },
     "potion_effects" : {
       "category" : "mob",
@@ -13898,6 +14281,14 @@
       "name" : "Reactivate",
       "type" : "boolean"
     },
+    "reactivate_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "reactivate_wand",
+      "importance" : 0,
+      "name" : "Reactivate Wand",
+      "type" : "boolean"
+    },
     "realtime" : {
       "category" : "",
       "description" : [ "" ],
@@ -14058,6 +14449,14 @@
       "name" : "Register By Name",
       "type" : "boolean"
     },
+    "relative_location_offset" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "relative_location_offset",
+      "importance" : 0,
+      "name" : "Relative Location Offset",
+      "type" : "string"
+    },
     "relative_offset" : {
       "category" : "",
       "description" : [ "Offset the source location based on the direction of that location" ],
@@ -14185,6 +14584,14 @@
       "importance" : 0,
       "name" : "Removes Spells",
       "type" : "list"
+    },
+    "renamable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "renamable",
+      "importance" : 0,
+      "name" : "Renamable",
+      "type" : "string"
     },
     "rename" : {
       "category" : "",
@@ -14674,6 +15081,14 @@
       "name" : "Rotation Z",
       "type" : "double"
     },
+    "round_up" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "round_up",
+      "importance" : 0,
+      "name" : "Round Up",
+      "type" : "double"
+    },
     "row_1" : {
       "category" : "",
       "description" : [ "The first row of the recipe, a string using characters defined in the materials map" ],
@@ -14722,6 +15137,14 @@
       "name" : "Safe",
       "type" : "boolean"
     },
+    "same_block" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "same_block",
+      "importance" : 0,
+      "name" : "Same Block",
+      "type" : "boolean"
+    },
     "sample" : {
       "category" : "",
       "description" : [ "" ],
@@ -14761,6 +15184,14 @@
       "importance" : 0,
       "name" : "Scope",
       "type" : "string"
+    },
+    "sculk_charge_rotation" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sculk_charge_rotation",
+      "importance" : 0,
+      "name" : "Sculk Charge Rotation",
+      "type" : "float"
     },
     "second_trusted" : {
       "category" : "",
@@ -14826,6 +15257,22 @@
       "name" : "Server",
       "type" : "string"
     },
+    "set_last_damaged" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "set_last_damaged",
+      "importance" : 0,
+      "name" : "Set Last Damaged",
+      "type" : "boolean"
+    },
+    "set_last_damaged_by" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "set_last_damaged_by",
+      "importance" : 0,
+      "name" : "Set Last Damaged By",
+      "type" : "boolean"
+    },
     "set_pathfinder" : {
       "category" : "",
       "description" : [ "" ],
@@ -14889,6 +15336,22 @@
       "importance" : 0,
       "name" : "Show Currencies",
       "type" : "list"
+    },
+    "show_cycle_lore" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_cycle_lore",
+      "importance" : 0,
+      "name" : "Show Cycle Lore",
+      "type" : "string"
+    },
+    "show_enchantment_lore" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "show_enchantment_lore",
+      "importance" : 0,
+      "name" : "Show Enchantment Lore",
+      "type" : "string"
     },
     "show_extra_spells" : {
       "category" : "",
@@ -14994,6 +15457,14 @@
       "name" : "Show Upgrades",
       "type" : "boolean"
     },
+    "shriek_delay" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "shriek_delay",
+      "importance" : 0,
+      "name" : "Shriek Delay",
+      "type" : "integer"
+    },
     "silent" : {
       "category" : "",
       "description" : [ "The silent flag of the mob, to prevent it from making any sounds" ],
@@ -15081,6 +15552,14 @@
       "importance" : 0,
       "name" : "Small",
       "type" : "boolean"
+    },
+    "sneak_controllable" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sneak_controllable",
+      "importance" : 0,
+      "name" : "Sneak Controllable",
+      "type" : "double"
     },
     "snowable" : {
       "category" : "",
@@ -15338,6 +15817,14 @@
       "name" : "Source Use Movement Direction",
       "type" : "boolean"
     },
+    "source_yaw" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "source_yaw",
+      "importance" : 0,
+      "name" : "Source Yaw",
+      "type" : "string"
+    },
     "source_yaw_offset" : {
       "category" : "",
       "description" : [ "" ],
@@ -15497,6 +15984,14 @@
       "importance" : 100,
       "name" : "Spells",
       "type" : "spell_list"
+    },
+    "spells_use_wand_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "spells_use_wand_name",
+      "importance" : 0,
+      "name" : "Spells Use Wand Name",
+      "type" : "string"
     },
     "sphere" : {
       "category" : "",
@@ -15906,6 +16401,14 @@
       "name" : "Tags",
       "type" : "list"
     },
+    "take_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "take_wand",
+      "importance" : 0,
+      "name" : "Take Wand",
+      "type" : "boolean"
+    },
     "tall_flowers" : {
       "category" : "",
       "description" : [ "" ],
@@ -16145,6 +16648,14 @@
       "importance" : 0,
       "name" : "Target Name",
       "type" : "string"
+    },
+    "target_no_damage_ticks" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "target_no_damage_ticks",
+      "importance" : 0,
+      "name" : "Target No Damage Ticks",
+      "type" : "boolean"
     },
     "target_npc" : {
       "category" : "targeting",
@@ -17220,6 +17731,14 @@
       "name" : "Use Target Mage",
       "type" : "boolean"
     },
+    "use_wand" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_wand",
+      "importance" : 0,
+      "name" : "Use Wand",
+      "type" : "boolean"
+    },
     "use_wand_color" : {
       "category" : "",
       "description" : [ "Set to false to avoid using the wand color for effects" ],
@@ -17555,6 +18074,22 @@
       "importance" : 0,
       "name" : "Warp",
       "type" : "string"
+    },
+    "warp_effects" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "warp_effects",
+      "importance" : 0,
+      "name" : "Warp Effects",
+      "type" : "string"
+    },
+    "warp_maintain_direction" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "warp_maintain_direction",
+      "importance" : 0,
+      "name" : "Warp Maintain Direction",
+      "type" : "boolean"
     },
     "weakness" : {
       "category" : "wand",
@@ -18300,9 +18835,15 @@
         "min_time" : null,
         "moon_phase" : null,
         "name" : null,
+        "permission" : null,
         "player_range" : "64",
+        "portal_spell" : null,
+        "portal_warp" : null,
+        "remove" : "false",
         "remove_when_broken" : "false",
-        "spawn" : null
+        "spawn" : null,
+        "warp_effects" : null,
+        "warp_maintain_direction" : "true"
       }
     },
     "boolean" : {
@@ -18359,6 +18900,7 @@
       "name" : "Class Properties",
       "parameters" : {
         "allow_container_copy" : null,
+        "allow_path_overrides" : null,
         "attributes" : null,
         "block_chance" : null,
         "block_cooldown" : null,
@@ -18470,6 +19012,7 @@
         "crafting_materials" : null,
         "disable_default" : "false",
         "discover" : null,
+        "discover_by" : null,
         "experience" : "0.0",
         "group" : "",
         "ignore_damage" : "false",
@@ -18769,6 +19312,8 @@
         "arrival_time" : "0",
         "asynchronous" : "true",
         "auto_orient" : "false",
+        "block_data" : null,
+        "block_duration" : "0",
         "color" : null,
         "color_list" : null,
         "colors" : null,
@@ -18782,6 +19327,7 @@
         "material" : null,
         "material_data" : "0",
         "offset" : null,
+        "particle" : null,
         "particle_count" : "1",
         "particle_data" : "0.0",
         "particle_offset" : "0",
@@ -18795,6 +19341,8 @@
         "pitch_offset" : "0",
         "probability" : "1.0",
         "relative_offset" : null,
+        "sculk_charge_rotation" : "0.0",
+        "shriek_delay" : "0",
         "sub_effect" : null,
         "target_offset" : null,
         "target_players" : null,
@@ -19157,37 +19705,53 @@
         "break_door" : null,
         "breathe_air" : null,
         "breed" : null,
+        "check_owner" : null,
+        "defend_village_target" : null,
         "eat_block" : null,
+        "find_owner" : null,
         "flee_sun" : null,
         "float" : null,
         "follow_boat" : null,
+        "follow_entity" : null,
         "follow_flock_leader" : null,
         "follow_mob" : null,
         "follow_owner" : null,
         "follow_parent" : null,
         "golem_random_stroll_in_village" : null,
         "group" : null,
+        "hurt_by_target" : null,
         "idle" : null,
         "interact" : null,
+        "land_on_owners_shoulder" : null,
         "leap_at_target" : null,
         "look_at_player" : null,
+        "magic_follow_mob" : null,
         "magic_follow_owner" : null,
+        "magic_owner_hurt_by_target" : null,
+        "magic_owner_hurt_target" : null,
+        "magic_panic" : null,
         "magic_requirement" : null,
         "melee_attack" : null,
         "move_back_to_village" : null,
         "move_through_village" : null,
         "move_towards_restriction" : null,
         "move_towards_target" : null,
+        "nearest_attackable_target" : null,
         "ocelot_attack" : null,
         "offer_flower" : null,
         "open_door" : null,
+        "owner_hurt_by_target" : null,
+        "owner_hurt_target" : null,
         "panic" : null,
+        "panic_fire" : null,
         "random_look_around" : null,
         "random_stroll" : null,
         "random_swimming" : null,
+        "requirement" : null,
         "requirements" : null,
         "restrict_sun" : null,
         "run_around_like_crazy" : null,
+        "spin" : null,
         "stroll_through_village" : null,
         "swell" : null,
         "tempt" : null,
@@ -20803,6 +21367,7 @@
         "permissions" : null,
         "persist" : "false",
         "phase" : null,
+        "pickup_delay" : "0",
         "potion_effects" : null,
         "powered" : "false",
         "prevent_dismount" : "false",
@@ -20838,6 +21403,7 @@
         "tags" : null,
         "tamed" : "false",
         "targeting" : null,
+        "temporary" : "false",
         "track_radius" : "128",
         "transformable" : "true",
         "triggers" : null,
@@ -20869,6 +21435,7 @@
       "name" : "Modifier Properties",
       "parameters" : {
         "allow_container_copy" : null,
+        "allow_path_overrides" : null,
         "attributes" : null,
         "block_chance" : null,
         "block_cooldown" : null,
@@ -22594,6 +23161,7 @@
         "bb" : "false",
         "bp" : "false",
         "brush" : null,
+        "brush_entities" : "true",
         "bu" : "false",
         "bypass" : "false",
         "bypass_break" : "false",
@@ -22692,6 +23260,7 @@
         "target_min_offset" : "0",
         "target_mount" : "false",
         "target_name" : null,
+        "target_no_damage_ticks" : "true",
         "target_npc" : "false",
         "target_permission" : null,
         "target_pet" : "false",
@@ -22731,6 +23300,7 @@
         "active_spells_exclusive" : null,
         "active_spells_restricted" : null,
         "alias" : "",
+        "allow_overlap" : "true",
         "boss_bar" : null,
         "brush_effects" : "true",
         "brush_selection" : "false",
@@ -22770,7 +23340,9 @@
         "legacy_icon" : null,
         "legacy_icon_disabled" : null,
         "level_description" : "",
+        "lore" : null,
         "messages" : null,
+        "mode" : null,
         "name" : "interrogator",
         "parameters" : null,
         "passive" : "false",
@@ -22841,6 +23413,7 @@
         "location_required" : "The spell did not cast because it requires a location (was cast from conssole)",
         "no_action" : "The spell cast but did not do anything",
         "no_target" : "The spell missed, did not hit a valid target",
+        "overlapping" : null,
         "pending" : "Returned by an action that needs to continue working on the next tick",
         "player_required" : "The spell did not cast because it requires a player",
         "reactivate" : null,
@@ -23039,9 +23612,11 @@
         "cycle_hotbar" : "Go to the next hotbar (inventory mode)",
         "cycle_hotbar_reverse" : "Go to the previous hotbar (inventory mode)",
         "cycle_reverse" : "Cycle through spells in reverse order  (cycle mode)",
+        "destroy" : null,
         "none" : "Do nothing",
         "replace" : "Replace this wand with the 'replacement' template",
-        "toggle" : "Toggle the spell inventory on/off (inventory mode), open the spell inventory (chest and skill modes), cycle spells (cycle mode)"
+        "toggle" : "Toggle the spell inventory on/off (inventory mode), open the spell inventory (chest and skill modes), cycle spells (cycle mode)",
+        "toggle_icon" : null
       }
     },
     "wand_mode" : {
@@ -23052,6 +23627,7 @@
         "cast" : "No inventory, and pre-configured for casting on left-click or right-click",
         "chest" : "Pop up a chest inventory, active spells by clicking",
         "cycle" : "Cycle through spells, no inventory GUI",
+        "icon" : null,
         "inventory" : "Replace the player's inventory will spells, activate spells with hotbar buttons",
         "none" : "No inventory (the default)",
         "skills" : "Show a chest inventory with spell icons the player can take out and use from their hotbar"
@@ -23067,6 +23643,8 @@
         "active_effects" : null,
         "active_spell" : null,
         "allow_container_copy" : null,
+        "allow_offhand" : null,
+        "allow_path_overrides" : null,
         "allowed_enchantments" : null,
         "alternate_spell" : null,
         "alternate_spell2" : null,
@@ -23186,12 +23764,15 @@
         "quiet" : "false",
         "reflect_chance" : null,
         "reflect_fov" : null,
+        "renamable" : null,
         "rename" : "false",
         "rename_description" : "false",
         "reset_mana_on_activate" : null,
         "right_click" : "none",
         "right_click_sneak" : null,
         "self_destruct" : null,
+        "show_cycle_lore" : null,
+        "show_enchantment_lore" : null,
         "slot" : null,
         "slots" : null,
         "slotted" : null,
@@ -23200,6 +23781,7 @@
         "spell_inventory" : null,
         "spell_levels" : null,
         "spells" : null,
+        "spells_use_wand_name" : null,
         "stack" : "false",
         "swap" : "none",
         "swap_sneak" : null,
