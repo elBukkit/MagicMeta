@@ -10027,7 +10027,7 @@
     },
     "gravity" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "The gravity the projectile has, starts from 0" ],
       "field" : "gravity",
       "importance" : 0,
       "name" : "Gravity",
@@ -10035,7 +10035,7 @@
     },
     "gravity_boolean" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Whether or not this entity is affected by gravity" ],
       "field" : "gravity",
       "importance" : 0,
       "name" : "Gravity",
@@ -11356,7 +11356,7 @@
     },
     "lifetime" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "The time, in milliseconds, that the entity/projectile lasts for" ],
       "field" : "lifetime",
       "importance" : 0,
       "name" : "Lifetime",
@@ -12628,7 +12628,7 @@
     },
     "otdx" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Directional vector override for target source" ],
       "field" : "otdx",
       "importance" : 0,
       "name" : "Otdx",
@@ -12636,7 +12636,7 @@
     },
     "otdy" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Directional vector override for target source" ],
       "field" : "otdy",
       "importance" : 0,
       "name" : "Otdy",
@@ -12644,7 +12644,7 @@
     },
     "otdz" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Directional vector override for target source" ],
       "field" : "otdz",
       "importance" : 0,
       "name" : "Otdz",
@@ -12652,7 +12652,7 @@
     },
     "otworld" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Directional vector override for target source" ],
       "field" : "otworld",
       "importance" : 0,
       "name" : "Otworld",
@@ -12660,7 +12660,7 @@
     },
     "otx" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Offset for target location, relative to targeted block" ],
       "field" : "otx",
       "importance" : 0,
       "name" : "Otx",
@@ -12668,7 +12668,7 @@
     },
     "oty" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Offset for target location, relative to targeted block" ],
       "field" : "oty",
       "importance" : 0,
       "name" : "Oty",
@@ -12676,7 +12676,7 @@
     },
     "otz" : {
       "category" : "targeting",
-      "description" : [ "" ],
+      "description" : [ "Offset for target location, relative to targeted block" ],
       "field" : "otz",
       "importance" : 0,
       "name" : "Otz",
@@ -14844,7 +14844,7 @@
     },
     "set_target" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Whether to set the entity or block as the target when spawned" ],
       "field" : "set_target",
       "importance" : 0,
       "name" : "Set Target",
@@ -14916,7 +14916,7 @@
     },
     "show_name" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Whether to show the entity's name" ],
       "field" : "show_name",
       "importance" : 0,
       "name" : "Show Name",
