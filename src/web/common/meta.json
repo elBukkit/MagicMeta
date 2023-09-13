@@ -8866,7 +8866,7 @@
     },
     "direction" : {
       "category" : "",
-      "description" : [ "The direction to search" ],
+      "description" : [ "The direction to search", "Format: x,y,z","For example: 0,1,0 means straight up" ],
       "field" : "direction",
       "importance" : 0,
       "name" : "Direction",
@@ -16771,7 +16771,7 @@
     },
     "target_source" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "Whether to target the source of the spell" ],
       "field" : "target_source",
       "importance" : 0,
       "name" : "Target Source",
@@ -17224,7 +17224,7 @@
       "field" : "trigger",
       "importance" : 0,
       "name" : "Trigger",
-      "type" : "string"
+      "type" : "trigger_map"
     },
     "triggers" : {
       "category" : "mob",
