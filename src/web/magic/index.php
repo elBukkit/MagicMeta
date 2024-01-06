@@ -56,8 +56,9 @@ function convertColorCodes($line) {
 
 function underscoreToReadable($s) {
 	if (!$s) return $s;
-	$convertFunction = create_function('$c', 'return " " . strtoupper($c[1]);');
-	return strtoupper($s[0]) . preg_replace_callback('/_([a-z])/', $convertFunction, substr($s, 1));
+	return strtoupper($s[0]) . preg_replace_callback('/_([a-z])/', function($c) {
+        return ' ' . strtoupper($c[1]);
+    }, substr($s, 1));
 }
 
 function printMaterial($materialKey, $iconOnly = null) {
