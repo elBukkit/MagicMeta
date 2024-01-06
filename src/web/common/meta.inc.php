@@ -61,7 +61,8 @@ function generateMeta() {
     global $resourcePackFolder;
     global $legacyIcons;
 
-    $metaContents = file_get_contents('meta.json');
+    $metaFilename = dirname(__FILE__) . '/meta.json';
+    $metaContents = file_get_contents($metaFilename);
     $pattern = '/<link url=(.*) text=\\\"(.*)\\\">/';
     $replacement = '<a href=$1 target=\\"_blank\\">$2</a>';
     $metaContents = preg_replace($pattern, $replacement, $metaContents);
