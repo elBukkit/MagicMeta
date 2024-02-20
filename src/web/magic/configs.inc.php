@@ -441,7 +441,7 @@ function parseConfigFile($name, $loadDefaults, $disableDefaults = false) {
         $config = @yaml_parse_file($overrideFile);
     }
 
-    if (count($config) == 1 && $config[0] == 0) {
+    if (!$config || (count($config) == 1 && $config[0] == 0)) {
         $config = array();
     }
 
