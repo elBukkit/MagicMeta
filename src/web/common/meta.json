@@ -9610,7 +9610,7 @@
     },
     "entity" : {
       "category" : "actions",
-      "description" : [ "" ],
+      "description" : [ "The target entity's uuid, the spell will set this entity as target" ],
       "field" : "entity",
       "importance" : 0,
       "name" : "Entity",
