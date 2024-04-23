@@ -55,14 +55,14 @@ $pageOverview = <<<EOT
 EOT;
 
 $analytics = <<<EOT
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17131761-5"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-37CN0X62XQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-17131761-5');
+  gtag('config', 'G-37CN0X62XQ');
 </script>
 EOT;
 
