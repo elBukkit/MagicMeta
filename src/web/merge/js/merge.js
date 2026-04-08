@@ -91,6 +91,51 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
         return;
     }
 
+    if (rp2Parsed.hasOwnProperty('model')) {
+        if (rp1Parsed.hasOwnProperty('model')) {
+            if (rp2Parsed.model.hasOwnProperty('type') && rp1Parsed.model.hasOwnProperty('type')
+                && rp2Parsed.model.hasOwnProperty('property') && rp1Parsed.model.hasOwnProperty('property')
+                && rp2Parsed.model.hasOwnProperty('entries') && rp1Parsed.model.hasOwnProperty('entries')
+                && rp2Parsed.model.type == 'range_dispatch' && rp1Parsed.model.type == 'range_dispatch'
+                && rp2Parsed.model.property == 'custom_model_data' && rp1Parsed.model.property == 'custom_model_data'
+            ) {
+                let entries1 = rp1Parsed.model.entries;
+                let entries2 = rp2Parsed.model.entries;
+
+                let customModelData1 = {};
+                for (let i = 0; i < entries1.length; i++) {
+                    let entry1 = entries1[i];
+                    if (entry1.hasOwnProperty('threshold')) {
+                        customModelData1[entry1.threshold] = true;
+                    }
+                }
+
+                for (let i = 0; i < entries2.length; i++) {
+                    let entry2 = entries2[i];
+                    if (entry2.hasOwnProperty('threshold')) {
+                        let threshold2 = entry2.threshold;
+                        if (customModelData1.hasOwnProperty(threshold2)) {
+                            log("File has same custom model data in both files, second RP will be skipped: " + rp1File.name + "{CustomModelData:" + entry2.threshold + "}");
+                        } else {
+                            entries1.push(entry2);
+                        }
+                    }
+                }
+
+                entries1.sort(function(a, b) {
+                    if (a.hasOwnProperty('threshold')) {
+                        if (!b.hasOwnProperty(('threshold'))) return -1;
+                        return a.threshold - b.threshold;
+                    } else if (b.hasOwnProperty('threshold')) return 1;
+                    return 0;
+                });
+            } else {
+                log('File has different or unknown model types, the second RP will be skipped: ' + rp1File.name);
+            }
+        } else {
+            rp1Parsed['model'] = rp2Parsed['model'];
+        }
+    }
     if (rp2Parsed.hasOwnProperty('overrides')) {
         if (rp1Parsed.hasOwnProperty('overrides')) {
             let overrides1 = rp1Parsed['overrides'];
