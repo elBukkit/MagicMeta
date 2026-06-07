@@ -91,6 +91,14 @@ function mergeFiles(rp1File, rp2File, result, relativePath, fileName) {
         return;
     }
 
+    if (fileName.endsWith('.json') && fileName.startsWith('assets/minecraft/atlases') && 'sources' in rp2Parsed && 'sources' in rp1Parsed) {
+        rp1Parsed['sources'].concat(rp2Parsed['sources']);
+        let resultFile = JSON.stringify(rp1Parsed, null, 2);
+        result.file(relativePath, resultFile);
+        checkFinish(result);
+        return;
+    }
+
     if (rp2Parsed.hasOwnProperty('model')) {
         if (rp1Parsed.hasOwnProperty('model')) {
             if (rp2Parsed.model.hasOwnProperty('type') && rp1Parsed.model.hasOwnProperty('type')
