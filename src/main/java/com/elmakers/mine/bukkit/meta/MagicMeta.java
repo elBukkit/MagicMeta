@@ -310,7 +310,7 @@ public class MagicMeta {
         InterrogatingConfiguration baseConfiguration = new InterrogatingConfiguration(data.getParameterStore());
         baseGenerator.load(world, baseConfiguration);
         ParameterList baseParameters = baseConfiguration.getParameters();
-        data.addPopulatorProperties(baseParameters);
+        data.addGeneratorParameters(baseParameters);
 
         for (Class<? extends BaseChunkGenerator> generatorClass : allClasses) {
             if (!generatorClass.getPackage().getName().equals(BUILTIN_GENERATOR_PACKAGE)

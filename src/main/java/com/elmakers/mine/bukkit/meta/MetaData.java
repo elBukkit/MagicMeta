@@ -129,6 +129,10 @@ public class MetaData {
         parameterStore.mergeType("populator_parameters", parameters);
     }
 
+    public void addGeneratorParameters(ParameterList parameters) {
+        parameterStore.mergeType("generator_parameters", parameters);
+    }
+
     public Parameter getParameter(String key, Class<?> defaultClass) {
         return parameterStore.getParameter(key, defaultClass);
     }
