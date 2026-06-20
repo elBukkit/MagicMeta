@@ -5940,7 +5940,7 @@
       "bedrock" : {
         "category" : "",
         "class_name" : "BedrockGenerator",
-        "description" : [ "Create a layer of bredrock" ],
+        "description" : [ "Create a layer of bedrock" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Bedrock",
@@ -11320,6 +11320,14 @@
       "name" : "Generator",
       "type" : "map"
     },
+    "generator_class" : {
+      "category" : "base",
+      "description" : [ "The class this chunk generator uses" ],
+      "field" : "class",
+      "importance" : 100,
+      "name" : "Generator Class",
+      "type" : "generator_class"
+    },
     "generators" : {
       "category" : "",
       "description" : [ "" ],
@@ -15088,6 +15096,14 @@
       "importance" : 0,
       "name" : "Populator",
       "type" : "string"
+    },
+    "populator_class" : {
+      "category" : "base",
+      "description" : [ "The class this block populator uses" ],
+      "field" : "class",
+      "importance" : 100,
+      "name" : "Populator Class",
+      "type" : "populator_class"
     },
     "populators" : {
       "category" : "",
@@ -21384,6 +21400,12 @@
         "survival" : null
       }
     },
+    "generator_class" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A builtin or external chunk generator class" ],
+      "name" : "Generator Class",
+      "options" : { }
+    },
     "generator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "classed" : "generators",
@@ -21391,6 +21413,7 @@
       "name" : "Generator Properties",
       "parameters" : {
         "biome" : null,
+        "generator_class": null,
         "populators" : null
       }
     },
@@ -23368,12 +23391,20 @@
         "90" : null
       }
     },
+    "populator_class" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "A builtin or external block populator class" ],
+      "name" : "Populator Class",
+      "options" : { }
+    },
     "populator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "classed" : "populators",
       "description" : [ "" ],
       "name" : "Populator Properties",
-      "parameters" : { }
+      "parameters" : {
+        "populator_class": null
+      }
     },
     "potion_effect_amplifier" : {
       "class_name" : "java.lang.Integer",

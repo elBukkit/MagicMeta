@@ -420,6 +420,14 @@ function Hints(fileType) {
             if (!key.endsWith("Effect")) {
                 key = key + "Effect";
             }
+        } else if (classType == 'ppoulators') {
+            if (!key.endsWith("Populator")) {
+                key = key + "Populator";
+            }
+        } else if (classType == 'generators') {
+            if (!key.endsWith("Generator")) {
+                key = key + "Generator";
+            }
         }
 
         // Create a map from class names to keys
