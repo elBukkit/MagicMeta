@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.Nonnull;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -45,6 +46,8 @@ import com.elmakers.mine.bukkit.spell.UndoableSpell;
 import com.elmakers.mine.bukkit.utility.CompatibilityLib;
 import com.elmakers.mine.bukkit.wand.WandProperties;
 import com.elmakers.mine.bukkit.world.MagicWorld;
+import com.elmakers.mine.bukkit.world.generator.BaseChunkGenerator;
+import com.elmakers.mine.bukkit.world.populator.BaseBlockPopulator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.CaseFormat;
 
@@ -53,6 +56,8 @@ import de.slikey.effectlib.EffectManager;
 
 public class MagicMeta {
     private static final String BUILTIN_SPELL_PACKAGE = "com.elmakers.mine.bukkit.action.builtin";
+    private static final String BUILTIN_POPULATOR_PACKAGE = "com.elmakers.mine.bukkit.world.populator.builtin";
+    private static final String BUILTIN_GENERATOR_PACKAGE = "com.elmakers.mine.bukkit.world.generator.builtin";
     private static final String EFFECTLIB_PACKAGE = "de.slikey.effectlib.effect";
 
     private final SortedObjectMapper mapper = new SortedObjectMapper();
@@ -233,6 +238,98 @@ public class MagicMeta {
                     spellParameters.removeDefaults(compoundParameters);
                 }
                 data.addAction(spellAction.getKey(), spellAction);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void generatePopulatorMeta() {
+        // Note that this seems to get everything outside of this package as well. Not sure why.
+        Reflections reflections = new Reflections(BUILTIN_POPULATOR_PACKAGE);
+
+        Set<Class<? extends BaseBlockPopulator>> classSet = reflections.getSubTypesOf(BaseBlockPopulator.class);
+        List<Class<? extends BaseBlockPopulator>> allClasses = new ArrayList<>(classSet);
+        Collections.sort(allClasses, new ClassComparator());
+
+        MagicWorld world = new MagicWorld(controller);
+
+        // First get base populator parameters
+        BaseBlockPopulator basePopulator = new BaseBlockPopulator() {
+            @Override
+            public boolean onLoad(ConfigurationSection config) {
+                return false;
+            }
+        };
+        InterrogatingConfiguration baseConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        basePopulator.load(world, baseConfiguration);
+        ParameterList baseParameters = baseConfiguration.getParameters();
+        data.addPopulatorProperties(baseParameters);
+
+        for (Class<? extends BaseBlockPopulator> populatorClass : allClasses) {
+            if (!populatorClass.getPackage().getName().equals(BUILTIN_POPULATOR_PACKAGE)
+                    || populatorClass.getAnnotation(Deprecated.class) != null
+                    || Modifier.isAbstract(populatorClass.getModifiers())) {
+                System.out.println("Skipping " + populatorClass.getName());
+                continue;
+            }
+            System.out.println("Scanning " + populatorClass.getName());
+            ParameterStore parameterStore = data.getParameterStore();
+            try {
+                BaseBlockPopulator testObject = populatorClass.getConstructor().newInstance();
+                InterrogatingConfiguration actionConfiguration = new InterrogatingConfiguration(parameterStore);
+                testObject.load(world, actionConfiguration);
+
+                ParameterList parameters = actionConfiguration.getParameters();
+                parameters.removeDefaults(baseParameters);
+                BlockPopulatorDescription description = new BlockPopulatorDescription(populatorClass, parameters);
+                data.addPopulator(description.getKey(), description);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void generateGeneratorMeta() {
+        // Note that this seems to get everything outside of this package as well. Not sure why.
+        Reflections reflections = new Reflections(BUILTIN_GENERATOR_PACKAGE);
+
+        Set<Class<? extends BaseChunkGenerator>> classSet = reflections.getSubTypesOf(BaseChunkGenerator.class);
+        List<Class<? extends BaseChunkGenerator>> allClasses = new ArrayList<>(classSet);
+        Collections.sort(allClasses, new ClassComparator());
+
+        MagicWorld world = new MagicWorld(controller);
+
+        // First get base populator parameters
+        BaseChunkGenerator baseGenerator = new BaseChunkGenerator() {
+            @Override
+            public boolean onLoad(ConfigurationSection config) {
+                return false;
+            }
+        };
+        InterrogatingConfiguration baseConfiguration = new InterrogatingConfiguration(data.getParameterStore());
+        baseGenerator.load(world, baseConfiguration);
+        ParameterList baseParameters = baseConfiguration.getParameters();
+        data.addPopulatorProperties(baseParameters);
+
+        for (Class<? extends BaseChunkGenerator> generatorClass : allClasses) {
+            if (!generatorClass.getPackage().getName().equals(BUILTIN_GENERATOR_PACKAGE)
+                    || generatorClass.getAnnotation(Deprecated.class) != null
+                    || Modifier.isAbstract(generatorClass.getModifiers())) {
+                System.out.println("Skipping " + generatorClass.getName());
+                continue;
+            }
+            System.out.println("Scanning " + generatorClass.getName());
+            ParameterStore parameterStore = data.getParameterStore();
+            try {
+                BaseChunkGenerator testObject = generatorClass.getConstructor().newInstance();
+                InterrogatingConfiguration actionConfiguration = new InterrogatingConfiguration(parameterStore);
+                testObject.load(world, actionConfiguration);
+
+                ParameterList parameters = actionConfiguration.getParameters();
+                parameters.removeDefaults(baseParameters);
+                ChunkGeneratorDescription description = new ChunkGeneratorDescription(generatorClass, parameters);
+                data.addGenerator(description.getKey(), description);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -458,6 +555,8 @@ public class MagicMeta {
         generateBlockMeta();
         generateKitMeta();
         generateArenaMeta();
+        generatePopulatorMeta();
+        generateGeneratorMeta();
     }
 
     private Category getCategory(String key) {

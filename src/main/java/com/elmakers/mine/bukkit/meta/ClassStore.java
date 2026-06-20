@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ClassStore {
     private Map<String, SpellActionDescription> actions = new HashMap<>();
+    private Map<String, BlockPopulatorDescription> populators = new HashMap<>();
+    private Map<String, ChunkGeneratorDescription> generators = new HashMap<>();
     private Map<String, EffectDescription> effects = new HashMap<>();
 
     public void loaded() {
@@ -14,6 +16,12 @@ public class ClassStore {
             entry.getValue().setKey(entry.getKey());
         }
         for (Map.Entry<String, EffectDescription> entry : effects.entrySet()) {
+            entry.getValue().setKey(entry.getKey());
+        }
+        for (Map.Entry<String, BlockPopulatorDescription> entry : populators.entrySet()) {
+            entry.getValue().setKey(entry.getKey());
+        }
+        for (Map.Entry<String, ChunkGeneratorDescription> entry : generators.entrySet()) {
             entry.getValue().setKey(entry.getKey());
         }
     }
@@ -37,6 +45,24 @@ public class ClassStore {
         }
     }
 
+    public void addPopulator(String key, BlockPopulatorDescription description, ParameterStore parameterStore) {
+        BlockPopulatorDescription existing = populators.get(key);
+        if (existing != null) {
+            existing.merge(description, parameterStore);
+        } else {
+            populators.put(key, description);
+        }
+    }
+
+    public void addGenerator(String key, ChunkGeneratorDescription description, ParameterStore parameterStore) {
+        ChunkGeneratorDescription existing = generators.get(key);
+        if (existing != null) {
+            existing.merge(description, parameterStore);
+        } else {
+            generators.put(key, description);
+        }
+    }
+
     @JsonProperty("actions")
     public Map<String, SpellActionDescription> getActions() {
         return actions;
@@ -55,4 +81,21 @@ public class ClassStore {
         this.effects = effects;
     }
 
+    @JsonProperty("populators")
+    public Map<String, BlockPopulatorDescription> getPopulators() {
+        return populators;
+    }
+
+    public void setPopulators(Map<String, BlockPopulatorDescription> populators) {
+        this.populators = populators;
+    }
+
+    @JsonProperty("generators")
+    public Map<String, ChunkGeneratorDescription> getGenerators() {
+        return generators;
+    }
+
+    public void setGenerators(Map<String, ChunkGeneratorDescription> generators) {
+        this.generators = generators;
+    }
 }

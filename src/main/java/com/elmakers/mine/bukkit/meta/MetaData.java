@@ -125,6 +125,10 @@ public class MetaData {
         parameterStore.mergeType("spell_properties", parameters);
     }
 
+    public void addPopulatorProperties(ParameterList parameters) {
+        parameterStore.mergeType("populator_parameters", parameters);
+    }
+
     public Parameter getParameter(String key, Class<?> defaultClass) {
         return parameterStore.getParameter(key, defaultClass);
     }
@@ -135,6 +139,14 @@ public class MetaData {
 
     public void addAction(String key, SpellActionDescription action) {
         classStore.addAction(key, action, parameterStore);
+    }
+
+    public void addPopulator(String key, BlockPopulatorDescription description) {
+        classStore.addPopulator(key, description, parameterStore);
+    }
+
+    public void addGenerator(String key, ChunkGeneratorDescription description) {
+        classStore.addGenerator(key, description, parameterStore);
     }
 
     public void update() {
