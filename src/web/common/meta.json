@@ -21384,10 +21384,11 @@
         "survival" : null
       }
     },
-    "generator_parameters" : {
+    "generator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "classed" : "generators",
       "description" : [ "" ],
-      "name" : "Generator Parameters",
+      "name" : "Generator Properties",
       "parameters" : {
         "biome" : null,
         "populators" : null
@@ -23367,10 +23368,11 @@
         "90" : null
       }
     },
-    "populator_parameters" : {
+    "populator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "classed" : "populators",
       "description" : [ "" ],
-      "name" : "Populator Parameters",
+      "name" : "Populator Properties",
       "parameters" : { }
     },
     "potion_effect_amplifier" : {

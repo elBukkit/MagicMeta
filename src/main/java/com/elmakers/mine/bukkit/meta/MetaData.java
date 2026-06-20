@@ -126,11 +126,11 @@ public class MetaData {
     }
 
     public void addPopulatorProperties(ParameterList parameters) {
-        parameterStore.mergeType("populator_parameters", parameters);
+        parameterStore.mergeType("populator_properties", parameters);
     }
 
     public void addGeneratorParameters(ParameterList parameters) {
-        parameterStore.mergeType("generator_parameters", parameters);
+        parameterStore.mergeType("generator_properties", parameters);
     }
 
     public Parameter getParameter(String key, Class<?> defaultClass) {
