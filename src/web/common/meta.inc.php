@@ -186,6 +186,8 @@ function generateMeta() {
     // Populate action, effect and effectlib class types
     $meta['types']['action_class']['options'] = getClassedOptions($meta, 'actions');
     $meta['types']['effectlib_class']['options'] = getClassedOptions($meta, 'effectlib_effects');
+    $meta['types']['populator_class']['options'] = getClassedOptions($meta, 'populators');
+    $meta['types']['generator_class']['options'] = getClassedOptions($meta, 'generators');
 
     // Merge entity properties into the SpawnEntity action
     $entityData = $meta['types']['mob_properties']['parameters'];

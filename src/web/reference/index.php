@@ -32,6 +32,8 @@ $version = 3;
             <li><a href="#modifiers">Modifiers</a></li>
             <li><a href="#mobs">Mobs</a></li>
             <li><a href="#crafting">Crafting</a></li>
+            <li><a href="#generators">Generators</a></li>
+            <li><a href="#populators">Populators</a></li>
         </ul>
     </div>
     <div id="spellProperties" class="flextab">
@@ -238,6 +240,41 @@ $version = 3;
                 Magic has a customizable crafting system allowing you to create custom recipes for magic and vanilla items.
                 <br/><br/>
                 Select a recipe property for details.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="populators" class="flextab">
+        <div class="flexContainer">
+            <div class="scrollingTab">
+                <ol id="populatorList">
+                </ol>
+            </div>
+            <div class="details" id="populatorDetails">
+                <div>
+                    Populators (Block Populators) are responsible for filling in details during world generation.
+                    Block Populators have access to a 3x3 grid of chunks, though the chunks are not guaranteed to be
+                    generated yet.
+                    <br>
+                    These are generally used in the "populators" property of a Chunk Generator.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="generators" class="flextab">
+        <div class="flexContainer">
+            <div class="scrollingTab">
+                <ol id="generatorList">
+                </ol>
+            </div>
+            <div class="details" id="generatorDetails">
+                <div>
+                    Generators (Chunk Generators) are responsible for creating the base form of a chunk during world generation.
+                    <br>
+                    This can range from a bedrock layer, to terrain, caves or other large features. The features must be
+                    entirely contained within a single chunk.
+                    <br>
+                    Generators can have a list of "populators" which will run after the main chunk generation happens.
                 </div>
             </div>
         </div>

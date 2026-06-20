@@ -383,8 +383,11 @@ function initialize() {
         makePropertySelector($("#classParameterList"), "class_properties", $('#classParameterDetails'));
         makePropertySelector($("#modifierParameterList"), "modifier_properties", $('#modifierParameterDetails'));
         makePropertySelector($("#craftingParameterList"), "crafting_properties", $('#craftingParameterDetails'));
+        makePropertySelector($("#craftingParameterList"), "crafting_properties", $('#craftingParameterDetails'));
 
         makePropertyHolderSelector($("#effectList"), "effectlib_effects", $('#effectDetails'), 'effectlib_properties');
+        makePropertyHolderSelector($("#populatorList"), "populators", $('#populatorDetails'), 'populator_parameters');
+        makePropertyHolderSelector($("#generatorList"), "generators", $('#generatorDetails'), 'generator_parameters');
         makePropertyHolderSelector($("#actionList"), "actions", $('#actionDetails'), 'action_parameters', 'compound', 'compound_action_parameters');
 
         // Kinda hacky but not sure how to work around this
