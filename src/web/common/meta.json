@@ -6028,7 +6028,6 @@
         "importance" : 0,
         "name" : "Sequence",
         "parameters" : {
-          "generators" : null,
           "generators_list" : null
         },
         "short_class" : "Sequence"
@@ -9038,7 +9037,7 @@
       "field" : "copy",
       "importance" : 0,
       "name" : "Copy",
-      "type" : "string"
+      "type" : "world"
     },
     "cost" : {
       "category" : "",
@@ -11318,7 +11317,7 @@
       "field" : "generator",
       "importance" : 0,
       "name" : "Generator",
-      "type" : "map"
+      "type" : "generator"
     },
     "generator_class" : {
       "category" : "base",
@@ -11330,19 +11329,19 @@
     },
     "generators" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A weighted map of generators to choose from" ],
       "field" : "generators",
       "importance" : 0,
       "name" : "Generators",
-      "type" : "map"
+      "type" : "generator_map"
     },
     "generators_list" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A list of generators to run" ],
       "field" : "generators",
       "importance" : 0,
       "name" : "Generators",
-      "type" : "list"
+      "type" : "generator_list"
     },
     "give_book" : {
       "category" : "",
@@ -15095,7 +15094,7 @@
       "field" : "populator",
       "importance" : 0,
       "name" : "Populator",
-      "type" : "string"
+      "type" : "populator"
     },
     "populator_class" : {
       "category" : "base",
@@ -15107,11 +15106,19 @@
     },
     "populators" : {
       "category" : "",
-      "description" : [ "" ],
+      "description" : [ "A weighted map of populators to choose from" ],
       "field" : "populators",
       "importance" : 0,
       "name" : "Populators",
-      "type" : "map"
+      "type" : "populator_map"
+    },
+    "populators_list" : {
+      "category" : "",
+      "description" : [ "A list of populators to run" ],
+      "field" : "populators",
+      "importance" : 0,
+      "name" : "Populators",
+      "type" : "populator_list"
     },
     "portal_damage" : {
       "category" : "",
@@ -19851,6 +19858,14 @@
       "name" : "Window Probability",
       "type" : "double"
     },
+    "world" : {
+      "category" : "",
+      "description" : [ "The name of the world, defaults to the config key" ],
+      "field" : "world",
+      "importance" : 0,
+      "name" : "World",
+      "type" : "world"
+    },
     "world_border_restricted" : {
       "category" : "base",
       "description" : [ "" ],
@@ -21400,11 +21415,32 @@
         "survival" : null
       }
     },
+    "generator" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "The id of a generator to reference" ],
+      "name" : "Generator",
+      "options" : { }
+    },
     "generator_class" : {
       "class_name" : "java.lang.String",
       "description" : [ "A builtin or external chunk generator class" ],
       "name" : "Generator Class",
       "options" : { }
+    },
+    "generator_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of chunk generators" ],
+      "item_type" : "generator",
+      "name" : "Generator List",
+      "options" : { }
+    },
+    "generator_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "" ],
+      "key_type" : "generator",
+      "name" : "Generator Probability Map",
+      "options" : { },
+      "value_type" : "double"
     },
     "generator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
@@ -23391,11 +23427,32 @@
         "90" : null
       }
     },
+    "populator" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "The id of a populator to reference" ],
+      "name" : "Populator",
+      "options" : { }
+    },
     "populator_class" : {
       "class_name" : "java.lang.String",
       "description" : [ "A builtin or external block populator class" ],
       "name" : "Populator Class",
       "options" : { }
+    },
+    "populator_list" : {
+      "class_name" : "java.util.List",
+      "description" : [ "A list of block populators" ],
+      "item_type" : "populator",
+      "name" : "Populator List",
+      "options" : { }
+    },
+    "populator_map" : {
+      "class_name" : "java.util.Map",
+      "description" : [ "" ],
+      "key_type" : "populator",
+      "name" : "Populator Probability Map",
+      "options" : { },
+      "value_type" : "double"
     },
     "populator_properties" : {
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
@@ -25591,6 +25648,12 @@
         "storm" : "Start raining with thunder, or snowing"
       }
     },
+    "world" : {
+      "class_name" : "java.lang.String",
+      "description" : [ "The key name of a world" ],
+      "name" : "World",
+      "options" : { }
+    },
     "world_environment" : {
       "class_name" : "org.bukkit.World$Environment",
       "description" : [ "What kind of world this will be" ],
@@ -25635,6 +25698,7 @@
         "time" : "0",
         "time_offset" : "0",
         "title_delay" : "0",
+        "world" : null,
         "world_type" : null
       }
     },
