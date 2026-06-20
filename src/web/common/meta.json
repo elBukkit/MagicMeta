@@ -5935,6 +5935,408 @@
         },
         "short_class" : "Wave"
       }
+    },
+    "generators" : {
+      "bedrock" : {
+        "category" : "",
+        "class_name" : "BedrockGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Bedrock",
+        "parameters" : { },
+        "short_class" : "Bedrock"
+      },
+      "frequency" : {
+        "category" : "",
+        "class_name" : "FrequencyGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Frequency",
+        "parameters" : {
+          "frequency" : "2",
+          "generator" : null
+        },
+        "short_class" : "Frequency"
+      },
+      "perlin" : {
+        "category" : "",
+        "class_name" : "PerlinGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Perlin",
+        "parameters" : {
+          "blocks" : null,
+          "clip_elevation" : null,
+          "elevation" : null,
+          "noise" : null,
+          "top_blocks" : null
+        },
+        "short_class" : "Perlin"
+      },
+      "pools" : {
+        "category" : "",
+        "class_name" : "PoolsGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Pools",
+        "parameters" : {
+          "ceiling_blocks" : null,
+          "doorway_height" : null,
+          "doorway_width" : null,
+          "double_door_probability" : "0.5",
+          "flooding_level" : null,
+          "flooding_probability" : "0.0",
+          "floor_blocks" : null,
+          "floor_light_probability" : "0.0",
+          "hallway_width" : null,
+          "island_probability" : "0.75",
+          "light_blocks" : null,
+          "light_probability" : "1.0",
+          "pool_probability" : "0.75",
+          "roof_height" : null,
+          "sunroof_probability" : "1.0",
+          "walkway_width" : null,
+          "wall_blocks" : null,
+          "wall_probability" : "0.75",
+          "water_depth" : null,
+          "water_height" : null,
+          "window_probability" : "0.3"
+        },
+        "short_class" : "Pools"
+      },
+      "random" : {
+        "category" : "",
+        "class_name" : "RandomGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Random",
+        "parameters" : {
+          "generators" : null
+        },
+        "short_class" : "Random"
+      },
+      "sequence" : {
+        "category" : "",
+        "class_name" : "SequenceGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Sequence",
+        "parameters" : {
+          "generators" : null,
+          "generators_list" : null
+        },
+        "short_class" : "Sequence"
+      },
+      "vanilla" : {
+        "category" : "",
+        "class_name" : "VanillaGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Vanilla",
+        "parameters" : {
+          "generate_caves" : "true",
+          "generate_decorations" : "true",
+          "generate_mobs" : "true",
+          "generate_noise" : "true",
+          "generate_structures" : "true",
+          "generate_surface" : "true"
+        },
+        "short_class" : "Vanilla"
+      },
+      "void" : {
+        "category" : "",
+        "class_name" : "VoidGenerator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Void",
+        "parameters" : { },
+        "short_class" : "Void"
+      }
+    },
+    "populators" : {
+      "chest" : {
+        "category" : "",
+        "class_name" : "ChestPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Chest",
+        "parameters" : {
+          "base_probability" : null,
+          "clear_items" : "false",
+          "item_probability" : null,
+          "max_y" : "255",
+          "min_y" : "0",
+          "remove_items" : null
+        },
+        "short_class" : "Chest"
+      },
+      "crops" : {
+        "category" : "",
+        "class_name" : "CropsPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Crops",
+        "parameters" : {
+          "age" : null,
+          "border" : null,
+          "consistent" : "false",
+          "crops" : null,
+          "position" : null,
+          "search_up" : "true",
+          "soil" : null,
+          "support" : null,
+          "width" : null
+        },
+        "short_class" : "Crops"
+      },
+      "end_gateway" : {
+        "category" : "",
+        "class_name" : "EndGatewayPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "End Gateway",
+        "parameters" : {
+          "gateway_height" : null,
+          "gateway_width" : null,
+          "target_world" : null
+        },
+        "short_class" : "EndGateway"
+      },
+      "end_portal" : {
+        "category" : "",
+        "class_name" : "EndPortalPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "End Portal",
+        "parameters" : {
+          "portal_depth" : null,
+          "portal_width" : null,
+          "target_world" : null
+        },
+        "short_class" : "EndPortal"
+      },
+      "frequency" : {
+        "category" : "",
+        "class_name" : "FrequencyPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Frequency",
+        "parameters" : {
+          "frequency" : "2",
+          "populator" : null
+        },
+        "short_class" : "Frequency"
+      },
+      "grid" : {
+        "category" : "",
+        "class_name" : "GridPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Grid",
+        "parameters" : {
+          "grid" : null
+        },
+        "short_class" : "Grid"
+      },
+      "magic_block" : {
+        "category" : "",
+        "class_name" : "MagicBlockPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Magic Block",
+        "parameters" : {
+          "block_parameters" : null,
+          "replace" : null,
+          "template" : null,
+          "template_list" : null
+        },
+        "short_class" : "MagicBlock"
+      },
+      "magic_chest" : {
+        "category" : "",
+        "class_name" : "MagicChestPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Magic Chest",
+        "parameters" : {
+          "base_probability" : null,
+          "clear_items" : "false",
+          "item_probability" : null,
+          "max_y" : "255",
+          "min_y" : "0",
+          "remove_items" : null
+        },
+        "short_class" : "MagicChest"
+      },
+      "random" : {
+        "category" : "",
+        "class_name" : "RandomPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Random",
+        "parameters" : {
+          "populators" : null
+        },
+        "short_class" : "Random"
+      },
+      "repeat" : {
+        "category" : "",
+        "class_name" : "RepeatPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Repeat",
+        "parameters" : {
+          "populator" : null,
+          "repeat" : null
+        },
+        "short_class" : "Repeat"
+      },
+      "replace" : {
+        "category" : "",
+        "class_name" : "ReplacePopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Replace",
+        "parameters" : {
+          "biomes" : null,
+          "biomes_list" : null,
+          "cooldown" : "0",
+          "max_air_y" : "0",
+          "max_y" : "0",
+          "min_y" : "0",
+          "not_biomes" : null,
+          "replace" : null,
+          "replace_biomes" : null,
+          "replace_map" : null
+        },
+        "short_class" : "Replace"
+      },
+      "schematic" : {
+        "category" : "",
+        "class_name" : "SchematicPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Schematic",
+        "parameters" : {
+          "schematic" : ""
+        },
+        "short_class" : "Schematic"
+      },
+      "sequence" : {
+        "category" : "",
+        "class_name" : "SequencePopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Sequence",
+        "parameters" : {
+          "populators" : null
+        },
+        "short_class" : "Sequence"
+      },
+      "spawn" : {
+        "category" : "",
+        "class_name" : "SpawnPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Spawn",
+        "parameters" : {
+          "position" : null,
+          "search_x" : "2",
+          "search_y" : "16",
+          "search_z" : "2",
+          "types" : null
+        },
+        "short_class" : "Spawn"
+      },
+      "tower" : {
+        "category" : "",
+        "class_name" : "TowerPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Tower",
+        "parameters" : {
+          "blocks" : null,
+          "height" : null,
+          "noise" : null,
+          "solid_amount" : null,
+          "taper" : null,
+          "taper_start" : null,
+          "width" : null
+        },
+        "short_class" : "Tower"
+      },
+      "tunnel" : {
+        "category" : "",
+        "class_name" : "TunnelPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Tunnel",
+        "parameters" : {
+          "tunnel_height" : null,
+          "tunnel_width" : null
+        },
+        "short_class" : "Tunnel"
+      },
+      "vines" : {
+        "category" : "",
+        "class_name" : "VinesPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Vines",
+        "parameters" : {
+          "consistent" : "false",
+          "max_height" : "16",
+          "max_x" : "14",
+          "min_height" : "0",
+          "min_x" : "0",
+          "search_y" : "16",
+          "vines" : null
+        },
+        "short_class" : "Vines"
+      },
+      "void" : {
+        "category" : "",
+        "class_name" : "VoidPopulator",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Void",
+        "parameters" : {
+          "biomes" : null,
+          "biomes_list" : null,
+          "cooldown" : "0",
+          "max_air_y" : "0",
+          "max_y" : "0",
+          "min_y" : "0",
+          "not_biomes" : null
+        },
+        "short_class" : "Void"
+      }
     }
   },
   "properties" : {
@@ -6128,6 +6530,14 @@
       "field" : "admin_permission",
       "importance" : 0,
       "name" : "Admin Permission",
+      "type" : "string"
+    },
+    "age" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "age",
+      "importance" : 0,
+      "name" : "Age",
       "type" : "string"
     },
     "age_items" : {
@@ -7050,6 +7460,14 @@
       "name" : "Base Potion Type",
       "type" : "potion_type"
     },
+    "base_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "base_probability",
+      "importance" : 0,
+      "name" : "Base Probability",
+      "type" : "map"
+    },
     "baseplate" : {
       "category" : "",
       "description" : [ "" ],
@@ -7259,6 +7677,14 @@
       "name" : "Blocked",
       "type" : "list"
     },
+    "blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "blocks",
+      "importance" : 0,
+      "name" : "Blocks",
+      "type" : "list"
+    },
     "body_pose" : {
       "category" : "",
       "description" : [ "" ],
@@ -7314,6 +7740,14 @@
       "importance" : 0,
       "name" : "Boots Item",
       "type" : "material"
+    },
+    "border" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "border",
+      "importance" : 0,
+      "name" : "Border",
+      "type" : "list"
     },
     "border_max" : {
       "category" : "",
@@ -7942,6 +8376,14 @@
       "name" : "Cd",
       "type" : "boolean"
     },
+    "ceiling_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ceiling_blocks",
+      "importance" : 0,
+      "name" : "Ceiling Blocks",
+      "type" : "list"
+    },
     "center" : {
       "category" : "",
       "description" : [ "" ],
@@ -8166,6 +8608,14 @@
       "name" : "Clear",
       "type" : "boolean"
     },
+    "clear_items" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "clear_items",
+      "importance" : 0,
+      "name" : "Clear Items",
+      "type" : "boolean"
+    },
     "clear_target" : {
       "category" : "",
       "description" : [ "" ],
@@ -8188,6 +8638,14 @@
       "field" : "click_template_key",
       "importance" : 0,
       "name" : "Click Template Key",
+      "type" : "string"
+    },
+    "clip_elevation" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "clip_elevation",
+      "importance" : 0,
+      "name" : "Clip Elevation",
       "type" : "string"
     },
     "close_fov" : {
@@ -8485,6 +8943,14 @@
       "importance" : 0,
       "name" : "Confirm Title Key",
       "type" : "string"
+    },
+    "consistent" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "consistent",
+      "importance" : 0,
+      "name" : "Consistent",
+      "type" : "boolean"
     },
     "console" : {
       "category" : "",
@@ -8910,6 +9376,14 @@
       "importance" : 0,
       "name" : "Critical Probability",
       "type" : "double"
+    },
+    "crops" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crops",
+      "importance" : 0,
+      "name" : "Crops",
+      "type" : "list"
     },
     "cross_world" : {
       "category" : "",
@@ -9519,6 +9993,30 @@
       "name" : "Domestication",
       "type" : "integer"
     },
+    "doorway_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "doorway_height",
+      "importance" : 0,
+      "name" : "Doorway Height",
+      "type" : "string"
+    },
+    "doorway_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "doorway_width",
+      "importance" : 0,
+      "name" : "Doorway Width",
+      "type" : "string"
+    },
+    "double_door_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "double_door_probability",
+      "importance" : 0,
+      "name" : "Double Door Probability",
+      "type" : "double"
+    },
     "drag" : {
       "category" : "",
       "description" : [ "" ],
@@ -9998,6 +10496,14 @@
       "importance" : -1,
       "name" : "Elemental Damage",
       "type" : "double"
+    },
+    "elevation" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "elevation",
+      "importance" : 0,
+      "name" : "Elevation",
+      "type" : "string"
     },
     "enable_custom_sounds" : {
       "category" : "",
@@ -10551,6 +11057,38 @@
       "name" : "Flicker",
       "type" : "boolean"
     },
+    "flooding_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "flooding_level",
+      "importance" : 0,
+      "name" : "Flooding Level",
+      "type" : "string"
+    },
+    "flooding_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "flooding_probability",
+      "importance" : 0,
+      "name" : "Flooding Probability",
+      "type" : "double"
+    },
+    "floor_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "floor_blocks",
+      "importance" : 0,
+      "name" : "Floor Blocks",
+      "type" : "list"
+    },
+    "floor_light_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "floor_light_probability",
+      "importance" : 0,
+      "name" : "Floor Light Probability",
+      "type" : "double"
+    },
     "flowers" : {
       "category" : "",
       "description" : [ "" ],
@@ -10663,6 +11201,14 @@
       "name" : "Freeze Water",
       "type" : "boolean"
     },
+    "frequency" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "frequency",
+      "importance" : 0,
+      "name" : "Frequency",
+      "type" : "integer"
+    },
     "friend_key" : {
       "category" : "",
       "description" : [ "" ],
@@ -10719,6 +11265,70 @@
       "name" : "Game Rules",
       "type" : "map"
     },
+    "gateway_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "gateway_height",
+      "importance" : 0,
+      "name" : "Gateway Height",
+      "type" : "string"
+    },
+    "gateway_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "gateway_width",
+      "importance" : 0,
+      "name" : "Gateway Width",
+      "type" : "string"
+    },
+    "generate_caves" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_caves",
+      "importance" : 0,
+      "name" : "Generate Caves",
+      "type" : "boolean"
+    },
+    "generate_decorations" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_decorations",
+      "importance" : 0,
+      "name" : "Generate Decorations",
+      "type" : "boolean"
+    },
+    "generate_mobs" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_mobs",
+      "importance" : 0,
+      "name" : "Generate Mobs",
+      "type" : "boolean"
+    },
+    "generate_noise" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_noise",
+      "importance" : 0,
+      "name" : "Generate Noise",
+      "type" : "boolean"
+    },
+    "generate_structures" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_structures",
+      "importance" : 0,
+      "name" : "Generate Structures",
+      "type" : "boolean"
+    },
+    "generate_surface" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generate_surface",
+      "importance" : 0,
+      "name" : "Generate Surface",
+      "type" : "boolean"
+    },
     "generator" : {
       "category" : "",
       "description" : [ "" ],
@@ -10726,6 +11336,22 @@
       "importance" : 0,
       "name" : "Generator",
       "type" : "map"
+    },
+    "generators" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generators",
+      "importance" : 0,
+      "name" : "Generators",
+      "type" : "map"
+    },
+    "generators_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generators",
+      "importance" : 0,
+      "name" : "Generators",
+      "type" : "list"
     },
     "give_book" : {
       "category" : "",
@@ -10815,6 +11441,14 @@
       "name" : "Gravity",
       "type" : "boolean"
     },
+    "grid" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "grid",
+      "importance" : 0,
+      "name" : "Grid",
+      "type" : "map"
+    },
     "ground_level" : {
       "category" : "",
       "description" : [ "" ],
@@ -10845,6 +11479,14 @@
       "field" : "grow_on",
       "importance" : 0,
       "name" : "Grow On",
+      "type" : "string"
+    },
+    "hallway_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "hallway_width",
+      "importance" : 0,
+      "name" : "Hallway Width",
       "type" : "string"
     },
     "hand_item" : {
@@ -11672,6 +12314,14 @@
       "name" : "Is Zig Zag",
       "type" : "boolean"
     },
+    "island_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "island_probability",
+      "importance" : 0,
+      "name" : "Island Probability",
+      "type" : "double"
+    },
     "item" : {
       "category" : "",
       "description" : [ "The item to use or show" ],
@@ -11727,6 +12377,14 @@
       "importance" : 0,
       "name" : "Item Flags",
       "type" : "string"
+    },
+    "item_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "item_probability",
+      "importance" : 0,
+      "name" : "Item Probability",
+      "type" : "map"
     },
     "item_speed" : {
       "category" : "",
@@ -12200,6 +12858,22 @@
       "name" : "Liftoff Thrust",
       "type" : "double"
     },
+    "light_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "light_blocks",
+      "importance" : 0,
+      "name" : "Light Blocks",
+      "type" : "list"
+    },
+    "light_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "light_probability",
+      "importance" : 0,
+      "name" : "Light Probability",
+      "type" : "double"
+    },
     "limit" : {
       "category" : "",
       "description" : [ "" ],
@@ -12616,6 +13290,14 @@
       "name" : "Max Acceleration",
       "type" : "double"
     },
+    "max_air_y" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_air_y",
+      "importance" : 0,
+      "name" : "Max Air Y",
+      "type" : "integer"
+    },
     "max_altitude" : {
       "category" : "",
       "description" : [ "" ],
@@ -12808,6 +13490,22 @@
       "name" : "Max Way Points",
       "type" : "integer"
     },
+    "max_x" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_x",
+      "importance" : 0,
+      "name" : "Max X",
+      "type" : "integer"
+    },
+    "max_y" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "max_y",
+      "importance" : 0,
+      "name" : "Max Y",
+      "type" : "integer"
+    },
     "maxdepth_actions" : {
       "category" : "",
       "description" : [ "" ],
@@ -12967,6 +13665,22 @@
       "importance" : 0,
       "name" : "Min Time",
       "type" : "string"
+    },
+    "min_x" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_x",
+      "importance" : 0,
+      "name" : "Min X",
+      "type" : "integer"
+    },
+    "min_y" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min_y",
+      "importance" : 0,
+      "name" : "Min Y",
+      "type" : "integer"
     },
     "miss_actions" : {
       "category" : "",
@@ -13287,6 +14001,14 @@
       "importance" : 0,
       "name" : "No Target",
       "type" : "boolean"
+    },
+    "noise" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "noise",
+      "importance" : 0,
+      "name" : "Noise",
+      "type" : "string"
     },
     "not_attachable" : {
       "category" : "",
@@ -14368,6 +15090,22 @@
       "name" : "Player Weight",
       "type" : "integer"
     },
+    "pool_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "pool_probability",
+      "importance" : 0,
+      "name" : "Pool Probability",
+      "type" : "double"
+    },
+    "populator" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "populator",
+      "importance" : 0,
+      "name" : "Populator",
+      "type" : "string"
+    },
     "populators" : {
       "category" : "",
       "description" : [ "" ],
@@ -14392,6 +15130,14 @@
       "name" : "Portal Death Message",
       "type" : "string"
     },
+    "portal_depth" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_depth",
+      "importance" : 0,
+      "name" : "Portal Depth",
+      "type" : "string"
+    },
     "portal_enter_damage" : {
       "category" : "",
       "description" : [ "" ],
@@ -14414,6 +15160,22 @@
       "field" : "portal_warp",
       "importance" : 0,
       "name" : "Portal Warp",
+      "type" : "string"
+    },
+    "portal_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "portal_width",
+      "importance" : 0,
+      "name" : "Portal Width",
+      "type" : "string"
+    },
+    "position" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "position",
+      "importance" : 0,
+      "name" : "Position",
       "type" : "string"
     },
     "potion_effects" : {
@@ -15144,6 +15906,14 @@
       "name" : "Remove Goals",
       "type" : "goal_list"
     },
+    "remove_items" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_items",
+      "importance" : 0,
+      "name" : "Remove Items",
+      "type" : "list"
+    },
     "remove_lore" : {
       "category" : "",
       "description" : [ "" ],
@@ -15280,6 +16050,14 @@
       "name" : "Replace",
       "type" : "boolean"
     },
+    "replace_biomes" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replace_biomes",
+      "importance" : 0,
+      "name" : "Replace Biomes",
+      "type" : "map"
+    },
     "replace_item" : {
       "category" : "",
       "description" : [ "" ],
@@ -15287,6 +16065,14 @@
       "importance" : 0,
       "name" : "Replace Item",
       "type" : "boolean"
+    },
+    "replace_map" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "replace",
+      "importance" : 0,
+      "name" : "Replace",
+      "type" : "map"
     },
     "replace_same" : {
       "category" : "",
@@ -15680,6 +16466,14 @@
       "name" : "Rings",
       "type" : "integer"
     },
+    "roof_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "roof_height",
+      "importance" : 0,
+      "name" : "Roof Height",
+      "type" : "string"
+    },
     "rotation" : {
       "category" : "",
       "description" : [ "Rotation around the Y-axis" ],
@@ -15816,6 +16610,14 @@
       "name" : "Scale",
       "type" : "percentage"
     },
+    "schematic" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "schematic",
+      "importance" : 0,
+      "name" : "Schematic",
+      "type" : "string"
+    },
     "scope" : {
       "category" : "",
       "description" : [ "" ],
@@ -15831,6 +16633,38 @@
       "importance" : 0,
       "name" : "Sculk Charge Rotation",
       "type" : "float"
+    },
+    "search_up" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "search_up",
+      "importance" : 0,
+      "name" : "Search Up",
+      "type" : "boolean"
+    },
+    "search_x" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "search_x",
+      "importance" : 0,
+      "name" : "Search X",
+      "type" : "integer"
+    },
+    "search_y" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "search_y",
+      "importance" : 0,
+      "name" : "Search Y",
+      "type" : "integer"
+    },
+    "search_z" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "search_z",
+      "importance" : 0,
+      "name" : "Search Z",
+      "type" : "integer"
     },
     "second_trusted" : {
       "category" : "",
@@ -16208,6 +17042,14 @@
       "name" : "Snowable",
       "type" : "string"
     },
+    "soil" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "soil",
+      "importance" : 0,
+      "name" : "Soil",
+      "type" : "list"
+    },
     "solid" : {
       "category" : "",
       "description" : [ "" ],
@@ -16215,6 +17057,14 @@
       "importance" : 0,
       "name" : "Solid",
       "type" : "boolean"
+    },
+    "solid_amount" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "solid_amount",
+      "importance" : 0,
+      "name" : "Solid Amount",
+      "type" : "string"
     },
     "sort" : {
       "category" : "",
@@ -16976,6 +17826,22 @@
       "name" : "Sudden Death Effect",
       "type" : "string"
     },
+    "sunroof_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "sunroof_probability",
+      "importance" : 0,
+      "name" : "Sunroof Probability",
+      "type" : "double"
+    },
+    "support" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "support",
+      "importance" : 0,
+      "name" : "Support",
+      "type" : "list"
+    },
     "swap" : {
       "category" : "",
       "description" : [ "What action the wand should perform when the player uses the swap (F by default) button" ],
@@ -17063,6 +17929,22 @@
       "importance" : 0,
       "name" : "Tamed",
       "type" : "boolean"
+    },
+    "taper" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "taper",
+      "importance" : 0,
+      "name" : "Taper",
+      "type" : "string"
+    },
+    "taper_start" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "taper_start",
+      "importance" : 0,
+      "name" : "Taper Start",
+      "type" : "string"
     },
     "target" : {
       "category" : "targeting",
@@ -17552,6 +18434,14 @@
       "name" : "Template",
       "type" : "string"
     },
+    "template_list" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "template",
+      "importance" : 0,
+      "name" : "Template",
+      "type" : "list"
+    },
     "temporary" : {
       "category" : "",
       "description" : [ "" ],
@@ -17753,6 +18643,14 @@
       "name" : "Tool",
       "type" : "string"
     },
+    "top_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "top_blocks",
+      "importance" : 0,
+      "name" : "Top Blocks",
+      "type" : "list"
+    },
     "tornado_color" : {
       "category" : "",
       "description" : [ "" ],
@@ -17921,6 +18819,22 @@
       "name" : "Trusted",
       "type" : "string"
     },
+    "tunnel_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "tunnel_height",
+      "importance" : 0,
+      "name" : "Tunnel Height",
+      "type" : "string"
+    },
+    "tunnel_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "tunnel_width",
+      "importance" : 0,
+      "name" : "Tunnel Width",
+      "type" : "string"
+    },
     "tworld" : {
       "category" : "targeting",
       "description" : [ "" ],
@@ -17936,6 +18850,14 @@
       "importance" : 200,
       "name" : "Type",
       "type" : "entity_type"
+    },
+    "types" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "types",
+      "importance" : 0,
+      "name" : "Types",
+      "type" : "map"
     },
     "u" : {
       "alias" : "undo",
@@ -18658,6 +19580,14 @@
       "name" : "Villager Profession",
       "type" : "villager_profession"
     },
+    "vines" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "vines",
+      "importance" : 0,
+      "name" : "Vines",
+      "type" : "list"
+    },
     "virtual_book" : {
       "category" : "",
       "description" : [ "" ],
@@ -18730,6 +19660,30 @@
       "name" : "Wait Time",
       "type" : "integer"
     },
+    "walkway_width" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "walkway_width",
+      "importance" : 0,
+      "name" : "Walkway Width",
+      "type" : "string"
+    },
+    "wall_blocks" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "wall_blocks",
+      "importance" : 0,
+      "name" : "Wall Blocks",
+      "type" : "list"
+    },
+    "wall_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "wall_probability",
+      "importance" : 0,
+      "name" : "Wall Probability",
+      "type" : "double"
+    },
     "wand_power" : {
       "category" : "wand",
       "description" : [ "A multiplier that can affect spell damage, size and range, defined by properties in config.yml" ],
@@ -18785,6 +19739,22 @@
       "importance" : 0,
       "name" : "Warp Maintain Direction",
       "type" : "boolean"
+    },
+    "water_depth" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "water_depth",
+      "importance" : 0,
+      "name" : "Water Depth",
+      "type" : "string"
+    },
+    "water_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "water_height",
+      "importance" : 0,
+      "name" : "Water Height",
+      "type" : "string"
     },
     "weakness" : {
       "category" : "wand",
@@ -18873,6 +19843,14 @@
       "importance" : 0,
       "name" : "Win Xp",
       "type" : "integer"
+    },
+    "window_probability" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "window_probability",
+      "importance" : 0,
+      "name" : "Window Probability",
+      "type" : "double"
     },
     "world_border_restricted" : {
       "category" : "base",
@@ -22395,6 +23373,15 @@
         "0" : null,
         "45" : null,
         "90" : null
+      }
+    },
+    "populator_parameters" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Populator Parameters",
+      "parameters" : {
+        "biome" : null,
+        "populators" : null
       }
     },
     "potion_effect_amplifier" : {
