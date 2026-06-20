@@ -3,7 +3,7 @@ package com.elmakers.mine.bukkit.meta;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.WordUtils;
+import com.elmakers.mine.bukkit.utility.WordUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Category {

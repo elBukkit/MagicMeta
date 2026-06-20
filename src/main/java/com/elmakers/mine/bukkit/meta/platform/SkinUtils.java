@@ -2,34 +2,54 @@ package com.elmakers.mine.bukkit.meta.platform;
 
 import java.util.UUID;
 
+import org.bukkit.block.Skull;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.SkullMeta;
 
+import com.elmakers.mine.bukkit.utility.PlayerProfile;
+import com.elmakers.mine.bukkit.utility.ProfileCallback;
 import com.elmakers.mine.bukkit.utility.platform.Platform;
-import com.elmakers.mine.bukkit.utility.platform.base.SkinUtilsBase;
-import com.google.gson.JsonElement;
 
-public class SkinUtils extends SkinUtilsBase {
+public class SkinUtils implements com.elmakers.mine.bukkit.utility.platform.SkinUtils {
+    private final Platform platform;
+
     public SkinUtils(Platform platform) {
-        super(platform);
+        this.platform = platform;
     }
 
     @Override
-    public String getProfileURL(Object profile) {
+    public String getOnlineSkinURL(Player player) {
+        return "";
+    }
+
+    @Override
+    public String getOnlineSkinURL(String playerName) {
+        return "";
+    }
+
+    @Override
+    public void fetchProfile(String playerName, ProfileCallback callback) {
+
+    }
+
+    @Override
+    public void fetchProfile(UUID uuid, ProfileCallback callback) {
+
+    }
+
+    @Override
+    public PlayerProfile parsePlayerProfile(ConfigurationSection config) {
         return null;
     }
 
     @Override
-    public Object getProfile(Player player) {
+    public PlayerProfile getPlayerProfile(SkullMeta meta) {
         return null;
     }
 
     @Override
-    public JsonElement getProfileJson(Object gameProfile) throws IllegalAccessException {
-        return null;
-    }
-
-    @Override
-    public Object getGameProfile(UUID uuid, String playerName, String profileJSON) {
+    public PlayerProfile getPlayerProfile(Skull block) {
         return null;
     }
 }

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.StringUtils;
+import com.elmakers.mine.bukkit.utility.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.CaseFormat;

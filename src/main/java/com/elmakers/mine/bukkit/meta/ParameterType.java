@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
+import com.elmakers.mine.bukkit.utility.WordUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

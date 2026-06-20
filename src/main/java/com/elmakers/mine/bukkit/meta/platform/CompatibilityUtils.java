@@ -1,5 +1,8 @@
 package com.elmakers.mine.bukkit.meta.platform;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +11,10 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.bukkit.Art;
 import org.bukkit.Bukkit;
@@ -16,6 +23,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Rotation;
 import org.bukkit.Server;
 import org.bukkit.Sound;
@@ -23,9 +31,12 @@ import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.MemorySection;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Damageable;
@@ -43,29 +54,50 @@ import org.bukkit.entity.Sittable;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.generator.BlockPopulator;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
-import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 
+import com.elmakers.mine.bukkit.api.block.MaterialAndData;
+import com.elmakers.mine.bukkit.map.BufferedMapCanvas;
 import com.elmakers.mine.bukkit.utility.BoundingBox;
 import com.elmakers.mine.bukkit.utility.DoorActionType;
 import com.elmakers.mine.bukkit.utility.ReflectionUtils;
 import com.elmakers.mine.bukkit.utility.platform.Platform;
+import com.elmakers.mine.bukkit.utility.platform.VersionedPotionEffectType;
 
-public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platform.base.CompatibilityUtilsBase {
+public class CompatibilityUtils implements com.elmakers.mine.bukkit.utility.platform.CompatibilityUtils {
+    private final Platform platform;
 
     public CompatibilityUtils(Platform platform) {
-        super(platform);
+        this.platform = platform;
+    }
+
+    @Override
+    public void applyPotionEffects(LivingEntity entity, Collection<PotionEffect> effects) {
+
+    }
+
+    @Override
+    public boolean isDamaging() {
+        return false;
     }
 
     @Override
@@ -77,8 +109,43 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean applyPotionEffect(LivingEntity entity, PotionEffect effect) {
+        return false;
+    }
+
+    @Override
+    public boolean setDisplayNameRaw(ItemStack itemStack, String displayName) {
+        return false;
+    }
+
+    @Override
+    public boolean setDisplayName(ItemStack itemStack, String displayName) {
+        return false;
+    }
+
+    @Override
+    public boolean setLore(ItemStack itemStack, List<String> lore) {
+        return false;
+    }
+
+    @Override
+    public boolean setRawLore(ItemStack itemStack, List<String> lore) {
+        return false;
+    }
+
+    @Override
+    public List<String> getRawLore(ItemStack itemStack) {
+        return List.of();
+    }
+
+    @Override
     public boolean isInvulnerable(Entity entity) {
         return entity.isInvulnerable();
+    }
+
+    @Override
+    public void setInvulnerable(Entity entity) {
+
     }
 
     @Override
@@ -138,6 +205,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public ArmorStand createArmorStand(Location location) {
+        return null;
+    }
+
+    @Override
     public Entity createEntity(Location location, EntityType entityType) {
         return null;
     }
@@ -158,7 +230,17 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public Runnable getTaskRunnable(BukkitTask task) {
+        return null;
+    }
+
+    @Override
     public void ageItem(Item item, int ticksToAge) {
+
+    }
+
+    @Override
+    public void damage(Damageable target, double amount, Entity source) {
 
     }
 
@@ -170,6 +252,31 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     @Override
     public void magicDamage(Damageable target, double amount, Entity source) {
 
+    }
+
+    @Override
+    public Location getEyeLocation(Entity entity) {
+        return null;
+    }
+
+    @Override
+    public YamlConfiguration loadBuiltinConfiguration(String fileName) throws IOException, InvalidConfigurationException {
+        return null;
+    }
+
+    @Override
+    public ConfigurationSection loadConfiguration(File file) throws IOException, InvalidConfigurationException {
+        return null;
+    }
+
+    @Override
+    public ConfigurationSection loadConfiguration(String fileName) throws IOException, InvalidConfigurationException {
+        return null;
+    }
+
+    @Override
+    public YamlConfiguration loadConfiguration(InputStream stream, String fileName) throws IOException, InvalidConfigurationException {
+        return null;
     }
 
     @Override
@@ -225,9 +332,19 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public int getFacing(BlockFace direction) {
+        return 0;
+    }
+
+    @Override
     @SuppressWarnings("deprecation")
     public MapView getMapById(int id) {
         return Bukkit.getMap(id);
+    }
+
+    @Override
+    public Map<String, Object> getMap(ConfigurationSection section) {
+        return Map.of();
     }
 
     @Override
@@ -279,6 +396,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public Vector getNormal(Block block, Location intersection) {
+        return null;
+    }
+
+    @Override
     public boolean setLock(Block block, String lockName) {
         return false;
     }
@@ -301,6 +423,21 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     @Override
     public void setFallingBlockDamage(FallingBlock entity, float fallHurtAmount, int fallHurtMax) {
 
+    }
+
+    @Override
+    public void configureMaxHeights(ConfigurationSection config) {
+
+    }
+
+    @Override
+    public int getMinHeight(World world) {
+        return 0;
+    }
+
+    @Override
+    public int getMaxHeight(World world) {
+        return 0;
     }
 
     @Override
@@ -411,7 +548,17 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    public boolean setItemAttribute(ItemStack item, Attribute attribute, double value, String slot, int attributeOperation, UUID attributeUUID) {
+    public boolean setItemAttribute(ItemStack item, Attribute attribute, double value, String slot, String attributeOperation) {
+        return false;
+    }
+
+    @Override
+    public boolean setItemAttribute(ItemStack item, Attribute attribute, double value, String slot, String attributeOperation, UUID attributeUUID) {
+        return false;
+    }
+
+    @Override
+    public boolean setItemAttribute(ItemStack item, Attribute attribute, double value, String slot, String attributeOperation, UUID attributeUUID, String attributeKey) {
         return false;
     }
 
@@ -426,8 +573,24 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean setEntityData(Entity entity, Object tag) {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    public EntityType getEntityTypeFromNMS(World world, Object tag) {
+        return null;
+    }
+
+    @Override
     public String getEntityType(Entity entity) {
         return null;
+    }
+
+    @Override
+    public void applyItemData(ItemStack item, Block block) {
+
     }
 
     @Override
@@ -451,12 +614,52 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean sendActionBar(Player player, String message, String font) {
+        return false;
+    }
+
+    @Override
+    public void setBossBarTitle(BossBar bossBar, String title) {
+
+    }
+
+    @Override
+    public boolean setBossBarTitle(BossBar bossBar, String title, String font) {
+        return false;
+    }
+
+    @Override
+    public void sendMessage(CommandSender sender, String message) {
+
+    }
+
+    @Override
     public float getDurability(Material material) {
         return 0;
     }
 
     @Override
     public void sendBreaking(Player player, long id, Location location, int breakAmount) {
+
+    }
+
+    @Override
+    public void clearBreaking(Block block) {
+
+    }
+
+    @Override
+    public void setBreaking(Block block, double percentage) {
+
+    }
+
+    @Override
+    public void setBreaking(Block block, int breakAmount) {
+
+    }
+
+    @Override
+    public void setBreaking(Block block, int breakAmount, int range) {
 
     }
 
@@ -478,6 +681,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     @Override
     public float getStrafeMovement(LivingEntity entity) {
         return 0;
+    }
+
+    @Override
+    public boolean setBlockFast(Block block, Material material, int data) {
+        return false;
     }
 
     @Override
@@ -521,7 +729,42 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public ShapelessRecipe createShapelessRecipe(String key, ItemStack item, Collection<ItemStack> ingredients, boolean ignoreDamage) {
+        return null;
+    }
+
+    @Override
     public ShapedRecipe createShapedRecipe(String key, ItemStack item) {
+        return null;
+    }
+
+    @Override
+    public FurnaceRecipe createFurnaceRecipe(String key, ItemStack item, ItemStack source, boolean ignoreDamage, float experience, int cookingTime) {
+        return null;
+    }
+
+    @Override
+    public Recipe createBlastingRecipe(String key, ItemStack item, ItemStack source, boolean ignoreDamage, float experience, int cookingTime) {
+        return null;
+    }
+
+    @Override
+    public Recipe createCampfireRecipe(String key, ItemStack item, ItemStack source, boolean ignoreDamage, float experience, int cookingTime) {
+        return null;
+    }
+
+    @Override
+    public Recipe createSmokingRecipe(String key, ItemStack item, ItemStack source, boolean ignoreDamage, float experience, int cookingTime) {
+        return null;
+    }
+
+    @Override
+    public Recipe createStonecuttingRecipe(String key, ItemStack item, ItemStack source, boolean ignoreDamage) {
+        return null;
+    }
+
+    @Override
+    public Recipe createSmithingRecipe(String key, ItemStack item, ItemStack source, ItemStack addition) {
         return null;
     }
 
@@ -546,7 +789,7 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    public Material fromLegacy(MaterialData materialData) {
+    public Material getMaterial(String blockData) {
         return null;
     }
 
@@ -556,18 +799,33 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    public boolean hasLegacyMaterials() {
+    public boolean isChunkLoaded(Block block) {
         return false;
     }
 
     @Override
-    public boolean isLegacy(Material material) {
+    public boolean isChunkLoaded(Location location) {
         return false;
     }
 
     @Override
-    public Material getLegacyMaterial(String materialName) {
-        return null;
+    public boolean checkChunk(Location location) {
+        return false;
+    }
+
+    @Override
+    public boolean checkChunk(Location location, boolean generate) {
+        return false;
+    }
+
+    @Override
+    public boolean checkChunk(World world, int chunkX, int chunkZ) {
+        return false;
+    }
+
+    @Override
+    public boolean checkChunk(World world, int chunkX, int chunkZ, boolean generate) {
+        return false;
     }
 
     @Override
@@ -611,13 +869,18 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
-    public boolean hasBlockDataSupport() {
+    public boolean isTopBlock(Block block) {
         return false;
     }
 
     @Override
     public boolean applyPhysics(Block block) {
         return false;
+    }
+
+    @Override
+    public ItemStack getKnowledgeBook() {
+        return null;
     }
 
     @Override
@@ -671,6 +934,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public Entity getSource(Entity entity) {
+        return null;
+    }
+
+    @Override
     public boolean stopSound(Player player, Sound sound) {
         return false;
     }
@@ -696,17 +964,17 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public BlockFace getCCW(BlockFace face) {
+        return null;
+    }
+
+    @Override
     public boolean setRecipeGroup(Recipe recipe, String group) {
         return false;
     }
 
     @Override
     public boolean isSameKey(Plugin plugin, String key, Object keyed) {
-        return false;
-    }
-
-    @Override
-    public boolean isLegacyRecipes() {
         return false;
     }
 
@@ -741,8 +1009,23 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public void loadChunk(Location location, boolean generate, Consumer<Chunk> consumer) {
+
+    }
+
+    @Override
+    public void loadChunk(World world, int x, int z, boolean generate) {
+
+    }
+
+    @Override
     public void loadChunk(World world, int x, int z, boolean generate, Consumer<Chunk> consumer) {
 
+    }
+
+    @Override
+    public Entity getRootVehicle(Entity entity) {
+        return null;
     }
 
     @Override
@@ -753,6 +1036,21 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     @Override
     public List<Entity> getPassengers(Entity entity) {
         return null;
+    }
+
+    @Override
+    public void teleportVehicle(Entity vehicle, Location location) {
+
+    }
+
+    @Override
+    public void teleportWithVehicle(Entity entity, Location location) {
+
+    }
+
+    @Override
+    public boolean isTeleporting() {
+        return false;
     }
 
     @Override
@@ -785,10 +1083,25 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
         return null;
     }
 
+    @Override
+    public int getMaxEntityRange() {
+        return 0;
+    }
+
+    @Override
+    public void load(ConfigurationSection configuration) {
+
+    }
+
 
     @Override
     public boolean isPrimaryThread() {
         return true;
+    }
+
+    @Override
+    public String translateColors(String message) {
+        return "";
     }
 
     @Override
@@ -797,9 +1110,20 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
         return enchantment.getKey().getNamespace() + ":" + enchantment.getKey().getKey();
     }
 
+    @Nullable
+    @Override
+    public String getEnchantmentBaseKey(Enchantment enchantment) {
+        return "";
+    }
+
     @Override
     public Enchantment getEnchantmentByKey(String key) {
         return null;
+    }
+
+    @Override
+    public Collection<String> getEnchantmentBaseKeys() {
+        return List.of();
     }
 
     @Override
@@ -818,6 +1142,11 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean setTorchFacingDirection(Block block, BlockFace facing) {
+        return false;
+    }
+
+    @Override
     public boolean isAdult(Zombie zombie) {
         return zombie.isAdult();
     }
@@ -833,12 +1162,144 @@ public class CompatibilityUtils extends com.elmakers.mine.bukkit.utility.platfor
     }
 
     @Override
+    public boolean tame(Entity entity, Player tamer) {
+        return false;
+    }
+
+    @Override
+    public boolean isArrow(Entity entity) {
+        return false;
+    }
+
+    @Override
+    public void setMaterialCooldown(Player player, Material material, int duration) {
+
+    }
+
+    @Override
+    public Particle getParticle(String particle) {
+        return null;
+    }
+
+    @Override
     public BlockFace getSignFacing(Block sign) {
         return null;
     }
 
     @Override
+    public void sendBlockChange(Player player, Block block) {
+
+    }
+
+    @Override
+    public void sendBlockChange(Player player, Location location, Material material, String blockData) {
+
+    }
+
+    @Override
     public void openSign(Player player, Location signBlock) {
 
+    }
+
+    @Override
+    public Collection<BoundingBox> getBoundingBoxes(Block block) {
+        return List.of();
+    }
+
+    @Nonnull
+    @Override
+    public FallingBlock spawnFallingBlock(Location location, Material material, String blockData) {
+        return null;
+    }
+
+    @Override
+    public UUID getOwnerId(Entity entity) {
+        return null;
+    }
+
+    @Override
+    public void setOwner(Entity entity, Entity owner) {
+
+    }
+
+    @Override
+    public void setOwner(Entity entity, UUID ownerId) {
+
+    }
+
+    @Override
+    public void setSnowLevel(Block block, int level) {
+
+    }
+
+    @Override
+    public int getSnowLevel(Block block) {
+        return 0;
+    }
+
+    @Nullable
+    @Override
+    public BlockPopulator createOutOfBoundsPopulator(Logger logger) {
+        return null;
+    }
+
+    @Override
+    public Enchantment getInfinityEnchantment() {
+        return null;
+    }
+
+    @Override
+    public Enchantment getPowerEnchantment() {
+        return null;
+    }
+
+    @Override
+    public Set<PotionEffectType> getNegativeEffects() {
+        return Set.of();
+    }
+
+    @Override
+    public boolean isDestructive(EntityExplodeEvent explosion) {
+        return false;
+    }
+
+    @Override
+    public Attribute getMinecraftAttribute(String attributeKey) {
+        return null;
+    }
+
+    @Override
+    public PotionEffectType getPotionEffectType(VersionedPotionEffectType type) {
+        return null;
+    }
+
+    @Override
+    public void renderMap(MapRenderer renderer, MapView map, BufferedMapCanvas canvas, Player player) {
+
+    }
+
+    @Override
+    public BufferedMapCanvas createMapCanvas() {
+        return null;
+    }
+
+    @Override
+    public Entity createBlockDisplayEntity(Location location, MaterialAndData materialAndData, double scale) {
+        return null;
+    }
+
+    @Override
+    public Entity createItemDisplayEntity(Location location, ItemStack itemStack, double scale) {
+        return null;
+    }
+
+    @Override
+    public ItemStack createItemStack(Material material, String itemData) {
+        return null;
+    }
+
+    @Override
+    public boolean lockFreezeTicks(Entity entity, boolean lock) {
+        return false;
     }
 }

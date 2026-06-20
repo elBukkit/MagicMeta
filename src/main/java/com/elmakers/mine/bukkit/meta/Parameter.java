@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.WordUtils;
+import com.elmakers.mine.bukkit.utility.WordUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Parameter {

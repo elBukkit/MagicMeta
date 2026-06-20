@@ -71,6 +71,7 @@ public class MagicMeta {
         MagicController controller = new MagicController(plugin);
         Platform platform = new Platform(controller);
         CompatibilityLib.initialize(platform);
+        controller.initializeControllers();
 
         String fileName = args[0];
         boolean regenerate = (args.length > 1 && args[1].equals("--regenerate"));

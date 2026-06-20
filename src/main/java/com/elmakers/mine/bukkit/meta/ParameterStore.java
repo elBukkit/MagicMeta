@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.bukkit.Effect;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
