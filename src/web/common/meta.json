@@ -21401,6 +21401,15 @@
         "survival" : null
       }
     },
+    "generator_parameters" : {
+      "class_name" : "org.bukkit.configuration.ConfigurationSection",
+      "description" : [ "" ],
+      "name" : "Generator Parameters",
+      "parameters" : {
+        "biome" : null,
+        "populators" : null
+      }
+    },
     "goal_list" : {
       "class_name" : "java.util.List",
       "description" : [ "" ],
@@ -23379,10 +23388,7 @@
       "class_name" : "org.bukkit.configuration.ConfigurationSection",
       "description" : [ "" ],
       "name" : "Populator Parameters",
-      "parameters" : {
-        "biome" : null,
-        "populators" : null
-      }
+      "parameters" : { }
     },
     "potion_effect_amplifier" : {
       "class_name" : "java.lang.Integer",
