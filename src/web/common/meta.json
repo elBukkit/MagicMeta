@@ -172,6 +172,7 @@
           "ignore_modified" : "false",
           "min_radius" : "0.0",
           "radius" : "8",
+          "random_choose" : "false",
           "sort" : "false",
           "target_count" : "-1",
           "target_source" : "true",
@@ -212,6 +213,7 @@
           "dialog" : null,
           "dialog_face_player" : "true",
           "dialog_interval" : "2000",
+          "dialog_random" : "false",
           "dialog_range" : "3.0",
           "direction" : null,
           "disguise_map" : null,
@@ -271,6 +273,7 @@
           "owner" : null,
           "parameterize_name" : "true",
           "particle" : null,
+          "passenger_rotation_speed" : "0.0",
           "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
@@ -287,6 +290,7 @@
           "reason" : null,
           "register_by_name" : "false",
           "relentless" : "false",
+          "reload" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -369,10 +373,13 @@
           "collidable" : "false",
           "color" : null,
           "combustible" : "true",
+          "custom_name" : null,
+          "custom_name_visible" : "false",
           "default_drops" : "true",
           "dialog" : null,
           "dialog_face_player" : "true",
           "dialog_interval" : "2000",
+          "dialog_random" : "false",
           "dialog_range" : "3.0",
           "disabled_slots" : "0",
           "disguise" : null,
@@ -465,6 +472,7 @@
           "otz" : null,
           "ownable" : "false",
           "owner" : null,
+          "passenger_rotation_speed" : "0.0",
           "permissions" : null,
           "persist" : "false",
           "pitch_max" : "-90",
@@ -494,6 +502,7 @@
           "register_by_name" : "false",
           "relative_location_offset" : null,
           "relentless" : "false",
+          "reload" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "reorient" : "false",
@@ -681,6 +690,8 @@
           "consume" : "false",
           "consume_variants" : "true",
           "damage" : "0",
+          "display" : "false",
+          "display_scale" : "1.0",
           "durability_max_distance" : "0",
           "fall_damage" : "0",
           "falling" : "false",
@@ -905,6 +916,7 @@
           "require_exit" : "true",
           "safe" : "true",
           "scale" : "1.0",
+          "target_location" : null,
           "target_world" : null,
           "teleport_vehicle" : "true",
           "vertical_range" : "8",
@@ -984,6 +996,7 @@
           "click_message_key" : "click_message",
           "click_template_key" : "click_template",
           "fail_actions" : null,
+          "hover_message_key" : "hover_message",
           "invert" : "false",
           "message_key" : "message",
           "timeout" : "0",
@@ -1341,6 +1354,8 @@
           "consume" : "false",
           "consume_variants" : "true",
           "damage" : "0",
+          "display" : "false",
+          "display_scale" : "1.0",
           "fall_damage" : "0",
           "falling" : "false",
           "falling_hurts" : "false",
@@ -1511,6 +1526,7 @@
         "parameters" : {
           "cycle_colors" : "false",
           "cycle_variants" : "false",
+          "material_sets" : null,
           "materials" : null
         },
         "short_class" : "CycleBlock"
@@ -1546,6 +1562,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -1565,6 +1582,7 @@
         "importance" : 100,
         "name" : "Damage",
         "parameters" : {
+          "adaptive_knockback_resistance" : "0.0",
           "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
           "critical_effects" : "critical",
@@ -1702,6 +1720,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -1836,6 +1855,8 @@
           "bypass_backfire" : "false",
           "close_fov" : "0.5",
           "close_range" : "0",
+          "custom_name" : null,
+          "custom_name_visible" : "false",
           "distance_weight" : "1",
           "drag" : "0",
           "entity_hit_count" : "1",
@@ -1995,6 +2016,7 @@
           "probability" : "1.0",
           "radius" : "2.0",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0.0",
@@ -2201,6 +2223,24 @@
         },
         "short_class" : "Freeze"
       },
+      "freeze_entity" : {
+        "category" : "",
+        "class_name" : "FreezeEntityAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Freeze Entity",
+        "parameters" : {
+          "additive" : "false",
+          "duration" : "0",
+          "lock" : "false",
+          "reduce" : "false",
+          "reduce_boolean" : "false",
+          "unlock" : "false",
+          "unlock_boolean" : "false"
+        },
+        "short_class" : "FreezeEntity"
+      },
       "give_currency" : {
         "category" : "",
         "class_name" : "GiveCurrencyAction",
@@ -2290,7 +2330,10 @@
         "importance" : 70,
         "name" : "Ignite",
         "parameters" : {
-          "duration" : "5000"
+          "additive" : "false",
+          "duration" : "5000",
+          "reduce" : "false",
+          "reduce_boolean" : "false"
         },
         "short_class" : "Ignite"
       },
@@ -2329,6 +2372,232 @@
         "name" : "Inventory Close",
         "parameters" : { },
         "short_class" : "InventoryClose"
+      },
+      "item_projectile" : {
+        "category" : "compound",
+        "class_name" : "ItemProjectileAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Item Projectile",
+        "parameters" : {
+          "active_wand" : "false",
+          "aggro" : "false",
+          "ai" : "false",
+          "allow_replacement" : "true",
+          "apply_velocity" : "true",
+          "attach_duration" : "0",
+          "attributes" : null,
+          "aware" : "false",
+          "baby" : "false",
+          "block_hit_count" : "1",
+          "boots" : null,
+          "boss_bar" : null,
+          "boss_bar_map" : null,
+          "brain" : null,
+          "brain_map" : null,
+          "break_blocks" : "true",
+          "breakable_size" : "1",
+          "bypass_backfire" : "false",
+          "can_pickup_items" : "false",
+          "cancel_explosion" : "false",
+          "cancel_interact" : "false",
+          "cast" : null,
+          "cast_interval" : "0",
+          "cast_requires_item" : null,
+          "cast_requires_target" : "true",
+          "chestplate" : null,
+          "close_fov" : "1.5",
+          "close_range" : "1.0",
+          "collidable" : "false",
+          "combustible" : "true",
+          "custom_name" : null,
+          "custom_name_visible" : "false",
+          "default_drops" : "true",
+          "dialog" : null,
+          "dialog_face_player" : "true",
+          "dialog_interval" : "2000",
+          "dialog_random" : "false",
+          "dialog_range" : "3.0",
+          "disguise" : null,
+          "disguise_map" : null,
+          "distance_weight" : "1.0",
+          "docile" : "false",
+          "drag" : "0.0",
+          "drop_xp" : "0",
+          "drops" : null,
+          "drops_require_player_killer" : "false",
+          "entity_attributes_attribute_map" : null,
+          "entity_hit_count" : "1",
+          "entity_weight" : "3",
+          "equip_on_respawn" : "true",
+          "face_player" : "false",
+          "fov" : "0.3",
+          "fov_weight" : "4.0",
+          "gravity" : "false",
+          "gravity_boolean" : "false",
+          "headshot_actions" : null,
+          "headshot_effects" : "headshot",
+          "health" : "0.0",
+          "helmet" : null,
+          "hidden" : "false",
+          "hit_count" : "1",
+          "hit_effects" : "hit",
+          "hit_on_miss" : "false",
+          "hit_requires_entity" : "false",
+          "hitbox" : "false",
+          "hitbox_block_size" : "0.0",
+          "hitbox_size" : "0.0",
+          "ignore_blocks" : "false",
+          "ignore_hit_entities" : "true",
+          "ignore_targeting" : "false",
+          "interact_command_source" : "console",
+          "interact_commands" : null,
+          "interact_costs" : null,
+          "interact_permission" : null,
+          "interact_requires_owner" : "false",
+          "interact_spell" : null,
+          "interact_spell_parameters" : null,
+          "interact_spell_source" : "player",
+          "interact_spell_target" : "mob",
+          "interval" : "0",
+          "interval_requires_target" : "true",
+          "invisible" : "false",
+          "invulnerable" : "false",
+          "item" : null,
+          "leash_range" : "0",
+          "leggings" : null,
+          "lifetime" : "0",
+          "location_offset" : null,
+          "loot" : null,
+          "loot_map" : null,
+          "mage" : null,
+          "max_health" : "0.0",
+          "min_block_range" : "0.0",
+          "min_entity_range" : "0.0",
+          "miss_actions" : null,
+          "miss_effects" : "miss",
+          "model" : null,
+          "modifiers" : null,
+          "mount" : null,
+          "mount_wand" : "false",
+          "mythic_mob" : null,
+          "mythic_mob_level" : "0.0",
+          "name" : null,
+          "no_target" : "true",
+          "npc" : "false",
+          "npc_weight" : "-1",
+          "offhand" : null,
+          "orient" : "false",
+          "otdx" : null,
+          "otdy" : null,
+          "otdz" : null,
+          "otworld" : null,
+          "otx" : null,
+          "oty" : null,
+          "otz" : null,
+          "ownable" : "false",
+          "owner" : null,
+          "passenger_rotation_speed" : "0.0",
+          "permissions" : null,
+          "persist" : "false",
+          "pitch_max" : "-90",
+          "pitch_min" : "90",
+          "plan" : null,
+          "player_weight" : "4",
+          "potion_effects" : null,
+          "prevent_dismount" : "false",
+          "prevent_melee" : "false",
+          "prevent_projectiles" : "false",
+          "prevent_teleport" : "false",
+          "projectile_effects" : "projectile",
+          "projectile_effects_use_target" : "false",
+          "projectile_follow_player" : "false",
+          "projectile_potion_effects" : null,
+          "protected" : "false",
+          "protection" : null,
+          "range" : "0",
+          "range_padding" : "1.0",
+          "reactivate_wand" : "false",
+          "reflect_count" : "-1",
+          "reflect_reorient" : "false",
+          "reflect_reset_distance_traveled" : "true",
+          "reflect_target_caster" : "true",
+          "reflect_track_range" : "0.0",
+          "reflect_track_target" : "false",
+          "register_by_name" : "true",
+          "relative_location_offset" : null,
+          "relentless" : "false",
+          "reload" : "false",
+          "remove_mounts" : null,
+          "remove_when_far_away" : "false",
+          "reorient" : "false",
+          "reset_time_on_path_change" : "false",
+          "return_offset" : null,
+          "return_relative_offset" : null,
+          "return_to_caster" : "false",
+          "reverse" : "false",
+          "scale" : "1.0",
+          "show_name" : "false",
+          "silent" : "false",
+          "sitting" : "false",
+          "source_location" : "",
+          "spawn_actions" : null,
+          "spawn_reason" : null,
+          "speed" : "1.0",
+          "spread" : "0.0",
+          "spread_movement" : "0.0",
+          "spread_movement_max" : "0.0",
+          "start" : "0.0",
+          "static" : "false",
+          "stay" : "false",
+          "stay_boolean" : "false",
+          "strength" : null,
+          "tags" : null,
+          "tamed" : "false",
+          "target" : null,
+          "target_breakable_depth" : "2",
+          "target_breakables" : "1.0",
+          "target_min_offset" : "0",
+          "target_self" : "false",
+          "target_self_timeout" : "0",
+          "targeting" : null,
+          "teleport" : "true",
+          "temporary" : "false",
+          "tick_actions" : null,
+          "tick_effects" : "tick",
+          "tick_size" : "0.5",
+          "tmo" : "0",
+          "track_radius" : "128.0",
+          "track_range" : "0.0",
+          "track_speed" : "0.0",
+          "track_target" : "false",
+          "transformable" : "true",
+          "triggers" : null,
+          "triggers_map" : null,
+          "type" : null,
+          "unbreakable_items" : "false",
+          "update_launch_location" : "false",
+          "use_block_location" : "false",
+          "use_brush" : "false",
+          "use_brush_boolean" : "false",
+          "use_cast_location" : "false",
+          "use_eye_location" : "false",
+          "use_hit_location" : "false",
+          "use_npc_name" : "false",
+          "use_target_location" : "true",
+          "use_wand" : "false",
+          "use_wand_location" : "true",
+          "variant" : null,
+          "velocity" : "20.0",
+          "velocity_offset" : null,
+          "velocity_transform" : null,
+          "velocity_transform_map" : null,
+          "visible_delay_ticks" : "0",
+          "weakness" : null,
+          "xp" : "0"
+        },
+        "short_class" : "ItemProjectile"
       },
       "item_shop" : {
         "category" : "player",
@@ -2435,6 +2704,26 @@
           "start_at_target" : "false"
         },
         "short_class" : "Line"
+      },
+      "line_of_effect" : {
+        "category" : "compound",
+        "class_name" : "LineOfEffectAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Line Of Effect",
+        "parameters" : {
+          "ignore_modified" : "false",
+          "radius" : "8.0",
+          "random_choose" : "false",
+          "range" : "0.0",
+          "range_back" : "0.0",
+          "range_front" : "0.0",
+          "sort" : "false",
+          "target_count" : "-1",
+          "target_source" : "true"
+        },
+        "short_class" : "LineOfEffect"
       },
       "lock" : {
         "category" : "Construction",
@@ -2559,6 +2848,8 @@
           "consume" : "false",
           "consume_variants" : "true",
           "damage" : "0",
+          "display" : "false",
+          "display_scale" : "1.0",
           "fall_damage" : "0",
           "falling" : "false",
           "falling_hurts" : "false",
@@ -2644,6 +2935,7 @@
           "dialog" : null,
           "dialog_face_player" : "true",
           "dialog_interval" : "2000",
+          "dialog_random" : "false",
           "dialog_range" : "3.0",
           "direction" : null,
           "disguise" : null,
@@ -2696,6 +2988,7 @@
           "own" : "false",
           "ownable" : "false",
           "owner" : null,
+          "passenger_rotation_speed" : "0.0",
           "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
@@ -2708,6 +3001,7 @@
           "reason" : null,
           "register_by_name" : "false",
           "relentless" : "false",
+          "reload" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "show_name" : "false",
@@ -2938,13 +3232,17 @@
           "braking" : "0",
           "controllable" : "false",
           "crash_braking" : "0",
+          "crash_cooldown" : "0",
           "crash_damage" : "0",
           "crash_dismount_speed" : "0",
           "crash_distance" : "0",
           "crash_effects" : null,
+          "crash_entity_cooldown" : "0",
           "crash_entity_damage" : "0",
+          "crash_entity_dismount_speed" : "-1.0",
           "crash_entity_distance" : "2",
           "crash_entity_fov" : "0.3",
+          "crash_entity_speed" : "0.0",
           "crash_entity_vehicle_damage" : "0",
           "crash_into" : null,
           "crash_speed" : "0",
@@ -2974,6 +3272,7 @@
           "max_speed" : "0",
           "min_speed" : "0",
           "mount_name" : null,
+          "mount_name_visible" : "false",
           "mount_no_drops" : "true",
           "mount_target" : "false",
           "mount_untargetable" : "true",
@@ -3080,6 +3379,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -3299,6 +3599,24 @@
         },
         "short_class" : "Recall"
       },
+      "rect_of_effect" : {
+        "category" : "compound",
+        "class_name" : "RectOfEffectAction",
+        "description" : [ "" ],
+        "examples" : [ ],
+        "importance" : 0,
+        "name" : "Rect Of Effect",
+        "parameters" : {
+          "ignore_modified" : "false",
+          "max" : null,
+          "min" : null,
+          "random_choose" : "false",
+          "sort" : "false",
+          "target_count" : "-1",
+          "target_source" : "true"
+        },
+        "short_class" : "RectOfEffect"
+      },
       "recurse" : {
         "category" : "compound",
         "class_name" : "RecurseAction",
@@ -3462,13 +3780,17 @@
           "braking" : "0",
           "controllable" : "false",
           "crash_braking" : "0",
+          "crash_cooldown" : "0",
           "crash_damage" : "0",
           "crash_dismount_speed" : "0",
           "crash_distance" : "0",
           "crash_effects" : null,
+          "crash_entity_cooldown" : "0",
           "crash_entity_damage" : "0",
+          "crash_entity_dismount_speed" : "-1.0",
           "crash_entity_distance" : "2",
           "crash_entity_fov" : "0.3",
+          "crash_entity_speed" : "0.0",
           "crash_entity_vehicle_damage" : "0",
           "crash_into" : null,
           "crash_speed" : "0",
@@ -3544,6 +3866,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -3772,6 +4095,7 @@
         "importance" : 0,
         "name" : "Shrink Entity",
         "parameters" : {
+          "adaptive_knockback_resistance" : "0.0",
           "cancel_on_kill_target" : "false",
           "critical_damage_multiplier" : "0.0",
           "critical_effects" : "critical",
@@ -3868,6 +4192,7 @@
           "dialog" : null,
           "dialog_face_player" : "true",
           "dialog_interval" : "2000",
+          "dialog_random" : "false",
           "dialog_range" : "3.0",
           "direction" : null,
           "disguise_map" : null,
@@ -3924,6 +4249,7 @@
           "owned" : "true",
           "owner" : null,
           "parameterize_name" : "true",
+          "passenger_rotation_speed" : "0.0",
           "permissions" : null,
           "persist" : "false",
           "potion_effects" : null,
@@ -3936,6 +4262,7 @@
           "reason" : null,
           "register_by_name" : "false",
           "relentless" : "false",
+          "reload" : "false",
           "remove_mounts" : null,
           "remove_when_far_away" : "false",
           "repeat_random" : "true",
@@ -4040,6 +4367,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -4206,6 +4534,7 @@
           "round_up" : "0.75",
           "safe" : "true",
           "same_block" : "false",
+          "teleport_target" : "false",
           "teleport_vehicle" : "true",
           "use_target_location" : "false",
           "vertical_range" : "8"
@@ -4431,6 +4760,7 @@
         "name" : "Velocity",
         "parameters" : {
           "additive" : "false",
+          "allow_max_height" : "true",
           "damaged" : "true",
           "direction" : null,
           "exemption_duration" : "0",
@@ -4469,6 +4799,7 @@
           "probability" : "1",
           "radius" : "2",
           "radius_padding" : "0.25",
+          "remove_target_entities" : "false",
           "reorient" : "true",
           "replace" : "false",
           "thickness" : "0",
@@ -4774,7 +5105,9 @@
           "particles_cone" : "180",
           "radius_grow" : "0.006",
           "randomize" : "false",
-          "rotation" : "0"
+          "rotation" : "0",
+          "solid" : "false",
+          "strands" : "1"
         },
         "short_class" : "Cone"
       },
@@ -5546,10 +5879,12 @@
           "effect_type" : "repeating",
           "grow" : "0.05",
           "helixes" : "4",
+          "init_range" : "0.0",
           "iterations" : "200",
           "particle" : "flame",
           "radials" : "0.19634954084936207",
-          "radius" : "2"
+          "radius" : "2",
+          "radius_grow" : "0.0"
         },
         "short_class" : "Vortex"
       },
@@ -5714,6 +6049,14 @@
       "importance" : 0,
       "name" : "Active Wand",
       "type" : "boolean"
+    },
+    "adaptive_knockback_resistance" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "adaptive_knockback_resistance",
+      "importance" : 0,
+      "name" : "Adaptive Knockback Resistance",
+      "type" : "double"
     },
     "add_effects" : {
       "category" : "",
@@ -5947,6 +6290,14 @@
       "name" : "Allow Locked",
       "type" : "boolean"
     },
+    "allow_max_height" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "allow_max_height",
+      "importance" : 0,
+      "name" : "Allow Max Height",
+      "type" : "boolean"
+    },
     "allow_max_range" : {
       "category" : "targeting",
       "description" : [ "If set to true, this spell will cast as normal if it misses, meaning it reaches max range without hitting a block or entity" ],
@@ -6114,6 +6465,22 @@
       "importance" : 0,
       "name" : "Always Active",
       "type" : "boolean"
+    },
+    "ambient_sound_time" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ambient_sound_time",
+      "importance" : 0,
+      "name" : "Ambient Sound Time",
+      "type" : "string"
+    },
+    "ambient_sounds" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ambient_sounds",
+      "importance" : 0,
+      "name" : "Ambient Sounds",
+      "type" : "list"
     },
     "amount" : {
       "category" : "mob",
@@ -6699,6 +7066,14 @@
       "importance" : 0,
       "name" : "Bb",
       "type" : "boolean"
+    },
+    "bedrock_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "bedrock_level",
+      "importance" : 0,
+      "name" : "Bedrock Level",
+      "type" : "integer"
     },
     "biome" : {
       "category" : "",
@@ -7364,6 +7739,14 @@
       "field" : "cancel_on_death",
       "importance" : 0,
       "name" : "Cancel On Death",
+      "type" : "boolean"
+    },
+    "cancel_on_enter_portal" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "cancel_on_enter_portal",
+      "importance" : 0,
+      "name" : "Cancel On Enter Portal",
       "type" : "boolean"
     },
     "cancel_on_kill_target" : {
@@ -8344,6 +8727,14 @@
       "name" : "Crash Braking",
       "type" : "double"
     },
+    "crash_cooldown" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crash_cooldown",
+      "importance" : 0,
+      "name" : "Crash Cooldown",
+      "type" : "integer"
+    },
     "crash_damage" : {
       "category" : "",
       "description" : [ "" ],
@@ -8376,12 +8767,28 @@
       "name" : "Crash Effects",
       "type" : "map"
     },
+    "crash_entity_cooldown" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crash_entity_cooldown",
+      "importance" : 0,
+      "name" : "Crash Entity Cooldown",
+      "type" : "integer"
+    },
     "crash_entity_damage" : {
       "category" : "",
       "description" : [ "" ],
       "field" : "crash_entity_damage",
       "importance" : 0,
       "name" : "Crash Entity Damage",
+      "type" : "double"
+    },
+    "crash_entity_dismount_speed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crash_entity_dismount_speed",
+      "importance" : 0,
+      "name" : "Crash Entity Dismount Speed",
       "type" : "double"
     },
     "crash_entity_distance" : {
@@ -8398,6 +8805,14 @@
       "field" : "crash_entity_fov",
       "importance" : 0,
       "name" : "Crash Entity Fov",
+      "type" : "double"
+    },
+    "crash_entity_speed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "crash_entity_speed",
+      "importance" : 0,
+      "name" : "Crash Entity Speed",
       "type" : "double"
     },
     "crash_entity_vehicle_damage" : {
@@ -8551,6 +8966,22 @@
       "importance" : 0,
       "name" : "Custom Id",
       "type" : "string"
+    },
+    "custom_name" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "custom_name",
+      "importance" : 0,
+      "name" : "Custom Name",
+      "type" : "string"
+    },
+    "custom_name_visible" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "custom_name_visible",
+      "importance" : 0,
+      "name" : "Custom Name Visible",
+      "type" : "boolean"
     },
     "cycle_colors" : {
       "category" : "",
@@ -8840,6 +9271,14 @@
       "name" : "Dialog Interval",
       "type" : "integer"
     },
+    "dialog_random" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "dialog_random",
+      "importance" : 0,
+      "name" : "Dialog Random",
+      "type" : "boolean"
+    },
     "dialog_range" : {
       "category" : "npc",
       "description" : [ "How close a player must be before the NPC will start speaking to them" ],
@@ -9016,6 +9455,14 @@
       "name" : "Dismount Height",
       "type" : "double"
     },
+    "display" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "display",
+      "importance" : 0,
+      "name" : "Display",
+      "type" : "boolean"
+    },
     "display_cooldown" : {
       "category" : "base",
       "description" : [ "A duration to use for displaying cooldown in the lore", "This can be used if the spell does not have a cooldown assigned but emulates it", "Perhaps via the ModifyCooldown action" ],
@@ -9031,6 +9478,14 @@
       "importance" : 0,
       "name" : "Display Name",
       "type" : "string"
+    },
+    "display_scale" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "display_scale",
+      "importance" : 0,
+      "name" : "Display Scale",
+      "type" : "double"
     },
     "distance" : {
       "category" : "",
@@ -9335,6 +9790,14 @@
       "importance" : 0,
       "name" : "Effect Bubbles",
       "type" : "boolean"
+    },
+    "effect_bubbles_particle" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "effect_bubbles_particle",
+      "importance" : 0,
+      "name" : "Effect Bubbles Particle",
+      "type" : "string"
     },
     "effect_class" : {
       "category" : "",
@@ -10248,6 +10711,22 @@
       "name" : "Game Mode",
       "type" : "game_mode"
     },
+    "game_rules" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "game_rules",
+      "importance" : 0,
+      "name" : "Game Rules",
+      "type" : "map"
+    },
+    "generator" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "generator",
+      "importance" : 0,
+      "name" : "Generator",
+      "type" : "map"
+    },
     "give_book" : {
       "category" : "",
       "description" : [ "If true, will give a book item to the target player rather than modifying the caster's wand " ],
@@ -10335,6 +10814,14 @@
       "importance" : 0,
       "name" : "Gravity",
       "type" : "boolean"
+    },
+    "ground_level" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "ground_level",
+      "importance" : 0,
+      "name" : "Ground Level",
+      "type" : "integer"
     },
     "group" : {
       "category" : "",
@@ -10648,6 +11135,14 @@
       "name" : "Hotbar Count",
       "type" : "double"
     },
+    "hover_message_key" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "hover_message_key",
+      "importance" : 0,
+      "name" : "Hover Message Key",
+      "type" : "string"
+    },
     "hurt" : {
       "category" : "effects",
       "description" : [ "Whether to play the hurt effect on the target, which will shake a player and turn their screen red" ],
@@ -10703,6 +11198,14 @@
       "importance" : 0,
       "name" : "Disabled Icon Url",
       "type" : "texture"
+    },
+    "icon_enabled" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "icon_enabled",
+      "importance" : 0,
+      "name" : "Icon Enabled",
+      "type" : "string"
     },
     "icon_hide_flags" : {
       "category" : "",
@@ -10960,6 +11463,14 @@
       "importance" : 90,
       "name" : "Inherit",
       "type" : "string"
+    },
+    "init_range" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "init_range",
+      "importance" : 0,
+      "name" : "Init Range",
+      "type" : "float"
     },
     "inner_radius" : {
       "category" : "",
@@ -11537,6 +12048,14 @@
       "name" : "Legacy Icon Disabled",
       "type" : "string"
     },
+    "legacy_icon_enabled" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "legacy_icon_enabled",
+      "importance" : 0,
+      "name" : "Legacy Icon Enabled",
+      "type" : "string"
+    },
     "leggings" : {
       "category" : "",
       "description" : [ "" ],
@@ -11792,6 +12311,14 @@
       "importance" : 0,
       "name" : "Location Offset",
       "type" : "vector"
+    },
+    "lock" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "lock",
+      "importance" : 0,
+      "name" : "Lock",
+      "type" : "boolean"
     },
     "lock_class" : {
       "category" : "",
@@ -12056,6 +12583,14 @@
       "importance" : 0,
       "name" : "Material Only",
       "type" : "boolean"
+    },
+    "material_sets" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "material_sets",
+      "importance" : 0,
+      "name" : "Material Sets",
+      "type" : "list"
     },
     "materials" : {
       "category" : "",
@@ -12337,6 +12872,14 @@
       "name" : "Messages",
       "type" : "map"
     },
+    "min" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "min",
+      "importance" : 0,
+      "name" : "Min",
+      "type" : "string"
+    },
     "min_block_range" : {
       "category" : "",
       "description" : [ "" ],
@@ -12601,6 +13144,14 @@
       "name" : "Mount Name",
       "type" : "string"
     },
+    "mount_name_visible" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "mount_name_visible",
+      "importance" : 0,
+      "name" : "Mount Name Visible",
+      "type" : "boolean"
+    },
     "mount_no_drops" : {
       "category" : "",
       "description" : [ "" ],
@@ -12608,6 +13159,14 @@
       "importance" : 0,
       "name" : "Mount No Drops",
       "type" : "boolean"
+    },
+    "mount_restricted" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "mount_restricted",
+      "importance" : 0,
+      "name" : "Mount Restricted",
+      "type" : "string"
     },
     "mount_target" : {
       "category" : "",
@@ -13249,6 +13808,14 @@
       "name" : "Particle Data",
       "type" : "double"
     },
+    "particle_force_show" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "particle_force_show",
+      "importance" : 0,
+      "name" : "Particle Force Show",
+      "type" : "boolean"
+    },
     "particle_helix" : {
       "category" : "effects",
       "description" : [ "The particle to use in the helix of this effect" ],
@@ -13496,6 +14063,14 @@
       "importance" : 0,
       "name" : "Passenger",
       "type" : "boolean"
+    },
+    "passenger_rotation_speed" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "passenger_rotation_speed",
+      "importance" : 0,
+      "name" : "Passenger Rotation Speed",
+      "type" : "double"
     },
     "passive" : {
       "category" : "wand",
@@ -13754,7 +14329,7 @@
       "type" : "string"
     },
     "player_damage" : {
-      "category" : "",
+      "category" : "actions",
       "description" : [ "" ],
       "field" : "player_damage",
       "importance" : 90,
@@ -13792,6 +14367,14 @@
       "importance" : 0,
       "name" : "Player Weight",
       "type" : "integer"
+    },
+    "populators" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "populators",
+      "importance" : 0,
+      "name" : "Populators",
+      "type" : "map"
     },
     "portal_damage" : {
       "category" : "",
@@ -14209,6 +14792,14 @@
       "name" : "Radius Tube",
       "type" : "float"
     },
+    "random_choose" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "random_choose",
+      "importance" : 0,
+      "name" : "Random Choose",
+      "type" : "boolean"
+    },
     "random_source_offset" : {
       "category" : "",
       "description" : [ "" ],
@@ -14263,6 +14854,22 @@
       "field" : "range",
       "importance" : 100,
       "name" : "Range",
+      "type" : "double"
+    },
+    "range_back" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "range_back",
+      "importance" : 0,
+      "name" : "Range Back",
+      "type" : "double"
+    },
+    "range_front" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "range_front",
+      "importance" : 0,
+      "name" : "Range Front",
       "type" : "double"
     },
     "range_padding" : {
@@ -14344,6 +14951,14 @@
       "importance" : 0,
       "name" : "Reduce",
       "type" : "integer"
+    },
+    "reduce_boolean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "reduce",
+      "importance" : 0,
+      "name" : "Reduce",
+      "type" : "boolean"
     },
     "reflect_chance" : {
       "category" : "",
@@ -14489,6 +15104,14 @@
       "name" : "Relentless",
       "type" : "boolean"
     },
+    "reload" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "reload",
+      "importance" : 0,
+      "name" : "Reload",
+      "type" : "boolean"
+    },
     "remove" : {
       "category" : "",
       "description" : [ "" ],
@@ -14559,6 +15182,14 @@
       "field" : "remove_on_finish",
       "importance" : 0,
       "name" : "Remove On Finish",
+      "type" : "boolean"
+    },
+    "remove_target_entities" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "remove_target_entities",
+      "importance" : 0,
+      "name" : "Remove Target Entities",
       "type" : "boolean"
     },
     "remove_when_broken" : {
@@ -14903,6 +15534,14 @@
       "field" : "resource_pack",
       "importance" : 0,
       "name" : "Resource Pack",
+      "type" : "string"
+    },
+    "respawn" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "respawn",
+      "importance" : 0,
+      "name" : "Respawn",
       "type" : "string"
     },
     "result" : {
@@ -17001,6 +17640,14 @@
       "name" : "Time",
       "type" : "string"
     },
+    "time_integer" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "time",
+      "importance" : 0,
+      "name" : "Time",
+      "type" : "integer"
+    },
     "time_offset" : {
       "category" : "",
       "description" : [ "" ],
@@ -17024,6 +17671,14 @@
       "importance" : 0,
       "name" : "Title",
       "type" : "string"
+    },
+    "title_delay" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "title_delay",
+      "importance" : 0,
+      "name" : "Title Delay",
+      "type" : "integer"
     },
     "title_key" : {
       "category" : "",
@@ -17395,6 +18050,14 @@
       "name" : "Unlock",
       "type" : "string"
     },
+    "unlock_boolean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "unlock",
+      "importance" : 0,
+      "name" : "Unlock",
+      "type" : "boolean"
+    },
     "unlock_class" : {
       "category" : "",
       "description" : [ "" ],
@@ -17602,6 +18265,14 @@
       "importance" : 0,
       "name" : "Use Brush",
       "type" : "string"
+    },
+    "use_brush_boolean" : {
+      "category" : "",
+      "description" : [ "" ],
+      "field" : "use_brush",
+      "importance" : 0,
+      "name" : "Use Brush",
+      "type" : "boolean"
     },
     "use_brush_size" : {
       "category" : "",
@@ -17817,6 +18488,30 @@
       "field" : "vanilla",
       "importance" : 0,
       "name" : "Vanilla",
+      "type" : "string"
+    },
+    "vanilla_item" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "vanilla_item",
+      "importance" : 0,
+      "name" : "Vanilla Item",
+      "type" : "string"
+    },
+    "vanilla_item_disabled" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "vanilla_item_disabled",
+      "importance" : 0,
+      "name" : "Vanilla Item Disabled",
+      "type" : "string"
+    },
+    "vanilla_item_enabled" : {
+      "category" : "actions",
+      "description" : [ "" ],
+      "field" : "vanilla_item_enabled",
+      "importance" : 0,
+      "name" : "Vanilla Item Enabled",
       "type" : "string"
     },
     "vanish" : {
@@ -18762,18 +19457,22 @@
         "flower_forest" : null,
         "forest" : null,
         "frozen_ocean" : null,
+        "frozen_peaks" : null,
         "frozen_river" : null,
         "giant_spruce_taiga" : null,
         "giant_spruce_taiga_hills" : null,
         "giant_tree_taiga" : null,
         "giant_tree_taiga_hills" : null,
         "gravelly_mountains" : null,
+        "grove" : null,
         "ice_spikes" : null,
+        "jagged_peaks" : null,
         "jungle" : null,
         "jungle_edge" : null,
         "jungle_hills" : null,
         "lukewarm_ocean" : null,
         "lush_caves" : null,
+        "meadow" : null,
         "modified_badlands_plateau" : null,
         "modified_gravelly_mountains" : null,
         "modified_jungle" : null,
@@ -18786,6 +19485,9 @@
         "nether" : null,
         "nether_wastes" : null,
         "ocean" : null,
+        "old_growth_birch_forest" : null,
+        "old_growth_pine_taiga" : null,
+        "old_growth_spruce_taiga" : null,
         "plains" : null,
         "river" : null,
         "savanna" : null,
@@ -18795,12 +19497,17 @@
         "small_end_islands" : null,
         "snowy_beach" : null,
         "snowy_mountains" : null,
+        "snowy_plains" : null,
+        "snowy_slopes" : null,
         "snowy_taiga" : null,
         "snowy_taiga_hills" : null,
         "snowy_taiga_mountains" : null,
         "snowy_tundra" : null,
         "soul_sand_valley" : null,
+        "sparse_jungle" : null,
         "stone_shore" : null,
+        "stony_peaks" : null,
+        "stony_shore" : null,
         "sunflower_plains" : null,
         "swamp" : null,
         "swamp_hills" : null,
@@ -18813,6 +19520,11 @@
         "the_void" : null,
         "warm_ocean" : null,
         "warped_forest" : null,
+        "windswept_forest" : null,
+        "windswept_gravelly_hills" : null,
+        "windswept_hills" : null,
+        "windswept_savanna" : null,
+        "wooded_badlands" : null,
         "wooded_badlands_plateau" : null,
         "wooded_hills" : null,
         "wooded_mountains" : null
@@ -19138,16 +19850,25 @@
         "anvil_use" : null,
         "bat_takeoff" : null,
         "blaze_shoot" : null,
+        "bone_meal_use" : null,
+        "book_page_turn" : null,
         "bow_fire" : null,
         "brewing_stand_brew" : null,
         "chorus_flower_death" : null,
         "chorus_flower_grow" : null,
         "click1" : null,
         "click2" : null,
+        "composter_fill_attempt" : null,
+        "copper_wax_off" : null,
+        "copper_wax_on" : null,
         "door_close" : null,
         "door_toggle" : null,
         "dragon_breath" : null,
+        "dripping_dripstone" : null,
+        "electric_spark" : null,
         "end_gateway_spawn" : null,
+        "end_portal_frame_fill" : null,
+        "ender_dragon_destroy_block" : null,
         "ender_signal" : null,
         "enderdragon_growl" : null,
         "enderdragon_shoot" : null,
@@ -19158,16 +19879,28 @@
         "firework_shoot" : null,
         "ghast_shoot" : null,
         "ghast_shriek" : null,
+        "grindstone_use" : null,
+        "husk_converted_to_zombie" : null,
         "instant_potion_break" : null,
         "iron_door_close" : null,
         "iron_door_toggle" : null,
         "iron_trapdoor_close" : null,
         "iron_trapdoor_toggle" : null,
+        "lava_interact" : null,
         "mobspawner_flames" : null,
+        "oxidised_copper_scrape" : null,
+        "phantom_bite" : null,
+        "pointed_dripstone_drip_lava_into_cauldron" : null,
+        "pointed_dripstone_drip_water_into_cauldron" : null,
+        "pointed_dripstone_land" : null,
         "portal_travel" : null,
         "potion_break" : null,
         "record_play" : null,
+        "redstone_torch_burnout" : null,
+        "skeleton_converted_to_stray" : null,
+        "smithing_table_use" : null,
         "smoke" : null,
+        "sponge_dry" : null,
         "step_sound" : null,
         "trapdoor_close" : null,
         "trapdoor_toggle" : null,
@@ -19176,6 +19909,7 @@
         "wither_shoot" : null,
         "zombie_chew_iron_door" : null,
         "zombie_chew_wooden_door" : null,
+        "zombie_converted_to_drowned" : null,
         "zombie_converted_villager" : null,
         "zombie_destroy_door" : null,
         "zombie_infect" : null
@@ -19330,6 +20064,7 @@
         "particle" : null,
         "particle_count" : "1",
         "particle_data" : "0.0",
+        "particle_force_show" : "false",
         "particle_offset" : "0",
         "particle_offset_x" : "0",
         "particle_offset_y" : "0",
@@ -20662,6 +21397,7 @@
         "music_disc_far" : null,
         "music_disc_mall" : null,
         "music_disc_mellohi" : null,
+        "music_disc_otherside" : null,
         "music_disc_pigstep" : null,
         "music_disc_stal" : null,
         "music_disc_strad" : null,
@@ -21293,6 +22029,7 @@
         "dialog" : null,
         "dialog_face_player" : "true",
         "dialog_interval" : "2000",
+        "dialog_random" : "false",
         "dialog_range" : "3.0",
         "disabled_slots" : "0",
         "disguise_map" : null,
@@ -21364,6 +22101,7 @@
         "owner" : null,
         "parrot_variant" : null,
         "particle" : null,
+        "passenger_rotation_speed" : "0.0",
         "permissions" : null,
         "persist" : "false",
         "phase" : null,
@@ -21383,6 +22121,7 @@
         "reapplication_delay" : "0",
         "register_by_name" : "false",
         "relentless" : "false",
+        "reload" : "false",
         "remove_mounts" : null,
         "remove_when_far_away" : "false",
         "right_arm_pose" : null,
@@ -21510,6 +22249,7 @@
         "barrier" : null,
         "block_crack" : null,
         "block_dust" : null,
+        "block_marker" : null,
         "bubble_column_up" : null,
         "bubble_pop" : null,
         "campfire_cosy_smoke" : null,
@@ -22118,6 +22858,7 @@
         "block_gravel_place" : null,
         "block_gravel_step" : null,
         "block_grindstone_use" : null,
+        "block_growing_plant_crop" : null,
         "block_hanging_roots_break" : null,
         "block_hanging_roots_fall" : null,
         "block_hanging_roots_hit" : null,
@@ -23027,6 +23768,9 @@
         "item_bucket_fill_fish" : null,
         "item_bucket_fill_lava" : null,
         "item_bucket_fill_powder_snow" : null,
+        "item_bundle_drop_contents" : null,
+        "item_bundle_insert" : null,
+        "item_bundle_remove_one" : null,
         "item_chorus_fruit_teleport" : null,
         "item_crop_plant" : null,
         "item_crossbow_hit" : null,
@@ -23073,6 +23817,7 @@
         "music_disc_far" : null,
         "music_disc_mall" : null,
         "music_disc_mellohi" : null,
+        "music_disc_otherside" : null,
         "music_disc_pigstep" : null,
         "music_disc_stal" : null,
         "music_disc_strad" : null,
@@ -23088,6 +23833,14 @@
         "music_nether_nether_wastes" : null,
         "music_nether_soul_sand_valley" : null,
         "music_nether_warped_forest" : null,
+        "music_overworld_dripstone_caves" : null,
+        "music_overworld_frozen_peaks" : null,
+        "music_overworld_grove" : null,
+        "music_overworld_jagged_peaks" : null,
+        "music_overworld_lush_caves" : null,
+        "music_overworld_meadow" : null,
+        "music_overworld_snowy_slopes" : null,
+        "music_overworld_stony_peaks" : null,
         "music_under_water" : null,
         "particle_soul_escape" : null,
         "ui_button_click" : null,
@@ -23177,6 +23930,7 @@
         "cancel_on_damage" : "0",
         "cancel_on_deactivate" : "true",
         "cancel_on_death" : "false",
+        "cancel_on_enter_portal" : "false",
         "cancel_on_no_permission" : "false",
         "cancel_on_no_wand" : "false",
         "cancel_on_world_change" : "false",
@@ -23195,6 +23949,7 @@
         "cooldown_mage" : "0",
         "cooldown_reduction" : "0",
         "cost_reduction" : "0",
+        "damage" : "0.0",
         "damage_resistance_protection" : "0",
         "deny_break" : "false",
         "deny_build" : "false",
@@ -23205,6 +23960,7 @@
         "distance_weight" : "1",
         "duration" : "0",
         "entity" : "",
+        "entity_damage" : "0.0",
         "entity_undo" : "false",
         "entity_undo_types" : null,
         "entity_weight" : "3",
@@ -23240,6 +23996,7 @@
         "passive" : "false",
         "passthrough" : null,
         "player" : "",
+        "player_damage" : "0.0",
         "player_weight" : "4",
         "prevent_passthrough" : null,
         "pworld" : null,
@@ -23313,6 +24070,7 @@
         "creative_restricted" : "false",
         "creator" : null,
         "creator_id" : null,
+        "damage" : "0.0",
         "deactivate_effects" : "true",
         "description" : "",
         "disable_mana_regeneration" : "false",
@@ -23333,16 +24091,19 @@
         "hide_messages" : null,
         "icon_disabled" : null,
         "icon_disabled_url" : null,
+        "icon_enabled" : null,
         "icon_item" : "",
         "icon_spell" : null,
         "icon_url" : null,
         "inherit" : null,
         "legacy_icon" : null,
         "legacy_icon_disabled" : null,
+        "legacy_icon_enabled" : null,
         "level_description" : "",
         "lore" : null,
         "messages" : null,
         "mode" : null,
+        "mount_restricted" : "false",
         "name" : "interrogator",
         "parameters" : null,
         "passive" : "false",
@@ -23372,6 +24133,9 @@
         "upgrade_required_path" : null,
         "upgrade_required_path_tags" : null,
         "uses_brush" : "false",
+        "vanilla_item" : null,
+        "vanilla_item_disabled" : null,
+        "vanilla_item_enabled" : null,
         "variables" : null,
         "variables_map" : null,
         "world_border_restricted" : "false",
@@ -23456,6 +24220,7 @@
         "block" : "Only target blocks, ignore entities",
         "block_broken" : null,
         "damage_target" : null,
+        "damager" : null,
         "last_damager" : null,
         "none" : "No target at all, can be used with some actions like Weather and Time",
         "other" : "Will not target the caster, only other entities or blocks",
@@ -23690,6 +24455,7 @@
         "drop_sneak" : null,
         "earn_multiplier" : null,
         "effect_bubbles" : "false",
+        "effect_bubbles_particle" : null,
         "effect_color" : null,
         "effect_particle" : null,
         "effect_particle_count" : "0",
@@ -23832,8 +24598,11 @@
       "description" : [ "" ],
       "name" : "World Properties",
       "parameters" : {
+        "ambient_sound_time" : null,
+        "ambient_sounds" : null,
         "appearance" : null,
         "autoload" : "false",
+        "bedrock_level" : "0",
         "block_break" : null,
         "block_place" : null,
         "cancel_spells_on_save" : "true",
@@ -23842,13 +24611,21 @@
         "entity_spawn" : null,
         "environment" : null,
         "game_mode" : null,
+        "game_rules" : null,
+        "generator" : null,
+        "ground_level" : "64",
         "leave_game_mode" : null,
         "max_height" : "0",
         "min_height" : "0",
+        "populators" : null,
         "resource_pack" : null,
+        "respawn" : null,
         "seed" : "-7344952961634999273",
+        "spawn" : null,
         "synchronize_time" : "true",
+        "time" : "0",
         "time_offset" : "0",
+        "title_delay" : "0",
         "world_type" : null
       }
     },
