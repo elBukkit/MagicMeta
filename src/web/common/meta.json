@@ -5940,7 +5940,7 @@
       "bedrock" : {
         "category" : "",
         "class_name" : "BedrockGenerator",
-        "description" : [ "" ],
+        "description" : [ "Create a layer of bredrock" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Bedrock",
@@ -5950,7 +5950,7 @@
       "frequency" : {
         "category" : "",
         "class_name" : "FrequencyGenerator",
-        "description" : [ "" ],
+        "description" : [ "Skip every N chunks" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Frequency",
@@ -5963,7 +5963,7 @@
       "perlin" : {
         "category" : "",
         "class_name" : "PerlinGenerator",
-        "description" : [ "" ],
+        "description" : [ "Generate a surface using perlin noise for semi-realistic continuous terrain" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Perlin",
@@ -5979,7 +5979,7 @@
       "pools" : {
         "category" : "",
         "class_name" : "PoolsGenerator",
-        "description" : [ "" ],
+        "description" : [ "Generate a liminal pools room" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Pools",
@@ -6011,7 +6011,7 @@
       "random" : {
         "category" : "",
         "class_name" : "RandomGenerator",
-        "description" : [ "" ],
+        "description" : [ "Choose a generator to run from a weighted random map" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Random",
@@ -6023,7 +6023,7 @@
       "sequence" : {
         "category" : "",
         "class_name" : "SequenceGenerator",
-        "description" : [ "" ],
+        "description" : [ "Run multiple generates in a sequence" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Sequence",
@@ -6036,7 +6036,7 @@
       "vanilla" : {
         "category" : "",
         "class_name" : "VanillaGenerator",
-        "description" : [ "" ],
+        "description" : [ "Run vanilla world generation, or a subset of generation" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Vanilla",
@@ -6053,7 +6053,7 @@
       "void" : {
         "category" : "",
         "class_name" : "VoidGenerator",
-        "description" : [ "" ],
+        "description" : [ "Do nothing" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Void",
@@ -6065,7 +6065,7 @@
       "chest" : {
         "category" : "",
         "class_name" : "ChestPopulator",
-        "description" : [ "" ],
+        "description" : [ "Adds items to naturally-spawned chests" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Chest",
@@ -6082,7 +6082,7 @@
       "crops" : {
         "category" : "",
         "class_name" : "CropsPopulator",
-        "description" : [ "" ],
+        "description" : [ "Generate farm plots" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Crops",
@@ -6102,7 +6102,7 @@
       "end_gateway" : {
         "category" : "",
         "class_name" : "EndGatewayPopulator",
-        "description" : [ "" ],
+        "description" : [ "Generate a cuboid of end gateway blocks" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "End Gateway",
@@ -6116,7 +6116,7 @@
       "end_portal" : {
         "category" : "",
         "class_name" : "EndPortalPopulator",
-        "description" : [ "" ],
+        "description" : [ "Generate a quare of end portal blocks" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "End Portal",
@@ -6130,7 +6130,7 @@
       "frequency" : {
         "category" : "",
         "class_name" : "FrequencyPopulator",
-        "description" : [ "" ],
+        "description" : [ "Skip every N chunks" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Frequency",
@@ -6143,7 +6143,7 @@
       "grid" : {
         "category" : "",
         "class_name" : "GridPopulator",
-        "description" : [ "" ],
+        "description" : [ "Run a set of populators for each cell of a 3x3 grid" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Grid",
@@ -6155,7 +6155,7 @@
       "magic_block" : {
         "category" : "",
         "class_name" : "MagicBlockPopulator",
-        "description" : [ "" ],
+        "description" : [ "Add a magic block" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Magic Block",
@@ -6167,27 +6167,10 @@
         },
         "short_class" : "MagicBlock"
       },
-      "magic_chest" : {
-        "category" : "",
-        "class_name" : "MagicChestPopulator",
-        "description" : [ "" ],
-        "examples" : [ ],
-        "importance" : 0,
-        "name" : "Magic Chest",
-        "parameters" : {
-          "base_probability" : null,
-          "clear_items" : "false",
-          "item_probability" : null,
-          "max_y" : "255",
-          "min_y" : "0",
-          "remove_items" : null
-        },
-        "short_class" : "MagicChest"
-      },
       "random" : {
         "category" : "",
         "class_name" : "RandomPopulator",
-        "description" : [ "" ],
+        "description" : [ "Choose a populator from a weighted random map" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Random",
@@ -6199,7 +6182,7 @@
       "repeat" : {
         "category" : "",
         "class_name" : "RepeatPopulator",
-        "description" : [ "" ],
+        "description" : [ "Repeat a populator some number of times" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Repeat",
@@ -6212,7 +6195,7 @@
       "replace" : {
         "category" : "",
         "class_name" : "ReplacePopulator",
-        "description" : [ "" ],
+        "description" : [ "Replace specific blocks in a chunk with some other blocks" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Replace",
@@ -6233,7 +6216,7 @@
       "schematic" : {
         "category" : "",
         "class_name" : "SchematicPopulator",
-        "description" : [ "" ],
+        "description" : [ "Build a schematic" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Schematic",
@@ -6245,7 +6228,7 @@
       "sequence" : {
         "category" : "",
         "class_name" : "SequencePopulator",
-        "description" : [ "" ],
+        "description" : [ "Run multiple populators in a sequence" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Sequence",
@@ -6257,7 +6240,7 @@
       "spawn" : {
         "category" : "",
         "class_name" : "SpawnPopulator",
-        "description" : [ "" ],
+        "description" : [ "Spawn a mob" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Spawn",
@@ -6273,7 +6256,7 @@
       "tower" : {
         "category" : "",
         "class_name" : "TowerPopulator",
-        "description" : [ "" ],
+        "description" : [ "Build a randomized solid tower" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Tower",
@@ -6291,7 +6274,7 @@
       "tunnel" : {
         "category" : "",
         "class_name" : "TunnelPopulator",
-        "description" : [ "" ],
+        "description" : [ "Create an X shaped tunnel to the center of a chunk" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Tunnel",
@@ -6304,7 +6287,7 @@
       "vines" : {
         "category" : "",
         "class_name" : "VinesPopulator",
-        "description" : [ "" ],
+        "description" : [ "Grow some vines from the ceiling" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Vines",
@@ -6322,7 +6305,7 @@
       "void" : {
         "category" : "",
         "class_name" : "VoidPopulator",
-        "description" : [ "" ],
+        "description" : [ "Fill a chunk with air" ],
         "examples" : [ ],
         "importance" : 0,
         "name" : "Void",
