@@ -225,15 +225,6 @@ Editor.prototype.setMetadata = function(meta) {
             meta.types.spell.options = _session.spells.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.modifier.options = _session.modifiers.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.recipe.options = _session.crafting.reduce((a,b)=> (a[b]=null,a),{});
-            if (_sessions.hasOwnProperty("populators") && _session.populators != null) {
-                meta.types.populator.options = _session.populators.reduce((a,b)=> (a[b]=null,a),{});
-            }
-            if (_sessions.hasOwnProperty("generators") && _session.generators != null) {
-                meta.types.generator.options = _session.generators.reduce((a, b) => (a[b] = null, a), {});
-            }
-            if (_sessions.hasOwnProperty("worlds") && _session.worlds != null) {
-                meta.types.world.options = _session.worlds.reduce((a, b) => (a[b] = null, a), {});
-            }
 
         }
         if (_session.hasOwnProperty('attributes')) {
@@ -242,14 +233,21 @@ Editor.prototype.setMetadata = function(meta) {
         if (_session.hasOwnProperty('currencies')) {
             meta.types.cost_type.options = $.extend(_session.currencies.reduce((a,b)=> (a[b]=null,a),{}), meta.types.cost_type.options);
         }
-
         if (_session.hasOwnProperty('wands')) {
             meta.types.wand.options = _session.wands.reduce((a,b)=> (a[b]=null,a),{});
             meta.types.item.options = $.extend(meta.types.item.options, _session.wands.reduce((a,b)=> (a[b]=null,a),{}));
         }
-
         if (_session.hasOwnProperty('items')) {
             meta.types.item.options = $.extend(meta.types.item.options, _session.items.reduce((a,b)=> (a[b]=null,a),{}));
+        }
+        if (_session.hasOwnProperty("populators") && _session.populators != null) {
+            meta.types.populator.options = _session.populators.reduce((a,b)=> (a[b]=null,a),{});
+        }
+        if (_session.hasOwnProperty("generators") && _session.generators != null) {
+            meta.types.generator.options = _session.generators.reduce((a, b) => (a[b] = null, a), {});
+        }
+        if (_session.hasOwnProperty("worlds") && _session.worlds != null) {
+            meta.types.world.options = _session.worlds.reduce((a, b) => (a[b] = null, a), {});
         }
     }
 
